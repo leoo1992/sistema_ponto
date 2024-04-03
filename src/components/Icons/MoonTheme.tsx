@@ -1,7 +1,7 @@
 export default function MoonTheme() {
     return (
         <svg
-            className="swap-on fill-current w-10 h-10"
+            className="swap-on fill-current w-6 h-6 m-0 p-0 "
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24">
             <path

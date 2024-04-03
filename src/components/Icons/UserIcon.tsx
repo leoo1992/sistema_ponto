@@ -3,15 +3,15 @@ export default function UserIcon() {
         <div
             tabIndex={0}
             role="button"
-            className="btn btn-ghost btn-circle avatar text-center 
+            className="avatar text-center m-0 p-0
                     flex justify-center self-center align-middle items-center content-center">
-            <div className="w-10 rounded-full flex justify-center self-center 
+            <div className="m-0 p-0 flex justify-center self-center 
                     align-middle items-center content-center text-center">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    className="w-10 h-10 flex justify-center self-center 
+                    className="w-6 h-6 m-0 p-0 flex justify-center self-center 
                             align-middle items-center content-center text-center">
                     <path
                         fillRule="evenodd"

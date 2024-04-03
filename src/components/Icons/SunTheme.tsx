@@ -1,7 +1,7 @@
 export default function SunTheme() {
     return (
         <svg
-            className="swap-off fill-current w-10 h-10 animate-spin"
+            className="swap-off fill-current w-6 h-6 m-0 p-0 animate-spin"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24">
             <path

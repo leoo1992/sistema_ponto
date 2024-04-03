@@ -3,6 +3,7 @@ html {
   height: 100vh;
   overflow-y: auto;
   overflow-x:  hidden;
+  scrollbar-gutter: auto !important;
 }
 
 body {
@@ -14,4 +15,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-y: auto;
   overflow-x:  hidden;
+  scrollbar-gutter: auto !important;
+}
+
+*{
+  scrollbar-gutter: auto !important;
 }
