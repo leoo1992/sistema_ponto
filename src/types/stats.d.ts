@@ -1,11 +1,14 @@
 export interface statsUse {
-    startTime?: Date;
-    currentTime?: Date;
-    setCurrentTime?: React.Dispatch<React.SetStateAction<Date>>;
-    hoursTrabalhada?: string;
-    minutesTrabalhada?: string;
-    secondsTrabalhada?: string;
-    hours?: string;
-    minutes?: string;
-    seconds?: string;
+    statsUse: {
+        startTime?: Date | undefined;
+        currentTime?: Date | undefined;
+        setCurrentTime?: React.Dispatch<React.SetStateAction<Date>> | undefined;
+        hoursTrabalhada?: string | undefined;
+        minutesTrabalhada?: string | undefined;
+        secondsTrabalhada?: string | undefined;
+        hours?: string | undefined;
+        minutes?: string | undefined;
+        seconds?: string | undefined;
+        setCurrentTime?: React.Dispatch<React.SetStateAction<Date>> | undefined;
+    }
 }

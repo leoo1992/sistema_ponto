@@ -1,6 +1,6 @@
-import {Stats} from "../../../types";
+import {statsUse} from "../../../types";
 
-export default function CurrentHour({statsUse}: Stats) {
+export default function CurrentHour({statsUse}: statsUse) {
     return (
         <div className="indicator text-center font-bold">
         <span

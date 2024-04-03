@@ -1,6 +1,6 @@
-import {Stats} from "../../../types";
+import {statsUse} from "../../../types";
 
-export default function WorkingTime({statsUse}: Stats) {
+export default function WorkingTime({statsUse}: statsUse) {
     return (
         <div className="indicator text-center font-bold mr-2">
             <span
