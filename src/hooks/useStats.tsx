@@ -3,6 +3,7 @@ import { useState } from 'react';
 export function useStats() {
   const [startTime] = useState(new Date());
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [isCheckInVisible, setIsCheckInVisible] = useState(true);
 
   const calculateElapsedTime = (start: Date, end: Date) => {
     const elapsedMilliseconds = end.getTime() - start.getTime();
@@ -19,6 +20,16 @@ const hours = currentTime.getHours().toString().padStart(2, '0');
 const minutes = currentTime.getMinutes().toString().padStart(2, '0');
 const seconds = currentTime.getSeconds().toString().padStart(2, '0');
 
+
+    const checkIn = () => {
+        setIsCheckInVisible(false);
+    };
+
+    const checkOut = () => {
+        setIsCheckInVisible(true);
+    };
+
+
   return {
     startTime,
     currentTime,
@@ -28,6 +39,9 @@ const seconds = currentTime.getSeconds().toString().padStart(2, '0');
     secondsTrabalhada,
     hours,
     minutes,
-    seconds
+    seconds,
+    isCheckInVisible,
+    checkIn,
+    checkOut
   };
 }

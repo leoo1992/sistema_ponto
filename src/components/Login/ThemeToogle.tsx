@@ -3,8 +3,8 @@ import SunTheme from "../Icons/SunTheme";
 
 export default function ThemeToogle() {
     return (
-        <label className="absolute swap swap-rotate top-0 end-0 m-0 p-2">
-            <input type="checkbox" className="theme-controller " value="synthwave" />
+        <label className="absolute swap swap-rotate top-0 end-0 m-0 p-2 transition-all duration-500 ease-in-out">
+            <input type="checkbox" className="theme-controller transition-all duration-500 ease-in-out " value="synthwave" />
             <SunTheme />
             <MoonTheme />
         </label>

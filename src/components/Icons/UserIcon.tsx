@@ -4,9 +4,11 @@ export default function UserIcon() {
             tabIndex={0}
             role="button"
             className="avatar text-center m-0 p-0
-                    flex justify-center self-center align-middle items-center content-center">
+                    flex justify-center self-center align-middle items-center content-center
+                    transition-all duration-500 ease-in-out">
             <div className="m-0 p-0 flex justify-center self-center 
-                    align-middle items-center content-center text-center">
+                    align-middle items-center content-center text-center
+                    transition-all duration-500 ease-in-out">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"

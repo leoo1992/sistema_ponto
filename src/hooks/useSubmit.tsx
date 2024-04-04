@@ -7,15 +7,6 @@ export function useSubmit() {
   const { register, handleSubmit } = useForm<FormData>();
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    // if (!data || !data.user || !data.pass) {
-    //     return;
-    // }
-
-    // if (data.pass.length < 11 || data.pass.includes(' ')) {
-    //     alert('A senha deve ter 11 dígitos');
-    //     return;
-    // }
-
     console.log(data);
 
     navigate('/home');

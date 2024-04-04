@@ -7,12 +7,12 @@ export default function FormLogin() {
     const formUse = useSubmit();
 
     return (
-        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 transition-all duration-500 ease-in-out">
             <form className="card-body" onSubmit={formUse.handleSubmit(formUse.onSubmit)}>
                 <UserInput register={formUse.register} />
                 <PassInput register={formUse.register} />
                 <LossPass />
-                <div className="form-control">
+                <div className="form-control transition-all duration-500 ease-in-out">
                     <button
                         type="submit"
                         className="btn btn-accent"
