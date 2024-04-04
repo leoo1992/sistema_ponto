@@ -4,6 +4,8 @@ import BankOFWorkingHours from './BankOFWorkingHours';
 import CurrentHour from './CurrentHour';
 import WorkingTime from './WorkingTime';
 
+
+
 export default function StatsBar() {
     const statsUse = useStats();
     return (
