@@ -22,16 +22,21 @@ export function useStats() {
             if (startWorkTime === null) {
                 setStartWorkTime({ hours: hoursWork, minutes: minutesWork, seconds: secondsWork });
             }
+            console.log(currentTime);
+            
             setTimeStop(false);
             setIsCheckInVisible(false);
         } else {
             setHoursWork("00");
             setMinutesWork("00");
             setSecondsWork("00");
+            setTimeStop(false);
+            setIsCheckInVisible(false);
         }
     }
 
     function checkOut() {
+        console.log(currentTime);
         setIsCheckInVisible(true);
         setTimeStop(true);
     }

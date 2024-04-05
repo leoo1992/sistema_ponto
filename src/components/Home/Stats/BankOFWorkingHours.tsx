@@ -1,14 +1,14 @@
 export default function BankOFWorkingHours() {
     return (
-        <div id="secundaria-1" className="mt-5 mx-5 transition-all duration-500 ease-in-out">
-            <div className="indicator text-center font-bold transition-all duration-500 ease-in-out">
+        <div id="secundaria-1" className="p-3">
+            <div className="pt-1 mt-1 indicator text-center font-bold">
                 <span
-                    className="indicator-item indicator-top indicator-start ml-10
+                    className="indicator-item indicator-top indicator-center
                             badge badge-secondary -z-40 shadow-md shadow-secondary
-                            transition-all duration-500 ease-in-out">
-                    Banco de Horas Extras
+                             mt-2">
+                    Horas Extras
                 </span>
-                <div className="stats stats-vertical sm:stats-horizontal shadow-md shadow-gray-500 glass bg-base-300 -z-50 transition-all duration-500 ease-in-out">
+                <div className="stats stats-vertical sm:stats-horizontal shadow-md shadow-gray-500 bg-secondary-content -z-50 ">
                     <div className="stat text-sm p-4 sm:p-5">
                         <div className="stat-title">Saldo atual</div>
                         <div className="stat-value text-lg">103:22</div>
