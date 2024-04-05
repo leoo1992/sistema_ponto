@@ -8,7 +8,7 @@ export default function UserInput({ register }: Props) {
     return (
         <div className="form-control">
             <label className="label">
-                <span className="label-text">
+                <span className="label-text text-accent">
                     Usuário
                 </span>
             </label>
@@ -17,7 +17,7 @@ export default function UserInput({ register }: Props) {
                 type="text"
                 name="user"
                 placeholder="Usuário"
-                className="input input-bordered"
+                className="input input-bordered shadow-primary shadow-sm text-accent"
                 maxLength={20}
                 required
             />

@@ -10,7 +10,7 @@ export default function HomePage() {
     <div className="-z-50 flex flex-col min-h-screen min-w-screen transition-all duration-500 ease-in-out m-0 p-0">
       <Navbar />
       <div className="flex-grow flex justify-center items-start m-0 p-0">
-        <CardDayRegisters />
+        <CardDayRegisters statsUse={statsUse} />
         <StatsBar statsUse={statsUse} />
       </div>
       <Footer />

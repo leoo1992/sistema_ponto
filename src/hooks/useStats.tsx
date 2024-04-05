@@ -11,35 +11,76 @@ export function useStats() {
     const [secondsWork, setSecondsWork] = useState("00");
     const [timeStop, setTimeStop] = useState(true);
     const [checkInCount, setCheckInCount] = useState(0);
+    const [checkOutCount, setCheckOutCount] = useState(0);
+
+    const [entryTime, setEntryTime] = useState<[null | string, null | string, null | string]>([null, null, null]);
+    const [exitTime, setExitTime] = useState<[null | string, null | string, null | string]>([null, null, null]);
 
     const hours = currentTime.getHours().toString().padStart(2, '0');
     const minutes = currentTime.getMinutes().toString().padStart(2, '0');
     const seconds = currentTime.getSeconds().toString().padStart(2, '0');
 
+    function formatHora(date: Date) {
+        const horas = date.getHours().toString().padStart(2, '0');
+        const minutos = date.getMinutes().toString().padStart(2, '0');
+        const segundos = date.getSeconds().toString().padStart(2, '0');
+        return `${horas}:${minutos}:${segundos}`;
+    }
+
     function checkIn() {
         if (checkInCount < 3) {
-            setCheckInCount(prevCount => prevCount + 1);
             if (startWorkTime === null) {
                 setStartWorkTime({ hours: hoursWork, minutes: minutesWork, seconds: secondsWork });
             }
-            console.log(currentTime);
-            
+            setEntryTime(prevEntryTime => {
+                const newEntryTime = [...prevEntryTime];
+                newEntryTime[checkInCount] = formatHora(currentTime);
+                return newEntryTime as [null | string, null | string, null | string];
+            });
+
             setTimeStop(false);
             setIsCheckInVisible(false);
         } else {
             setHoursWork("00");
             setMinutesWork("00");
             setSecondsWork("00");
+            setEntryTime([null, null, null]);
+            setExitTime([null, null, null]);
+            setCheckInCount(0);
             setTimeStop(false);
+            setEntryTime(prevEntryTime => {
+                const newEntryTime = [...prevEntryTime];
+                newEntryTime[checkInCount] = formatHora(currentTime);
+                return newEntryTime as [null | string, null | string, null | string];
+            });
             setIsCheckInVisible(false);
         }
+        setCheckInCount(prevCount => prevCount + 1);
     }
 
     function checkOut() {
-        console.log(currentTime);
-        setIsCheckInVisible(true);
-        setTimeStop(true);
+        if (checkOutCount < 3) {
+            setExitTime(prevExitTime => {
+                const newExitTime = [...prevExitTime];
+                newExitTime[checkOutCount] = formatHora(currentTime);
+                return newExitTime as [null | string, null | string, null | string];
+            });
+
+            setIsCheckInVisible(true);
+            setTimeStop(true);
+        } else {
+            setCheckOutCount(0);
+            setExitTime(prevExitTime => {
+                const newExitTime = [...prevExitTime];
+                newExitTime[checkOutCount] = formatHora(currentTime);
+                return newExitTime as [null | string, null | string, null | string];
+            });
+            setTimeStop(true);
+            setIsCheckInVisible(true);
+        }
+        setCheckOutCount(prevCount => prevCount + 1);
     }
+
 
     return {
         startTime,
@@ -60,6 +101,8 @@ export function useStats() {
         setMinutesWork,
         setSecondsWork,
         timeStop,
-        setTimeStop
+        setTimeStop,
+        entryTime,
+        exitTime
     };
 }

@@ -6,7 +6,7 @@ import WorkingTime from './WorkingTime';
 
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-expect-error
-export default function StatsBar({statsUse}) {
+export default function StatsBar({ statsUse }) {
 
     return (
         <>
@@ -19,9 +19,6 @@ export default function StatsBar({statsUse}) {
                     <CurrentHour statsUse={statsUse} />
                 </div>
                 <BankOFWorkingHours />
-                <div className="mx-3 p-0">
-                    <button className="btn cursor-pointer pointer-events-auto btn-primary btn-xs shadow-md shadow-primary font-bold -z-50 text-white">Detalhar</button>
-                </div>
             </div>
         </>
     )

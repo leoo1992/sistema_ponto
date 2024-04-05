@@ -1,4 +1,8 @@
+import AdjustIcon from "../../Icons/AdjustIcon";
+import ChartsIcon from "../../Icons/ChartsIcon";
 import HamburgMenu from "../../Icons/HamburgMenu";
+import HistoryIcon from "../../Icons/HistoryIcon";
+import ReporterIcon from "../../Icons/ReporterIcon";
 
 export default function LeftMenu() {
     return (
@@ -13,15 +17,25 @@ export default function LeftMenu() {
                         className="drawer-overlay h-svh w-svw flex justify-between
                         self-center align-middle items-center content-center ">
                     </label>
-                    <ul className="menu p-4 h-svh bg-base-300 text-base-content glass shadow-md shadow-secondary">
+                    <ul className="menu pt-4 h-svh bg-base-300 text-base-content glass shadow-md shadow-secondary">
                         <li>
                             <a>
-                                Histórico Registros
+                                <ReporterIcon /> Relatórios
                             </a>
                         </li>
                         <li>
                             <a>
-                                Sidebar Item 2
+                                <HistoryIcon /> Histórico
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <AdjustIcon /> Ajustes
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <ChartsIcon /> Gráficos
                             </a>
                         </li>
                     </ul>

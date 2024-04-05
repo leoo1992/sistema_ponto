@@ -1,6 +1,21 @@
+import { useNavigate } from "react-router-dom";
 import UserIcon from "../../Icons/UserIcon";
+import Cookies from "js-cookie";
+import ConfigIcon from "../../Icons/ConfigIcon";
+import LogoutIcon from "../../Icons/LogoutIcon";
 
 export default function UserMenu() {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.clear();
+        sessionStorage.clear();
+        Object.keys(Cookies).forEach(cookieName => {
+            Cookies.remove(cookieName);
+        });
+        navigate('/');
+    };
+
     return (
         <div className="drawer drawer-end flex flex-row-reverse w-10">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -12,21 +27,21 @@ export default function UserMenu() {
                     className="drawer-overlay h-screen w-screen flex justify-between
                         self-center align-middle items-center content-center">
                 </label>
-                <ul className="menu p-4 h-screen bg-base-300 text-base-content glass shadow-md shadow-secondary">
+                <ul className="menu pt-4 h-screen bg-base-300 text-base-content glass shadow-md shadow-secondary">
                     <li>
                         <a>
-                            Perfil
+                            <UserIcon /> Perfil
                         </a>
                     </li>
                     <li>
                         <a>
-                            Configurações
+                            <ConfigIcon /> Configurações
                         </a>
                     </li>
                     <li>
-                        <a>
-                            Logout
-                        </a>
+                        <button onClick={handleLogout}>
+                            <LogoutIcon /> Logout
+                        </button>
                     </li>
                 </ul>
             </div>

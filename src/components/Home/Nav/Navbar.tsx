@@ -6,7 +6,7 @@ export default function Navbar() {
   return (
     <div className="navbar bg-primary-content hover:opacity-100 glass">
       <LeftMenu />
-      <div className="navbar-center text-xl">
+      <div className="navbar-center sm:text-xl text-accent font-bold">
         PontoAdm
       </div>
       <div className="navbar-end">
