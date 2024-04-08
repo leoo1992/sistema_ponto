@@ -3,7 +3,6 @@ import { useState } from 'react';
 export function useStats() {
     const [startTime, setStartTime] = useState<Date | null>(new Date());
     const [currentTime, setCurrentTime] = useState(new Date());
-
     const [startWorkTime, setStartWorkTime] = useState<null | { hours: string; minutes: string; seconds: string }>(null);
     const [isCheckInVisible, setIsCheckInVisible] = useState(true);
     const [hoursWork, setHoursWork] = useState("00");
@@ -12,7 +11,6 @@ export function useStats() {
     const [timeStop, setTimeStop] = useState(true);
     const [checkInCount, setCheckInCount] = useState(0);
     const [checkOutCount, setCheckOutCount] = useState(0);
-
     const [entryTime, setEntryTime] = useState<[null | string, null | string, null | string]>([null, null, null]);
     const [exitTime, setExitTime] = useState<[null | string, null | string, null | string]>([null, null, null]);
 
