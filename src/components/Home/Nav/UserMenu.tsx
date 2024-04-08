@@ -8,11 +8,7 @@ export default function UserMenu() {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        localStorage.clear();
-        sessionStorage.clear();
-        Object.keys(Cookies).forEach(cookieName => {
-            Cookies.remove(cookieName);
-        });
+        Cookies.remove("AuthToken");
         navigate('/');
     };
 
