@@ -3,7 +3,7 @@ export default function LossPass() {
         <label className="label">
             <a
                 href="#"
-                className="label-text-alt link link-hover text-accent">
+                className="mb-2 label-text-alt link link-hover text-accent font-bold text-sm">
                 Esqueceu sua senha ?
             </a>
         </label>

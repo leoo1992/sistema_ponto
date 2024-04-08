@@ -8,7 +8,7 @@ export default function PassInput({ register }: Props) {
     return (
         <div className="form-control">
             <label className="label">
-                <span className="label-text text-accent">
+                <span className="label-text text-primary font-bold">
                     Senha
                 </span>
             </label>
@@ -17,7 +17,7 @@ export default function PassInput({ register }: Props) {
                 type="password"
                 name="pass"
                 placeholder="Senha"
-                className="input input-bordered shadow-primary shadow-sm text-accent"
+                className="input input-bordered shadow-primary shadow-sm text-primary"
                 maxLength={11}
                 required
             />

@@ -4,9 +4,9 @@ import UserMenu from "./UserMenu";
 
 export default function Navbar() {
   return (
-    <div className="navbar bg-primary-content hover:opacity-100 glass">
+    <div className="navbar bg-primary-content hover:opacity-100 glass shadow-lg">
       <LeftMenu />
-      <div className="navbar-center sm:text-xl text-accent font-bold">
+      <div className="navbar-center sm:text-xl font-bold">
         PontoAdm
       </div>
       <div className="navbar-end m-0 p-0">
