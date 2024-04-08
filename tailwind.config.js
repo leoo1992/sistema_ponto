@@ -13,13 +13,9 @@ export default {
     themes: [
       "light",
       "dark",
-      "synthwave",
-      "aqua",
-      "black",
-      "luxury",
       "dracula",
       "night",
-      "coffee"
+      "synthwave"
     ],
     base: true, 
     styled: true, 

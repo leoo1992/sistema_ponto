@@ -1,6 +1,6 @@
 import LeftMenu from "./LeftMenu";
-import ThemeToogleHome from "./ThemeToogleHome";
 import UserMenu from "./UserMenu";
+// import ThemeToogleHome from "./ThemeToogleHome";
 
 export default function Navbar() {
   return (
@@ -9,8 +9,8 @@ export default function Navbar() {
       <div className="navbar-center sm:text-xl text-accent font-bold">
         PontoAdm
       </div>
-      <div className="navbar-end">
-        <ThemeToogleHome />
+      <div className="navbar-end m-0 p-0">
+        {/* <ThemeToogleHome /> */}
         <UserMenu />
       </div>
     </div>
