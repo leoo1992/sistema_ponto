@@ -1,6 +1,6 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { FormData } from "../types";
+import { FormData } from '../types';
 import Cookies from 'js-cookie';
 // import loginPOST from '../services/Login/loginPOST';
 
@@ -9,13 +9,12 @@ export function useSubmit() {
   const { register, handleSubmit } = useForm<FormData>();
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-
     // envia os dados ao back
     console.log(data);
     // const response = await loginPOST(data.username, data.password);
 
     //se ja tiver token ele apaga para que faça um refresh
-    Cookies?.remove?.("AuthToken");
+    Cookies?.remove?.('AuthToken');
 
     //pega a resposta do back
     const Auth = 'token-recebido';
@@ -28,7 +27,6 @@ export function useSubmit() {
     //Cookies.set('AuthToken', Auth, { expires: expirationHour, path: '/', sameSite: 'None', secure: true });
     //Cookies.set('User', User, { expires: expirationHour, path: '/', sameSite: 'None', secure: true });
 
-
     //Loga na rota privada se tiver o token
     const AuthTokenVerification = Cookies?.get?.('AuthToken');
     if (AuthTokenVerification) {
@@ -36,12 +34,11 @@ export function useSubmit() {
     } else {
       navigate('/');
     }
-
   };
 
   return {
     onSubmit,
     register,
-    handleSubmit
+    handleSubmit,
   };
 }

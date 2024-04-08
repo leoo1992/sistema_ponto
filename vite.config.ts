@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import reactRefresh from '@vitejs/plugin-react-refresh';
 import replace from '@rollup/plugin-replace';
-import terser  from '@rollup/plugin-terser';
+import terser from '@rollup/plugin-terser';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,6 +12,6 @@ export default defineConfig({
     replace({
       preventAssignment: true,
     }),
-    terser(), 
-  ]
-})
+    terser(),
+  ],
+});

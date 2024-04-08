@@ -1,3 +1,2 @@
-export type {FormData} from './form';
-export type {statsUse} from './stats';
-
+export type { FormData } from './form';
+export type { statsUse } from './stats';

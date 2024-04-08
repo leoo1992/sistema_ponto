@@ -2,7 +2,7 @@ html {
   width: 100vw;
   height: 100vh;
   overflow-y: auto;
-  overflow-x:  hidden;
+  overflow-x: hidden;
   scrollbar-gutter: auto !important;
 }
 
@@ -14,10 +14,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-y: auto;
-  overflow-x:  hidden;
+  overflow-x: hidden;
   scrollbar-gutter: auto !important;
 }
 
-*{
+* {
   scrollbar-gutter: auto !important;
 }

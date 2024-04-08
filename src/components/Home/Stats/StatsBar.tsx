@@ -7,19 +7,20 @@ import WorkingTime from './WorkingTime';
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-expect-error
 export default function StatsBar({ statsUse }) {
-
-    return (
-        <>
-            <StatsEffects statsUse={statsUse} />
-            <div className="m-0 p-0 flex justify-end items-end flex-col">
-                <div className='p-3 m-0 flex justify-center content-center
-                flex-col gap-4 sm:flex-row'>
-                    <BtnRegisterWorkingTime statsUse={statsUse} />
-                    <WorkingTime statsUse={statsUse} />
-                    <CurrentHour statsUse={statsUse} />
-                </div>
-                <BankOFWorkingHours />
-            </div>
-        </>
-    )
+  return (
+    <>
+      <StatsEffects statsUse={statsUse} />
+      <div className="m-0 p-0 flex justify-end items-end flex-col">
+        <div
+          className="p-3 m-0 flex justify-center content-center
+                flex-col gap-4 sm:flex-row"
+        >
+          <BtnRegisterWorkingTime statsUse={statsUse} />
+          <WorkingTime statsUse={statsUse} />
+          <CurrentHour statsUse={statsUse} />
+        </div>
+        <BankOFWorkingHours />
+      </div>
+    </>
+  );
 }

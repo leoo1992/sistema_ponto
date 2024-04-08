@@ -1,4 +1,4 @@
 export interface FormData {
-    user: string;
-    pass: string;
+  user: string;
+  pass: string;
 }

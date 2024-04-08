@@ -1,8 +1,8 @@
-import CardDayRegisters from "../components/Home/DayRegisters/CardDayRegisters";
-import Footer from "../components/Home/Footer/Footer";
-import Navbar from "../components/Home/Nav/Navbar";
-import StatsBar from "../components/Home/Stats/StatsBar";
-import { useStats } from "../hooks/useStats";
+import CardDayRegisters from '../components/Home/DayRegisters/CardDayRegisters';
+import Footer from '../components/Home/Footer/Footer';
+import Navbar from '../components/Home/Nav/Navbar';
+import StatsBar from '../components/Home/Stats/StatsBar';
+import { useStats } from '../hooks/useStats';
 
 export default function HomePage() {
   const statsUse = useStats();
@@ -13,8 +13,7 @@ export default function HomePage() {
         <CardDayRegisters statsUse={statsUse} />
         <StatsBar statsUse={statsUse} />
       </div>
-        
       <Footer />
     </div>
-  )
+  );
 }
