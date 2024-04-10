@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="footer items-center p-2 glass bg-primary-content text-base-content -z-50">
+    <footer className="footer items-center p-2 bg-primary-content text-base-content">
       <nav className="grid-flow-col gap-10 place-self-center">
         <a>
           <svg

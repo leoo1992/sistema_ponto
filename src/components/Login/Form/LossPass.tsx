@@ -7,7 +7,7 @@ export default function LossPass() {
     <label className="label">
       <button
         onClick={() => navigate('/losspass')}
-        className="mb-2 label-text-alt link link-hover text-accent font-bold text-sm"
+        className="mb-2 label-text-alt link link-hover text-accent font-semibold text-sm"
       >
         Esqueceu sua senha ?
       </button>

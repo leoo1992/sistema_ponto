@@ -24,7 +24,7 @@ export default function FormLogin() {
         >
           <button
             type="submit"
-            className="btn btn-primary font-extrabold text-md shadow-md shadow-gray-300"
+            className="btn btn-primary text-white bg-primary glass rounded-badge font-extrabold text-md shadow-md shadow-gray-300"
           >
             Entrar
           </button>

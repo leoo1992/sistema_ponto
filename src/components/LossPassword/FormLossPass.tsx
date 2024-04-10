@@ -1,11 +1,11 @@
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 export default function FormLossPass() {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data: unknown): void => {
+  const onSubmit = (data: FieldValues) => {
     // envia os dados ao back
     console.log(data);
     navigate('/');
@@ -43,13 +43,13 @@ export default function FormLossPass() {
         >
           <button
             onClick={() => navigate('/')}
-            className="btn btn-accent font-extrabold text-md text-primary shadow-md shadow-emerald-100 w-1/3"
+            className="btn btn-accent bg-accent rounded-badge glass font-extrabold text-md shadow-md shadow-emerald-100 w-1/3"
           >
             Voltar
           </button>
           <button
             type="submit"
-            className="btn btn-primary font-extrabold text-md shadow-md shadow-gray-300 w-3/5"
+            className="btn btn-primary bg-primary text-white rounded-badge glass font-extrabold text-md shadow-md shadow-gray-300 w-3/5"
           >
             Enviar Email
           </button>
