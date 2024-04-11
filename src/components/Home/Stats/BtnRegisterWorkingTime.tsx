@@ -6,7 +6,7 @@ export default function BtnRegisterWorkingTime({ statsUse }) {
       {statsUse.isCheckInVisible ? (
         <button
           onClick={statsUse.checkIn}
-          className="btn btn-xs sm:btn-sm btn-success rounded-badge font-bold shadow-sm shadow-success 
+          className="btn btn-xs w-36 sm:btn-sm btn-success rounded-badge font-bold shadow-sm shadow-success 
                 transition-all duration-500 ease-in-out text-secondary-content"
         >
           Registrar Entrada
@@ -14,7 +14,7 @@ export default function BtnRegisterWorkingTime({ statsUse }) {
       ) : (
         <button
           onClick={statsUse.checkOut}
-          className="btn w-36 mt-6 btn-xs sm:btn-sm rounded-badge btn-error font-bold shadow-sm shadow-error 
+          className="btn btn-xs w-36 sm:btn-sm rounded-badge btn-error font-bold shadow-sm shadow-error 
                 transition-all duration-500 ease-in-out text-secondary-content"
         >
           Registrar Saída
