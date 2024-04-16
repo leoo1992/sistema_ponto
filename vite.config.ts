@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
-import reactRefresh from '@vitejs/plugin-react-refresh';
+import react from '@vitejs/plugin-react';
 import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
 
@@ -11,7 +10,6 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    reactRefresh(),
     replace({
       preventAssignment: true,
     }),
