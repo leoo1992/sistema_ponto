@@ -11,9 +11,9 @@ export default function PassInput({ register }: Props) {
         <span className="label-text text-primary font-bold">Senha</span>
       </label>
       <input
-        {...register('pass', { required: true })}
+        {...register('password', { required: true })}
         type="password"
-        name="pass"
+        name="password"
         placeholder="Senha"
         className="input input-bordered shadow-primary shadow-sm text-primary"
         maxLength={11}

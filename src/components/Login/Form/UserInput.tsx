@@ -11,9 +11,9 @@ export default function UserInput({ register }: Props) {
         <span className="label-text text-primary font-bold">Usuário</span>
       </label>
       <input
-        {...register('user', { required: true } as RegisterOptions)}
-        type="text"
-        name="user"
+        {...register('email', { required: true } as RegisterOptions)}
+        type="email"
+        name="email"
         placeholder="Usuário"
         className="input input-bordered shadow-primary shadow-sm text-primary font-medium"
         maxLength={20}
