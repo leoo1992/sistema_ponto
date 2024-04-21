@@ -1,21 +1,32 @@
-export default async function loginPOST(
-  username: string,
-  password: string
-): Promise<string> {
-  const apiUrl = 'URL_DO_BACKEND';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
-  const response = await fetch(`${apiUrl}/login`, {
+export default async function loginPOST(email: string, password: string) {
+  const navigate = useNavigate();
+  const apiUrl = 'https://pontoapi-production.up.railway.app/api/auth/login';
+
+  console.log(email, password);
+  Cookies?.remove?.('AuthToken');
+
+  fetch(apiUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ username, password }),
-  });
-
-  if (!response.ok) {
-    throw new Error('Erro ao fazer login');
-  }
-
-  const responseData = await response.json();
-  return responseData.token;
+    body: JSON.stringify({ email, password }),
+  })
+    .then((resp) => resp.json())
+    .then((data) => {
+      console.log(data);
+      Cookies.set('AuthToken', data.token, { expires: 1, path: '/' });
+      const AuthTokenVerification = Cookies?.get?.('AuthToken');
+      if (AuthTokenVerification) {
+        navigate('/home');
+      } else {
+        navigate('/');
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
