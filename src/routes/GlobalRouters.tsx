@@ -1,22 +1,27 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import LoginPage from '../pages/LoginPage';
-import HomePage from '../pages/HomePage';
+import {
+  LoginPage,
+  HomePage,
+  LossPassword,
+  ErrorPage,
+  RouteIncorrect,
+  RegisterPage,
+} from '../pages';
 import PrivateRoute from './PrivateRoute';
-import LossPassword from '../pages/LossPassword';
-import ErrorPage from '../pages/ErrorPage';
-import RouteIncorrect from '../pages/RouteIncorrect';
-import RegisterPage from '../pages/RegisterPage';
 
 const GlobalRouters = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginPage />} errorElement={<ErrorPage />} />
+        {/* PUBLIC */}
         <Route
-          path="/losspass"
-          element={<LossPassword />}
+          path="*"
+          element={<RouteIncorrect />}
           errorElement={<ErrorPage />}
         />
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/losspass" element={<LossPassword />} />
+        {/* PRIVATES */}
         <Route
           path="/home"
           element={
@@ -32,11 +37,6 @@ const GlobalRouters = () => {
               <RegisterPage />
             </PrivateRoute>
           }
-        />
-        <Route
-          path="*"
-          element={<RouteIncorrect />}
-          errorElement={<ErrorPage />}
         />
       </Routes>
     </BrowserRouter>
