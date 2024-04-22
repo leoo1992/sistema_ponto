@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html {
   width: 100vw;
   height: 100vh;
@@ -19,5 +23,15 @@ body {
 }
 
 * {
+  scrollbar-gutter: auto !important;
+}
+
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
   scrollbar-gutter: auto !important;
 }
