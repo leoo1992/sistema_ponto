@@ -4,10 +4,10 @@ export default {
   theme: {
     extend: {},
   },
-  // eslint-disable-next-line no-undef
+
   plugins: [require('daisyui')],
   daisyui: {
-    themes: ['light', 'dark', 'dracula', 'night', 'synthwave'],
+    themes: ['light', 'dark'],
     base: true,
     styled: true,
     utils: true,
