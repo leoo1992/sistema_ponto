@@ -1,10 +1,10 @@
-import { useSubmit } from '../../hooks/useSubmit';
+import { useSubmitLogin } from '../../hooks/useSubmitLogin';
 import LossPass from './Form/LossPass';
 import PassInput from './Form/PassInput';
 import UserInput from './Form/UserInput';
 
 export default function FormLogin() {
-  const formUse = useSubmit();
+  const formUse = useSubmitLogin();
 
   return (
     <div

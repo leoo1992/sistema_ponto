@@ -1,10 +1,13 @@
+import {
+  HiXCircle,
+  HiUser,
+  HiUserCircle,
+  HiCog,
+  HiLogout,
+} from 'react-icons/hi';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import UserIcon from '../../Icons/UserIcon';
 import Cookies from 'js-cookie';
-import ConfigIcon from '../../Icons/ConfigIcon';
-import LogoutIcon from '../../Icons/LogoutIcon';
-import CloseIcon from '../../Icons/CloseIcon';
 
 export default function UserMenu() {
   const [active2, setActive2] = useState(true);
@@ -19,13 +22,18 @@ export default function UserMenu() {
     <div className="navbar-end">
       <div className="drawer drawer-end">
         <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content">
-          <button onClick={() => setActive2(!active2)}>
+        <div className="drawer-content flex justify-center items-center self-center content-center">
+          <button
+            onClick={() => setActive2(!active2)}
+            className="flex justify-center items-center self-center content-center"
+          >
             <label
               htmlFor="my-drawer-4"
-              className="btn btn-circle p-0 m-0 -top-4 right-0 btn-ghost drawer-button z-50 absolute"
+              className={`flex justify-center items-center self-center content-center 
+              btn btn-circle btn-xl p-0 m-1 text-2xl right-0 btn-ghost 
+              drawer-button z-50 absolute ${!active2 ? 'text-error ' : ''}`}
             >
-              {active2 ? <UserIcon /> : <CloseIcon />}
+              {active2 ? <HiUser /> : <HiXCircle />}
             </label>
           </button>
         </div>
@@ -40,12 +48,18 @@ export default function UserMenu() {
           <ul className="menu pt-16 h-screen bg-primary-content text-base-content shadow-sm shadow-primary w-48">
             <li>
               <a className="rounded-badge font-bold text-base">
-                <UserIcon /> Perfil
+                <span className="text-2xl">
+                  <HiUserCircle />
+                </span>
+                Perfil
               </a>
             </li>
             <li>
               <a className="rounded-badge font-bold text-base">
-                <ConfigIcon /> Configurações
+                <span className="text-2xl">
+                  <HiCog />
+                </span>
+                Configurações
               </a>
             </li>
             <li>
@@ -53,7 +67,10 @@ export default function UserMenu() {
                 className="rounded-badge font-bold text-base"
                 onClick={handleLogout}
               >
-                <LogoutIcon /> Logout
+                <span className="text-2xl">
+                  <HiLogout />
+                </span>
+                Logout
               </button>
             </li>
           </ul>

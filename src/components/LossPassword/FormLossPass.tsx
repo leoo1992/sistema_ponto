@@ -6,7 +6,6 @@ export default function FormLossPass() {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data: FieldValues) => {
-    // envia os dados ao back
     console.log(data);
     navigate('/');
   };

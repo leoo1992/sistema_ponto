@@ -1,7 +1,7 @@
 import { RegisterOptions, UseFormRegister } from 'react-hook-form';
-import { FormData } from '../../../types';
+import { FormLogin } from '../../../types';
 type Props = {
-  register: UseFormRegister<FormData>;
+  register: UseFormRegister<FormLogin>;
 };
 
 export default function UserInput({ register }: Props) {

@@ -1,16 +1,14 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function LossPass() {
-  const navigate = useNavigate();
-
   return (
-    <label className="label">
-      <button
-        onClick={() => navigate('/losspass')}
-        className="mb-2 label-text-alt link link-hover text-accent font-semibold text-sm"
+    <label className="label text-end flex justify-end">
+      <Link
+        to="/losspass"
+        className="mb-2 label-text-alt link link-hover text-end font-semibold text-sm"
       >
         Esqueceu sua senha ?
-      </button>
+      </Link>
     </label>
   );
 }

@@ -1,4 +1,3 @@
-// import ThemeToogle from "../components/Login/ThemeToogle";
 import FormLogin from '../components/Login/FormLogin';
 import TitleAndSubTitle from '../components/Login/TitleAndSubTitle';
 
@@ -9,7 +8,6 @@ export default function LoginPage() {
     bg-gradient-to-t from-slate-100 via-white to-white"
     >
       <div className="hero-content flex-col pt-10">
-        {/* <ThemeToogle /> */}
         <TitleAndSubTitle />
         <FormLogin />
       </div>

@@ -1,12 +1,14 @@
-import { HiHome } from 'react-icons/hi';
-import { HiUserAdd } from 'react-icons/hi';
+import {
+  HiHome,
+  HiUserAdd,
+  HiXCircle,
+  HiMenu,
+  HiClock,
+  HiClipboardList,
+  HiAdjustments,
+  HiPresentationChartLine,
+} from 'react-icons/hi';
 import { useState } from 'react';
-import AdjustIcon from '../../Icons/AdjustIcon';
-import ChartsIcon from '../../Icons/ChartsIcon';
-import HamburgMenu from '../../Icons/HamburgMenu';
-import HistoryIcon from '../../Icons/HistoryIcon';
-import ReporterIcon from '../../Icons/ReporterIcon';
-import CloseIcon from '../../Icons/CloseIcon';
 import { Link } from 'react-router-dom';
 
 export default function LeftMenu() {
@@ -15,16 +17,19 @@ export default function LeftMenu() {
     <div className="navbar-start">
       <div className="drawer">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content">
+        <div className="drawer-content flex justify-center items-center self-center content-center">
           <button
             onClick={() => setActive(!active)}
-            className="transition-all duration-1000 ease-in-out"
+            className="transition-all duration-1000 ease-in-out
+            flex justify-center items-center self-center content-center"
           >
             <label
               htmlFor="my-drawer"
-              className="btn btn-circle p-0 m-0 -top-4 btn-ghost drawer-button z-50 absolute"
+              className={`flex justify-center items-center self-center content-center 
+              btn btn-circle btn-xl p-0 m-1 text-2xl left-0 btn-ghost 
+              drawer-button z-50 absolute ${!active ? 'text-error ' : ''}`}
             >
-              {active ? <HamburgMenu /> : <CloseIcon />}
+              {active ? <HiMenu /> : <HiXCircle />}
             </label>
           </button>
         </div>
@@ -48,22 +53,34 @@ export default function LeftMenu() {
             </li>
             <li>
               <a className="rounded-badge font-bold text-base">
-                <ReporterIcon /> Relatórios
+                <span className="text-2xl">
+                  <HiClipboardList />
+                </span>
+                Relatórios
               </a>
             </li>
             <li>
               <a className="rounded-badge font-bold text-base">
-                <HistoryIcon /> Histórico
+                <span className="text-2xl">
+                  <HiClock />
+                </span>
+                Histórico
               </a>
             </li>
             <li>
               <a className="rounded-badge font-bold text-base">
-                <AdjustIcon /> Ajustes
+                <span className="text-2xl">
+                  <HiAdjustments />
+                </span>
+                Ajustes
               </a>
             </li>
             <li>
               <a className="rounded-badge font-bold text-base">
-                <ChartsIcon /> Gráficos
+                <span className="text-2xl">
+                  <HiPresentationChartLine />
+                </span>
+                Gráficos
               </a>
             </li>
             <li>

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { checkIn } from '../utils/checkIn.util';
+import { checkOut } from '../utils/checkOut.util.ts';
 
 export function useStats() {
   const [startTime, setStartTime] = useState<Date | null>(new Date());
@@ -26,70 +28,36 @@ export function useStats() {
   const minutes = currentTime.getMinutes().toString().padStart(2, '0');
   const seconds = currentTime.getSeconds().toString().padStart(2, '0');
 
-  function formatHora(date: Date) {
-    const horas = date.getHours().toString().padStart(2, '0');
-    const minutos = date.getMinutes().toString().padStart(2, '0');
-    const segundos = date.getSeconds().toString().padStart(2, '0');
-    return `${horas}:${minutos}:${segundos}`;
-  }
+  const handleCheckIn = () => {
+    checkIn(
+      checkInCount,
+      startWorkTime,
+      hoursWork,
+      minutesWork,
+      secondsWork,
+      currentTime,
+      setStartWorkTime,
+      setEntryTime,
+      setTimeStop,
+      setIsCheckInVisible,
+      setCheckInCount,
+      setHoursWork,
+      setMinutesWork,
+      setSecondsWork,
+      setExitTime
+    );
+  };
 
-  function checkIn() {
-    if (checkInCount < 3) {
-      if (startWorkTime === null) {
-        setStartWorkTime({
-          hours: hoursWork,
-          minutes: minutesWork,
-          seconds: secondsWork,
-        });
-      }
-      setEntryTime((prevEntryTime) => {
-        const newEntryTime = [...prevEntryTime];
-        newEntryTime[checkInCount] = formatHora(currentTime);
-        return newEntryTime as [null | string, null | string, null | string];
-      });
-
-      setTimeStop(false);
-      setIsCheckInVisible(false);
-    } else {
-      setHoursWork('00');
-      setMinutesWork('00');
-      setSecondsWork('00');
-      setEntryTime([null, null, null]);
-      setExitTime([null, null, null]);
-      setCheckInCount(0);
-      setTimeStop(false);
-      setEntryTime((prevEntryTime) => {
-        const newEntryTime = [...prevEntryTime];
-        newEntryTime[checkInCount] = formatHora(currentTime);
-        return newEntryTime as [null | string, null | string, null | string];
-      });
-      setIsCheckInVisible(false);
-    }
-    setCheckInCount((prevCount) => prevCount + 1);
-  }
-
-  function checkOut() {
-    if (checkOutCount < 3) {
-      setExitTime((prevExitTime) => {
-        const newExitTime = [...prevExitTime];
-        newExitTime[checkOutCount] = formatHora(currentTime);
-        return newExitTime as [null | string, null | string, null | string];
-      });
-
-      setIsCheckInVisible(true);
-      setTimeStop(true);
-    } else {
-      setCheckOutCount(0);
-      setExitTime((prevExitTime) => {
-        const newExitTime = [...prevExitTime];
-        newExitTime[checkOutCount] = formatHora(currentTime);
-        return newExitTime as [null | string, null | string, null | string];
-      });
-      setTimeStop(true);
-      setIsCheckInVisible(true);
-    }
-    setCheckOutCount((prevCount) => prevCount + 1);
-  }
+  const handleCheckOut = () => {
+    checkOut(
+      checkOutCount,
+      currentTime,
+      setExitTime,
+      setIsCheckInVisible,
+      setTimeStop,
+      setCheckOutCount
+    );
+  };
 
   return {
     startTime,
@@ -103,8 +71,8 @@ export function useStats() {
     seconds,
     isCheckInVisible,
     setIsCheckInVisible,
-    checkIn,
-    checkOut,
+    checkIn: handleCheckIn,
+    checkOut: handleCheckOut,
     setStartTime,
     setHoursWork,
     setMinutesWork,

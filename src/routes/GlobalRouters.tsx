@@ -5,7 +5,7 @@ import {
   LossPassword,
   ErrorPage,
   RouteIncorrect,
-  RegisterPage,
+  RegisterUserPage,
 } from '../pages';
 import PrivateRoute from './PrivateRoute';
 
@@ -34,7 +34,7 @@ const GlobalRouters = () => {
           path="/register"
           element={
             <PrivateRoute>
-              <RegisterPage />
+              <RegisterUserPage />
             </PrivateRoute>
           }
         />

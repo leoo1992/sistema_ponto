@@ -3,7 +3,7 @@ import HomePage from './HomePage';
 import LossPassword from './LossPassword';
 import ErrorPage from './ErrorPage';
 import RouteIncorrect from './RouteIncorrect';
-import RegisterPage from './RegisterPage';
+import RegisterUserPage from './RegisterUserPage';
 
 export {
   LoginPage,
@@ -11,5 +11,5 @@ export {
   LossPassword,
   ErrorPage,
   RouteIncorrect,
-  RegisterPage,
+  RegisterUserPage,
 };
