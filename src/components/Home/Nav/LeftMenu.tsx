@@ -1,3 +1,5 @@
+import { HiHome } from 'react-icons/hi';
+import { HiUserAdd } from 'react-icons/hi';
 import { useState } from 'react';
 import AdjustIcon from '../../Icons/AdjustIcon';
 import ChartsIcon from '../../Icons/ChartsIcon';
@@ -5,6 +7,7 @@ import HamburgMenu from '../../Icons/HamburgMenu';
 import HistoryIcon from '../../Icons/HistoryIcon';
 import ReporterIcon from '../../Icons/ReporterIcon';
 import CloseIcon from '../../Icons/CloseIcon';
+import { Link } from 'react-router-dom';
 
 export default function LeftMenu() {
   const [active, setActive] = useState(true);
@@ -36,6 +39,14 @@ export default function LeftMenu() {
           ></label>
           <ul className="menu pt-16 h-svh bg-primary-content text-base-content shadow-sm shadow-primary w-48">
             <li>
+              <Link to="/home" className="rounded-badge font-bold text-base">
+                <span className="text-2xl">
+                  <HiHome />
+                </span>
+                Home
+              </Link>
+            </li>
+            <li>
               <a className="rounded-badge font-bold text-base">
                 <ReporterIcon /> Relatórios
               </a>
@@ -54,6 +65,17 @@ export default function LeftMenu() {
               <a className="rounded-badge font-bold text-base">
                 <ChartsIcon /> Gráficos
               </a>
+            </li>
+            <li>
+              <Link
+                to="/register"
+                className="rounded-badge font-bold text-base"
+              >
+                <span className="text-2xl">
+                  <HiUserAdd />
+                </span>
+                Cadastro
+              </Link>
             </li>
           </ul>
         </div>

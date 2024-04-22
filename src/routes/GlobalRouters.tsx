@@ -5,6 +5,7 @@ import PrivateRoute from './PrivateRoute';
 import LossPassword from '../pages/LossPassword';
 import ErrorPage from '../pages/ErrorPage';
 import RouteIncorrect from '../pages/RouteIncorrect';
+import RegisterPage from '../pages/RegisterPage';
 
 const GlobalRouters = () => {
   return (
@@ -21,6 +22,14 @@ const GlobalRouters = () => {
           element={
             <PrivateRoute>
               <HomePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PrivateRoute>
+              <RegisterPage />
             </PrivateRoute>
           }
         />

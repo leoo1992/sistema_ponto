@@ -1,11 +1,16 @@
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
-export default async function loginPOST(email: string, password: string) {
+export default async function loginPOST({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) {
   const navigate = useNavigate();
   const apiUrl = 'https://pontoapi-production.up.railway.app/api/auth/login';
 
-  console.log(email, password);
   Cookies?.remove?.('AuthToken');
 
   fetch(apiUrl, {
@@ -17,7 +22,6 @@ export default async function loginPOST(email: string, password: string) {
   })
     .then((resp) => resp.json())
     .then((data) => {
-      console.log(data);
       Cookies.set('AuthToken', data.token, { expires: 1, path: '/' });
       const AuthTokenVerification = Cookies?.get?.('AuthToken');
       if (AuthTokenVerification) {
