@@ -22,7 +22,7 @@ export default function Input({
   classNameLabel = '',
   inputRef,
   required = true,
-  maxLength = 60,
+  maxLength = typeInput === 'password' ? 11 : 300,
   max = 100000000,
   step = '',
   register,

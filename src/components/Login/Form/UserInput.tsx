@@ -16,7 +16,7 @@ export default function UserInput({ register }: Props) {
         name="email"
         placeholder="Usuário"
         className="input input-bordered shadow-primary shadow-sm text-primary font-medium"
-        maxLength={20}
+        maxLength={300}
         required
       />
     </div>
