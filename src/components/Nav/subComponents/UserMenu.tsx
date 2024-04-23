@@ -6,7 +6,7 @@ import {
   HiLogout,
 } from 'react-icons/hi';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 export default function UserMenu() {
@@ -47,20 +47,20 @@ export default function UserMenu() {
           ></label>
           <ul className="menu pt-16 h-screen bg-primary-content text-base-content shadow-sm shadow-primary w-48">
             <li>
-              <a className="rounded-badge font-bold text-base">
+              <Link to="/profile" className="rounded-badge font-bold text-base">
                 <span className="text-2xl">
                   <HiUserCircle />
                 </span>
                 Perfil
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="rounded-badge font-bold text-base">
+              <Link to="/configs" className="rounded-badge font-bold text-base">
                 <span className="text-2xl">
                   <HiCog />
                 </span>
                 Configurações
-              </a>
+              </Link>
             </li>
             <li>
               <button

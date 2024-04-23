@@ -1,4 +1,4 @@
-import TitleAndSubTitle from '../components/Login/TitleAndSubTitle';
+import TitleAndSubTitle from '../components/Login/subComponents/TitleAndSubTitle';
 import FormLossPass from '../components/LossPassword/FormLossPass';
 
 export default function LossPassword() {

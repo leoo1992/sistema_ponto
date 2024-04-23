@@ -1,15 +1,27 @@
 import LoginPage from './LoginPage';
 import HomePage from './HomePage';
-import LossPassword from './LossPassword';
+import LossPasswordPage from './LossPasswordPage';
 import ErrorPage from './ErrorPage';
-import RouteIncorrect from './RouteIncorrect';
+import RouteIncorrectPage from './RouteIncorrectPage';
 import RegisterUserPage from './RegisterUserPage';
+import UsersListPage from './UsersListPage';
+import ChartsPage from './ChartsPage';
+import ReportsPage from './ReportsPage';
+import HistoryPage from './HistoryPage';
+import ProfilePage from './ProfilePage';
+import ConfigsPage from './ConfigsPage';
 
 export {
   LoginPage,
   HomePage,
-  LossPassword,
+  LossPasswordPage,
   ErrorPage,
-  RouteIncorrect,
+  RouteIncorrectPage,
   RegisterUserPage,
+  UsersListPage,
+  ChartsPage,
+  ReportsPage,
+  HistoryPage,
+  ProfilePage,
+  ConfigsPage,
 };

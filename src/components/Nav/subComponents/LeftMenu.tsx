@@ -1,3 +1,4 @@
+import { HiUserGroup } from 'react-icons/hi';
 import {
   HiHome,
   HiUserAdd,
@@ -5,7 +6,7 @@ import {
   HiMenu,
   HiClock,
   HiClipboardList,
-  HiAdjustments,
+  // HiAdjustments,
   HiPresentationChartLine,
 } from 'react-icons/hi';
 import { useState } from 'react';
@@ -52,38 +53,6 @@ export default function LeftMenu() {
               </Link>
             </li>
             <li>
-              <a className="rounded-badge font-bold text-base">
-                <span className="text-2xl">
-                  <HiClipboardList />
-                </span>
-                Relatórios
-              </a>
-            </li>
-            <li>
-              <a className="rounded-badge font-bold text-base">
-                <span className="text-2xl">
-                  <HiClock />
-                </span>
-                Histórico
-              </a>
-            </li>
-            <li>
-              <a className="rounded-badge font-bold text-base">
-                <span className="text-2xl">
-                  <HiAdjustments />
-                </span>
-                Ajustes
-              </a>
-            </li>
-            <li>
-              <a className="rounded-badge font-bold text-base">
-                <span className="text-2xl">
-                  <HiPresentationChartLine />
-                </span>
-                Gráficos
-              </a>
-            </li>
-            <li>
               <Link
                 to="/register"
                 className="rounded-badge font-bold text-base"
@@ -94,6 +63,52 @@ export default function LeftMenu() {
                 Cadastro
               </Link>
             </li>
+            <li>
+              <Link
+                to="/userslist"
+                className="rounded-badge font-bold text-base"
+              >
+                <span className="text-2xl">
+                  <HiUserGroup />
+                </span>
+                Usuários
+              </Link>
+            </li>
+            <li>
+              <Link to="/charts" className="rounded-badge font-bold text-base">
+                <span className="text-2xl">
+                  <HiPresentationChartLine />
+                </span>
+                Gráficos
+              </Link>
+            </li>
+            <li>
+              <Link to="/reports" className="rounded-badge font-bold text-base">
+                <span className="text-2xl">
+                  <HiClipboardList />
+                </span>
+                Relatórios
+              </Link>
+            </li>
+            <li>
+              <Link to="/history" className="rounded-badge font-bold text-base">
+                <span className="text-2xl">
+                  <HiClock />
+                </span>
+                Histórico
+              </Link>
+            </li>
+            {/* <li>
+              <Link
+                to="/corrections"
+                className="rounded-badge font-bold text-base"
+              >
+                <span className="text-2xl">
+                  <HiAdjustments />
+                </span>
+                Ajustes
+              </Link>
+            </li> */}
           </ul>
         </div>
       </div>

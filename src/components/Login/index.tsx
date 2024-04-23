@@ -1,7 +1,7 @@
 import { useSubmitLogin } from '../../hooks/useSubmitLogin';
-import LossPass from './Form/LossPass';
-import PassInput from './Form/PassInput';
-import UserInput from './Form/UserInput';
+import LossPass from './subComponents/LossPass';
+import PassInput from './subComponents/PassInput';
+import UserInput from './subComponents/UserInput';
 
 export default function FormLogin() {
   const formUse = useSubmitLogin();

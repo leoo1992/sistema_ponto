@@ -1,5 +1,5 @@
-import FormLogin from '../components/Login/FormLogin';
-import TitleAndSubTitle from '../components/Login/TitleAndSubTitle';
+import FormLogin from '../components/Login';
+import TitleAndSubTitle from '../components/Login/subComponents/TitleAndSubTitle';
 
 export default function LoginPage() {
   return (

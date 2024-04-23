@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import Navbar from '../components/Nav/Navbar';
+import Navbar from '../components/Nav';
 import Footer from '../components/Footer/Footer';
 
 interface PrivateRouteProps {

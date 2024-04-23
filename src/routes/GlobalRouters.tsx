@@ -2,10 +2,16 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import {
   LoginPage,
   HomePage,
-  LossPassword,
+  LossPasswordPage,
   ErrorPage,
-  RouteIncorrect,
+  RouteIncorrectPage,
   RegisterUserPage,
+  UsersListPage,
+  ChartsPage,
+  ReportsPage,
+  HistoryPage,
+  ProfilePage,
+  ConfigsPage,
 } from '../pages';
 import PrivateRoute from './PrivateRoute';
 
@@ -16,11 +22,11 @@ const GlobalRouters = () => {
         {/* PUBLIC */}
         <Route
           path="*"
-          element={<RouteIncorrect />}
+          element={<RouteIncorrectPage />}
           errorElement={<ErrorPage />}
         />
         <Route path="/" element={<LoginPage />} />
-        <Route path="/losspass" element={<LossPassword />} />
+        <Route path="/losspass" element={<LossPasswordPage />} />
         {/* PRIVATES */}
         <Route
           path="/home"
@@ -35,6 +41,54 @@ const GlobalRouters = () => {
           element={
             <PrivateRoute>
               <RegisterUserPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/userslist"
+          element={
+            <PrivateRoute>
+              <UsersListPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/charts"
+          element={
+            <PrivateRoute>
+              <ChartsPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/reports"
+          element={
+            <PrivateRoute>
+              <ReportsPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/history"
+          element={
+            <PrivateRoute>
+              <HistoryPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <ProfilePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/configs"
+          element={
+            <PrivateRoute>
+              <ConfigsPage />
             </PrivateRoute>
           }
         />
