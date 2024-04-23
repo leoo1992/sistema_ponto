@@ -1,10 +1,10 @@
-export default async function newUserPOST(data: any) {
+export default async function GetUsers(data: any) {
   const NewUserAPIUrl =
     'https://pontoapi-production.up.railway.app/api/v1/createuser';
 
   try {
     await fetch(NewUserAPIUrl, {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },

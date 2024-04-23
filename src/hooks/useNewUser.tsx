@@ -1,30 +1,33 @@
 import { useRef } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { submitForm_CreateUser } from '../utils/submitForm_CreateUser';
 // import { useNavigate } from 'react-router-dom';
 // import newUserPOST from '../services/RegisterUser/newUserPOST';
 
 export default function useNewUser() {
-  const NameNewUserRef = useRef(null);
-  const EmailNewUserRef = useRef(null);
-  const PasswordNewUserRef = useRef(null);
-  const TelNewUserRef = useRef(null);
-  const typeNewUserRef = useRef<any>(null);
+  const NameNewUserRef = useRef<HTMLInputElement>(null);
+  const EmailNewUserRef = useRef<HTMLInputElement>(null);
+  const PasswordNewUserRef = useRef<HTMLInputElement>(null);
+  const TelNewUserRef = useRef<HTMLInputElement>(null);
+  const typeNewUserRef = useRef<HTMLSelectElement>(null);
   const options = [
-    { id: 1, name: 'Administrador' },
-    { id: 2, name: 'Funcionário' },
+    { id: 'ADMIN', name: 'Administrador' },
+    { id: 'USER_ROLE', name: 'Funcionário' },
   ];
 
   //   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<any>();
 
-  const onSubmit: SubmitHandler<any> = async (data: any) => {
-    try {
-      //   const response = await newUserPOST(data);
-      //
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
+  const onSubmit = (e: any) => {
+    submitForm_CreateUser(
+      e,
+      NameNewUserRef,
+      EmailNewUserRef,
+      PasswordNewUserRef,
+      TelNewUserRef,
+      typeNewUserRef,
+      handleSubmit
+    );
   };
 
   return {

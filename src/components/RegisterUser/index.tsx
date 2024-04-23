@@ -1,4 +1,6 @@
 import useNewUser from '../../hooks/useNewUser';
+import { submitForm_CreateUser } from '../../utils/submitForm_CreateUser';
+import Form from './subComponents/Form';
 import Input from './subComponents/Input';
 import Select from './subComponents/Select';
 
@@ -12,7 +14,6 @@ export default function index() {
     options,
     register,
     handleSubmit,
-    onSubmit,
   } = useNewUser();
 
   return (
@@ -20,9 +21,18 @@ export default function index() {
       className="card shrink-0 w-10/12 sm:w-7/12 md:w-6/12 lg:w-4/12 xl:3/12 shadow-sm bg-gradient-to-b
  from-slate-100 via-white to-white  shadow-primary"
     >
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="card-body p-5 sm:p-8 w-full"
+      <Form
+        onSubmit={(e: any) =>
+          submitForm_CreateUser(
+            e,
+            NameNewUserRef,
+            EmailNewUserRef,
+            PasswordNewUserRef,
+            TelNewUserRef,
+            typeNewUserRef,
+            handleSubmit
+          )
+        }
       >
         <div className="form-control">
           <h1 className="text-primary font-bold text-center text-lg">
@@ -30,7 +40,7 @@ export default function index() {
           </h1>
           <Input
             inputRef={NameNewUserRef}
-            nameID={'nome'}
+            nameID={'name'}
             labelName={'Nome'}
             register={register}
           />
@@ -56,7 +66,7 @@ export default function index() {
           />
           <Select
             selectRef={typeNewUserRef}
-            nameID={'tipo'}
+            nameID={'userRole'}
             options={options}
             labelName={'Tipo'}
             register={register}
@@ -65,7 +75,7 @@ export default function index() {
             Registrar
           </button>
         </div>
-      </form>
+      </Form>
     </div>
   );
 }

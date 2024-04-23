@@ -1,17 +1,16 @@
-import { MutableRefObject } from 'react';
-import { UseFormRegister, RegisterOptions } from 'react-hook-form';
+import { MutableRefObject, RefObject } from 'react';
 
 type PropTypes = {
   nameID: string;
-  options: { id: number; name: string }[];
+  options: { id: string; name: string }[];
   labelName: string;
   nameDefault?: string;
   classNameLabel?: string;
   classNameSelect?: string;
   classNameOption?: string;
-  selectRef: MutableRefObject<HTMLSelectElement>;
+  selectRef: MutableRefObject<HTMLSelectElement> | RefObject<HTMLSelectElement>;
   required?: boolean;
-  register: UseFormRegister<any>;
+  register: any;
 };
 
 export default function Select({
@@ -32,7 +31,7 @@ export default function Select({
         <span className="label-text text-primary font-bold">{labelName}</span>
       </label>
       <select
-        {...register(nameID, { required } as RegisterOptions)}
+        {...register(nameID, { required: true })}
         ref={selectRef}
         name={nameID}
         id={nameID}

@@ -1,5 +1,4 @@
-import { RefObject } from 'react';
-import { UseFormRegister, RegisterOptions } from 'react-hook-form';
+import { MutableRefObject, RefObject } from 'react';
 
 type PropTypes = {
   nameID: string;
@@ -7,12 +6,12 @@ type PropTypes = {
   typeInput?: string;
   classNameInput?: string;
   classNameLabel?: string;
-  inputRef: RefObject<HTMLInputElement>;
+  inputRef: MutableRefObject<string> | RefObject<HTMLInputElement>;
   required?: boolean;
   maxLength?: number;
   max?: number;
   step?: string;
-  register: UseFormRegister<any>;
+  register: any;
 };
 
 export default function Input({
@@ -29,12 +28,12 @@ export default function Input({
   register,
 }: PropTypes) {
   return (
-    <div className="form-control">
+    <>
       <label htmlFor={nameID} className={`label max-w-xs ${classNameLabel}`}>
         <span className="label-text text-primary font-bold">{labelName}</span>
       </label>
       <input
-        {...register(nameID, { required } as RegisterOptions)}
+        {...register(nameID, { required: true })}
         ref={inputRef}
         name={nameID}
         type={typeInput}
@@ -45,6 +44,6 @@ export default function Input({
         required={required}
         className={`input input-bordered shadow-primary shadow-sm text-primary input-md ${classNameInput}`}
       />
-    </div>
+    </>
   );
 }
