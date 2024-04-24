@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import Waves from '../components/Waves';
 
 export default function RouteIncorrect() {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ export default function RouteIncorrect() {
           Retornar
         </button>
       </div>
+      <Waves />
     </main>
   );
 }

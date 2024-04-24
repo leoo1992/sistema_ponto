@@ -1,6 +1,8 @@
+import { HiUserAdd } from 'react-icons/hi';
+import { HiSearch } from 'react-icons/hi';
 import { useMemo } from 'react';
-import { TextField } from '@mui/material';
 import DataTable, { Alignment, Direction } from 'react-data-table-component';
+import { Link } from 'react-router-dom';
 
 const customText = {
   rowsPerPage: 'Linhas por página:',
@@ -21,7 +23,7 @@ const customText = {
 
 const data = [
   {
-    id: 1,
+    id: 999999,
     name: 'Leonardo',
     email: 'teste@test.com',
     telefone: '897489496',
@@ -37,55 +39,73 @@ const data = [
     ativo: 'Sim',
   },
 ];
+
 const columns = [
   {
     name: 'Id',
     selector: (row: any) => row.id,
     sortable: true,
     reorder: true,
+    width: '80px',
   },
   {
     name: 'Nome',
     selector: (row: any) => row.name,
     sortable: true,
     reorder: true,
+    width: '200px',
   },
   {
     name: 'Email',
     selector: (row: any) => row.email,
     sortable: true,
     reorder: true,
+    width: '200px',
   },
   {
     name: 'Telefone',
     selector: (row: any) => row.telefone,
     sortable: true,
     reorder: true,
+    width: '120px',
   },
   {
     name: 'Tipo',
     selector: (row: any) => row.userRole,
     sortable: true,
     reorder: true,
+    width: '115px',
   },
   {
     name: 'Status',
     selector: (row: any) => row.ativo,
     sortable: true,
     reorder: true,
+    width: '80px',
   },
 ];
 
 const subHeaderComponent = (
-  <div style={{ display: 'flex', alignItems: 'center' }}>
-    <TextField
-      id="outlined-basic"
-      label="Pesquisar"
-      variant="outlined"
-      size="small"
-      style={{ margin: '5px' }}
-    />
+  <div className="text-center flex flex-col-2 gap-1 justify-end items-center text-xs w-full">
+    <Link
+      to="/register"
+      className="btn btn-circle btn-sm sm:w-28 btn-primary
+       text-white bg-primary glass rounded-full sm:rounded-badge
+      font-bold text-md shadow-md shadow-primary-content mt-1"
+    >
+      <span className="hidden sm:block">Cadastro</span>
+      <span className="sm:hidden text-xl">
+        <HiUserAdd />
+      </span>
+    </Link>
     {/* icones aqui */}
+    <label
+      className="input input-bordered rounded-badge p-4 input-sm flex items-center
+    shadow-primary-content shadow-sm gap-1 w-full sm:w-fit min-w-36"
+    >
+      <HiSearch />
+      <input type="text" className="grow" placeholder="Pesquisar" />
+    </label>
   </div>
 );
 
@@ -121,6 +141,7 @@ const UserTableStory = ({
   onSelectedRowsChange,
   paginationComponentOptions,
   paginationRowsPerPageOptions,
+  paginationComponent,
 }: any) => {
   const selectableRowsComponentProps = useMemo(
     () => ({
@@ -131,7 +152,9 @@ const UserTableStory = ({
 
   return (
     <DataTable
-      title="Usuarios"
+      title={
+        <span className=" h-full w-full p-0 m-0 font-semibold">Usuários</span>
+      }
       columns={columns}
       data={data}
       defaultSortFieldId={1}
@@ -165,6 +188,7 @@ const UserTableStory = ({
       responsive={responsive}
       disabled={disabled}
       paginationComponentOptions={paginationComponentOptions}
+      paginationComponent={paginationComponent}
       paginationRowsPerPageOptions={paginationRowsPerPageOptions}
       onSelectedRowsChange={onSelectedRowsChange}
     />
@@ -212,6 +236,7 @@ UserTable.args = {
     rangeSeparatorText: 'de',
     noRowsPerPage: false,
   },
+  paginationComponent: '',
   paginationRowsPerPageOptions: [5, 10, 15],
   onSelectedRowsChange: '',
 };

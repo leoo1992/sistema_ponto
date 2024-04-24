@@ -3,7 +3,7 @@ import { FaLinkedinIn } from 'react-icons/fa';
 
 export default function Footer() {
   return (
-    <footer className="footer items-center p-2 bg-primary-content text-base-content">
+    <footer className="z-0 footer items-center border border-t-2 border-red-200 border-opacity-30  p-2 bg-primary-content text-base-content">
       <nav className="grid-flow-col gap-4 place-self-center">
         <a
           href="https://www.linkedin.com/in/leocustodio1992/"

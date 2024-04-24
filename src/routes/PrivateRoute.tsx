@@ -10,10 +10,10 @@ interface PrivateRouteProps {
 
 export default function PrivateRoute({ children }: PrivateRouteProps) {
   //comente aqui para não validar rotaas
-  const AuthToken = Cookies.get('AuthToken');
-  if (!AuthToken) {
-    return <Navigate to="/" replace />;
-  }
+  // const AuthToken = Cookies.get('AuthToken');
+  // if (!AuthToken) {
+  //   return <Navigate to="/" replace />;
+  // }
   // até aqui
   return (
     <div className="-z-50 flex flex-col min-h-screen min-w-screen transition-all duration-500 ease-in-out m-0 p-0">

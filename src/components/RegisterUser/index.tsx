@@ -71,7 +71,10 @@ export default function index() {
             labelName={'Tipo'}
             register={register}
           />
-          <button type="submit" className="btn btn-primary mt-5">
+          <button
+            type="submit"
+            className="btn btn-primary text-white bg-primary glass rounded-badge font-extrabold text-md shadow-md shadow-gray-300 mt-5"
+          >
             Registrar
           </button>
         </div>

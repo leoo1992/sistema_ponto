@@ -22,26 +22,18 @@ export default function UserList() {
   const [selectedRows, setSelectedRows] = useState([]);
 
   useEffect(() => {
-    const divElement = document.querySelector(
+    const textHeader = document.querySelector(
       '.rdt_TableHeader > div > div:first-child'
     );
-    const pagination = document.querySelector('.rdt_Pagination');
-    const header = document.querySelector('.rdt_TableHeader');
 
-    if (header) {
-      header.classList.add('rounded-t-box');
-    }
+    // @ts-ignore
+    const parentDiv = document.querySelector('.rdt_Pagination')?.closest('div');
 
-    if (pagination) {
-      const parentDiv = pagination.closest('div');
-      parentDiv?.classList.add('w-full');
-      pagination.classList.add('rounded-b-box');
-    }
-
-    if (divElement) {
+    if (textHeader && parentDiv) {
       // @ts-ignore
-      const selectedId = selectedRows.map((r) => r.id);
-      divElement.textContent = 'Id: ' + selectedId + ' -  Selecionado';
+      const selectedId = selectedRows?.map((r) => r.id);
+      textHeader.textContent = 'Id: ' + selectedId + ' -  Selecionado';
+      parentDiv?.classList.add('w-full');
     }
   });
 
@@ -50,9 +42,13 @@ export default function UserList() {
   };
 
   return (
-    <div className=" flex flex-col justify-center items-center self-center content-center h-full w-full m-0 p-2 sm:p-5 sm:max-w-7xl">
+    <div
+      className="mt-4 flex flex-col justify-center items-center self-center content-center
+     h-full w-11/12 m-0 sm:max-w-5xl"
+    >
       <UserTable
-        // progressPending={loading}
+        //progressPending={true}
+        //={loading}
         // progressComponent={<CustomLoader />}
         pagination
         actions

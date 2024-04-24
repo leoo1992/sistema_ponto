@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import Waves from '../components/Waves';
 
 export default function ErrorPage() {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ export default function ErrorPage() {
           Retornar
         </button>
       </div>
+      <Waves />
     </main>
   );
 }
