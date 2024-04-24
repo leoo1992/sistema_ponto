@@ -17,8 +17,6 @@ export const submitForm_CreateUser = (
   const telefone = TelNewUserRef.current?.value;
   const userRole = typeNewUserRef.current?.value;
 
-  console.log(name, email, password, telefone, userRole);
-
   newUserPOST({ name, email, password, telefone, userRole });
   handleSubmit({ name, email, password, telefone, userRole });
   e.target.reset();
