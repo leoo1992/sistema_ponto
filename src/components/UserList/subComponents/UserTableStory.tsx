@@ -4,25 +4,6 @@ import { subHeaderComponent } from './subHeaderComponent';
 import { useEffect, useMemo, useState } from 'react';
 import DataTable from 'react-data-table-component';
 
-const data2 = [
-  {
-    id: 999999,
-    name: 'Leonardo',
-    email: 'teste@test.com',
-    telefone: '897489496',
-    userRole: 'Administrador',
-    ativo: 'Sim',
-  },
-  {
-    id: 2,
-    name: 'Samuel',
-    email: 'teste@test.com',
-    telefone: '897489496',
-    userRole: 'Administrador',
-    ativo: 'Sim',
-  },
-];
-
 export const UserTableStory = ({
   selectableRows,
   selectableRowsNoSelectAll,
@@ -42,7 +23,6 @@ export const UserTableStory = ({
   noHeader,
   fixedHeader,
   fixedHeaderScrollHeight,
-  progressPending,
   selectableRowsRadio,
   noTableHead,
   noContextMenu,
@@ -58,7 +38,7 @@ export const UserTableStory = ({
   paginationComponent,
 }: any) => {
   const [data, setData] = useState([]);
-  console.log(data);
+  const [loading, setLoading] = useState(true);
 
   const selectableRowsComponentProps = useMemo(
     () => ({
@@ -72,6 +52,7 @@ export const UserTableStory = ({
       try {
         const newData = await UserListGET();
         setData(newData);
+        setLoading(false);
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
@@ -85,7 +66,7 @@ export const UserTableStory = ({
         <span className=" h-full w-full p-0 m-0 font-semibold">Usuários</span>
       }
       columns={getUserDataTableColumns}
-      data={data2}
+      data={data}
       defaultSortFieldId={1}
       selectableRows={selectableRows}
       selectableRowsComponentProps={selectableRowsComponentProps}
@@ -104,7 +85,7 @@ export const UserTableStory = ({
       dense={dense}
       noTableHead={noTableHead}
       persistTableHead={persistTableHead}
-      progressPending={progressPending}
+      progressPending={loading}
       noHeader={noHeader}
       subHeader={subHeader}
       subHeaderComponent={subHeaderComponent}
