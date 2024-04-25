@@ -1,7 +1,7 @@
 export const getUserDataTableColumns = [
   {
     name: 'Id',
-    selector: (row: any) => row.id,
+    selector: (row: any) => row.id_user,
     sortable: true,
     reorder: true,
     width: '80px',
@@ -36,7 +36,7 @@ export const getUserDataTableColumns = [
   },
   {
     name: 'Status',
-    selector: (row: any) => row.ativo,
+    selector: (row: any) => (row.status === true ? 'Ativo' : 'Inativo'),
     sortable: true,
     reorder: true,
     width: '80px',

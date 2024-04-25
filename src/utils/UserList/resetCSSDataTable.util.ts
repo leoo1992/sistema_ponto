@@ -8,8 +8,9 @@ export default function resetCSSDataTable(selectedRows: any) {
 
   if (textHeader && parentDiv) {
     // @ts-ignore
-    const selectedId = selectedRows?.map((r) => r.id);
-    textHeader.textContent = 'Id: ' + selectedId + ' -  Selecionado';
+    const selectedId = selectedRows?.map((r: { id_user: number }) => r.id_user);
+    const selectedName = selectedRows?.map((r: { name: string }) => r.name);
+    textHeader.textContent = selectedId + ' - ' + selectedName;
     parentDiv?.classList.add('w-full');
   }
 }
