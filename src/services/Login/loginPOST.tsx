@@ -20,6 +20,10 @@ export default async function loginPOST({
       body: JSON.stringify({ email, password }),
     });
     const data = await resp.json();
+
+    const token = await data.token;
+    Cookies.set('Bearer', token);
+
     return data;
   } catch (error) {
     throw error;
