@@ -2,8 +2,9 @@
 *.html linguist-vendored
 *.md linguist-vendored
 *.json linguist-vendored
-*.txt linguist-vendored
 *.xml linguist-vendored
+*.txt linguist-vendored
+*.todo linguist-vendored
 *.yml linguist-vendored
 *.png linguist-vendored
 *.bat linguist-vendored
