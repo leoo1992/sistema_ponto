@@ -37,6 +37,7 @@ UserTable.args = {
   subHeaderWrap: true,
   responsive: true,
   disabled: false,
+  ProgressComponent:'',
   paginationComponentOptions: {
     rowsPerPageText: 'Linhas por página:',
     rangeSeparatorText: 'de',

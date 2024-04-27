@@ -1,5 +1,6 @@
 import UserListGET from '../../../services/UserList/UserListGET';
 import { getUserDataTableColumns } from '../../../utils/UserList/getUserDataTableColumns.util';
+import ProgressComponent from './ProgressComponent';
 import { subHeaderComponent } from './subHeaderComponent';
 import { useEffect, useMemo, useState } from 'react';
 import DataTable from 'react-data-table-component';
@@ -36,6 +37,7 @@ export const UserTableStory = ({
   paginationComponentOptions,
   paginationRowsPerPageOptions,
   paginationComponent,
+  progressComponent,
 }: any) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -86,6 +88,7 @@ export const UserTableStory = ({
       noTableHead={noTableHead}
       persistTableHead={persistTableHead}
       progressPending={loading}
+      progressComponent={progressComponent}
       noHeader={noHeader}
       subHeader={subHeader}
       subHeaderComponent={subHeaderComponent}
