@@ -8,7 +8,6 @@ import DataTable from 'react-data-table-component';
 //import {data} from '../../../utils/UserList/data.util';
 
 export const UserTableStory = ({
-  paginationServer,
   selectableRows,
   selectableRowsNoSelectAll,
   selectableRowsVisibleOnly,
@@ -42,41 +41,19 @@ export const UserTableStory = ({
 }: any) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  const [totalRows, setTotalRows] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
-
-  const handlePerRowsChange = async (newPerPage: number, page: number) => {
-    setLoading(true);
-    setRowsPerPage(newPerPage);
-    setCurrentPage(page);
-    try {
-      const newData = await UserListGET(newPerPage, page);
-      setData(newData.data);
-      setTotalRows(newData.total);
-      setLoading(false);
-    } catch (error) {
-      console.error('Failed to fetch data:', error);
-    }
-  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const newData = await UserListGET(rowsPerPage, currentPage);
+        const newData = await UserListGET();
         setData(newData.data);
-        setTotalRows(newData.total);
         setLoading(false);
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
     };
     fetchData();
-  }, [rowsPerPage, currentPage]);
+  }, []);
 
   const selectableRowsComponentProps = useMemo(
     () => ({
@@ -105,9 +82,6 @@ export const UserTableStory = ({
       expandOnRowDoubleClicked={expandOnRowDoubleClicked}
       expandableRowsHideExpander={expandableRowsHideExpander}
       pagination={pagination}
-      paginationServer={paginationServer}
-      paginationTotalRows={totalRows}
-      paginationPerPage={rowsPerPage}
       highlightOnHover={highlightOnHover}
       striped={striped}
       pointerOnHover={pointerOnHover}
@@ -134,8 +108,6 @@ export const UserTableStory = ({
         selectAllRowsItem: false,
         selectAllRowsItemText: 'Todos',
       }}
-      onChangePage={handlePageChange}
-      onChangeRowsPerPage={handlePerRowsChange}
       paginationComponent={paginationComponent}
       paginationRowsPerPageOptions={paginationRowsPerPageOptions}
       onSelectedRowsChange={onSelectedRowsChange}

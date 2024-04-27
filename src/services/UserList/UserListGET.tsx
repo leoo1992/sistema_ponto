@@ -1,8 +1,8 @@
 import Cookies from 'js-cookie';
 
-export default async function UserListGET(rowsPerPage = 10, page = 1) {
+export default async function UserListGET() {
   const UserListGETUrl =
-    `https://pontoapi-production.up.railway.app/api/v1/users?page=${page}&size=${rowsPerPage}`;
+    `https://pontoapi-production.up.railway.app/api/v1/users`;
 
   try {
     const response = await fetch(UserListGETUrl, {
@@ -21,7 +21,7 @@ export default async function UserListGET(rowsPerPage = 10, page = 1) {
     const totalCountHeader = response.headers.get('total');
     const total = totalCountHeader ? parseInt(totalCountHeader, 10) : 0;
 
-    return { data: data, total: total };
+    return { data: data, total:total };
   } catch (error) {
     throw error;
   }
