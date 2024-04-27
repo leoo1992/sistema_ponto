@@ -41,14 +41,11 @@ export default function UserMenu() {
           <label
             htmlFor="my-drawer-4"
             aria-label="close sidebar"
-            className="hero-overlay h-screen w-screen flex justify-between
-                        self-center align-middle items-center content-center"
+            className="drawer-overlay h-svh w-svw flex justify-between
+                        self-center align-middle items-center content-center
+                        transition-all duration-1000 ease-in-out"
             onClick={() => setActive2(!active2)}
           >
-            <div
-              className="w-full h-full bg-blur-lg blur-lg flex justify-between
-                        self-center align-middle items-center content-center"
-            ></div>
           </label>
           <ul className="menu pt-16 h-screen bg-primary-content bg-opacity text-base-content shadow-sm shadow-primary w-48">
             <li>
