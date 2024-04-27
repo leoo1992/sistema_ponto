@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 
 export default async function UserListGET(rowsPerPage = 10, page = 1) {
   const UserListGETUrl =
-    `https://pontoapi-production.up.railway.app/api/v1/users?page=${rowsPerPage}&size=${page}`;
+    `https://pontoapi-production.up.railway.app/api/v1/users?page=${page}&size=${rowsPerPage}`;
 
   try {
     const response = await fetch(UserListGETUrl, {
