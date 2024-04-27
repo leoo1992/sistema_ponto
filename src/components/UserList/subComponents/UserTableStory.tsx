@@ -2,11 +2,13 @@ import UserListGET from '../../../services/UserList/UserListGET';
 import { getUserDataTableColumns } from '../../../utils/UserList/getUserDataTableColumns.util';
 import { NoDataComponent } from './NoDataComponent';
 import { ProgressComponent } from './ProgressComponent';
-import { SubHeaderComponent } from './SubHeaderComponent';
+import { subHeaderComponent } from './subHeaderComponent';
 import { useEffect, useMemo, useState } from 'react';
 import DataTable from 'react-data-table-component';
+//import {data} from '../../../utils/UserList/data.util';
 
 export const UserTableStory = ({
+  paginationServer,
   selectableRows,
   selectableRowsNoSelectAll,
   selectableRowsVisibleOnly,
@@ -35,12 +37,46 @@ export const UserTableStory = ({
   responsive,
   disabled,
   onSelectedRowsChange,
-  paginationComponentOptions,
   paginationRowsPerPageOptions,
   paginationComponent,
 }: any) => {
-  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+  const [totalRows, setTotalRows] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const handlePerRowsChange = async (newPerPage: number, page: number) => {
+    setLoading(true);
+    setRowsPerPage(newPerPage);
+    setCurrentPage(page);
+    try {
+      const newData = await UserListGET(newPerPage, page);
+      setData(newData.data);
+      setTotalRows(newData.total);
+      setLoading(false);
+    } catch (error) {
+      console.error('Failed to fetch data:', error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const newData = await UserListGET(rowsPerPage, currentPage);
+        setData(newData.data);
+        setTotalRows(newData.total);
+        setLoading(false);
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+      }
+    };
+    fetchData();
+  }, [rowsPerPage, currentPage]);
 
   const selectableRowsComponentProps = useMemo(
     () => ({
@@ -48,21 +84,6 @@ export const UserTableStory = ({
     }),
     [selectableRowsRadio]
   );
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        //comente aqui para não carregar usuarios
-        const newData = await UserListGET();
-        setData(newData);
-        // até aqui
-        setLoading(false);
-      } catch (error) {
-        console.error('Failed to fetch data:', error);
-      }
-    };
-    fetchData();
-  }, []);
 
   return (
     <DataTable
@@ -84,6 +105,9 @@ export const UserTableStory = ({
       expandOnRowDoubleClicked={expandOnRowDoubleClicked}
       expandableRowsHideExpander={expandableRowsHideExpander}
       pagination={pagination}
+      paginationServer={paginationServer}
+      paginationTotalRows={totalRows}
+      paginationPerPage={rowsPerPage}
       highlightOnHover={highlightOnHover}
       striped={striped}
       pointerOnHover={pointerOnHover}
@@ -94,7 +118,7 @@ export const UserTableStory = ({
       progressComponent={ProgressComponent}
       noHeader={noHeader}
       subHeader={subHeader}
-      subHeaderComponent={SubHeaderComponent}
+      subHeaderComponent={subHeaderComponent}
       subHeaderAlign={subHeaderAlign}
       subHeaderWrap={subHeaderWrap}
       noContextMenu={noContextMenu}
@@ -103,7 +127,15 @@ export const UserTableStory = ({
       direction={direction}
       responsive={responsive}
       disabled={disabled}
-      paginationComponentOptions={paginationComponentOptions}
+      paginationComponentOptions={{
+        rowsPerPageText: 'Linhas por página:',
+        rangeSeparatorText: 'de',
+        noRowsPerPage: false,
+        selectAllRowsItem: false,
+        selectAllRowsItemText: 'Todos',
+      }}
+      onChangePage={handlePageChange}
+      onChangeRowsPerPage={handlePerRowsChange}
       paginationComponent={paginationComponent}
       paginationRowsPerPageOptions={paginationRowsPerPageOptions}
       onSelectedRowsChange={onSelectedRowsChange}

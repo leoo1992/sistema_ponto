@@ -1,7 +1,7 @@
 import { HiSearch, HiUserAdd } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 
-export const SubHeaderComponent = (
+export const subHeaderComponent = (
   <div className="text-center flex flex-col-2 gap-1 justify-end items-center text-xs w-full">
     <Link
       to="/register"
