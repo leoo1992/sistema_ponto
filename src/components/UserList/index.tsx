@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { UserTable } from './subComponents/UserTable';
 import { customText } from '../../utils/UserList/customTextDataTable.util';
 import resetCSSDataTable from '../../utils/UserList/resetCSSDataTable.util';
-import ProgressComponent from './subComponents/ProgressComponent';
 
 export default function UserList() {
   const [selectedRows, setSelectedRows] = useState([]);
@@ -21,7 +20,7 @@ export default function UserList() {
      h-full w-11/12 m-0 sm:max-w-5xl"
     >
       <UserTable
-        progressComponent={<ProgressComponent />}
+        progressComponent
         pagination
         actions
         defaultSortField="name"

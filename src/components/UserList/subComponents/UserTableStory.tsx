@@ -1,7 +1,8 @@
 import UserListGET from '../../../services/UserList/UserListGET';
 import { getUserDataTableColumns } from '../../../utils/UserList/getUserDataTableColumns.util';
-import ProgressComponent from './ProgressComponent';
-import { subHeaderComponent } from './subHeaderComponent';
+import { NoDataComponent } from './NoDataComponent';
+import { ProgressComponent } from './ProgressComponent';
+import { SubHeaderComponent } from './SubHeaderComponent';
 import { useEffect, useMemo, useState } from 'react';
 import DataTable from 'react-data-table-component';
 
@@ -37,7 +38,6 @@ export const UserTableStory = ({
   paginationComponentOptions,
   paginationRowsPerPageOptions,
   paginationComponent,
-  progressComponent,
 }: any) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -52,8 +52,10 @@ export const UserTableStory = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
+        //comente aqui para não carregar usuarios
         const newData = await UserListGET();
         setData(newData);
+        // até aqui
         setLoading(false);
       } catch (error) {
         console.error('Failed to fetch data:', error);
@@ -69,6 +71,7 @@ export const UserTableStory = ({
       }
       columns={getUserDataTableColumns}
       data={data}
+      noDataComponent={NoDataComponent}
       defaultSortFieldId={1}
       selectableRows={selectableRows}
       selectableRowsComponentProps={selectableRowsComponentProps}
@@ -88,10 +91,10 @@ export const UserTableStory = ({
       noTableHead={noTableHead}
       persistTableHead={persistTableHead}
       progressPending={loading}
-      progressComponent={progressComponent}
+      progressComponent={ProgressComponent}
       noHeader={noHeader}
       subHeader={subHeader}
-      subHeaderComponent={subHeaderComponent}
+      subHeaderComponent={SubHeaderComponent}
       subHeaderAlign={subHeaderAlign}
       subHeaderWrap={subHeaderWrap}
       noContextMenu={noContextMenu}
