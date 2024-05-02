@@ -29,7 +29,11 @@ export const getUserDataTableColumns = [
   },
   {
     name: 'Tipo',
-    selector: (row: any) => row.userRole,
+    selector: (row: any) => {
+      const userRole = row.userRole;
+      const lowercaseRole = userRole.toLowerCase();
+      return lowercaseRole.charAt(0).toUpperCase() + lowercaseRole.slice(1);
+    },
     sortable: true,
     reorder: true,
     width: '115px',

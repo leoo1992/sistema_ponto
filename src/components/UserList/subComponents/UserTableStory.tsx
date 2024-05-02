@@ -5,6 +5,7 @@ import { ProgressComponent } from './ProgressComponent';
 import { subHeaderComponent } from './subHeaderComponent';
 import DataTable from 'react-data-table-component';
 import UserListGET from '../../../services/UserList/UserListGET';
+import Pagination from './Pagination';
 //import {data} from '../../../utils/UserList/data.util';
 
 export const UserTableStory = ({
@@ -37,31 +38,37 @@ export const UserTableStory = ({
   disabled,
   onSelectedRowsChange,
   paginationRowsPerPageOptions,
-  paginationComponent,
-  paginationServer
+  paginationServer,
+  paginationComponentOptions,
+  defaultComponentOptions,
 }: any) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [totalElements, setTotalElements] = useState(0);
-  const [page, setPage] = useState(1);
-  const [size, setSize] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
-console.log(page);
+  console.log(currentPage);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const newData = await UserListGET(page -1, size);
+        const newData = await UserListGET(currentPage - 1, rowsPerPage);
         setData(newData.content);
         setTotalElements(newData.totalElements);
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
       } catch (error) {
         console.error('Failed to fetch data:', error);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
       }
     };
 
     fetchData();
-  }, [page, size]);
+  }, [currentPage, setRowsPerPage]);
 
   const selectableRowsComponentProps = useMemo(
     () => ({
@@ -70,9 +77,24 @@ console.log(page);
     [selectableRowsRadio]
   );
 
+  const handlePageChange = async (newPage: number) => {
+    const totalPages = Math.ceil(totalElements / rowsPerPage);
+    if (newPage <= totalPages && newPage !== currentPage) {
+      setCurrentPage(newPage);
+    }
+  };
+
+  const handlePerRowsChange = async (
+    currentRowsPerPage: number,
+    _currentPage: number
+  ) => {
+    setRowsPerPage(currentRowsPerPage);
+    setCurrentPage(1);
+  };
+
   return (
     <DataTable
-      key={page}
+      key={currentPage}
       title={
         <span className=" h-full w-full p-0 m-0 font-semibold">Usuários</span>
       }
@@ -111,26 +133,22 @@ console.log(page);
       direction={direction}
       responsive={responsive}
       disabled={disabled}
-      paginationComponentOptions={{
-        rowsPerPageText: 'Linhas por página:',
-        rangeSeparatorText: 'de',
-        noRowsPerPage: false,
-        selectAllRowsItem: false,
-        selectAllRowsItemText: 'Todos',
-      }}
-      paginationTotalRows= {totalElements}
-      paginationComponent={paginationComponent}
+      paginationTotalRows={totalElements}
+      paginationComponentOptions={paginationComponentOptions}
+      paginationComponent={() => Pagination({
+        rowsPerPage,
+        totalElements,
+        currentPage,
+        paginationRowsPerPageOptions,
+        paginationComponentOptions,
+        handlePerRowsChange,
+        handlePageChange,
+        defaultComponentOptions,
+      })}
       paginationRowsPerPageOptions={paginationRowsPerPageOptions}
       onSelectedRowsChange={onSelectedRowsChange}
-      onChangeRowsPerPage={(currentRowsPerPage, _currentPage) => {
-        setSize(currentRowsPerPage);
-        setPage(1);
-      }}
-      onChangePage={
-        (newPage) => {
-          setPage(newPage);
-        }
-      }
+      onChangeRowsPerPage={handlePerRowsChange}
+      onChangePage={handlePageChange}
     />
   );
 };

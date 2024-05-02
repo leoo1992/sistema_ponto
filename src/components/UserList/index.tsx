@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { UserTable } from './subComponents/UserTable';
-import { customText } from '../../utils/UserList/customTextDataTable.util';
 import resetCSSDataTable from '../../utils/UserList/resetCSSDataTable.util';
 
 export default function UserList() {
@@ -36,7 +35,6 @@ export default function UserList() {
         }}
         highlightOnHover
         pointerOnHover
-        text={customText}
         subHeader
         subHeaderAlign="right"
         subHeaderWrap

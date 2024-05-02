@@ -1,5 +1,4 @@
 import { Alignment, Direction } from 'react-data-table-component';
-import { customText } from '../../../utils/UserList/customTextDataTable.util';
 import { UserTableStory } from './UserTableStory';
 
 // @ts-ignore
@@ -22,7 +21,6 @@ UserTable.args = {
   highlightOnHover: false,
   striped: false,
   pointerOnHover: false,
-  text: { customText },
   dense: false,
   persistTableHead: false,
   noHeader: false,
@@ -38,11 +36,6 @@ UserTable.args = {
   responsive: true,
   disabled: false,
   ProgressComponent:'',
-  paginationComponentOptions: {
-    rowsPerPageText: 'Linhas por página:',
-    rangeSeparatorText: 'de',
-    noRowsPerPage: false,
-  },
   paginationComponent: '',
   paginationRowsPerPageOptions: [5, 10, 15],
   onSelectedRowsChange: '',

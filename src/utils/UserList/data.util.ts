@@ -4,7 +4,7 @@ export const data = [
           name: 'João da Silva',
           email: 'joao@example.com',
           telefone: '(11) 98765-4321',
-          userRole: 'Admin',
+          userRole: 'ADMIN',
           status: true,
         },
         {
