@@ -1,10 +1,10 @@
-import UserListGET from '../../../services/UserList/UserListGET';
+import { useEffect, useMemo, useState } from 'react';
 import { getUserDataTableColumns } from '../../../utils/UserList/getUserDataTableColumns.util';
 import { NoDataComponent } from './NoDataComponent';
 import { ProgressComponent } from './ProgressComponent';
 import { subHeaderComponent } from './subHeaderComponent';
-import { useEffect, useMemo, useState } from 'react';
 import DataTable from 'react-data-table-component';
+import UserListGET from '../../../services/UserList/UserListGET';
 //import {data} from '../../../utils/UserList/data.util';
 
 export const UserTableStory = ({
@@ -38,22 +38,30 @@ export const UserTableStory = ({
   onSelectedRowsChange,
   paginationRowsPerPageOptions,
   paginationComponent,
+  paginationServer
 }: any) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const [totalElements, setTotalElements] = useState(0);
+  const [page, setPage] = useState(1);
+  const [size, setSize] = useState(10);
+
+console.log(page);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const newData = await UserListGET();
-        setData(newData.data);
+        const newData = await UserListGET(page -1, size);
+        setData(newData.content);
+        setTotalElements(newData.totalElements);
         setLoading(false);
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
     };
+
     fetchData();
-  }, []);
+  }, [page, size]);
 
   const selectableRowsComponentProps = useMemo(
     () => ({
@@ -64,6 +72,7 @@ export const UserTableStory = ({
 
   return (
     <DataTable
+      key={page}
       title={
         <span className=" h-full w-full p-0 m-0 font-semibold">Usuários</span>
       }
@@ -82,6 +91,7 @@ export const UserTableStory = ({
       expandOnRowDoubleClicked={expandOnRowDoubleClicked}
       expandableRowsHideExpander={expandableRowsHideExpander}
       pagination={pagination}
+      paginationServer={paginationServer}
       highlightOnHover={highlightOnHover}
       striped={striped}
       pointerOnHover={pointerOnHover}
@@ -108,9 +118,19 @@ export const UserTableStory = ({
         selectAllRowsItem: false,
         selectAllRowsItemText: 'Todos',
       }}
+      paginationTotalRows= {totalElements}
       paginationComponent={paginationComponent}
       paginationRowsPerPageOptions={paginationRowsPerPageOptions}
       onSelectedRowsChange={onSelectedRowsChange}
+      onChangeRowsPerPage={(currentRowsPerPage, _currentPage) => {
+        setSize(currentRowsPerPage);
+        setPage(1);
+      }}
+      onChangePage={
+        (newPage) => {
+          setPage(newPage);
+        }
+      }
     />
   );
 };

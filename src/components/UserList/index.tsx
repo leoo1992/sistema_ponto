@@ -22,6 +22,7 @@ export default function UserList() {
       <UserTable
         progressComponent
         pagination
+        paginationServer
         actions
         defaultSortField="name"
         striped

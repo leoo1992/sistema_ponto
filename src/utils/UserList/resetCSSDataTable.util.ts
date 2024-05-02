@@ -13,4 +13,5 @@ export default function resetCSSDataTable(selectedRows: any) {
     textHeader.textContent = selectedId + ' - ' + selectedName;
     parentDiv?.classList.add('w-full');
   }
+
 }
