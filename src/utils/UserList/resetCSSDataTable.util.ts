@@ -5,6 +5,11 @@ export default function resetCSSDataTable(selectedRows: any) {
 
   // @ts-ignore
   const parentDiv = document.querySelector('.rdt_Pagination')?.closest('div');
+  const pag = document.querySelector('.rdt_Pagination');
+
+  if (pag) {
+    pag.classList.add('w-full');
+  }
 
   if (textHeader && parentDiv) {
     // @ts-ignore
