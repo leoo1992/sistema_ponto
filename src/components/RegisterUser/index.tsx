@@ -1,3 +1,11 @@
+import { HiKey } from "react-icons/hi"; 
+import { HiLockClosed } from "react-icons/hi"; 
+import { BsWrench } from "react-icons/bs";  
+import { HiOfficeBuilding } from "react-icons/hi"; 
+import { HiIdentification } from "react-icons/hi"; 
+import { HiPhone } from "react-icons/hi"; 
+import { HiMail } from "react-icons/hi"; 
+import { HiUser } from "react-icons/hi"; 
 import useNewUser from '../../hooks/useNewUser';
 import { submitForm_CreateUser } from '../../utils/CreateUser/submitForm_CreateUser';
 import Form from './subComponents/Form';
@@ -18,8 +26,9 @@ export default function index() {
 
   return (
     <div
-      className="card w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 xl:7/12 shadow-sm bg-gradient-to-b
- from-slate-100 via-white to-white  shadow-primary"
+      className="card w-11/12 sm:w-11/12 md:w-10/12 lg:w-6/12 xl:4/12 shadow-sm bg-gradient-to-b
+ from-slate-100 via-white to-transparent shadow-primary flex flex-col justify-center items-center 
+ content-center align-middle self-center"
     >
       <Form
         onSubmit={(e: any) =>
@@ -34,16 +43,59 @@ export default function index() {
           )
         }
       >
-        <h1 className="text-primary font-bold text-center text-lg">Cadastro</h1>
-        <div className="form-control flex flex-col sm:flex-row">
-          <div className="flex-1 justify-between align-middle 
-          items-center self-center content-center p-1" >
+        <h1 className="text-primary font-bold text-center sm:text-lg">
+          Cadastro de usuários
+        </h1>
+        <div className="form-control flex w-full justify-center self-center content-center">
+          <Input
+            inputRef={NameNewUserRef}
+            nameID={'name'}
+            labelName={'Nome'}
+            register={register}
+            classNameInput="w-full flex justify-between items-center self-center align-middle"
+            Icon={<HiUser size={20}/>}
+            classIcon="flex"
+          />
+          <Input
+            inputRef={EmailNewUserRef}
+            nameID={'email'}
+            labelName={'Email'}
+            typeInput="email"
+            register={register}
+            classNameInput="w-full flex justify-between items-center self-center align-middle"
+            Icon={<HiMail size={20}/>}
+            classIcon="flex"
+          />
+          <div className="sm:flex sm:gap-3">
             <Input
-              inputRef={NameNewUserRef}
-              nameID={'name'}
-              labelName={'Nome'}
+              inputRef={TelNewUserRef}
+              nameID={'telefone'}
+              labelName={'Telefone'}
               register={register}
-              classNameInput='w-full flex justify-between items-center self-center align-middle'
+              classNameInput="w-full flex justify-between items-center self-center align-middle"
+              Icon={<HiPhone size={20} />}
+              classIcon="flex"
+            />
+            <Input
+              inputRef={EmailNewUserRef}
+              nameID={'cpf'}
+              labelName={'CPF'}
+              typeInput="text"
+              register={register}
+              classNameInput="w-full flex justify-between items-center self-center align-middle"
+              Icon={<HiIdentification size={20}/>}
+              classIcon="flex"
+            />
+          </div>
+          <div className="sm:flex sm:gap-3">
+            <Input
+              inputRef={EmailNewUserRef}
+              nameID={'setor'}
+              labelName={'Setor'}
+              register={register}
+              classNameInput="w-full flex justify-between items-center self-center align-middle"
+              Icon={<HiOfficeBuilding size={20}/>}
+              classIcon="flex"
             />
             <Input
               inputRef={EmailNewUserRef}
@@ -51,47 +103,39 @@ export default function index() {
               labelName={'Cargo'}
               typeInput="text"
               register={register}
-              classNameInput='w-full flex justify-between items-center self-center align-middle'
+              classNameInput="w-full flex justify-between items-center self-center align-middle"
+              Icon={<BsWrench size={20}/>}
+              classIcon="flex"
             />
+          </div>
+          <div className="sm:flex sm:gap-3">
             <Select
               selectRef={typeNewUserRef}
               nameID={'userRole'}
               options={options}
-              labelName={'Tipo'}
+              labelName={'Acesso'}
               register={register}
-              classNameSelect='w-full flex justify-between items-center self-center align-middle'
-            />
-          </div>
-          <div className="flex-1 justify-between align-middle 
-          items-center self-center content-center p-1" >
-            <Input
-              inputRef={EmailNewUserRef}
-              nameID={'email'}
-              labelName={'Email'}
-              typeInput="email"
-              register={register}
-              classNameInput='w-full flex justify-between items-center self-center align-middle'
-            />
-            <Input
-              inputRef={TelNewUserRef}
-              nameID={'telefone'}
-              labelName={'Telefone'}
-              register={register}
-              classNameInput='w-full flex justify-between items-center self-center align-middle'
-            />
+              classNameSelect="w-full flex justify-between items-center self-center align-middle"
+              Icon={<HiKey size={20}/>}
+              classIcon="flex"
+           />
             <Input
               inputRef={PasswordNewUserRef}
               nameID={'password'}
               labelName={'Senha'}
               typeInput="password"
               register={register}
-              classNameInput='w-full flex justify-between items-center self-center align-middle'
+              classNameInput="w-full flex justify-between items-center self-center align-middle"
+              Icon={<HiLockClosed size={20}/>}
+              classIcon="flex"
             />
           </div>
         </div>
         <button
           type="submit"
-          className="btn btn-primary text-white bg-primary glass rounded-badge font-extrabold text-md shadow-md shadow-gray-300 mt-5"
+          className="btn btn-primary text-white bg-primary glass rounded-badge 
+          text-md mt-8 w-6/12 sm:w-4/12 flex justify-center align-middle
+          self-center font-extrabold  md:w-3/12 lg:2/12" 
         >
           Registrar
         </button>
