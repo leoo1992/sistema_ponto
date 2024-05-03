@@ -8,7 +8,7 @@ export default function Form({
   onSubmit: any;
 }) {
   return (
-    <form onSubmit={onSubmit} className="card-body p-5 sm:p-8 w-full">
+    <form onSubmit={onSubmit} className="card-body p-8 w-full">
       {children}
     </form>
   );
