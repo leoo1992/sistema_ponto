@@ -58,17 +58,17 @@ export const UserTableStory = ({
         setTotalElements(newData.totalElements);
         setTimeout(() => {
           setLoading(false);
-        }, 1000);
+        }, 2000);
       } catch (error) {
         console.error('Failed to fetch data:', error);
         setTimeout(() => {
           setLoading(false);
-        }, 1000);
+        }, 2000);
       }
     };
 
     fetchData();
-  }, [currentPage, setRowsPerPage]);
+  }, [currentPage, rowsPerPage]);
 
   const selectableRowsComponentProps = useMemo(
     () => ({

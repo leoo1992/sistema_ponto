@@ -16,7 +16,7 @@ export default function UserList() {
   return (
     <div
       className="mt-4 flex flex-col justify-center items-center self-center content-center
-     h-full w-11/12 m-0 sm:max-w-5xl"
+     h-full w-11/12 mx-0 p-0"
     >
       <UserTable
         progressComponent

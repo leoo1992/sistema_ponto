@@ -7,7 +7,7 @@ export const getUserDataTableColumns = [
     },
     sortable: true,
     reorder: true,
-    width: '90px',
+    width: '80px',
   },
   {
     name: 'Nome',
@@ -17,7 +17,7 @@ export const getUserDataTableColumns = [
     },
     sortable: true,
     reorder: true,
-    width: '200px',
+    flex: 1
   },
   {
     name: 'Email',
@@ -27,13 +27,23 @@ export const getUserDataTableColumns = [
     },
     sortable: true,
     reorder: true,
-    width: '200px',
+    flex: 1
   },
   {
     name: 'Cargo',
     selector: (row: any) => {
       if (!row.jobfunction) return 'Sem Cargo';
       return row.jobfunction;
+    },
+    sortable: true,
+    reorder: true,
+    width: '140px',
+  },
+  {
+    name: 'Setor',
+    selector: (row: any) => {
+      if (!row.sector) return 'Sem Setor';
+      return row.sector;
     },
     sortable: true,
     reorder: true,
@@ -47,7 +57,7 @@ export const getUserDataTableColumns = [
     },
     sortable: true,
     reorder: true,
-    width: '120px',
+    width: '140px',
   },
   {
     name: 'Tipo',
@@ -59,7 +69,7 @@ export const getUserDataTableColumns = [
     },
     sortable: true,
     reorder: true,
-    width: '115px',
+    width: '140px',
   },
   {
     name: 'Status',
@@ -69,6 +79,6 @@ export const getUserDataTableColumns = [
     },
     sortable: true,
     reorder: true,
-    width: '100px',
+    width: '120px',
   },
 ];
