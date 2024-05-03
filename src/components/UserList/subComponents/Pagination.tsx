@@ -16,11 +16,15 @@ export default function Pagination({
   numPages,
   defaultComponentOptions='',
 }: any) {
+
+  console.log('pagination: ', { rowsPerPage, rowCount, currentPage, numPages });
+
   const lastIndex = currentPage * rowsPerPage;
   const firstIndex = lastIndex - rowsPerPage + 1;
   const disabledLesser = currentPage === 1;
   const disabledGreater = currentPage === numPages;
   const options = { ...defaultComponentOptions, ...paginationComponentOptions };
+
   const range =
     currentPage === numPages
       ? `${firstIndex}-${rowCount} / ${rowCount}`
@@ -30,15 +34,18 @@ export default function Pagination({
     () => onChangePage(currentPage - 1),
     [currentPage, onChangePage]
   );
+
   const handleNext = useCallback(
     () => onChangePage(currentPage + 1),
     [currentPage, onChangePage]
   );
   const handleFirst = useCallback(() => onChangePage(1), [onChangePage]);
-  const handleLast = useCallback(
-    () => onChangePage(), //passar o numero total de paginas
-    [onChangePage, rowCount, rowsPerPage]
-  );
+
+  const handleLast = useCallback(() => {
+    const totalPages = Math.ceil(rowCount / rowsPerPage);
+    onChangePage(totalPages);
+  }, [onChangePage, rowCount, rowsPerPage]);
+
   const handleRowsPerPage = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) =>
       onChangeRowsPerPage(Number(e.target.value), currentPage),

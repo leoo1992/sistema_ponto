@@ -135,16 +135,19 @@ export const UserTableStory = ({
       disabled={disabled}
       paginationTotalRows={totalElements}
       paginationComponentOptions={paginationComponentOptions}
-      paginationComponent={() => Pagination({
-        rowsPerPage,
-        totalElements,
-        currentPage,
-        paginationRowsPerPageOptions,
-        paginationComponentOptions,
-        handlePerRowsChange,
-        handlePageChange,
-        defaultComponentOptions,
-      })}
+      paginationComponent={() => (
+        <Pagination
+          rowsPerPage={rowsPerPage}
+          rowCount={totalElements}
+          currentPage={currentPage}
+          paginationRowsPerPageOptions={paginationRowsPerPageOptions}
+          paginationComponentOptions={paginationComponentOptions}
+          onChangeRowsPerPage={handlePerRowsChange}
+          onChangePage={handlePageChange}
+          numPages={Math.ceil(totalElements / rowsPerPage)}
+          defaultComponentOptions={defaultComponentOptions}
+        />
+      )}
       paginationRowsPerPageOptions={paginationRowsPerPageOptions}
       onSelectedRowsChange={onSelectedRowsChange}
       onChangeRowsPerPage={handlePerRowsChange}
