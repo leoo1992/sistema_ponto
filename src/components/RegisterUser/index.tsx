@@ -22,6 +22,9 @@ export default function index() {
     options,
     register,
     handleSubmit,
+    cpfNewUserRef,
+    sectorNewUserRef,
+    jobFunctionNewUserRef,
   } = useNewUser();
 
   return (
@@ -39,7 +42,10 @@ export default function index() {
             PasswordNewUserRef,
             TelNewUserRef,
             typeNewUserRef,
-            handleSubmit
+            cpfNewUserRef,
+            sectorNewUserRef,
+            jobFunctionNewUserRef,
+            handleSubmit,
           )
         }
       >
@@ -77,7 +83,7 @@ export default function index() {
               classIcon="flex"
             />
             <Input
-              inputRef={EmailNewUserRef}
+              inputRef={cpfNewUserRef}
               nameID={'cpf'}
               labelName={'CPF'}
               typeInput="text"
@@ -89,7 +95,7 @@ export default function index() {
           </div>
           <div className="sm:flex sm:gap-3">
             <Input
-              inputRef={EmailNewUserRef}
+              inputRef={sectorNewUserRef}
               nameID={'setor'}
               labelName={'Setor'}
               register={register}
@@ -98,7 +104,7 @@ export default function index() {
               classIcon="flex"
             />
             <Input
-              inputRef={EmailNewUserRef}
+              inputRef={jobFunctionNewUserRef}
               nameID={'cargo'}
               labelName={'Cargo'}
               typeInput="text"

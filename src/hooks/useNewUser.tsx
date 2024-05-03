@@ -9,6 +9,9 @@ export default function useNewUser() {
   const EmailNewUserRef = useRef<HTMLInputElement>(null);
   const PasswordNewUserRef = useRef<HTMLInputElement>(null);
   const TelNewUserRef = useRef<HTMLInputElement>(null);
+  const cpfNewUserRef = useRef<HTMLInputElement>(null);
+  const sectorNewUserRef = useRef<HTMLInputElement>(null);
+  const jobFunctionNewUserRef = useRef<HTMLInputElement>(null);
   const typeNewUserRef = useRef<HTMLSelectElement>(null);
   const options = [
     { id: 'ADMIN', name: 'Administrador' },
@@ -26,7 +29,10 @@ export default function useNewUser() {
       PasswordNewUserRef,
       TelNewUserRef,
       typeNewUserRef,
-      handleSubmit
+      cpfNewUserRef,
+      sectorNewUserRef,
+      jobFunctionNewUserRef,
+      handleSubmit,
     );
   };
 
@@ -40,5 +46,8 @@ export default function useNewUser() {
     onSubmit,
     register,
     handleSubmit,
+    cpfNewUserRef,
+    sectorNewUserRef,
+    jobFunctionNewUserRef,
   };
 }

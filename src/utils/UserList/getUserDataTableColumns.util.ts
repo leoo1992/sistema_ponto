@@ -30,9 +30,19 @@ export const getUserDataTableColumns = [
     flex: 1
   },
   {
+    name: 'CPF',
+    selector: (row: any) => {
+      if (!row.cpf) return 'Sem cpf';
+      return row.cpf;
+    },
+    sortable: true,
+    reorder: true,
+    width: '140px',
+  },
+  {
     name: 'Cargo',
     selector: (row: any) => {
-      if (!row.jobfunction) return 'Sem Cargo';
+      if (!row.jobFunction) return 'Sem Cargo';
       return row.jobfunction;
     },
     sortable: true,
