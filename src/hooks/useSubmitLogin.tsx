@@ -19,7 +19,7 @@ export function useSubmitLogin() {
         navigate('/');
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

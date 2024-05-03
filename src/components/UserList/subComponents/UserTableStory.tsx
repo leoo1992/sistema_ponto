@@ -6,6 +6,7 @@ import { subHeaderComponent } from './subHeaderComponent';
 import DataTable from 'react-data-table-component';
 import UserListGET from '../../../services/UserList/UserListGET';
 import Pagination from './Pagination';
+import resetCSSDataTable from '../../../utils/UserList/resetCSSDataTable.util';
 //import {data} from '../../../utils/UserList/data.util';
 
 export const UserTableStory = ({
@@ -36,8 +37,6 @@ export const UserTableStory = ({
   subHeaderWrap,
   responsive,
   disabled,
-  onSelectedRowsChange,
-  paginationRowsPerPageOptions,
   paginationServer,
   paginationComponentOptions,
   defaultComponentOptions,
@@ -47,8 +46,7 @@ export const UserTableStory = ({
   const [totalElements, setTotalElements] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-
-  console.log(currentPage);
+  const [selectedRows, setSelectedRows] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,6 +67,14 @@ export const UserTableStory = ({
 
     fetchData();
   }, [currentPage, rowsPerPage]);
+
+  useEffect(() => {
+    resetCSSDataTable(selectedRows);
+  });
+
+  const handleRowSelected = (state: any) => {
+    setSelectedRows(state.selectedRows);
+  };
 
   const selectableRowsComponentProps = useMemo(
     () => ({
@@ -140,7 +146,7 @@ export const UserTableStory = ({
           rowsPerPage={rowsPerPage}
           rowCount={totalElements}
           currentPage={currentPage}
-          paginationRowsPerPageOptions={paginationRowsPerPageOptions}
+          paginationRowsPerPageOptions={[5, 10, 15]}
           paginationComponentOptions={paginationComponentOptions}
           onChangeRowsPerPage={handlePerRowsChange}
           onChangePage={handlePageChange}
@@ -148,8 +154,8 @@ export const UserTableStory = ({
           defaultComponentOptions={defaultComponentOptions}
         />
       )}
-      paginationRowsPerPageOptions={paginationRowsPerPageOptions}
-      onSelectedRowsChange={onSelectedRowsChange}
+      paginationRowsPerPageOptions={[5, 10, 15]}
+      onSelectedRowsChange={handleRowSelected}
       onChangeRowsPerPage={handlePerRowsChange}
       onChangePage={handlePageChange}
     />

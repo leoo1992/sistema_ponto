@@ -16,7 +16,6 @@ export default function Pagination({
   numPages,
   defaultComponentOptions = '',
 }: any) {
-  console.log('pagination: ', { rowsPerPage, rowCount, currentPage, numPages });
 
   const lastIndex = currentPage * rowsPerPage;
   const firstIndex = lastIndex - rowsPerPage + 1;

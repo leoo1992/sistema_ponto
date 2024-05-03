@@ -14,7 +14,6 @@ export const subHeaderComponent = (
         <HiUserAdd />
       </span>
     </Link>
-    {/* icones aqui */}
     <label
       className="input input-bordered rounded-badge p-4 input-sm flex items-center
       shadow-primary-content shadow-sm gap-1 w-full sm:w-fit min-w-36"

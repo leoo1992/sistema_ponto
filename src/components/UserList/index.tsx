@@ -1,17 +1,6 @@
-import { useEffect, useState } from 'react';
 import { UserTable } from './subComponents/UserTable';
-import resetCSSDataTable from '../../utils/UserList/resetCSSDataTable.util';
 
 export default function UserList() {
-  const [selectedRows, setSelectedRows] = useState([]);
-
-  useEffect(() => {
-    resetCSSDataTable(selectedRows);
-  });
-
-  const handleRowSelected = (state: any) => {
-    setSelectedRows(state.selectedRows);
-  };
 
   return (
     <div
@@ -26,13 +15,6 @@ export default function UserList() {
         defaultSortField="name"
         striped
         dense
-        paginationRowsPerPageOptions={[5, 10, 15]}
-        onSelectedRowsChange={handleRowSelected}
-        paginationComponentOptions={{
-          rowsPerPageText: 'Linhas por página:',
-          rangeSeparatorText: 'de',
-          noRowsPerPage: false,
-        }}
         highlightOnHover
         pointerOnHover
         subHeader
