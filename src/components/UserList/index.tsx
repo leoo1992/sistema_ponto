@@ -10,6 +10,9 @@ export default function UserList() {
       <UserTable
         progressComponent
         pagination
+        expandableRows
+        expandOnRowClicked
+        expandOnRowDoubleClicked
         paginationServer
         actions
         defaultSortField="name"
@@ -21,12 +24,6 @@ export default function UserList() {
         subHeaderAlign="right"
         subHeaderWrap
         responsive
-        selectableRows
-        selectableRowsNoSelectAll
-        selectableRowsVisibleOnly
-        selectableRowsHighlight
-        selectableRowsSingle
-        selectableRowsRadio
       />
     </div>
   );

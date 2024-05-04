@@ -39,6 +39,7 @@ UserTable.args = {
   paginationComponent: '',
   paginationRowsPerPageOptions: [5, 10, 15],
   onSelectedRowsChange: '',
+  contextActions: ''
 };
 
 export default {

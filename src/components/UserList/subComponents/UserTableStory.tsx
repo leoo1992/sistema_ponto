@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getUserDataTableColumns } from '../../../utils/UserList/getUserDataTableColumns.util';
 import { NoDataComponent } from './NoDataComponent';
 import { ProgressComponent } from './ProgressComponent';
@@ -6,15 +6,10 @@ import { subHeaderComponent } from './subHeaderComponent';
 import DataTable from 'react-data-table-component';
 import UserListGET from '../../../services/UserList/UserListGET';
 import Pagination from './Pagination';
-import resetCSSDataTable from '../../../utils/UserList/resetCSSDataTable.util';
+import ContextActionsComponent from './ContextActions';
 //import {data} from '../../../utils/UserList/data.util';
 
 export const UserTableStory = ({
-  selectableRows,
-  selectableRowsNoSelectAll,
-  selectableRowsVisibleOnly,
-  selectableRowsHighlight,
-  selectableRowsSingle,
   expandableRows,
   expandOnRowClicked,
   expandOnRowDoubleClicked,
@@ -28,7 +23,6 @@ export const UserTableStory = ({
   noHeader,
   fixedHeader,
   fixedHeaderScrollHeight,
-  selectableRowsRadio,
   noTableHead,
   noContextMenu,
   direction,
@@ -46,7 +40,7 @@ export const UserTableStory = ({
   const [totalElements, setTotalElements] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [selectedRows, setSelectedRows] = useState([]);
+  const [expandedRow, setExpandedRow] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,26 +62,16 @@ export const UserTableStory = ({
     fetchData();
   }, [currentPage, rowsPerPage]);
 
-  useEffect(() => {
-    resetCSSDataTable(selectedRows);
-  });
-
-  const handleRowSelected = (state: any) => {
-    setSelectedRows(state.selectedRows);
-  };
-
-  const selectableRowsComponentProps = useMemo(
-    () => ({
-      type: 'radio',
-    }),
-    [selectableRowsRadio]
-  );
-
   const handlePageChange = async (newPage: number) => {
     const totalPages = Math.ceil(totalElements / rowsPerPage);
     if (newPage <= totalPages && newPage !== currentPage) {
       setCurrentPage(newPage);
+      setExpandedRow(null);
     }
+  };
+
+  const handleExpandRow = (row: any) => {
+    setExpandedRow(row === expandedRow ? null : row);
   };
 
   const handlePerRowsChange = async (
@@ -96,6 +80,20 @@ export const UserTableStory = ({
   ) => {
     setRowsPerPage(currentRowsPerPage);
     setCurrentPage(1);
+    setExpandedRow(null);
+  };
+
+  const handleEdit = ({name}: any) => {
+    console.log('Row EDIT:', name);
+
+  };
+
+  const handleDelete = ({name}:any) => {
+    console.log('Row DELETE:', name);
+  };
+
+  const handleDisable = ({name}:any) => {
+    console.log('Row DISABLE:', name);
   };
 
   return (
@@ -108,12 +106,6 @@ export const UserTableStory = ({
       data={data}
       noDataComponent={NoDataComponent}
       defaultSortFieldId={1}
-      selectableRows={selectableRows}
-      selectableRowsComponentProps={selectableRowsComponentProps}
-      selectableRowsNoSelectAll={selectableRowsNoSelectAll}
-      selectableRowsHighlight={selectableRowsHighlight}
-      selectableRowsSingle={selectableRowsSingle}
-      selectableRowsVisibleOnly={selectableRowsVisibleOnly}
       expandableRows={expandableRows}
       expandOnRowClicked={expandOnRowClicked}
       expandOnRowDoubleClicked={expandOnRowDoubleClicked}
@@ -155,9 +147,26 @@ export const UserTableStory = ({
         />
       )}
       paginationRowsPerPageOptions={[5, 10, 15]}
-      onSelectedRowsChange={handleRowSelected}
       onChangeRowsPerPage={handlePerRowsChange}
       onChangePage={handlePageChange}
+      expandableRowsComponent={({ data }) => (
+        <ContextActionsComponent
+          handleEdit={() => handleEdit(data)}
+          handleDelete={() => handleDelete(data)}
+          handleDisable={() => handleDisable(data)}
+        />
+      )}
+      onRowExpandToggled={handleExpandRow}
+      expandableRowsComponentProps={{
+        expandableRowsComponent: <ContextActionsComponent
+          handleEdit={() => handleEdit(expandedRow)}
+          handleDelete={() => handleDelete(expandedRow)}
+          handleDisable={() => handleDisable(expandedRow)}
+        />,
+        isRowExpandable: () => true,
+        expandedRow: expandedRow,
+        onRowExpandToggled: handleExpandRow
+      }}
     />
   );
 };
