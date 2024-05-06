@@ -7,13 +7,13 @@ import DataTable from 'react-data-table-component';
 import UserListGET from '../../../services/UserList/UserListGET';
 import Pagination from './Pagination';
 import ContextActionsComponent from './ContextActions';
+import UserDelete from '../../../services/UserList/UserDelete';
+import UserDisable from '../../../services/UserList/UserDisable';
+import UserEdit from '../../../services/UserList/UserEdit';
 //import {data} from '../../../utils/UserList/data.util';
 
 export const UserTableStory = ({
   expandableRows,
-  expandOnRowClicked,
-  expandOnRowDoubleClicked,
-  expandableRowsHideExpander,
   pagination,
   highlightOnHover,
   striped,
@@ -42,25 +42,25 @@ export const UserTableStory = ({
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [expandedRow, setExpandedRow] = useState(null);
 
+  const fetchData = async () => {
+    try {
+      const newData = await UserListGET(currentPage - 1, rowsPerPage);
+      setData(newData.content);
+      setTotalElements(newData.totalElements);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+    } catch (error) {
+      console.error('Failed to fetch data:', error);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+    }
+  };
+  
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const newData = await UserListGET(currentPage - 1, rowsPerPage);
-        setData(newData.content);
-        setTotalElements(newData.totalElements);
-        setTimeout(() => {
-          setLoading(false);
-        }, 2000);
-      } catch (error) {
-        console.error('Failed to fetch data:', error);
-        setTimeout(() => {
-          setLoading(false);
-        }, 2000);
-      }
-    };
-
     fetchData();
-  }, [currentPage, rowsPerPage]);
+  }, [currentPage, rowsPerPage, loading]);
 
   const handlePageChange = async (newPage: number) => {
     const totalPages = Math.ceil(totalElements / rowsPerPage);
@@ -83,17 +83,18 @@ export const UserTableStory = ({
     setExpandedRow(null);
   };
 
-  const handleEdit = ({name}: any) => {
-    console.log('Row EDIT:', name);
-
+  const handleEdit = ({ id }: any) => {
+    UserEdit(id);
   };
-
-  const handleDelete = ({name}:any) => {
-    console.log('Row DELETE:', name);
+  
+  const handleDelete = async({ id }: any) => {
+    UserDelete(id);
+setLoading(true);
   };
-
-  const handleDisable = ({name}:any) => {
-    console.log('Row DISABLE:', name);
+  
+  const handleDisable = async({ id }: any) => {
+    UserDisable(id);
+    await fetchData();
   };
 
   return (
@@ -107,9 +108,7 @@ export const UserTableStory = ({
       noDataComponent={NoDataComponent}
       defaultSortFieldId={1}
       expandableRows={expandableRows}
-      expandOnRowClicked={expandOnRowClicked}
-      expandOnRowDoubleClicked={expandOnRowDoubleClicked}
-      expandableRowsHideExpander={expandableRowsHideExpander}
+      expandableRowsHideExpander={false}
       pagination={pagination}
       paginationServer={paginationServer}
       highlightOnHover={highlightOnHover}
@@ -158,14 +157,16 @@ export const UserTableStory = ({
       )}
       onRowExpandToggled={handleExpandRow}
       expandableRowsComponentProps={{
-        expandableRowsComponent: <ContextActionsComponent
-          handleEdit={() => handleEdit(expandedRow)}
-          handleDelete={() => handleDelete(expandedRow)}
-          handleDisable={() => handleDisable(expandedRow)}
-        />,
+        expandableRowsComponent: (
+          <ContextActionsComponent
+            handleEdit={() => handleEdit(expandedRow)}
+            handleDelete={() => handleDelete(expandedRow)}
+            handleDisable={() => handleDisable(expandedRow)}
+          />
+        ),
         isRowExpandable: () => true,
         expandedRow: expandedRow,
-        onRowExpandToggled: handleExpandRow
+        onRowExpandToggled: handleExpandRow,
       }}
     />
   );
