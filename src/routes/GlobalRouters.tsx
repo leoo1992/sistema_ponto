@@ -45,6 +45,14 @@ const GlobalRouters = () => {
           }
         />
         <Route
+          path="/update"
+          element={
+            <PrivateRoute>
+              <RegisterUserPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/userslist"
           element={
             <PrivateRoute>

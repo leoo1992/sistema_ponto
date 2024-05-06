@@ -36,6 +36,14 @@ body {
   scrollbar-gutter: auto !important;
 }
 
+.rdt_Table > div {
+  border-radius: 0 0 1rem 1rem !important;
+}
+
+.rdt_Table {
+  border-radius: 0 0 1rem 1rem !important;
+}
+
 .rdt_TableHeader {
   font-size: 1.1rem !important;
   text-align: center !important;
@@ -89,3 +97,5 @@ body {
     transform: translateX(-50%);
   }
 }
+
+

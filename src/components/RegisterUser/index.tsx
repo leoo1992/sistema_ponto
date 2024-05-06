@@ -11,8 +11,19 @@ import { submitForm_CreateUser } from "../../utils/CreateUser/submitForm_CreateU
 import Form from "./subComponents/Form";
 import Input from "./subComponents/Input";
 import Select from "./subComponents/Select";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function index() {
+  const location = useLocation();
+  const [userData, setUserData] = useState<any>(null);
+
+  useEffect(() => {
+    if (location.state) {
+      setUserData(location.state);
+    }
+  }, [location.state]);
+
   const {
     NameNewUserRef,
     EmailNewUserRef,
@@ -26,6 +37,29 @@ export default function index() {
     sectorNewUserRef,
     jobFunctionNewUserRef,
   } = useNewUser();
+
+  useEffect(() => {
+    if (
+      userData &&
+      NameNewUserRef.current &&
+      EmailNewUserRef.current &&
+      PasswordNewUserRef.current &&
+      TelNewUserRef.current &&
+      cpfNewUserRef.current &&
+      sectorNewUserRef.current &&
+      jobFunctionNewUserRef.current &&
+      typeNewUserRef.current
+    ) {
+      NameNewUserRef.current.value = userData.name;
+      EmailNewUserRef.current.value = userData.email;
+      PasswordNewUserRef.current.value = userData.password;
+      TelNewUserRef.current.value = userData.telefone;
+      cpfNewUserRef.current.value = userData.cpf;
+      sectorNewUserRef.current.value = userData.sector;
+      jobFunctionNewUserRef.current.value = userData.position;
+      typeNewUserRef.current.value = userData.userRole;
+    }
+  }, [userData]);
 
   return (
     <div
@@ -50,7 +84,7 @@ export default function index() {
         }
       >
         <h1 className="text-center font-bold text-primary sm:text-lg">
-          Cadastro de usuários
+          {userData ? "Edição de usuário" : "Cadastro de usuários"}
         </h1>
         <div className="form-control flex w-full content-center justify-center self-center">
           <Input
@@ -96,7 +130,7 @@ export default function index() {
           <div className="sm:flex sm:gap-3">
             <Input
               inputRef={sectorNewUserRef}
-              nameID={"setor"}
+              nameID={"sector"}
               labelName={"Setor"}
               register={register}
               classNameInput="w-full flex justify-between items-center self-center align-middle"
@@ -105,7 +139,7 @@ export default function index() {
             />
             <Input
               inputRef={jobFunctionNewUserRef}
-              nameID={"cargo"}
+              nameID={"position"}
               labelName={"Cargo"}
               typeInput="text"
               register={register}
@@ -143,7 +177,7 @@ export default function index() {
           flex w-6/12 justify-center self-center rounded-badge bg-primary align-middle
           font-extrabold text-white  sm:w-4/12 md:w-3/12"
         >
-          Registrar
+          {userData ? "Atualizar" : "Cadastrar"}
         </button>
       </Form>
     </div>

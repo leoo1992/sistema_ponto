@@ -9,8 +9,8 @@ import Pagination from "./Pagination";
 import ContextActionsComponent from "./ContextActions";
 import UserDelete from "../../../services/UserList/UserDelete";
 import UserDisable from "../../../services/UserList/UserDisable";
-import UserEdit from "../../../services/UserList/UserEdit";
-//import {data} from '../../../utils/UserList/data.util';
+import { useNavigate } from "react-router-dom";
+//import { data } from "../../../utils/UserList/data.util";
 
 export const UserTableStory = ({
   expandableRows,
@@ -41,6 +41,7 @@ export const UserTableStory = ({
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [expandedRow, setExpandedRow] = useState(null);
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     try {
@@ -83,18 +84,59 @@ export const UserTableStory = ({
     setExpandedRow(null);
   };
 
-  const handleEdit = ({ id }: any) => {
-    UserEdit(id);
+  const handleEdit = async ({ id, name, email, cpf, position, sector, telefone, userRole, status }: any) => {
+    setLoading(true);
+    try {
+      const response = {
+        id: id,
+        name: name,
+        email: email,
+        cpf: cpf,
+        position: position,
+        sector: sector,
+        telefone: telefone,
+        userRole: userRole === 'Administrador'? 'ADMIN' : 'USER_ROLE',
+        status: status,
+      };
+
+      console.log(response);
+      
+      navigate('/update', { state: response });
+    } catch (error) {
+      console.error("Failed to edit user:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleDelete = async ({ id }: any) => {
-    UserDelete(id);
     setLoading(true);
+    try {
+      await UserDelete(id);
+      setData((prevData: any) =>
+        prevData.filter((item: any) => item.id !== id),
+      );
+      setTotalElements((prevTotalElements) => prevTotalElements - 1);
+    } catch (error) {
+      console.error("Failed to delete user:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleDisable = async ({ id }: any) => {
-    UserDisable(id);
-    await fetchData();
+    setLoading(true);
+    try {
+      await UserDisable(id);
+      setData((prevData: any) =>
+        prevData.filter((item: any) => item.id !== id),
+      );
+      setTotalElements((prevTotalElements) => prevTotalElements - 1);
+    } catch (error) {
+      console.error("Failed to disable user:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
