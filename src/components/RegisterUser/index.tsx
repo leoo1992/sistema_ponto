@@ -12,7 +12,7 @@ import Form from './subComponents/Form';
 import Input from './subComponents/Input';
 import Select from './subComponents/Select';
 
-export default function index(data = false) {
+export default function index() {
   const {
     NameNewUserRef,
     EmailNewUserRef,
@@ -50,7 +50,7 @@ export default function index(data = false) {
         }
       >
         <h1 className="text-primary font-bold text-center sm:text-lg">
-          {data ? 'Edição de usuário' : 'Cadastro de usuários'}
+          Cadastro de usuários
         </h1>
         <div className="form-control flex w-full justify-center self-center content-center">
           <Input
