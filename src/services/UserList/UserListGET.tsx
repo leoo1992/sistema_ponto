@@ -1,10 +1,10 @@
 import Cookies from "js-cookie";
 
 export default async function UserListGET(page = 0, size = 10) {
-  const UserList = `https://pontoapi-production.up.railway.app/api/v1/users?page=${page}&size=${size}`;
+  const UserListURL = import.meta.env.VITE_REACT_APP_USER_LIST_URL + `page=${page}&size=${size}`;
 
   try {
-    const response = await fetch(UserList, {
+    const response = await fetch(UserListURL, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

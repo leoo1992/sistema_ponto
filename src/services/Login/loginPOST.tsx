@@ -7,12 +7,14 @@ export default async function loginPOST({
   email: string;
   password: string;
 }) {
-  const Login = "https://pontoapi-production.up.railway.app/api/auth/login";
+  const LoginURL = import.meta.env.VITE_REACT_APP_LOGIN_URL;
+  console.log(LoginURL);
+  
 
   Cookies?.remove?.("AuthToken");
 
   try {
-    const resp = await fetch(Login, {
+    const resp = await fetch(LoginURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

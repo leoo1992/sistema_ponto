@@ -1,19 +1,17 @@
 import Cookies from "js-cookie";
 
-export default async function UserDelete(data: any) {
-  console.log(data);
-
-  const id = parseInt(data);
-  const DeleteUser = `https://pontoapi-production.up.railway.app/api/v1/delete/${id}`;
+export default async function UserDelete(id: any) {
+  const idAsNumber = parseInt(id);
+  const DeleteUserURL = import.meta.env.VITE_REACT_APP_DELETE_USER_URL + `${idAsNumber}`;
 
   try {
-    await fetch(DeleteUser, {
+    await fetch(DeleteUserURL, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${Cookies.get("AuthToken")}`,
       },
-      body: JSON.stringify(id),
+      body: JSON.stringify(idAsNumber),
     });
   } catch (error) {
     throw error;

@@ -1,11 +1,11 @@
 import Cookies from "js-cookie";
 
 export default async function UserEdit(id: any) {
-  const idAsNumber = parseInt(id, 10);
-  const EditUser = `https://pontoapi-production.up.railway.app/api/v1/update/${idAsNumber}`;
+  const idAsNumber = parseInt(id);
+  const EditUserURL = import.meta.env.VITE_REACT_APP_EDIT_USER_URL + `${idAsNumber}`;
 
   try {
-    await fetch(EditUser, {
+    await fetch(EditUserURL, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
