@@ -14,13 +14,28 @@ import { Link } from "react-router-dom";
 
 export default function LeftMenu() {
   const [active, setActive] = useState(true);
+
+  const toogleMenu = () => {
+    setActive(!active);
+  };
+
+  function handleItemClick() {
+    const drawerCheckbox = document.getElementById(
+      "my-drawer",
+    ) as HTMLInputElement;
+    if (drawerCheckbox) {
+      drawerCheckbox.checked = !drawerCheckbox.checked;
+    }
+    toogleMenu();
+  }
+
   return (
     <div className="navbar-start">
       <div className="drawer">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex content-center items-center justify-center self-center">
           <button
-            onClick={() => setActive(!active)}
+            onClick={toogleMenu}
             className="flex content-center items-center
             justify-center self-center transition-all duration-1000 ease-in-out"
           >
@@ -44,7 +59,7 @@ export default function LeftMenu() {
             onClick={() => setActive(!active)}
           ></label>
           <ul className="menu h-svh w-48 bg-primary-content pt-16 text-base-content shadow-sm shadow-primary">
-            <li>
+            <li onClick={handleItemClick}>
               <Link to="/home" className="rounded-badge text-base font-bold">
                 <span className="text-2xl">
                   <HiHome />
@@ -52,7 +67,7 @@ export default function LeftMenu() {
                 Home
               </Link>
             </li>
-            <li>
+            <li onClick={handleItemClick}>
               <Link
                 to="/register"
                 className="rounded-badge text-base font-bold"
@@ -63,7 +78,7 @@ export default function LeftMenu() {
                 Cadastro
               </Link>
             </li>
-            <li>
+            <li onClick={handleItemClick}>
               <Link
                 to="/userslist"
                 className="rounded-badge text-base font-bold"
@@ -74,7 +89,7 @@ export default function LeftMenu() {
                 Usuários
               </Link>
             </li>
-            <li>
+            <li onClick={handleItemClick}>
               <Link to="/charts" className="rounded-badge text-base font-bold">
                 <span className="text-2xl">
                   <HiPresentationChartLine />
@@ -82,7 +97,7 @@ export default function LeftMenu() {
                 Gráficos
               </Link>
             </li>
-            <li>
+            <li onClick={handleItemClick}>
               <Link to="/reports" className="rounded-badge text-base font-bold">
                 <span className="text-2xl">
                   <HiClipboardList />
@@ -90,7 +105,7 @@ export default function LeftMenu() {
                 Relatórios
               </Link>
             </li>
-            <li>
+            <li onClick={handleItemClick}>
               <Link to="/history" className="rounded-badge text-base font-bold">
                 <span className="text-2xl">
                   <HiClock />

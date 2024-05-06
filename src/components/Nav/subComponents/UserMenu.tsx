@@ -18,13 +18,27 @@ export default function UserMenu() {
     navigate("/");
   };
 
+  const toogleMenu2 = () => {
+    setActive2(!active2);
+  };
+
+  function handleItemClick2() {
+    const drawerCheckbox = document.getElementById(
+      "my-drawer-4",
+    ) as HTMLInputElement;
+    if (drawerCheckbox) {
+      drawerCheckbox.checked = !drawerCheckbox.checked;
+    }
+    toogleMenu2();
+  }
+
   return (
     <div className="navbar-end">
       <div className="drawer drawer-end">
         <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex content-center items-center justify-center self-center">
           <button
-            onClick={() => setActive2(!active2)}
+            onClick={toogleMenu2}
             className="flex content-center items-center justify-center self-center"
           >
             <label
@@ -47,7 +61,7 @@ export default function UserMenu() {
             onClick={() => setActive2(!active2)}
           ></label>
           <ul className="bg-opacity menu h-screen w-48 bg-primary-content pt-16 text-base-content shadow-sm shadow-primary">
-            <li>
+            <li onClick={handleItemClick2}>
               <Link to="/profile" className="rounded-badge text-base font-bold">
                 <span className="text-2xl">
                   <HiUserCircle />
@@ -55,7 +69,7 @@ export default function UserMenu() {
                 Perfil
               </Link>
             </li>
-            <li>
+            <li onClick={handleItemClick2}>
               <Link to="/configs" className="rounded-badge text-base font-bold">
                 <span className="text-2xl">
                   <HiCog />
@@ -63,7 +77,7 @@ export default function UserMenu() {
                 Configurações
               </Link>
             </li>
-            <li>
+            <li onClick={handleItemClick2}>
               <button
                 className="rounded-badge text-base font-bold"
                 onClick={handleLogout}
