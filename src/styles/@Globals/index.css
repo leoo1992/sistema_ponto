@@ -58,7 +58,7 @@ body {
 }
 
 .wave {
-  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg')
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg")
     repeat;
   position: absolute;
   width: 200%;
@@ -75,7 +75,7 @@ body {
 .wave:nth-of-type(3) {
   bottom: 0;
   animation: wave 20s -1s linear infinite;
-  opacity: 0.30;
+  opacity: 0.3;
 }
 
 @keyframes wave {

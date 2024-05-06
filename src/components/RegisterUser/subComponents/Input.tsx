@@ -1,4 +1,4 @@
-import { MutableRefObject, RefObject } from 'react';
+import { MutableRefObject, RefObject } from "react";
 
 type PropTypes = {
   nameID: string;
@@ -20,15 +20,15 @@ type PropTypes = {
 export default function Input({
   labelName,
   nameID,
-  typeInput = 'text',
-  classNameInput = '',
-  classNameLabel = '',
-  classContainer = '',
+  typeInput = "text",
+  classNameInput = "",
+  classNameLabel = "",
+  classContainer = "",
   inputRef,
   required = true,
-  maxLength = typeInput === 'password' ? 11 : 300,
+  maxLength = typeInput === "password" ? 11 : 300,
   max = 100000000,
-  step = '',
+  step = "",
   register,
   Icon,
   classIcon,
@@ -36,14 +36,14 @@ export default function Input({
   return (
     <div className={`w-full ${classContainer}`}>
       <label htmlFor={nameID} className={`label max-w-xs ${classNameLabel}`}>
-        <span className="sm:ml-16 label-text pt-3 text-primary font-bold">
+        <span className="label-text pt-3 font-bold text-primary sm:ml-16">
           {labelName}
         </span>
       </label>
       <div className={`${classIcon}`}>
         {classIcon ? (
           <div
-            className={`hidden bg-primary-content glass rounded-2xl px-3 shadow-sm shadow-primary sm:flex justify-center items-center text-primary mr-3 ${classIcon}`}
+            className={`glass mr-3 hidden items-center justify-center rounded-2xl bg-primary-content px-3 text-primary shadow-sm shadow-primary sm:flex ${classIcon}`}
           >
             {Icon}
           </div>
@@ -58,7 +58,7 @@ export default function Input({
           max={max}
           step={step}
           required={required}
-          className={`input input-bordered shadow-primary rounded-2xl shadow-sm text-primary input-md ${classNameInput}`}
+          className={`input input-md input-bordered rounded-2xl text-primary shadow-sm shadow-primary ${classNameInput}`}
           icon={Icon}
         />
       </div>

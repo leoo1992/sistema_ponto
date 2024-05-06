@@ -1,6 +1,8 @@
 export const NoDataComponent = (
   <div
-    className="w-full my-20 text-center p-4 gap-4 flex flex-col justify-center
-    items-center self-center font-semibold text-primary"
-  >Sem usuários cadastrados</div>
+    className="my-20 flex w-full flex-col items-center justify-center gap-4 self-center
+    p-4 text-center font-semibold text-primary"
+  >
+    Sem usuários cadastrados
+  </div>
 );

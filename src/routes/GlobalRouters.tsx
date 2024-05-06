@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   LoginPage,
   HomePage,
@@ -12,8 +12,8 @@ import {
   HistoryPage,
   ProfilePage,
   ConfigsPage,
-} from '../pages';
-import PrivateRoute from './PrivateRoute';
+} from "../pages";
+import PrivateRoute from "./PrivateRoute";
 
 const GlobalRouters = () => {
   return (

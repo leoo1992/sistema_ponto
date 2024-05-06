@@ -1,8 +1,8 @@
 export default function TitleAndSubTitle() {
   return (
-    <div className="text-center mt-10">
-      <h1 className="text-3xl sm:text-4xl font-bold text-primary">PontoAdm</h1>
-      <p className="py-3 text-sm xs:text-lg text-primary font-semibold">
+    <div className="mt-10 text-center">
+      <h1 className="text-3xl font-bold text-primary sm:text-4xl">PontoAdm</h1>
+      <p className="xs:text-lg py-3 text-sm font-semibold text-primary">
         Sistema de gerenciamento de pontos
       </p>
     </div>

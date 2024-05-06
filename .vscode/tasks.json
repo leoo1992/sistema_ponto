@@ -1,19 +1,19 @@
 {
-    "version": "1.0.0",
-    "tasks": [
-        {
-            "label": "npm:dev",
-            "type": "shell",
-            "command": "npm run dev",
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
-            "problemMatcher": []
-        }
-    ]
+  "version": "1.0.0",
+  "tasks": [
+    {
+      "label": "npm:dev",
+      "type": "shell",
+      "command": "npm run dev",
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": []
+    }
+  ]
 }

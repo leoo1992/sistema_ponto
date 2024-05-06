@@ -1,4 +1,4 @@
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 export default async function loginPOST({
   email,
@@ -7,22 +7,22 @@ export default async function loginPOST({
   email: string;
   password: string;
 }) {
-  const apiUrl = 'https://pontoapi-production.up.railway.app/api/auth/login';
+  const Login = "https://pontoapi-production.up.railway.app/api/auth/login";
 
-  Cookies?.remove?.('AuthToken');
+  Cookies?.remove?.("AuthToken");
 
   try {
-    const resp = await fetch(apiUrl, {
-      method: 'POST',
+    const resp = await fetch(Login, {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ email, password }),
     });
     const data = await resp.json();
 
     const token = await data.token;
-    Cookies.set('Bearer', token);
+    Cookies.set("Bearer", token);
 
     return data;
   } catch (error) {

@@ -1,4 +1,4 @@
-import { MutableRefObject, RefObject } from 'react';
+import { MutableRefObject, RefObject } from "react";
 
 type PropTypes = {
   nameID: string;
@@ -20,28 +20,28 @@ export default function Select({
   nameID,
   options,
   labelName,
-  nameDefault = 'Selecione',
-  classNameLabel = '',
-  classNameSelect = '',
-  classNameOption = '',
+  nameDefault = "Selecione",
+  classNameLabel = "",
+  classNameSelect = "",
+  classNameOption = "",
   selectRef,
   required = true,
   register,
-  classContainer = '',
+  classContainer = "",
   Icon,
   classIcon,
 }: PropTypes) {
   return (
     <div className={`w-full ${classContainer}`}>
       <label htmlFor={nameID} className={`label max-w-xs ${classNameLabel}`}>
-        <span className="sm:ml-16 label-text pt-3 text-primary font-bold">
+        <span className="label-text pt-3 font-bold text-primary sm:ml-16">
           {labelName}
         </span>
       </label>
       <div className={`${classIcon}`}>
-      {classIcon ? (
+        {classIcon ? (
           <div
-            className={`hidden bg-primary-content glass rounded-2xl px-3 shadow-sm shadow-primary sm:flex justify-center items-center text-primary mr-3 ${classIcon}`}
+            className={`glass mr-3 hidden items-center justify-center rounded-2xl bg-primary-content px-3 text-primary shadow-sm shadow-primary sm:flex ${classIcon}`}
           >
             {Icon}
           </div>
@@ -51,15 +51,15 @@ export default function Select({
           ref={selectRef}
           name={nameID}
           id={nameID}
-          className={`select  select-bordered shadow-primary rounded-2xl shadow-sm text-primary 
-        input-md ${classNameSelect}`}
+          className={`input-md  select select-bordered rounded-2xl text-primary shadow-sm 
+        shadow-primary ${classNameSelect}`}
           defaultValue={0}
           required={required}
         >
           <option
             disabled
             value={0}
-            className={`p-3 rounded-3xl max-w-xs
+            className={`max-w-xs rounded-3xl p-3
           text-primary ${classNameOption}`}
           >
             {nameDefault}
@@ -69,7 +69,7 @@ export default function Select({
             <option
               key={option.id}
               value={option.id}
-              className={`p-3 rounded-3xl max-w-xs border-dotted 
+              className={`max-w-xs rounded-3xl border-dotted p-3 
             text-base-content ${classNameOption}`}
             >
               {option.name}

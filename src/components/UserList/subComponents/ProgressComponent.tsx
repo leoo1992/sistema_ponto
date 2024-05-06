@@ -1,9 +1,11 @@
-import { FadeLoader } from 'react-spinners';
+import { FadeLoader } from "react-spinners";
 
 export const ProgressComponent = (
-    <div className="w-full my-20 text-center p-4 gap-4 flex flex-col justify-center
-     items-center self-center font-semibold text-primary">
-        <FadeLoader color="#4d00ff" radius={99} width={2} height={10}/>
-      Carregando...
-    </div>
-  );
+  <div
+    className="my-20 flex w-full flex-col items-center justify-center gap-4 self-center
+     p-4 text-center font-semibold text-primary"
+  >
+    <FadeLoader color="#4d00ff" radius={99} width={2} height={10} />
+    Carregando...
+  </div>
+);

@@ -1,5 +1,5 @@
-import { MutableRefObject } from 'react';
-import newUserPOST from '../../services/RegisterUser/newUserPOST';
+import { MutableRefObject } from "react";
+import newUserPOST from "../../services/RegisterUser/newUserPOST";
 
 export const submitForm_CreateUser = (
   e: any,
@@ -11,8 +11,8 @@ export const submitForm_CreateUser = (
   cpfNewUserRef: MutableRefObject<HTMLInputElement | null>,
   sectorNewUserRef: React.MutableRefObject<HTMLInputElement | null>,
   jobFunctionNewUserRef: React.MutableRefObject<HTMLInputElement | null>,
-  
-  handleSubmit: (data: any) => void
+
+  handleSubmit: (data: any) => void,
 ) => {
   e.preventDefault();
   const name = NameNewUserRef.current?.value;
@@ -24,9 +24,26 @@ export const submitForm_CreateUser = (
   const sector = sectorNewUserRef.current?.value;
   const jobFunction = jobFunctionNewUserRef.current?.value;
 
-
-  newUserPOST({ name, email, password, telefone, userRole, cpf, sector, jobFunction });
-  handleSubmit({ name, email, password, telefone, userRole, cpf, sector, jobFunction });
+  newUserPOST({
+    name,
+    email,
+    password,
+    telefone,
+    userRole,
+    cpf,
+    sector,
+    jobFunction,
+  });
+  handleSubmit({
+    name,
+    email,
+    password,
+    telefone,
+    userRole,
+    cpf,
+    sector,
+    jobFunction,
+  });
   e.target.reset();
   NameNewUserRef.current?.focus();
 };

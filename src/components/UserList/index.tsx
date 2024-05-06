@@ -1,11 +1,10 @@
-import { UserTable } from './subComponents/UserTable';
+import { UserTable } from "./subComponents/UserTable";
 
 export default function UserList() {
-
   return (
     <div
-      className="mt-4 flex flex-col justify-center items-center self-center content-center
-     h-full w-11/12 mx-0 p-0"
+      className="mx-0 mt-4 flex h-full w-11/12 flex-col content-center
+     items-center justify-center self-center p-0"
     >
       <UserTable
         progressComponent

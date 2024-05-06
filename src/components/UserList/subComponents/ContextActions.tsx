@@ -1,28 +1,28 @@
-export default function ContextActionsComponent ({
+export default function ContextActionsComponent({
   handleDelete,
   handleDisable,
   handleEdit,
 }: any) {
   return (
-    <div className="flex gap-2 p-3 bg-base-300 sm:justify-center items-center">
+    <div className="flex items-center gap-2 bg-base-300 p-3 sm:justify-center">
       <button
         onClick={handleEdit}
-        className="btn btn-primary rounded-3xl btn-xs text-white bg-primary glass"
+        className="btn glass btn-primary btn-xs rounded-3xl bg-primary text-white"
       >
         Editar
       </button>
       <button
         onClick={handleDisable}
-        className="btn btn-warning rounded-3xl btn-xs bg-warning glass"
+        className="btn glass btn-warning btn-xs rounded-3xl bg-warning"
       >
         Desativar
       </button>
       <button
         onClick={handleDelete}
-        className="btn btn-error rounded-3xl btn-xs text-white bg-red-500 glass"
+        className="btn glass btn-error btn-xs rounded-3xl bg-red-500 text-white"
       >
         Deletar
       </button>
     </div>
   );
-};
+}

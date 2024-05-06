@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
-import { getUserDataTableColumns } from '../../../utils/UserList/getUserDataTableColumns.util';
-import { NoDataComponent } from './NoDataComponent';
-import { ProgressComponent } from './ProgressComponent';
-import { subHeaderComponent } from './subHeaderComponent';
-import DataTable from 'react-data-table-component';
-import UserListGET from '../../../services/UserList/UserListGET';
-import Pagination from './Pagination';
-import ContextActionsComponent from './ContextActions';
-import UserDelete from '../../../services/UserList/UserDelete';
-import UserDisable from '../../../services/UserList/UserDisable';
-import UserEdit from '../../../services/UserList/UserEdit';
+import { useEffect, useState } from "react";
+import { getUserDataTableColumns } from "../../../utils/UserList/getUserDataTableColumns.util";
+import { NoDataComponent } from "./NoDataComponent";
+import { ProgressComponent } from "./ProgressComponent";
+import { subHeaderComponent } from "./subHeaderComponent";
+import DataTable from "react-data-table-component";
+import UserListGET from "../../../services/UserList/UserListGET";
+import Pagination from "./Pagination";
+import ContextActionsComponent from "./ContextActions";
+import UserDelete from "../../../services/UserList/UserDelete";
+import UserDisable from "../../../services/UserList/UserDisable";
+import UserEdit from "../../../services/UserList/UserEdit";
 //import {data} from '../../../utils/UserList/data.util';
 
 export const UserTableStory = ({
@@ -51,13 +51,13 @@ export const UserTableStory = ({
         setLoading(false);
       }, 1000);
     } catch (error) {
-      console.error('Failed to fetch data:', error);
+      console.error("Failed to fetch data:", error);
       setTimeout(() => {
         setLoading(false);
       }, 1000);
     }
   };
-  
+
   useEffect(() => {
     fetchData();
   }, [currentPage, rowsPerPage, loading]);
@@ -76,7 +76,7 @@ export const UserTableStory = ({
 
   const handlePerRowsChange = async (
     currentRowsPerPage: number,
-    _currentPage: number
+    _currentPage: number,
   ) => {
     setRowsPerPage(currentRowsPerPage);
     setCurrentPage(1);
@@ -86,13 +86,13 @@ export const UserTableStory = ({
   const handleEdit = ({ id }: any) => {
     UserEdit(id);
   };
-  
-  const handleDelete = async({ id }: any) => {
+
+  const handleDelete = async ({ id }: any) => {
     UserDelete(id);
-setLoading(true);
+    setLoading(true);
   };
-  
-  const handleDisable = async({ id }: any) => {
+
+  const handleDisable = async ({ id }: any) => {
     UserDisable(id);
     await fetchData();
   };
@@ -101,7 +101,7 @@ setLoading(true);
     <DataTable
       key={currentPage}
       title={
-        <span className=" h-full w-full p-0 m-0 font-semibold">Usuários</span>
+        <span className=" m-0 h-full w-full p-0 font-semibold">Usuários</span>
       }
       columns={getUserDataTableColumns}
       data={data}

@@ -1,7 +1,7 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import replace from '@rollup/plugin-replace';
-import terser from '@rollup/plugin-terser';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import replace from "@rollup/plugin-replace";
+import terser from "@rollup/plugin-terser";
 
 export default defineConfig({
   server: {

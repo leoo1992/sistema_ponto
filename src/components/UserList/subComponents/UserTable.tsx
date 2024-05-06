@@ -1,11 +1,11 @@
-import { Alignment, Direction } from 'react-data-table-component';
-import { UserTableStory } from './UserTableStory';
+import { Alignment, Direction } from "react-data-table-component";
+import { UserTableStory } from "./UserTableStory";
 
 // @ts-ignore
 const Template = (args) => <UserTableStory {...args} />;
 export const UserTable = Template.bind({});
 // @ts-ignore
-UserTable.parameters = { controls: { include: ['foo', 'bar'] } };
+UserTable.parameters = { controls: { include: ["foo", "bar"] } };
 // @ts-ignore
 UserTable.args = {
   selectableRows: true,
@@ -25,7 +25,7 @@ UserTable.args = {
   persistTableHead: false,
   noHeader: false,
   fixedHeader: false,
-  fixedHeaderScrollHeight: '300px',
+  fixedHeaderScrollHeight: "300px",
   progressPending: false,
   noTableHead: false,
   noContextMenu: false,
@@ -35,80 +35,80 @@ UserTable.args = {
   subHeaderWrap: true,
   responsive: true,
   disabled: false,
-  ProgressComponent:'',
-  paginationComponent: '',
+  ProgressComponent: "",
+  paginationComponent: "",
   paginationRowsPerPageOptions: [5, 10, 15],
-  onSelectedRowsChange: '',
-  contextActions: ''
+  onSelectedRowsChange: "",
+  contextActions: "",
 };
 
 export default {
-  title: 'Getting Started/Kitchen Sink',
+  title: "Getting Started/Kitchen Sink",
   component: UserTable,
   parameters: {
     controls: {
-      sort: 'requiredFirst',
+      sort: "requiredFirst",
     },
   },
   argTypes: {
     selectableRows: {
       table: {
-        category: 'Selectable Rows',
+        category: "Selectable Rows",
       },
     },
     selectableRowsNoSelectAll: {
       table: {
-        category: 'Selectable Rows',
+        category: "Selectable Rows",
       },
     },
     selectableRowsVisibleOnly: {
       table: {
-        category: 'Selectable Rows',
+        category: "Selectable Rows",
       },
     },
     selectableRowsHighlight: {
       table: {
-        category: 'Selectable Rows',
+        category: "Selectable Rows",
       },
     },
     selectableRowsSingle: {
       table: {
-        category: 'Selectable Rows',
+        category: "Selectable Rows",
       },
     },
     expandableRows: {
       table: {
-        category: 'Expandable Rows',
+        category: "Expandable Rows",
       },
     },
     expandOnRowClicked: {
       table: {
-        category: 'Expandable Rows',
+        category: "Expandable Rows",
       },
     },
     expandOnRowDoubleClicked: {
       table: {
-        category: 'Expandable Rows',
+        category: "Expandable Rows",
       },
     },
     expandableRowsHideExpander: {
       table: {
-        category: 'Expandable Rows',
+        category: "Expandable Rows",
       },
     },
     subHeaderAlign: {
       options: [Alignment.RIGHT, Alignment.CENTER, Alignment.LEFT],
-      control: { type: 'select' },
+      control: { type: "select" },
     },
     direction: {
       options: [Direction.AUTO, Direction.LTR, Direction.RTL],
-      control: { type: 'select' },
+      control: { type: "select" },
     },
     selectableRowsRadio: {
-      options: ['radio', 'checkbox'],
-      control: { type: 'select' },
+      options: ["radio", "checkbox"],
+      control: { type: "select" },
       table: {
-        category: 'Selectable Rows',
+        category: "Selectable Rows",
       },
     },
   },

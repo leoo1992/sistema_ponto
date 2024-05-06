@@ -1,8 +1,8 @@
-import UserList from '../components/UserList';
-import Waves from '../components/Waves';
+import UserList from "../components/UserList";
+import Waves from "../components/Waves";
 export default function UsersListPage() {
   return (
-    <div className="z-0 flex flex-grow flex-col w-full m-0 py-2">
+    <div className="z-0 m-0 flex w-full flex-grow flex-col py-2">
       <UserList />
       <Waves />
     </div>

@@ -1,1 +1,1 @@
-export type { FormLogin } from './formLogin';
+export type { FormLogin } from "./formLogin";

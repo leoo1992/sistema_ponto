@@ -1,4 +1,4 @@
-import { HiUserGroup } from 'react-icons/hi';
+import { HiUserGroup } from "react-icons/hi";
 import {
   HiHome,
   HiUserAdd,
@@ -8,9 +8,9 @@ import {
   HiClipboardList,
   // HiAdjustments,
   HiPresentationChartLine,
-} from 'react-icons/hi';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+} from "react-icons/hi";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function LeftMenu() {
   const [active, setActive] = useState(true);
@@ -18,17 +18,17 @@ export default function LeftMenu() {
     <div className="navbar-start">
       <div className="drawer">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex justify-center items-center self-center content-center">
+        <div className="drawer-content flex content-center items-center justify-center self-center">
           <button
             onClick={() => setActive(!active)}
-            className="transition-all duration-1000 ease-in-out
-            flex justify-center items-center self-center content-center"
+            className="flex content-center items-center
+            justify-center self-center transition-all duration-1000 ease-in-out"
           >
             <label
               htmlFor="my-drawer"
-              className={`flex justify-center items-center self-center content-center 
-              btn btn-circle btn-xl p-0 m-1 text-2xl left-0 btn-ghost 
-              drawer-button z-50 absolute ${!active ? 'text-error ' : ''}`}
+              className={`btn-xl btn btn-circle btn-ghost drawer-button 
+              absolute left-0 z-50 m-1 flex content-center items-center justify-center 
+              self-center p-0 text-2xl ${!active ? "text-error " : ""}`}
             >
               {active ? <HiMenu /> : <HiXCircle />}
             </label>
@@ -38,14 +38,14 @@ export default function LeftMenu() {
           <label
             htmlFor="my-drawer"
             aria-label="close sidebar"
-            className="drawer-overlay h-svh w-svw flex justify-between
-                        self-center align-middle items-center content-center
+            className="drawer-overlay flex h-svh w-svw content-center
+                        items-center justify-between self-center align-middle
                         transition-all duration-1000 ease-in-out"
             onClick={() => setActive(!active)}
           ></label>
-          <ul className="menu pt-16 h-svh bg-primary-content text-base-content shadow-sm shadow-primary w-48">
+          <ul className="menu h-svh w-48 bg-primary-content pt-16 text-base-content shadow-sm shadow-primary">
             <li>
-              <Link to="/home" className="rounded-badge font-bold text-base">
+              <Link to="/home" className="rounded-badge text-base font-bold">
                 <span className="text-2xl">
                   <HiHome />
                 </span>
@@ -55,7 +55,7 @@ export default function LeftMenu() {
             <li>
               <Link
                 to="/register"
-                className="rounded-badge font-bold text-base"
+                className="rounded-badge text-base font-bold"
               >
                 <span className="text-2xl">
                   <HiUserAdd />
@@ -66,7 +66,7 @@ export default function LeftMenu() {
             <li>
               <Link
                 to="/userslist"
-                className="rounded-badge font-bold text-base"
+                className="rounded-badge text-base font-bold"
               >
                 <span className="text-2xl">
                   <HiUserGroup />
@@ -75,7 +75,7 @@ export default function LeftMenu() {
               </Link>
             </li>
             <li>
-              <Link to="/charts" className="rounded-badge font-bold text-base">
+              <Link to="/charts" className="rounded-badge text-base font-bold">
                 <span className="text-2xl">
                   <HiPresentationChartLine />
                 </span>
@@ -83,7 +83,7 @@ export default function LeftMenu() {
               </Link>
             </li>
             <li>
-              <Link to="/reports" className="rounded-badge font-bold text-base">
+              <Link to="/reports" className="rounded-badge text-base font-bold">
                 <span className="text-2xl">
                   <HiClipboardList />
                 </span>
@@ -91,7 +91,7 @@ export default function LeftMenu() {
               </Link>
             </li>
             <li>
-              <Link to="/history" className="rounded-badge font-bold text-base">
+              <Link to="/history" className="rounded-badge text-base font-bold">
                 <span className="text-2xl">
                   <HiClock />
                 </span>

@@ -1,77 +1,77 @@
 export const getUserDataTableColumns = [
   {
-    name: 'Id',
+    name: "Id",
     selector: (row: any) => {
-      if (row.id === null || row.id === undefined) return 'Sem ID';
+      if (row.id === null || row.id === undefined) return "Sem ID";
       return row.id;
     },
     sortable: true,
-    width: '80px',
+    width: "80px",
   },
   {
-    name: 'Nome',
+    name: "Nome",
     selector: (row: any) => {
-      if (!row.name) return 'Sem Nome';
+      if (!row.name) return "Sem Nome";
       return row.name;
     },
     sortable: true,
-    flex: 1
+    flex: 1,
   },
   {
-    name: 'Email',
+    name: "Email",
     selector: (row: any) => {
-      if (!row.email) return 'Sem Email';
+      if (!row.email) return "Sem Email";
       return row.email;
     },
     sortable: true,
-    flex: 1
+    flex: 1,
   },
   {
-    name: 'CPF',
+    name: "CPF",
     selector: (row: any) => {
-      if (!row.cpf) return 'Sem cpf';
+      if (!row.cpf) return "Sem cpf";
       return row.cpf;
     },
     sortable: true,
-    width: '140px',
+    width: "140px",
   },
   {
-    name: 'Cargo',
+    name: "Cargo",
     selector: (row: any) => {
-      if (!row.position) return 'Sem Cargo';
+      if (!row.position) return "Sem Cargo";
       return row.position;
     },
     sortable: true,
-    width: '140px',
+    width: "140px",
   },
   {
-    name: 'Setor',
+    name: "Setor",
     selector: (row: any) => {
-      if (!row.sector) return 'Sem Setor';
+      if (!row.sector) return "Sem Setor";
       return row.sector;
     },
     sortable: true,
-    width: '140px',
+    width: "140px",
   },
   {
-    name: 'Telefone',
+    name: "Telefone",
     selector: (row: any) => {
-      if (!row.telefone) return 'Sem Telefone';
+      if (!row.telefone) return "Sem Telefone";
       return row.telefone;
     },
     sortable: true,
-    width: '140px',
+    width: "140px",
   },
   {
-    name: 'Tipo',
+    name: "Tipo",
     selector: (row: any) => {
       const userRole = row.userRole;
-      if (!userRole) return 'Sem Tipo';
+      if (!userRole) return "Sem Tipo";
       const lowercaseRole = userRole.toLowerCase();
       return lowercaseRole.charAt(0).toUpperCase() + lowercaseRole.slice(1);
     },
     sortable: true,
-    width: '140px',
+    width: "140px",
   },
   // {
   //   name: 'Status',

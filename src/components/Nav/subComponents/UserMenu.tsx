@@ -4,34 +4,34 @@ import {
   HiUserCircle,
   HiCog,
   HiLogout,
-} from 'react-icons/hi';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
+} from "react-icons/hi";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export default function UserMenu() {
   const [active2, setActive2] = useState(true);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    Cookies.remove('AuthToken');
-    navigate('/');
+    Cookies.remove("AuthToken");
+    navigate("/");
   };
 
   return (
     <div className="navbar-end">
       <div className="drawer drawer-end">
         <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex justify-center items-center self-center content-center">
+        <div className="drawer-content flex content-center items-center justify-center self-center">
           <button
             onClick={() => setActive2(!active2)}
-            className="flex justify-center items-center self-center content-center"
+            className="flex content-center items-center justify-center self-center"
           >
             <label
               htmlFor="my-drawer-4"
-              className={`flex justify-center items-center self-center content-center 
-              btn btn-circle btn-xl p-0 m-1 text-2xl right-0 btn-ghost 
-              drawer-button z-50 absolute ${!active2 ? 'text-error ' : ''}`}
+              className={`btn-xl btn btn-circle btn-ghost drawer-button 
+              absolute right-0 z-50 m-1 flex content-center items-center justify-center 
+              self-center p-0 text-2xl ${!active2 ? "text-error " : ""}`}
             >
               {active2 ? <HiUser /> : <HiXCircle />}
             </label>
@@ -41,15 +41,14 @@ export default function UserMenu() {
           <label
             htmlFor="my-drawer-4"
             aria-label="close sidebar"
-            className="drawer-overlay h-svh w-svw flex justify-between
-                        self-center align-middle items-center content-center
+            className="drawer-overlay flex h-svh w-svw content-center
+                        items-center justify-between self-center align-middle
                         transition-all duration-1000 ease-in-out"
             onClick={() => setActive2(!active2)}
-          >
-          </label>
-          <ul className="menu pt-16 h-screen bg-primary-content bg-opacity text-base-content shadow-sm shadow-primary w-48">
+          ></label>
+          <ul className="bg-opacity menu h-screen w-48 bg-primary-content pt-16 text-base-content shadow-sm shadow-primary">
             <li>
-              <Link to="/profile" className="rounded-badge font-bold text-base">
+              <Link to="/profile" className="rounded-badge text-base font-bold">
                 <span className="text-2xl">
                   <HiUserCircle />
                 </span>
@@ -57,7 +56,7 @@ export default function UserMenu() {
               </Link>
             </li>
             <li>
-              <Link to="/configs" className="rounded-badge font-bold text-base">
+              <Link to="/configs" className="rounded-badge text-base font-bold">
                 <span className="text-2xl">
                   <HiCog />
                 </span>
@@ -66,7 +65,7 @@ export default function UserMenu() {
             </li>
             <li>
               <button
-                className="rounded-badge font-bold text-base"
+                className="rounded-badge text-base font-bold"
                 onClick={handleLogout}
               >
                 <span className="text-2xl">

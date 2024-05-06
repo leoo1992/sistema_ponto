@@ -1,22 +1,21 @@
-import { MdNavigateBefore } from 'react-icons/md';
-import { MdNavigateNext } from 'react-icons/md';
-import { MdLastPage } from 'react-icons/md';
-import { MdFirstPage } from 'react-icons/md';
-import { useCallback } from 'react';
-import IconButton from '@mui/material/IconButton';
+import { MdNavigateBefore } from "react-icons/md";
+import { MdNavigateNext } from "react-icons/md";
+import { MdLastPage } from "react-icons/md";
+import { MdFirstPage } from "react-icons/md";
+import { useCallback } from "react";
+import IconButton from "@mui/material/IconButton";
 
 export default function Pagination({
   rowsPerPage,
   rowCount,
   currentPage,
-  paginationRowsPerPageOptions = '',
-  paginationComponentOptions = '',
+  paginationRowsPerPageOptions = "",
+  paginationComponentOptions = "",
   onChangeRowsPerPage,
   onChangePage,
   numPages,
-  defaultComponentOptions = '',
+  defaultComponentOptions = "",
 }: any) {
-
   const lastIndex = currentPage * rowsPerPage;
   const firstIndex = lastIndex - rowsPerPage + 1;
   const disabledLesser = currentPage === 1;
@@ -30,12 +29,12 @@ export default function Pagination({
 
   const handlePrevious = useCallback(
     () => onChangePage(currentPage - 1),
-    [currentPage, onChangePage]
+    [currentPage, onChangePage],
   );
 
   const handleNext = useCallback(
     () => onChangePage(currentPage + 1),
-    [currentPage, onChangePage]
+    [currentPage, onChangePage],
   );
   const handleFirst = useCallback(() => onChangePage(1), [onChangePage]);
 
@@ -47,7 +46,7 @@ export default function Pagination({
   const handleRowsPerPage = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) =>
       onChangeRowsPerPage(Number(e.target.value), currentPage),
-    [currentPage, onChangeRowsPerPage]
+    [currentPage, onChangeRowsPerPage],
   );
 
   const selectOptions = paginationRowsPerPageOptions.map((num: number) => (
@@ -60,13 +59,13 @@ export default function Pagination({
     selectOptions.push(
       <option key={-1} value={rowCount}>
         {options.selectAllRowsItemText}
-      </option>
+      </option>,
     );
   }
 
   const select = (
     <select
-      className="rounded-lg p-1 shadow-2xl mx-2"
+      className="mx-2 rounded-lg p-1 shadow-2xl"
       onChange={handleRowsPerPage}
       defaultValue={rowsPerPage}
       aria-label={options.rowsPerPageText}
@@ -76,26 +75,28 @@ export default function Pagination({
   );
 
   return (
-    <div className="w-screen bg-transparent flex">
-      <div className='flex w-1/12'></div>
-      <div className="rdt_Pagination flex items-center w-11/12 scale-x-110 mx-2 py-3 
-      border-t-2 border-gray-100 rounded-b-xl justify-center bg-white">
-        <div className="flex px-5 py-3 bg-gray-50 shadow-md rounded-lg">
+    <div className="flex w-screen bg-transparent">
+      <div className="flex w-1/12"></div>
+      <div
+        className="rdt_Pagination mx-2 flex w-11/12 scale-x-110 items-center justify-center 
+      rounded-b-xl border-t-2 border-gray-100 bg-white py-3"
+      >
+        <div className="flex rounded-lg bg-gray-50 px-5 py-3 shadow-md">
           {!options.noRowsPerPage && (
-            <div className="p-0 m-0 items-center hidden sm:block">
+            <div className="m-0 hidden items-center p-0 sm:block">
               <label className="">Linhas:</label>
               {select}
             </div>
           )}
           {
-            <label className="p-0 m-0 flex items-center hidden sm:block">
+            <label className="m-0 flex hidden items-center p-0 sm:block">
               <span className="px-3">Registros:</span>
-              <span className={`px-2 py-1 rounded-lg bg-base-100 `}>
+              <span className={`rounded-lg bg-base-100 px-2 py-1 `}>
                 {range}
               </span>
             </label>
           }
-          <div className="p-0 m-0 gap-0  flex justify-end self-end items-center content-end">
+          <div className="m-0 flex content-end  items-center justify-end gap-0 self-end p-0">
             <IconButton
               id="pagination-first-page"
               type="button"
@@ -103,7 +104,7 @@ export default function Pagination({
               aria-disabled={disabledLesser}
               onClick={handleFirst}
               disabled={disabledLesser}
-              className="p-0 m-0 gap-0 btn-ghost btn-sm btn-circle"
+              className="btn-circle btn-ghost btn-sm m-0 gap-0 p-0"
               size="small"
               color="primary"
             >
@@ -117,7 +118,7 @@ export default function Pagination({
               aria-disabled={disabledLesser}
               onClick={handlePrevious}
               disabled={disabledLesser}
-              className="p-0 m-0 gap-0 btn-ghost btn-sm btn-circle"
+              className="btn-circle btn-ghost btn-sm m-0 gap-0 p-0"
               size="small"
               color="primary"
             >
@@ -131,7 +132,7 @@ export default function Pagination({
               aria-disabled={disabledGreater}
               onClick={handleNext}
               disabled={disabledGreater}
-              className="p-0 m-0 gap-0 btn-ghost btn-sm btn-circle"
+              className="btn-circle btn-ghost btn-sm m-0 gap-0 p-0"
               size="small"
               color="primary"
             >
@@ -144,7 +145,7 @@ export default function Pagination({
               aria-disabled={disabledGreater}
               onClick={handleLast}
               disabled={disabledGreater}
-              className="p-0 m-0 gap-0 btn-ghost btn-sm btn-circle"
+              className="btn-circle btn-ghost btn-sm m-0 gap-0 p-0"
               size="small"
               color="primary"
             >
@@ -153,7 +154,7 @@ export default function Pagination({
           </div>
         </div>
       </div>
-      <div className='flex w-1/12'></div>
+      <div className="flex w-1/12"></div>
     </div>
   );
 }

@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export default function LossPass() {
   return (
-    <label className="label text-end flex justify-end">
+    <label className="label flex justify-end text-end">
       <Link
         to="/losspass"
-        className="mb-2 label-text-alt link link-hover text-end font-semibold text-sm"
+        className="link-hover link label-text-alt mb-2 text-end text-sm font-semibold"
       >
         Esqueceu sua senha ?
       </Link>
