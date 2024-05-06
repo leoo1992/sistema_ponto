@@ -84,8 +84,17 @@ export const UserTableStory = ({
     setExpandedRow(null);
   };
 
-  const handleEdit = async ({ id, name, email, cpf, position, sector, telefone, userRole, status }: any) => {
-    setLoading(true);
+  const handleEdit = async ({
+    id,
+    name,
+    email,
+    cpf,
+    position,
+    sector,
+    telefone,
+    userRole,
+    status,
+  }: any) => {
     try {
       const response = {
         id: id,
@@ -95,13 +104,13 @@ export const UserTableStory = ({
         position: position,
         sector: sector,
         telefone: telefone,
-        userRole: userRole === 'Administrador'? 'ADMIN' : 'USER_ROLE',
+        userRole: userRole === "Administrador" ? "ADMIN" : "USER_ROLE",
         status: status,
       };
 
       console.log(response);
-      
-      navigate('/update', { state: response });
+
+      navigate("/update", { state: response });
     } catch (error) {
       console.error("Failed to edit user:", error);
     } finally {
@@ -110,7 +119,6 @@ export const UserTableStory = ({
   };
 
   const handleDelete = async ({ id }: any) => {
-    setLoading(true);
     try {
       await UserDelete(id);
       setData((prevData: any) =>
@@ -125,7 +133,6 @@ export const UserTableStory = ({
   };
 
   const handleDisable = async ({ id }: any) => {
-    setLoading(true);
     try {
       await UserDisable(id);
       setData((prevData: any) =>
