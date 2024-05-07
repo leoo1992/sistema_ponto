@@ -11,18 +11,9 @@ import { submitForm_CreateUser } from "../../utils/CreateUser/submitForm_CreateU
 import Form from "./subComponents/Form";
 import Input from "./subComponents/Input";
 import Select from "./subComponents/Select";
-import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function index() {
-  const location = useLocation();
-  const [userData, setUserData] = useState<any>(null);
-
-  useEffect(() => {
-    if (location.state) {
-      setUserData(location.state);
-    }
-  }, [location.state]);
 
   const {
     NameNewUserRef,
@@ -31,35 +22,57 @@ export default function index() {
     TelNewUserRef,
     typeNewUserRef,
     options,
+    position,
+    sector,
     register,
+    userData,
     handleSubmit,
     cpfNewUserRef,
     sectorNewUserRef,
     PositionNewUserRef,
   } = useNewUser();
 
-  useEffect(() => {
+  console.log(userData);
+
+      useEffect(() => {
     if (
       userData &&
       NameNewUserRef.current &&
       EmailNewUserRef.current &&
-      PasswordNewUserRef.current &&
       TelNewUserRef.current &&
       cpfNewUserRef.current &&
       sectorNewUserRef.current &&
       PositionNewUserRef.current &&
       typeNewUserRef.current
     ) {
+
       NameNewUserRef.current.value = userData.name;
       EmailNewUserRef.current.value = userData.email;
-      PasswordNewUserRef.current.value = userData.password;
       TelNewUserRef.current.value = userData.telefone;
       cpfNewUserRef.current.value = userData.cpf;
-      sectorNewUserRef.current.value = userData.sector;
-      PositionNewUserRef.current.value = userData.position;
-      typeNewUserRef.current.value = userData.userRole;
+  
+      if (sector.length > 0) {
+        const sectorData = mapData(userData.sector, sector);
+        sectorNewUserRef.current.value = sectorData;
+      }
+  
+      if (position.length > 0) {
+        const positionData = mapData(userData.position, position);
+        PositionNewUserRef.current.value = positionData;
+      }
+  
+      if (options.length > 0) {
+        const userRoleData = mapData(userData.userRole, options);
+        typeNewUserRef.current.value = userRoleData;
+      }
     }
-  }, [userData]);
+  }, [userData, sector, position, options]);
+
+  function mapData(name: any, data: any[]) {
+    const item = data.find((item) => item.name === name);
+    return item ? item.id : 0;
+  }
+  
 
   return (
     <div
@@ -79,6 +92,7 @@ export default function index() {
             cpfNewUserRef,
             sectorNewUserRef,
             PositionNewUserRef,
+            userData,
             handleSubmit,
           )
         }
@@ -128,22 +142,23 @@ export default function index() {
             />
           </div>
           <div className="sm:flex sm:gap-3">
-            <Input
-              inputRef={sectorNewUserRef}
+            <Select
+              selectRef={sectorNewUserRef}
               nameID={"sector"}
               labelName={"Setor"}
+              options={sector}
               register={register}
-              classNameInput="w-full flex justify-between items-center self-center align-middle"
+              classNameSelect="w-full flex justify-between items-center self-center align-middle"
               Icon={<HiOfficeBuilding size={20} />}
               classIcon="flex"
             />
-            <Input
-              inputRef={PositionNewUserRef}
+            <Select
+              selectRef={PositionNewUserRef}
               nameID={"position"}
               labelName={"Cargo"}
-              typeInput="text"
+              options={position}
               register={register}
-              classNameInput="w-full flex justify-between items-center self-center align-middle"
+              classNameSelect="w-full flex justify-between items-center self-center align-middle"
               Icon={<BsWrench size={20} />}
               classIcon="flex"
             />
