@@ -14,7 +14,6 @@ import Select from "./subComponents/Select";
 import { useEffect } from "react";
 
 export default function index() {
-
   const {
     NameNewUserRef,
     EmailNewUserRef,
@@ -34,7 +33,7 @@ export default function index() {
 
   console.log(userData);
 
-      useEffect(() => {
+  useEffect(() => {
     if (
       userData &&
       NameNewUserRef.current &&
@@ -45,22 +44,21 @@ export default function index() {
       PositionNewUserRef.current &&
       typeNewUserRef.current
     ) {
-
       NameNewUserRef.current.value = userData.name;
       EmailNewUserRef.current.value = userData.email;
       TelNewUserRef.current.value = userData.telefone;
       cpfNewUserRef.current.value = userData.cpf;
-  
+
       if (sector.length > 0) {
         const sectorData = mapData(userData.sector, sector);
         sectorNewUserRef.current.value = sectorData;
       }
-  
+
       if (position.length > 0) {
         const positionData = mapData(userData.position, position);
         PositionNewUserRef.current.value = positionData;
       }
-  
+
       if (options.length > 0) {
         const userRoleData = mapData(userData.userRole, options);
         typeNewUserRef.current.value = userRoleData;
@@ -72,7 +70,6 @@ export default function index() {
     const item = data.find((item) => item.name === name);
     return item ? item.id : 0;
   }
-  
 
   return (
     <div

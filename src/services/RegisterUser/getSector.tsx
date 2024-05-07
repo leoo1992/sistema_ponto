@@ -1,11 +1,10 @@
 import Cookies from "js-cookie";
 
 const data = [
-    { id: "DESENVOLVIMENTO", name: "Desenvolvimento" },
-    { id: "MARKETING", name: "Marketing" },
-    { id: "RH", name: "RH" },
-  ];
-
+  { id: "DESENVOLVIMENTO", name: "Desenvolvimento" },
+  { id: "MARKETING", name: "Marketing" },
+  { id: "RH", name: "RH" },
+];
 
 export default async function getSector() {
   const getSectorURL = import.meta.env.VITE_REACT_APP_GET_SECTOR_URL;
@@ -26,7 +25,7 @@ export default async function getSector() {
     // const data = await response.json();
 
     return data;
-} catch (error) {
+  } catch (error) {
     // throw error;
     return data;
   }

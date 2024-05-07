@@ -25,32 +25,29 @@ export const submitForm_CreateUser = (
   const sector = sectorNewUserRef.current?.value;
   const position = PositionNewUserRef.current?.value;
 
-
-
-if (!userData) {
-  newUserPOST({
-    name,
-    email,
-    password,
-    telefone,
-    userRole,
-    cpf,
-    sector,
-    position,
-  });
-} else {
-  UserEdit({
-    name,
-    email,
-    password,
-    telefone,
-    userRole,
-    cpf,
-    sector,
-    position,
-  });
-}
-
+  if (!userData) {
+    newUserPOST({
+      name,
+      email,
+      password,
+      telefone,
+      userRole,
+      cpf,
+      sector,
+      position,
+    });
+  } else {
+    UserEdit({
+      name,
+      email,
+      password,
+      telefone,
+      userRole,
+      cpf,
+      sector,
+      position,
+    });
+  }
 
   handleSubmit({
     name,

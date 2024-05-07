@@ -96,18 +96,22 @@ export const UserTableStory = ({
   }: any) => {
     try {
       const response = {
-        id: id ? id : 'Sem Id',
-        name: name ? name : 'Sem Nome',
-        email: email? email : 'Sem Email',
-        cpf: cpf ? cpf : 'Sem CPF',
-        position: position ? position : 0, 
-        sector: sector ? sector : 0, 
+        id: id ? id : "Sem Id",
+        name: name ? name : "Sem Nome",
+        email: email ? email : "Sem Email",
+        cpf: cpf ? cpf : "Sem CPF",
+        position: position ? position : 0,
+        sector: sector ? sector : 0,
         telefone: telefone,
-        userRole: userRole ? userRole.toLowerCase().replace(/\b\w/g, (char: string) => char.toUpperCase()) : 0,
+        userRole: userRole
+          ? userRole
+              .toLowerCase()
+              .replace(/\b\w/g, (char: string) => char.toUpperCase())
+          : 0,
       };
 
       console.log(response);
-      
+
       navigate("/update", { state: response });
     } catch (error) {
       console.error("Failed to edit user:", error);

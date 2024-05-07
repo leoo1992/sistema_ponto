@@ -8,7 +8,7 @@ export default async function UserEdit({
   name,
   position,
   userRole,
-}: any)  {
+}: any) {
   const data = { email, password, telefone, cpf, name, position, userRole };
   const EditUserURL = import.meta.env.VITE_REACT_APP_EDIT_USER_URL;
 

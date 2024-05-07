@@ -18,7 +18,7 @@ export default function useNewUser() {
   const typeNewUserRef = useRef<HTMLSelectElement>(null);
   const [position, setPosition] = useState<any>([]);
   const [options, setOptions] = useState<any>([]);
-  const [sector, setSector] = useState <any>([]);
+  const [sector, setSector] = useState<any>([]);
   const [userData, setUserData] = useState<any>(null);
   const location = useLocation();
 
@@ -27,7 +27,6 @@ export default function useNewUser() {
       setUserData(location.state);
     }
   }, [location.state]);
-
 
   const fetchData = async () => {
     try {
