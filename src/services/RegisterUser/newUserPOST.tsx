@@ -1,15 +1,23 @@
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
-export default async function newUserPOST(data: any) {
+export default async function newUserPOST({
+  email,
+  password,
+  telefone,
+  cpf,
+  name,
+  position,
+  userRole,
+}: any) {
   const NewUserURL = import.meta.env.VITE_REACT_APP_NEW_USER_URL;
-console.log(NewUserURL);
+  const data = { email, password, telefone, cpf, name, position, userRole };
 
   try {
     await fetch(NewUserURL, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${Cookies.get('AuthToken')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get("AuthToken")}`,
       },
       body: JSON.stringify(data),
     });

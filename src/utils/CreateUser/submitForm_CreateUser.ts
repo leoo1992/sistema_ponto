@@ -10,7 +10,7 @@ export const submitForm_CreateUser = (
   typeNewUserRef: MutableRefObject<HTMLSelectElement> | any,
   cpfNewUserRef: MutableRefObject<HTMLInputElement | null>,
   sectorNewUserRef: React.MutableRefObject<HTMLInputElement | null>,
-  jobFunctionNewUserRef: React.MutableRefObject<HTMLInputElement | null>,
+  PositionNewUserRef: React.MutableRefObject<HTMLInputElement | null>,
 
   handleSubmit: (data: any) => void,
 ) => {
@@ -22,7 +22,7 @@ export const submitForm_CreateUser = (
   const userRole = typeNewUserRef.current?.value;
   const cpf = cpfNewUserRef.current?.value;
   const sector = sectorNewUserRef.current?.value;
-  const jobFunction = jobFunctionNewUserRef.current?.value;
+  const position = PositionNewUserRef.current?.value;
 
   newUserPOST({
     name,
@@ -32,7 +32,7 @@ export const submitForm_CreateUser = (
     userRole,
     cpf,
     sector,
-    jobFunction,
+    position,
   });
   handleSubmit({
     name,
@@ -42,7 +42,7 @@ export const submitForm_CreateUser = (
     userRole,
     cpf,
     sector,
-    jobFunction,
+    position,
   });
   e.target.reset();
   NameNewUserRef.current?.focus();

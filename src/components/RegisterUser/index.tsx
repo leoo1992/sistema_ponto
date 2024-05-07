@@ -35,7 +35,7 @@ export default function index() {
     handleSubmit,
     cpfNewUserRef,
     sectorNewUserRef,
-    jobFunctionNewUserRef,
+    PositionNewUserRef,
   } = useNewUser();
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function index() {
       TelNewUserRef.current &&
       cpfNewUserRef.current &&
       sectorNewUserRef.current &&
-      jobFunctionNewUserRef.current &&
+      PositionNewUserRef.current &&
       typeNewUserRef.current
     ) {
       NameNewUserRef.current.value = userData.name;
@@ -56,7 +56,7 @@ export default function index() {
       TelNewUserRef.current.value = userData.telefone;
       cpfNewUserRef.current.value = userData.cpf;
       sectorNewUserRef.current.value = userData.sector;
-      jobFunctionNewUserRef.current.value = userData.position;
+      PositionNewUserRef.current.value = userData.position;
       typeNewUserRef.current.value = userData.userRole;
     }
   }, [userData]);
@@ -78,7 +78,7 @@ export default function index() {
             typeNewUserRef,
             cpfNewUserRef,
             sectorNewUserRef,
-            jobFunctionNewUserRef,
+            PositionNewUserRef,
             handleSubmit,
           )
         }
@@ -138,7 +138,7 @@ export default function index() {
               classIcon="flex"
             />
             <Input
-              inputRef={jobFunctionNewUserRef}
+              inputRef={PositionNewUserRef}
               nameID={"position"}
               labelName={"Cargo"}
               typeInput="text"

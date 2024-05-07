@@ -11,11 +11,12 @@ export default function useNewUser() {
   const TelNewUserRef = useRef<HTMLInputElement>(null);
   const cpfNewUserRef = useRef<HTMLInputElement>(null);
   const sectorNewUserRef = useRef<HTMLInputElement>(null);
-  const jobFunctionNewUserRef = useRef<HTMLInputElement>(null);
+  const PositionNewUserRef = useRef<HTMLInputElement>(null);
   const typeNewUserRef = useRef<HTMLSelectElement>(null);
   const options = [
-    { id: "ADMIN", name: "Administrador" },
-    { id: "USER_ROLE", name: "Funcionário" },
+    { id: "ADMINISTRADOR", name: "Administrador" },
+    { id: "COLABORADOR", name: "Colaborador" },
+    { id: "GESTOR", name: "Gestor" },
   ];
 
   //   const navigate = useNavigate();
@@ -31,7 +32,7 @@ export default function useNewUser() {
       typeNewUserRef,
       cpfNewUserRef,
       sectorNewUserRef,
-      jobFunctionNewUserRef,
+      PositionNewUserRef,
       handleSubmit,
     );
   };
@@ -48,6 +49,6 @@ export default function useNewUser() {
     handleSubmit,
     cpfNewUserRef,
     sectorNewUserRef,
-    jobFunctionNewUserRef,
+    PositionNewUserRef,
   };
 }

@@ -8,9 +8,7 @@ export default async function loginPOST({
   password: string;
 }) {
   const LoginURL = import.meta.env.VITE_REACT_APP_LOGIN_URL;
-  console.log(LoginURL);
   
-
   Cookies?.remove?.("AuthToken");
 
   try {

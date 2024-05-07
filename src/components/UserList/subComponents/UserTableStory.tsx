@@ -108,8 +108,6 @@ export const UserTableStory = ({
         status: status,
       };
 
-      console.log(response);
-
       navigate("/update", { state: response });
     } catch (error) {
       console.error("Failed to edit user:", error);
