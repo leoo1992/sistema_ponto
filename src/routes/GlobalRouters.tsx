@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastBar, Toaster } from "react-hot-toast";
 import {
   LoginPage,
   HomePage,
@@ -18,6 +19,23 @@ import PrivateRoute from "./PrivateRoute";
 const GlobalRouters = () => {
   return (
     <BrowserRouter>
+      <Toaster
+        toastOptions={{
+          className: "transition-all duration-500 ease-in-out",
+        }}
+      >
+        {(t) => (
+          <ToastBar
+            toast={t}
+            style={{
+              ...t.style,
+              animation: t.visible
+                ? "custom-enter 1s ease"
+                : "custom-exit 1s ease",
+            }}
+          />
+        )}
+      </Toaster>
       <Routes>
         {/* PUBLIC */}
         <Route
