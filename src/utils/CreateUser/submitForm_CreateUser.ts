@@ -1,17 +1,18 @@
 import { MutableRefObject } from "react";
 import newUserPOST from "../../services/RegisterUser/newUserPOST";
+import UserEdit from "../../services/UserList/UserEdit";
 
 export const submitForm_CreateUser = (
   e: any,
-  NameNewUserRef: React.MutableRefObject<HTMLInputElement | null>,
+  NameNewUserRef: MutableRefObject<HTMLInputElement | null>,
   EmailNewUserRef: MutableRefObject<HTMLInputElement | null>,
   PasswordNewUserRef: MutableRefObject<HTMLInputElement | null>,
   TelNewUserRef: MutableRefObject<HTMLInputElement | null>,
   typeNewUserRef: MutableRefObject<HTMLSelectElement> | any,
   cpfNewUserRef: MutableRefObject<HTMLInputElement | null>,
-  sectorNewUserRef: React.MutableRefObject<HTMLInputElement | null>,
-  PositionNewUserRef: React.MutableRefObject<HTMLInputElement | null>,
-
+  sectorNewUserRef: MutableRefObject<HTMLSelectElement | null>,
+  PositionNewUserRef: MutableRefObject<HTMLSelectElement | null>,
+  userData: any,
   handleSubmit: (data: any) => void,
 ) => {
   e.preventDefault();
@@ -24,6 +25,9 @@ export const submitForm_CreateUser = (
   const sector = sectorNewUserRef.current?.value;
   const position = PositionNewUserRef.current?.value;
 
+
+
+if (!userData) {
   newUserPOST({
     name,
     email,
@@ -34,6 +38,20 @@ export const submitForm_CreateUser = (
     sector,
     position,
   });
+} else {
+  UserEdit({
+    name,
+    email,
+    password,
+    telefone,
+    userRole,
+    cpf,
+    sector,
+    position,
+  });
+}
+
+
   handleSubmit({
     name,
     email,
