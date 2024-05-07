@@ -1,7 +1,13 @@
 import toast from "react-hot-toast";
 import { HiXCircle } from "react-icons/hi";
 
-export const notifyError = ({ text = "Error", duration = 3000 }: { text?: string, duration?: number }) => {
+export const notifyError = ({
+  text = "Error",
+  duration = 3000,
+}: {
+  text?: string;
+  duration?: number;
+}) => {
   toast.custom(
     (t) => (
       <div

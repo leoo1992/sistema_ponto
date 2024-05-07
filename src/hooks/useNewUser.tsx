@@ -4,7 +4,7 @@ import { submitForm_CreateUser } from "../utils/CreateUser/submitForm_CreateUser
 import getPosition from "../services/RegisterUser/getPosition";
 import getOptions from "../services/RegisterUser/getOptions";
 import getSector from "../services/RegisterUser/getSector";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 // import { useNavigate } from 'react-router-dom';
 
 export default function useNewUser() {
@@ -46,7 +46,7 @@ export default function useNewUser() {
     fetchData();
   }, []);
 
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm<any>();
 
   const onSubmit = (e: any) => {
@@ -61,6 +61,7 @@ export default function useNewUser() {
       sectorNewUserRef,
       PositionNewUserRef,
       userData,
+      navigate,
       handleSubmit,
     );
   };
@@ -81,5 +82,6 @@ export default function useNewUser() {
     sectorNewUserRef,
     PositionNewUserRef,
     userData,
+    navigate,
   };
 }

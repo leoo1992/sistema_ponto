@@ -44,6 +44,7 @@ export const UserTableStory = ({
   const navigate = useNavigate();
 
   const fetchData = async () => {
+    setLoading(true);
     try {
       const newData = await UserListGET(currentPage - 1, rowsPerPage);
       setData(newData.content);
@@ -61,7 +62,7 @@ export const UserTableStory = ({
 
   useEffect(() => {
     fetchData();
-  }, [currentPage, rowsPerPage, loading]);
+  }, [currentPage, rowsPerPage]);
 
   const handlePageChange = async (newPage: number) => {
     const totalPages = Math.ceil(totalElements / rowsPerPage);
@@ -96,21 +97,19 @@ export const UserTableStory = ({
   }: any) => {
     try {
       const response = {
-        id: id ? id : "Sem Id",
-        name: name ? name : "Sem Nome",
-        email: email ? email : "Sem Email",
-        cpf: cpf ? cpf : "Sem CPF",
+        id: id ? id : null,
+        name: name ? name : null,
+        email: email ? email : null,
+        cpf: cpf ? cpf : null,
         position: position ? position : 0,
         sector: sector ? sector : 0,
-        telefone: telefone,
+        telefone: telefone ? telefone : null,
         userRole: userRole
           ? userRole
               .toLowerCase()
               .replace(/\b\w/g, (char: string) => char.toUpperCase())
           : 0,
       };
-
-      console.log(response);
 
       navigate("/update", { state: response });
     } catch (error) {
@@ -121,8 +120,9 @@ export const UserTableStory = ({
   };
 
   const handleDelete = async ({ id }: any) => {
+    setLoading(true);
     try {
-      await UserDelete(id);
+      await UserDelete(id, navigate);
       setData((prevData: any) =>
         prevData.filter((item: any) => item.id !== id),
       );
@@ -135,8 +135,9 @@ export const UserTableStory = ({
   };
 
   const handleDisable = async ({ id }: any) => {
+    setLoading(true);
     try {
-      await UserDisable(id);
+      await UserDisable(id, navigate);
       setData((prevData: any) =>
         prevData.filter((item: any) => item.id !== id),
       );

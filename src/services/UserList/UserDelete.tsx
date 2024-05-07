@@ -1,12 +1,14 @@
 import Cookies from "js-cookie";
+import { notifySuccess } from "../../components/Toasts/ToastSuccess";
+import { notifyError } from "../../components/Toasts/ToastError";
 
-export default async function UserDelete(id: any) {
+export default async function UserDelete(id: any, navigate: any) {
   const idAsNumber = parseInt(id);
   const DeleteUserURL =
     import.meta.env.VITE_REACT_APP_DELETE_USER_URL + `${idAsNumber}`;
 
   try {
-    await fetch(DeleteUserURL, {
+    const resp = await fetch(DeleteUserURL, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -14,6 +16,13 @@ export default async function UserDelete(id: any) {
       },
       body: JSON.stringify(idAsNumber),
     });
+
+    if (resp.ok) {
+      notifySuccess({ text: "Usuario deletado com sucesso!" });
+      navigate("/userslist");
+    } else {
+      notifyError({ text: "Erro ao deletar usuario!" });
+    }
   } catch (error) {
     throw error;
   }

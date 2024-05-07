@@ -21,13 +21,18 @@ export default async function loginPOST({
       },
       body: JSON.stringify({ email, password }),
     });
-    const data = await resp.json();
 
-    const token = await data.token;
-    Cookies.set("Bearer", token);
-    notifySuccess({ text: 'Login efetuado com sucesso!'});
-    return data;
+    if (resp.ok) {
+      const data = await resp.json();
+      const token = await data.token;
+      Cookies.set("Bearer", token);
+      notifySuccess({ text: "Login efetuado com sucesso!" });
+
+      return data;
+    } else {
+      notifyError({ text: "Login não efetuado" });
+    }
   } catch (error) {
-    notifyError({ text: 'Login não efetuado' });
+    throw error;
   }
 }

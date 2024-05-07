@@ -13,6 +13,7 @@ export const submitForm_CreateUser = (
   sectorNewUserRef: MutableRefObject<HTMLSelectElement | null>,
   PositionNewUserRef: MutableRefObject<HTMLSelectElement | null>,
   userData: any,
+  navigate: any,
   handleSubmit: (data: any) => void,
 ) => {
   e.preventDefault();
@@ -26,27 +27,33 @@ export const submitForm_CreateUser = (
   const position = PositionNewUserRef.current?.value;
 
   if (!userData) {
-    newUserPOST({
-      name,
-      email,
-      password,
-      telefone,
-      userRole,
-      cpf,
-      sector,
-      position,
-    });
+    newUserPOST(
+      {
+        name,
+        email,
+        password,
+        telefone,
+        userRole,
+        cpf,
+        sector,
+        position,
+      },
+      navigate,
+    );
   } else {
-    UserEdit({
-      name,
-      email,
-      password,
-      telefone,
-      userRole,
-      cpf,
-      sector,
-      position,
-    });
+    UserEdit(
+      {
+        name,
+        email,
+        password,
+        telefone,
+        userRole,
+        cpf,
+        sector,
+        position,
+      },
+      navigate,
+    );
   }
 
   handleSubmit({

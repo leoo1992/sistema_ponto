@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import { notifyError } from "../../components/Toasts/ToastError";
 
 export default async function UserListGET(page = 0, size = 10) {
   const UserListURL =
@@ -14,6 +15,7 @@ export default async function UserListGET(page = 0, size = 10) {
     });
 
     if (!response.ok) {
+      notifyError({ text: "Login não efetuado" });
       throw new Error("Failed to fetch data");
     }
 

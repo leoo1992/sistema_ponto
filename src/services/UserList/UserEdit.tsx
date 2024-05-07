@@ -1,19 +1,16 @@
 import Cookies from "js-cookie";
+import { notifySuccess } from "../../components/Toasts/ToastSuccess";
+import { notifyError } from "../../components/Toasts/ToastError";
 
-export default async function UserEdit({
-  email,
-  password,
-  telefone,
-  cpf,
-  name,
-  position,
-  userRole,
-}: any) {
+export default async function UserEdit(
+  { email, password, telefone, cpf, name, position, userRole }: any,
+  navigate: any,
+) {
   const data = { email, password, telefone, cpf, name, position, userRole };
   const EditUserURL = import.meta.env.VITE_REACT_APP_EDIT_USER_URL;
 
   try {
-    await fetch(EditUserURL, {
+    const response = await fetch(EditUserURL, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -21,6 +18,13 @@ export default async function UserEdit({
       },
       body: JSON.stringify(data),
     });
+
+    if (response.ok) {
+      notifySuccess({ text: "Usuário Atualizado" });
+      navigate("/userslist");
+    } else {
+      notifyError({ text: "Erro ao atualizar usuário" });
+    }
   } catch (error) {
     throw error;
   }

@@ -25,13 +25,12 @@ export default function index() {
     sector,
     register,
     userData,
+    navigate,
     handleSubmit,
     cpfNewUserRef,
     sectorNewUserRef,
     PositionNewUserRef,
   } = useNewUser();
-
-  console.log(userData);
 
   useEffect(() => {
     if (
@@ -90,6 +89,7 @@ export default function index() {
             sectorNewUserRef,
             PositionNewUserRef,
             userData,
+            navigate,
             handleSubmit,
           )
         }

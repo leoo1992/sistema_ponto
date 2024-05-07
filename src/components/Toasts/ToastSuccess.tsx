@@ -1,7 +1,13 @@
 import toast from "react-hot-toast";
 import { HiCheckCircle } from "react-icons/hi";
 
-export const notifySuccess = ({ text = "Success", duration = 3000 }: { text?: string, duration?: number }) => {
+export const notifySuccess = ({
+  text = "Success",
+  duration = 3000,
+}: {
+  text?: string;
+  duration?: number;
+}) => {
   toast.custom(
     (t) => (
       <div
