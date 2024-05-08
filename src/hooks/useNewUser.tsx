@@ -29,7 +29,6 @@ export default function useNewUser() {
   }, [location.state]);
 
   const fetchData = async () => {
-    try {
       const DataPosition = await getPosition();
       const DataOptions = await getOptions();
       const DataSector = await getSector();
@@ -37,9 +36,6 @@ export default function useNewUser() {
       setPosition(DataPosition);
       setOptions(DataOptions);
       setSector(DataSector);
-    } catch (error) {
-      console.error("Failed to fetch POSITION:", error);
-    }
   };
 
   useEffect(() => {

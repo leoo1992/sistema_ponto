@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { getUserDataTableColumns } from "../../../utils/UserList/getUserDataTableColumns.util";
 import { NoDataComponent } from "./NoDataComponent";
 import { ProgressComponent } from "./ProgressComponent";
@@ -6,14 +6,12 @@ import { subHeaderComponent } from "./subHeaderComponent";
 import DataTable from "react-data-table-component";
 import UserListGET from "../../../services/UserList/UserListGET";
 import Pagination from "./Pagination";
-import ContextActionsComponent from "./ContextActions";
 import UserDelete from "../../../services/UserList/UserDelete";
 import UserDisable from "../../../services/UserList/UserDisable";
 import { useNavigate } from "react-router-dom";
 //import { data } from "../../../utils/UserList/data.util";
 
 export const UserTableStory = ({
-  expandableRows,
   pagination,
   highlightOnHover,
   striped,
@@ -35,13 +33,66 @@ export const UserTableStory = ({
   paginationComponentOptions,
   defaultComponentOptions,
 }: any) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [totalElements, setTotalElements] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [expandedRow, setExpandedRow] = useState(null);
+  const [selectedRows, setSelectedRows] = useState<any>([]);
+  const [toggleCleared, setToggleCleared] = useState(false);
   const navigate = useNavigate();
+
+  const handleRowSelected = useCallback((state: any) => {
+    setSelectedRows(state.selectedRows);
+  }, []);
+
+  const contextActions = useMemo(() => {
+    const handleEditSelected = (data: any) => {
+      console.log(data);
+
+      handleEdit(data);
+      setToggleCleared(!toggleCleared);
+    };
+    const handleDisableSelected = (id: any) => {
+      console.log(id);
+      handleDisable({ id });
+      setToggleCleared(!toggleCleared);
+    };
+    const handleDeleteSelected = (id: any) => {
+      console.log(id);
+      handleDelete({ id });
+      setToggleCleared(!toggleCleared);
+    };
+
+    return (
+      <div
+        className="m-0 flex w-full content-center items-center
+                    justify-end gap-1 self-center rounded-t-2xl p-2"
+      >
+        <button
+          className="btn glass btn-primary btn-sm w-20 rounded-3xl bg-primary text-xs text-white"
+          key="edit"
+          onClick={() => handleEditSelected(selectedRows[0])}
+        >
+          Editar
+        </button>
+        <button
+          className="btn glass btn-warning btn-sm rounded-3xl bg-warning text-xs"
+          key="disable"
+          onClick={() => handleDisableSelected(selectedRows[0]?.id)}
+        >
+          Desabilitar
+        </button>
+        <button
+          className="btn glass btn-error btn-sm w-20 rounded-3xl bg-red-400 text-xs"
+          key="delete"
+          onClick={() => handleDeleteSelected(selectedRows[0]?.id)}
+        >
+          Deletar
+        </button>
+      </div>
+    );
+  }, [data, selectedRows, toggleCleared]);
 
   const fetchData = async () => {
     setLoading(true);
@@ -68,12 +119,7 @@ export const UserTableStory = ({
     const totalPages = Math.ceil(totalElements / rowsPerPage);
     if (newPage <= totalPages && newPage !== currentPage) {
       setCurrentPage(newPage);
-      setExpandedRow(null);
     }
-  };
-
-  const handleExpandRow = (row: any) => {
-    setExpandedRow(row === expandedRow ? null : row);
   };
 
   const handlePerRowsChange = async (
@@ -82,7 +128,6 @@ export const UserTableStory = ({
   ) => {
     setRowsPerPage(currentRowsPerPage);
     setCurrentPage(1);
-    setExpandedRow(null);
   };
 
   const handleEdit = async ({
@@ -95,6 +140,8 @@ export const UserTableStory = ({
     telefone,
     userRole,
   }: any) => {
+    console.log(id, name, cpf, position, sector, telefone, userRole);
+
     try {
       const response = {
         id: id ? id : null,
@@ -159,8 +206,6 @@ export const UserTableStory = ({
       data={data}
       noDataComponent={NoDataComponent}
       defaultSortFieldId={1}
-      expandableRows={expandableRows}
-      expandableRowsHideExpander={false}
       pagination={pagination}
       paginationServer={paginationServer}
       highlightOnHover={highlightOnHover}
@@ -184,6 +229,14 @@ export const UserTableStory = ({
       disabled={disabled}
       paginationTotalRows={totalElements}
       paginationComponentOptions={paginationComponentOptions}
+      selectableRowsVisibleOnly
+      selectableRowsSingle
+      selectableRowsNoSelectAll
+      selectableRows
+      selectableRowsHighlight
+      paginationRowsPerPageOptions={[5, 10, 15]}
+      onChangeRowsPerPage={handlePerRowsChange}
+      onChangePage={handlePageChange}
       paginationComponent={() => (
         <Pagination
           rowsPerPage={rowsPerPage}
@@ -197,29 +250,9 @@ export const UserTableStory = ({
           defaultComponentOptions={defaultComponentOptions}
         />
       )}
-      paginationRowsPerPageOptions={[5, 10, 15]}
-      onChangeRowsPerPage={handlePerRowsChange}
-      onChangePage={handlePageChange}
-      expandableRowsComponent={({ data }) => (
-        <ContextActionsComponent
-          handleEdit={() => handleEdit(data)}
-          handleDelete={() => handleDelete(data)}
-          handleDisable={() => handleDisable(data)}
-        />
-      )}
-      onRowExpandToggled={handleExpandRow}
-      expandableRowsComponentProps={{
-        expandableRowsComponent: (
-          <ContextActionsComponent
-            handleEdit={() => handleEdit(expandedRow)}
-            handleDelete={() => handleDelete(expandedRow)}
-            handleDisable={() => handleDisable(expandedRow)}
-          />
-        ),
-        isRowExpandable: () => true,
-        expandedRow: expandedRow,
-        onRowExpandToggled: handleExpandRow,
-      }}
+      contextActions={contextActions}
+      onSelectedRowsChange={handleRowSelected}
+      clearSelectedRows={toggleCleared}
     />
   );
 };

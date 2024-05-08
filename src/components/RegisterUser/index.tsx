@@ -48,28 +48,28 @@ export default function index() {
       TelNewUserRef.current.value = userData.telefone;
       cpfNewUserRef.current.value = userData.cpf;
 
-      if (sector.length > 0) {
-        const sectorData = mapData(userData.sector, sector);
-        sectorNewUserRef.current.value = sectorData;
-      }
 
-      if (position.length > 0) {
-        const positionData = mapData(userData.position, position);
-        PositionNewUserRef.current.value = positionData;
-      }
-
-      if (options.length > 0) {
-        const userRoleData = mapData(userData.userRole, options);
-        typeNewUserRef.current.value = userRoleData;
-      }
+      const sectorData = mapData(userData.sector);
+      const selectedIndexSectorData = sector.findIndex((sector: any) => sector.name === sectorData);
+      sectorNewUserRef.current.selectedIndex = selectedIndexSectorData >= 0 ? selectedIndexSectorData : 0;
+    
+      const positionData = mapData(userData.position);
+      const selectedIndexPositionData = sector.findIndex((position: any) => position.name === positionData);
+      PositionNewUserRef.current.selectedIndex = selectedIndexPositionData >= 0 ? selectedIndexPositionData : 0;
+      
+      const userRoleData = mapData(userData.userRole);
+      const selectedIndexUserRoleData = sector.findIndex((option: any) => option.name === userRoleData);
+      typeNewUserRef.current.selectedIndex = selectedIndexUserRoleData >= 0 ? selectedIndexUserRoleData : 0;
     }
   }, [userData, sector, position, options]);
 
-  function mapData(name: any, data: any[]) {
-    const item = data.find((item) => item.name === name);
-    return item ? item.id : 0;
-  }
 
+  function mapData(name: any) { 
+    const item = name;
+    return item;
+  }
+  
+  
   return (
     <div
       className="xl:4/12 card flex w-11/12 flex-col content-center items-center justify-center

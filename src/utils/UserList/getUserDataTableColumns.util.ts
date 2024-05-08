@@ -6,7 +6,7 @@ export const getUserDataTableColumns = [
       return row.id;
     },
     sortable: true,
-    width: "80px",
+    width: "60px",
   },
   {
     name: "Nome",
