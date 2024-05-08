@@ -1,6 +1,5 @@
 import Cookies from "js-cookie";
 import { notifySuccess } from "../../components/Toasts/ToastSuccess";
-import { notifyError } from "../../components/Toasts/ToastError";
 
 export default async function loginPOST({
   email,
@@ -27,11 +26,8 @@ export default async function loginPOST({
       const token = await data.token;
       Cookies.set("Bearer", token);
       notifySuccess({ text: "Login efetuado com sucesso!" });
-
       return data;
-    } else {
-      notifyError({ text: "Login não efetuado" });
-    }
+    };
   } catch (error) {
     throw error;
   }
