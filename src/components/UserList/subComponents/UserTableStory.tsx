@@ -54,12 +54,10 @@ export const UserTableStory = ({
       setToggleCleared(!toggleCleared);
     };
     const handleDisableSelected = (id: any) => {
-      console.log(id);
       handleDisable({ id });
       setToggleCleared(!toggleCleared);
     };
     const handleDeleteSelected = (id: any) => {
-      console.log(id);
       handleDelete({ id });
       setToggleCleared(!toggleCleared);
     };
@@ -140,8 +138,6 @@ export const UserTableStory = ({
     telefone,
     userRole,
   }: any) => {
-    console.log(id, name, cpf, position, sector, telefone, userRole);
-
     try {
       const response = {
         id: id ? id : null,
@@ -151,12 +147,10 @@ export const UserTableStory = ({
         position: position ? position : 0,
         sector: sector ? sector : 0,
         telefone: telefone ? telefone : null,
-        userRole: userRole
-          ? userRole
-              .toLowerCase()
-              .replace(/\b\w/g, (char: string) => char.toUpperCase())
-          : 0,
+        userRole: userRole ? userRole : 0,
       };
+
+      console.log("RESP", response);
 
       navigate("/update", { state: response });
     } catch (error) {

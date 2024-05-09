@@ -29,13 +29,13 @@ export default function useNewUser() {
   }, [location.state]);
 
   const fetchData = async () => {
-      const DataPosition = await getPosition();
-      const DataOptions = await getOptions();
-      const DataSector = await getSector();
+    const DataPosition = await getPosition();
+    const DataOptions = await getOptions();
+    const DataSector = await getSector();
 
-      setPosition(DataPosition);
-      setOptions(DataOptions);
-      setSector(DataSector);
+    setPosition(DataPosition);
+    setOptions(DataOptions);
+    setSector(DataSector);
   };
 
   useEffect(() => {

@@ -1,11 +1,5 @@
 import Cookies from "js-cookie";
 
-const data = [
-  { id: "ADMINISTRADOR", name: "Administrador" },
-  { id: "COLABORADOR", name: "Colaborador" },
-  { id: "GESTOR", name: "Gestor" },
-];
-
 export default async function getOptions() {
   const getOptionsURL = import.meta.env.VITE_REACT_APP_GET_OPITION_URL;
 
@@ -22,11 +16,12 @@ export default async function getOptions() {
       throw new Error("Failed to fetch data");
     }
 
-    // const data = await response.json();
+    const data = await response.json();
 
     return data;
   } catch (error) {
     // throw error;
+    const data = [{ id_userRole: 0, name: "" }];
     return data;
   }
 }

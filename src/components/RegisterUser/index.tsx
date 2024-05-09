@@ -48,28 +48,32 @@ export default function index() {
       TelNewUserRef.current.value = userData.telefone;
       cpfNewUserRef.current.value = userData.cpf;
 
+      const selectedIndexSectorData = sector.findIndex(
+        (sector: any) => sector.name === userData.sector,
+      );
+      if (selectedIndexSectorData !== -1) {
+        sectorNewUserRef.current.selectedIndex =
+          sector[selectedIndexSectorData]?.id_sector;
+      }
 
-      const sectorData = mapData(userData.sector);
-      const selectedIndexSectorData = sector.findIndex((sector: any) => sector.name === sectorData);
-      sectorNewUserRef.current.selectedIndex = selectedIndexSectorData >= 0 ? selectedIndexSectorData : 0;
-    
-      const positionData = mapData(userData.position);
-      const selectedIndexPositionData = sector.findIndex((position: any) => position.name === positionData);
-      PositionNewUserRef.current.selectedIndex = selectedIndexPositionData >= 0 ? selectedIndexPositionData : 0;
-      
-      const userRoleData = mapData(userData.userRole);
-      const selectedIndexUserRoleData = sector.findIndex((option: any) => option.name === userRoleData);
-      typeNewUserRef.current.selectedIndex = selectedIndexUserRoleData >= 0 ? selectedIndexUserRoleData : 0;
+      const selectedIndexPositionData = position.findIndex(
+        (pos: any) => pos.name === userData.position,
+      );
+      if (selectedIndexPositionData !== -1) {
+        PositionNewUserRef.current.selectedIndex =
+          position[selectedIndexPositionData]?.id_position;
+      }
+
+      const selectedIndexUserRoleData = options.findIndex(
+        (option: any) => option.name === userData.userRole,
+      );
+      if (selectedIndexPositionData !== -1) {
+        typeNewUserRef.current.selectedIndex =
+          options[selectedIndexUserRoleData]?.id_userRole;
+      }
     }
   }, [userData, sector, position, options]);
 
-
-  function mapData(name: any) { 
-    const item = name;
-    return item;
-  }
-  
-  
   return (
     <div
       className="xl:4/12 card flex w-11/12 flex-col content-center items-center justify-center
@@ -141,7 +145,7 @@ export default function index() {
           <div className="sm:flex sm:gap-3">
             <Select
               selectRef={sectorNewUserRef}
-              nameID={"sector"}
+              nameID={"id_sector"}
               labelName={"Setor"}
               options={sector}
               register={register}
@@ -151,7 +155,7 @@ export default function index() {
             />
             <Select
               selectRef={PositionNewUserRef}
-              nameID={"position"}
+              nameID={"id_position"}
               labelName={"Cargo"}
               options={position}
               register={register}
@@ -163,7 +167,7 @@ export default function index() {
           <div className="sm:flex sm:gap-3">
             <Select
               selectRef={typeNewUserRef}
-              nameID={"userRole"}
+              nameID={"id_userRole"}
               options={options}
               labelName={"Acesso"}
               register={register}

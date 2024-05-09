@@ -13,7 +13,6 @@ export default async function UserListGET(page = 0, size = 10) {
       },
     });
 
-  
     const data = await response.json();
 
     return {

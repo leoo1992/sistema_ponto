@@ -27,7 +27,7 @@ export default async function loginPOST({
       Cookies.set("Bearer", token);
       notifySuccess({ text: "Login efetuado com sucesso!" });
       return data;
-    };
+    }
   } catch (error) {
     throw error;
   }

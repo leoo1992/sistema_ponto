@@ -41,7 +41,8 @@ export default function Select({
       <div className={`${classIcon}`}>
         {classIcon ? (
           <div
-            className={`glass mr-3 hidden items-center justify-center rounded-2xl bg-primary-content px-3 text-primary shadow-sm shadow-primary sm:flex ${classIcon}`}
+            className={`glass mr-3 hidden items-center justify-center rounded-2xl bg-primary-content px-3 
+            text-primary shadow-sm shadow-primary sm:flex ${classIcon}`}
           >
             {Icon}
           </div>
@@ -65,9 +66,9 @@ export default function Select({
             {nameDefault}
           </option>
 
-          {options.map((option) => (
+          {options.map((option, index) => (
             <option
-              key={option.id}
+              key={option.id ? option.id : index}
               value={option.id}
               className={`max-w-xs rounded-3xl border-dotted p-3 
             text-base-content ${classNameOption}`}
