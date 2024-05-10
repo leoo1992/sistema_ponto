@@ -15,6 +15,8 @@ type PropTypes = {
   classContainer?: string;
   Icon?: any;
   classIcon?: string;
+  disabled?: boolean;
+  autoComplete?: string;
 };
 
 export default function Input({
@@ -26,16 +28,18 @@ export default function Input({
   classContainer = "",
   inputRef,
   required = true,
-  maxLength = typeInput === "password" ? 11 : 300,
-  max = 100000000,
+  maxLength = typeInput === "password" ? 20 : 300,
+  max = typeInput === "number" ? 100000000 : undefined,
   step = "",
   register,
   Icon,
   classIcon,
+  disabled = false,
+  autoComplete = "off",
 }: PropTypes) {
   return (
     <div className={`w-full ${classContainer}`}>
-      <label htmlFor={nameID} className={`label max-w-xs ${classNameLabel}`}>
+      <label htmlFor={`${nameID}-input`} className={`label max-w-xs ${classNameLabel}`}>
         <span className="label-text pt-3 font-bold text-primary sm:ml-16">
           {labelName}
         </span>
@@ -50,8 +54,8 @@ export default function Input({
         ) : null}
         <input
           {...register(nameID, { required: true })}
+          id={`${nameID}-input`}
           ref={inputRef}
-          name={nameID}
           type={typeInput}
           placeholder={labelName}
           maxLength={maxLength}
@@ -60,6 +64,8 @@ export default function Input({
           required={required}
           className={`input input-md input-bordered rounded-2xl text-primary shadow-sm shadow-primary ${classNameInput}`}
           icon={Icon}
+          disabled={disabled}
+          autoComplete={autoComplete}
         />
       </div>
     </div>

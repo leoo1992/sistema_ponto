@@ -41,12 +41,14 @@ export default function index() {
       cpfNewUserRef.current &&
       sectorNewUserRef.current &&
       PositionNewUserRef.current &&
+      // PasswordNewUserRef.current &&
       typeNewUserRef.current
     ) {
       NameNewUserRef.current.value = userData.name;
       EmailNewUserRef.current.value = userData.email;
       TelNewUserRef.current.value = userData.telefone;
       cpfNewUserRef.current.value = userData.cpf;
+      // PasswordNewUserRef.current.value = userData.password;
 
       const selectedIndexSectorData = sector.findIndex(
         (sector: any) => sector.name === userData.sector,
@@ -181,17 +183,20 @@ export default function index() {
               labelName={"Senha"}
               typeInput="password"
               register={register}
-              classNameInput="w-full flex justify-between items-center self-center align-middle"
+              classNameInput={`w-full flex justify-between items-center 
+              ${userData ? "hidden" : ""} self-center align-middle`}
+              classNameLabel={`${userData ? "hidden" : ""}`}
               Icon={<HiLockClosed size={20} />}
-              classIcon="flex"
+              classIcon={`flex ${userData ? "hidden" : ""}`}
+              disabled={userData ? true : false}
             />
           </div>
         </div>
         <button
           type="submit"
-          className="text-md lg:2/12 btn glass btn-primary mt-8 
+          className={`text-md lg:2/12 btn glass btn-primary ${userData ? "mt-4" : " mt-8"}
           flex w-6/12 justify-center self-center rounded-badge bg-primary align-middle
-          font-extrabold text-white  sm:w-4/12 md:w-3/12"
+          font-extrabold text-white  sm:w-4/12 md:w-3/12`}
         >
           {userData ? "Atualizar" : "Cadastrar"}
         </button>

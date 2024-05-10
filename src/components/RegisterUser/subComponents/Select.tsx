@@ -14,6 +14,7 @@ type PropTypes = {
   classContainer?: string;
   Icon?: any;
   classIcon?: string;
+  autoComplete?: string;
 };
 
 export default function Select({
@@ -30,10 +31,14 @@ export default function Select({
   classContainer = "",
   Icon,
   classIcon,
+  autoComplete = "off",
 }: PropTypes) {
   return (
     <div className={`w-full ${classContainer}`}>
-      <label htmlFor={nameID} className={`label max-w-xs ${classNameLabel}`}>
+      <label
+        htmlFor={`${nameID}-select`}
+        className={`label max-w-xs ${classNameLabel}`}
+      >
         <span className="label-text pt-3 font-bold text-primary sm:ml-16">
           {labelName}
         </span>
@@ -50,12 +55,12 @@ export default function Select({
         <select
           {...register(nameID, { required: true })}
           ref={selectRef}
-          name={nameID}
-          id={nameID}
+          id={`${nameID}-select`}
           className={`input-md  select select-bordered rounded-2xl text-primary shadow-sm 
         shadow-primary ${classNameSelect}`}
           defaultValue={0}
           required={required}
+          autoComplete={autoComplete}
         >
           <option
             disabled
@@ -68,6 +73,7 @@ export default function Select({
 
           {options.map((option, index) => (
             <option
+              id={`select-${index}`}
               key={option.id ? option.id : index}
               value={option.id}
               className={`max-w-xs rounded-3xl border-dotted p-3 
