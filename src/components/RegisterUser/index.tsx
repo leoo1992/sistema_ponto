@@ -80,7 +80,7 @@ export default function index() {
     <div
       className="xl:4/12 card flex w-11/12 flex-col content-center items-center justify-center
  self-center bg-gradient-to-b from-slate-100 via-white to-transparent align-middle shadow-sm shadow-primary 
- sm:w-11/12 md:w-10/12 lg:w-6/12"
+ sm:w-11/12 md:w-10/12 lg:w-6/12 h-full"
     >
       <Form
         onSubmit={(e: any) =>
@@ -137,9 +137,8 @@ export default function index() {
               inputRef={cpfNewUserRef}
               nameID={"cpf"}
               labelName={"CPF"}
-              typeInput="text"
               register={register}
-              classNameInput="w-full flex justify-between items-center self-center align-middle"
+              classNameInput={`w-full flex justify-between items-center self-center align-middle`}
               Icon={<HiIdentification size={20} />}
               classIcon="flex"
             />

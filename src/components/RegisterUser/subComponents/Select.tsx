@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import { MutableRefObject, RefObject } from "react";
 
 type PropTypes = {
@@ -33,6 +34,25 @@ export default function Select({
   classIcon,
   autoComplete = "off",
 }: PropTypes) {
+  const [hasValue, setHasValue] = useState(false);
+
+  useEffect(() => {
+    const handleChange = () => {
+      setHasValue(Boolean((selectRef as RefObject<HTMLSelectElement>).current?.value));
+    };
+
+    const selectElement = (selectRef as RefObject<HTMLSelectElement>).current;
+    if (selectElement) {
+      selectElement.addEventListener("change", handleChange);
+    }
+
+    return () => {
+      if (selectElement) {
+        selectElement.removeEventListener("change", handleChange);
+      }
+    };
+  }, [selectRef]);
+
   return (
     <div className={`w-full ${classContainer}`}>
       <label
@@ -57,7 +77,7 @@ export default function Select({
           ref={selectRef}
           id={`${nameID}-select`}
           className={`input-md  select select-bordered rounded-2xl text-primary shadow-sm 
-        shadow-primary ${classNameSelect}`}
+        shadow-primary ${classNameSelect} ${hasValue ? "bg-primary-content bg-opacity-50 border-4" : ""}`}
           defaultValue={0}
           required={required}
           autoComplete={autoComplete}

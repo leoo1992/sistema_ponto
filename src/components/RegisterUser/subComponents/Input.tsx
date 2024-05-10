@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { MutableRefObject, RefObject } from "react";
 
 type PropTypes = {
@@ -37,6 +38,25 @@ export default function Input({
   disabled = false,
   autoComplete = "off",
 }: PropTypes) {
+  const [hasValue, setHasValue] = useState(false);
+
+  useEffect(() => {
+    const handleChange = () => {
+      setHasValue(Boolean((inputRef as RefObject<HTMLInputElement>).current?.value));
+    };
+
+    const inputElement = (inputRef as RefObject<HTMLInputElement>).current;
+    if (inputElement) {
+      inputElement.addEventListener("input", handleChange);
+    }
+
+    return () => {
+      if (inputElement) {
+        inputElement.removeEventListener("input", handleChange);
+      }
+    };
+  }, [inputRef]);
+
   return (
     <div className={`w-full ${classContainer}`}>
       <label htmlFor={`${nameID}-input`} className={`label max-w-xs ${classNameLabel}`}>
@@ -62,8 +82,10 @@ export default function Input({
           max={max}
           step={step}
           required={required}
-          className={`input input-md input-bordered rounded-2xl text-primary shadow-sm shadow-primary ${classNameInput}`}
-          icon={Icon}
+          className={`input input-md input-bordered ${
+            hasValue ? "bg-primary-content bg-opacity-50 border-4" : ""
+          } rounded-2xl text-primary shadow-sm shadow-primary ${classNameInput}`}
+          icon={Icon ? Icon : null}
           disabled={disabled}
           autoComplete={autoComplete}
         />
