@@ -59,7 +59,7 @@ export default function Input({
 
   return (
     <div className={`w-full ${classContainer}`}>
-      <label htmlFor={`${nameID}-input`} className={`label max-w-xs ${classNameLabel}`}>
+      <label htmlFor={`${nameID}-input`} className={`label pt-1 px-0 pb-0 ${classNameLabel}`}>
         <span className="label-text pt-3 font-bold text-primary sm:ml-16">
           {labelName}
         </span>

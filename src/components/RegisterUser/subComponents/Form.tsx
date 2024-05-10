@@ -8,7 +8,7 @@ export default function Form({
   onSubmit: any;
 }) {
   return (
-    <form onSubmit={onSubmit} className="card-body w-full p-8">
+    <form onSubmit={onSubmit} className="flex  flex-col w-full p-6 m-0">
       {children}
     </form>
   );

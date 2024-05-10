@@ -57,7 +57,7 @@ export default function Select({
     <div className={`w-full ${classContainer}`}>
       <label
         htmlFor={`${nameID}-select`}
-        className={`label max-w-xs ${classNameLabel}`}
+        className={`label pt-1 px-0 pb-0 ${classNameLabel}`}
       >
         <span className="label-text pt-3 font-bold text-primary sm:ml-16">
           {labelName}
@@ -76,7 +76,7 @@ export default function Select({
           {...register(nameID, { required: true })}
           ref={selectRef}
           id={`${nameID}-select`}
-          className={`input-md  select select-bordered rounded-2xl text-primary shadow-sm 
+          className={`input-md select select-bordered rounded-2xl text-primary shadow-sm 
         shadow-primary ${classNameSelect} ${hasValue ? "bg-primary-content bg-opacity-50 border-4" : ""}`}
           defaultValue={0}
           required={required}
