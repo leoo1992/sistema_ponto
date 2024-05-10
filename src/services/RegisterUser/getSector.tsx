@@ -20,8 +20,6 @@ export default async function getSector() {
 
     return data;
   } catch (error) {
-    // throw error;
-    const data = [{ id_sector: 0, name: "" }];
-    return data;
+    throw error;
   }
 }

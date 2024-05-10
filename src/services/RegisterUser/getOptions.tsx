@@ -20,8 +20,6 @@ export default async function getOptions() {
 
     return data;
   } catch (error) {
-    // throw error;
-    const data = [{ id_userRole: 0, name: "" }];
-    return data;
+    throw error;
   }
 }

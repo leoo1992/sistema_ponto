@@ -19,8 +19,6 @@ export default async function getPosition() {
     const data = await response.json();
     return data;
   } catch (error) {
-    // throw error;
-    const data = [{ id_position: 0, name: "" }];
-    return data;
+   throw error;
   }
 }
