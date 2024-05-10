@@ -9,6 +9,7 @@ import Pagination from "./Pagination";
 import UserDelete from "../../../services/UserList/UserDelete";
 import UserDisable from "../../../services/UserList/UserDisable";
 import { useNavigate } from "react-router-dom";
+import { ConfirmModal } from "../../Modal/Modal";
 //import { data } from "../../../utils/UserList/data.util";
 
 export const UserTableStory = ({
@@ -40,25 +41,60 @@ export const UserTableStory = ({
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selectedRows, setSelectedRows] = useState<any>([]);
   const [toggleCleared, setToggleCleared] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen2, setModalOpen2] = useState(false);
+  const [confirm, setConfirm] = useState(false);
+  const [selectedDeleteID, setSelectedDeleteID] = useState<null | any>();
+  const [selectedDisableID, setSelectedDisableID] = useState<null | any>();
   const navigate = useNavigate();
+
+  console.log("MODAL:", modalOpen);
+  console.log("CONFIRM:", confirm);
+  console.log("Selected:", selectedDeleteID);
 
   const handleRowSelected = useCallback((state: any) => {
     setSelectedRows(state.selectedRows);
   }, []);
 
+  const handleDeleteConfirmed = async () => {
+      await handleDelete(selectedDeleteID);
+  };
+  const handleDisableConfirmed = async () => {
+      await handleDisable(selectedDisableID);
+  };
+
+  const handleDelete = async ( id : any) => {
+    setLoading(true);
+    try {
+      await UserDelete(id, navigate);
+      setData((prevData: any) =>
+       prevData.filter((item: any) => item.id !== id),
+       );
+      setTotalElements((prevTotalElements) => prevTotalElements - 1);
+    } catch (error) {
+      console.error("Failed to delete user:", error);
+    } finally {
+      setLoading(false);
+      setConfirm(false);
+      setSelectedDeleteID(null);
+      setToggleCleared(!toggleCleared);
+    }
+  };
+
   const contextActions = useMemo(() => {
     const handleEditSelected = (data: any) => {
       console.log(data);
-
       handleEdit(data);
-      setToggleCleared(!toggleCleared);
     };
     const handleDisableSelected = (id: any) => {
-      handleDisable({ id });
+      setModalOpen2(true);
+      setSelectedDisableID(id);
       setToggleCleared(!toggleCleared);
     };
-    const handleDeleteSelected = (id: any) => {
-      handleDelete({ id });
+
+    const handleDeleteSelected = async (id: any) => {
+      setModalOpen(true);
+      setSelectedDeleteID(id);
       setToggleCleared(!toggleCleared);
     };
 
@@ -70,21 +106,27 @@ export const UserTableStory = ({
         <button
           className="btn glass btn-primary btn-sm w-20 rounded-3xl bg-primary text-xs text-white"
           key="edit"
-          onClick={() => handleEditSelected(selectedRows[0])}
+          onClick={() => {
+            handleEditSelected(selectedRows[0]?.id);
+          }}
         >
           Editar
         </button>
         <button
           className="btn glass btn-warning btn-sm rounded-3xl bg-warning text-xs"
           key="disable"
-          onClick={() => handleDisableSelected(selectedRows[0]?.id)}
+          onClick={() => {
+            handleDisableSelected(selectedRows[0]?.id);
+          }}
         >
           Desabilitar
         </button>
         <button
           className="btn glass btn-error btn-sm w-20 rounded-3xl bg-red-400 text-xs"
           key="delete"
-          onClick={() => handleDeleteSelected(selectedRows[0]?.id)}
+          onClick={() => {
+            handleDeleteSelected(selectedRows[0]?.id);
+          }}
         >
           Deletar
         </button>
@@ -160,28 +202,13 @@ export const UserTableStory = ({
     }
   };
 
-  const handleDelete = async ({ id }: any) => {
-    setLoading(true);
-    try {
-      await UserDelete(id, navigate);
-      setData((prevData: any) =>
-        prevData.filter((item: any) => item.id !== id),
-      );
-      setTotalElements((prevTotalElements) => prevTotalElements - 1);
-    } catch (error) {
-      console.error("Failed to delete user:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleDisable = async ({ id }: any) => {
+  const handleDisable = async (id : any) => {
     setLoading(true);
     try {
       await UserDisable(id, navigate);
       setData((prevData: any) =>
-        prevData.filter((item: any) => item.id !== id),
-      );
+         prevData.filter((item: any) => item.id !== id),
+       );
       setTotalElements((prevTotalElements) => prevTotalElements - 1);
     } catch (error) {
       console.error("Failed to disable user:", error);
@@ -191,62 +218,79 @@ export const UserTableStory = ({
   };
 
   return (
-    <DataTable
-      key={currentPage}
-      title={
-        <span className=" m-0 h-full w-full p-0 font-semibold">Usuários</span>
-      }
-      columns={getUserDataTableColumns}
-      data={data}
-      noDataComponent={NoDataComponent}
-      defaultSortFieldId={1}
-      pagination={pagination}
-      paginationServer={paginationServer}
-      highlightOnHover={highlightOnHover}
-      striped={striped}
-      pointerOnHover={pointerOnHover}
-      dense={dense}
-      noTableHead={noTableHead}
-      persistTableHead={persistTableHead}
-      progressPending={loading}
-      progressComponent={ProgressComponent}
-      noHeader={noHeader}
-      subHeader={subHeader}
-      subHeaderComponent={subHeaderComponent}
-      subHeaderAlign={subHeaderAlign}
-      subHeaderWrap={subHeaderWrap}
-      noContextMenu={noContextMenu}
-      fixedHeader={fixedHeader}
-      fixedHeaderScrollHeight={fixedHeaderScrollHeight}
-      direction={direction}
-      responsive={responsive}
-      disabled={disabled}
-      paginationTotalRows={totalElements}
-      paginationComponentOptions={paginationComponentOptions}
-      selectableRowsVisibleOnly
-      selectableRowsSingle
-      selectableRowsNoSelectAll
-      selectableRows
-      selectableRowsHighlight
-      paginationRowsPerPageOptions={[5, 10, 15]}
-      onChangeRowsPerPage={handlePerRowsChange}
-      onChangePage={handlePageChange}
-      paginationComponent={() => (
-        <Pagination
-          rowsPerPage={rowsPerPage}
-          rowCount={totalElements}
-          currentPage={currentPage}
-          paginationRowsPerPageOptions={[5, 10, 15]}
-          paginationComponentOptions={paginationComponentOptions}
-          onChangeRowsPerPage={handlePerRowsChange}
-          onChangePage={handlePageChange}
-          numPages={Math.ceil(totalElements / rowsPerPage)}
-          defaultComponentOptions={defaultComponentOptions}
-        />
-      )}
-      contextActions={contextActions}
-      onSelectedRowsChange={handleRowSelected}
-      clearSelectedRows={toggleCleared}
-    />
+    <>
+      <ConfirmModal
+        open={modalOpen}
+        setIsOpen={setModalOpen}
+        setConfirm={handleDeleteConfirmed}
+        idModal="1"
+        setSelectedID={setSelectedDeleteID}
+      />
+      <ConfirmModal
+        open={modalOpen2}
+        setIsOpen={setModalOpen2}
+        setConfirm={handleDisableConfirmed}
+        idModal="2"
+        setSelectedID={setSelectedDisableID}
+        text="desabilitar"
+      />
+      <DataTable
+        key={currentPage}
+        title={
+          <span className=" m-0 h-full w-full p-0 font-semibold">Usuários</span>
+        }
+        columns={getUserDataTableColumns}
+        data={data}
+        noDataComponent={NoDataComponent}
+        defaultSortFieldId={1}
+        pagination={pagination}
+        paginationServer={paginationServer}
+        highlightOnHover={highlightOnHover}
+        striped={striped}
+        pointerOnHover={pointerOnHover}
+        dense={dense}
+        noTableHead={noTableHead}
+        persistTableHead={persistTableHead}
+        progressPending={loading}
+        progressComponent={ProgressComponent}
+        noHeader={noHeader}
+        subHeader={subHeader}
+        subHeaderComponent={subHeaderComponent}
+        subHeaderAlign={subHeaderAlign}
+        subHeaderWrap={subHeaderWrap}
+        noContextMenu={noContextMenu}
+        fixedHeader={fixedHeader}
+        fixedHeaderScrollHeight={fixedHeaderScrollHeight}
+        direction={direction}
+        responsive={responsive}
+        disabled={disabled}
+        paginationTotalRows={totalElements}
+        paginationComponentOptions={paginationComponentOptions}
+        selectableRowsVisibleOnly
+        selectableRowsSingle
+        selectableRowsNoSelectAll
+        selectableRows
+        selectableRowsHighlight
+        paginationRowsPerPageOptions={[5, 10, 15]}
+        onChangeRowsPerPage={handlePerRowsChange}
+        onChangePage={handlePageChange}
+        paginationComponent={() => (
+          <Pagination
+            rowsPerPage={rowsPerPage}
+            rowCount={totalElements}
+            currentPage={currentPage}
+            paginationRowsPerPageOptions={[5, 10, 15]}
+            paginationComponentOptions={paginationComponentOptions}
+            onChangeRowsPerPage={handlePerRowsChange}
+            onChangePage={handlePageChange}
+            numPages={Math.ceil(totalElements / rowsPerPage)}
+            defaultComponentOptions={defaultComponentOptions}
+          />
+        )}
+        contextActions={contextActions}
+        onSelectedRowsChange={handleRowSelected}
+        clearSelectedRows={toggleCleared}
+      />
+    </>
   );
 };
