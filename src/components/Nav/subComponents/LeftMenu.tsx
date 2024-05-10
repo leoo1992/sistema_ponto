@@ -1,4 +1,3 @@
-import { HiUserGroup } from "react-icons/hi";
 import {
   HiHome,
   HiUserAdd,
@@ -6,7 +5,8 @@ import {
   HiMenu,
   HiClock,
   HiClipboardList,
-  // HiAdjustments,
+  HiAdjustments,
+  HiUserGroup,
   HiPresentationChartLine,
 } from "react-icons/hi";
 import { useState } from "react";
@@ -49,16 +49,16 @@ export default function LeftMenu() {
             </label>
           </button>
         </div>
-        <div className="drawer-side h-svh w-svw">
+        <div className="drawer-side h-screen w-svw">
           <label
             htmlFor="my-drawer"
             aria-label="close sidebar"
-            className="drawer-overlay flex h-svh w-svw content-center
+            className="drawer-overlay flex h-screen w-svw content-center
                         items-center justify-between self-center align-middle
                         transition-all duration-1000 ease-in-out"
             onClick={() => setActive(!active)}
           ></label>
-          <ul className="menu h-svh w-48 bg-primary-content pt-16 text-base-content shadow-sm shadow-primary">
+          <ul className="w-68 menu h-screen bg-primary-content pt-16 text-base-content shadow-sm shadow-primary">
             <li onClick={handleItemClick}>
               <Link to="/home" className="rounded-badge text-base font-bold">
                 <span className="text-2xl">
@@ -113,17 +113,17 @@ export default function LeftMenu() {
                 Histórico
               </Link>
             </li>
-            {/* <li>
+            <li>
               <Link
                 to="/corrections"
-                className="rounded-badge font-bold text-base"
+                className="rounded-badge text-base font-bold"
               >
                 <span className="text-2xl">
                   <HiAdjustments />
                 </span>
-                Ajustes
+                Cadastros do Sistema
               </Link>
-            </li> */}
+            </li>
           </ul>
         </div>
       </div>
