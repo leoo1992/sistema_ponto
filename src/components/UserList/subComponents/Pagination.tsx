@@ -65,7 +65,7 @@ export default function Pagination({
 
   const select = (
     <select
-      className="mx-2 rounded-lg p-1 shadow-2xl"
+      className="mx-2 rounded-lg p-1 shadow-2xl cursor-pointer"
       onChange={handleRowsPerPage}
       defaultValue={rowsPerPage}
       aria-label={options.rowsPerPageText}
@@ -85,72 +85,122 @@ export default function Pagination({
           {!options.noRowsPerPage && (
             <div className="m-0 hidden items-center p-0 sm:block">
               <label className="">Linhas:</label>
+              <div
+                className="tooltip tooltip-bottom font-normal"
+                data-tip="Linhas por página"
+              >
               {select}
+            </div>
             </div>
           )}
           {
-            <label className="m-0 flex hidden items-center p-0 sm:block">
+            <label className="m-0 hidden items-center p-0 sm:block">
               <span className="px-3">Registros:</span>
-              <span className={`rounded-lg bg-base-100 px-2 py-1 `}>
-                {range}
-              </span>
+              <div
+                className="tooltip tooltip-bottom font-normal"
+                data-tip="Quantidade de registros"
+              >
+                <span className={`rounded-lg bg-base-100 px-2 py-1 `}>
+                  {range}
+                </span>
+              </div>
             </label>
           }
-          <div className="m-0 flex content-end  items-center justify-end gap-0 self-end p-0">
-            <IconButton
-              id="pagination-first-page"
-              type="button"
-              aria-label="First Page"
-              aria-disabled={disabledLesser}
-              onClick={handleFirst}
-              disabled={disabledLesser}
-              className="btn-circle btn-ghost btn-sm m-0 gap-0 p-0"
-              size="small"
-              color="primary"
+          <div
+            className={`m-0 flex content-end items-center justify-end gap-0 self-end p-0`}
+          >
+            <div
+              className={`{${disabledLesser ? "" : "tooltip tooltip-bottom font-normal"}`}
+              data-tip={`${disabledLesser ? "" : "Primeira"}`}
             >
-              <MdFirstPage size={25} style={{ margin: 0, padding: 0 }} />
-            </IconButton>
-
-            <IconButton
-              id="pagination-previous-page"
-              type="button"
-              aria-label="Previous Page"
-              aria-disabled={disabledLesser}
-              onClick={handlePrevious}
-              disabled={disabledLesser}
-              className="btn-circle btn-ghost btn-sm m-0 gap-0 p-0"
-              size="small"
-              color="primary"
+              <IconButton
+                id="pagination-first-page"
+                type="button"
+                aria-label="First Page"
+                aria-disabled={disabledLesser}
+                onClick={handleFirst}
+                disabled={disabledLesser}
+                className="btn btn-circle btn-sm m-0 cursor-pointer gap-0 p-0"
+                size="small"
+                color="primary"
+              >
+                <MdFirstPage
+                  size={25}
+                  style={{ margin: 0, padding: 0, cursor: "pointer" }}
+                />
+              </IconButton>
+            </div>
+            <div
+              className={`{${disabledLesser ? "" : "tooltip tooltip-bottom font-normal"}`}
+              data-tip={`${disabledLesser ? "" : "Anterior"}`}
             >
-              <MdNavigateBefore size={25} style={{ margin: 0, padding: 0 }} />
-            </IconButton>
-            {currentPage}
-            <IconButton
-              id="pagination-next-page"
-              type="button"
-              aria-label="Next Page"
-              aria-disabled={disabledGreater}
-              onClick={handleNext}
-              disabled={disabledGreater}
-              className="btn-circle btn-ghost btn-sm m-0 gap-0 p-0"
-              size="small"
-              color="primary"
+              <IconButton
+                id="pagination-previous-page"
+                type="button"
+                aria-label="Previous Page"
+                aria-disabled={disabledLesser}
+                onClick={handlePrevious}
+                disabled={disabledLesser}
+                className="btn btn-circle btn-sm m-0 cursor-pointer gap-0 p-0"
+                size="small"
+                color="primary"
+              >
+                <MdNavigateBefore
+                  size={25}
+                  style={{ margin: 0, padding: 0, cursor: "pointer" }}
+                />
+              </IconButton>
+            </div>
+            <div
+              className="tooltip tooltip-bottom font-normal"
+              data-tip="Página atual"
             >
-              <MdNavigateNext size={25} style={{ margin: 0, padding: 0 }} />
-            </IconButton>
-            <IconButton
-              id="pagination-last-page"
-              type="button"
-              aria-label="Last Page"
-              aria-disabled={disabledGreater}
-              onClick={handleLast}
-              disabled={disabledGreater}
-              className="btn-circle btn-ghost btn-sm m-0 gap-0 p-0"
-              size="small"
-              color="primary"
+              <span className=" flex cursor-pointer items-center justify-center px-1">
+                {currentPage}
+              </span>
+            </div>
+            <div
+              className={`{${disabledLesser ? "" : "tooltip tooltip-bottom font-normal"}`}
+              data-tip={`${disabledLesser ? "" : "Próxima"}`}
             >
-              <MdLastPage size={25} style={{ margin: 0, padding: 0 }} />
-            </IconButton>
+              <IconButton
+                id="pagination-next-page"
+                type="button"
+                aria-label="Next Page"
+                aria-disabled={disabledGreater}
+                onClick={handleNext}
+                disabled={disabledGreater}
+                className="btn btn-circle btn-sm m-0 cursor-pointer gap-0 p-0"
+                size="small"
+                color="primary"
+              >
+                <MdNavigateNext
+                  size={25}
+                  style={{ margin: 0, padding: 0, cursor: "pointer" }}
+                />
+              </IconButton>
+            </div>
+            <div
+              className={`{${disabledLesser ? "" : "tooltip tooltip-bottom font-normal"}`}
+              data-tip={`${disabledLesser ? "" : "Última"}`}
+            >
+              <IconButton
+                id="pagination-last-page"
+                type="button"
+                aria-label="Last Page"
+                aria-disabled={disabledGreater}
+                onClick={handleLast}
+                disabled={disabledGreater}
+                className="btn btn-circle btn-sm m-0 cursor-pointer gap-0 p-0"
+                size="small"
+                color="primary"
+              >
+                <MdLastPage
+                  size={25}
+                  style={{ margin: 0, padding: 0, cursor: "pointer" }}
+                />
+              </IconButton>
+            </div>
           </div>
         </div>
       </div>

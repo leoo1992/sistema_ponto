@@ -111,3 +111,8 @@ body {
     transform: translateX(-50%);
   }
 }
+
+.tooltip {
+  --tooltip-color: #E0F0FF;
+  --tooltip-text-color: black ;
+}
