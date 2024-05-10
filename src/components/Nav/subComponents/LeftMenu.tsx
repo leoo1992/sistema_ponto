@@ -1,3 +1,7 @@
+import { MdTableRows } from "react-icons/md";
+import { MdNavigateNext } from "react-icons/md";
+import { FaHammer } from "react-icons/fa";
+import { MdAddHomeWork } from "react-icons/md";
 import {
   HiHome,
   HiUserAdd,
@@ -58,7 +62,7 @@ export default function LeftMenu() {
                         transition-all duration-1000 ease-in-out"
             onClick={() => setActive(!active)}
           ></label>
-          <ul className="w-68 menu h-screen bg-primary-content pt-16 text-base-content shadow-sm shadow-primary">
+          <ul className="menu h-screen w-48 bg-primary-content pt-16 text-base-content shadow-sm shadow-primary">
             <li onClick={handleItemClick}>
               <Link to="/home" className="rounded-badge text-base font-bold">
                 <span className="text-2xl">
@@ -67,27 +71,101 @@ export default function LeftMenu() {
                 Home
               </Link>
             </li>
-            <li onClick={handleItemClick}>
-              <Link
-                to="/register"
-                className="rounded-badge text-base font-bold"
-              >
-                <span className="text-2xl">
-                  <HiUserAdd />
-                </span>
-                Cadastro
-              </Link>
+            <li>
+              <details>
+                <summary className="rounded-badge text-base font-bold">
+                  <span className="text-2xl">
+                    <HiAdjustments />
+                  </span>
+                  Cadastros
+                </summary>
+                <ul>
+                  <li onClick={handleItemClick} className="m-0 p-0">
+                    <Link
+                      to="/register"
+                      className="m-0 rounded-badge px-1 font-semibold text-base-content"
+                    >
+                      <span className="text-lg">
+                        <HiUserAdd />
+                      </span>
+                      Usuários
+                      <span className="m-0 p-0 text-xl">
+                        <MdNavigateNext />
+                      </span>
+                    </Link>
+                  </li>
+                  <li onClick={handleItemClick} className="m-0 p-0">
+                    <a className="m-0 rounded-badge px-1 font-semibold text-base-content">
+                      <span className="text-xl">
+                        <MdAddHomeWork />
+                      </span>
+                      Setores
+                      <span className="m-0 p-0 text-xl">
+                        <MdNavigateNext />
+                      </span>
+                    </a>
+                  </li>
+                  <li onClick={handleItemClick} className="m-0 p-0">
+                    <a className="m-0 rounded-badge px-1 font-semibold text-base-content">
+                      <span className="text-xl">
+                        <FaHammer />
+                      </span>
+                      Cargos
+                      <span className="m-0 p-0 text-xl">
+                        <MdNavigateNext />
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </details>
             </li>
-            <li onClick={handleItemClick}>
-              <Link
-                to="/userslist"
-                className="rounded-badge text-base font-bold"
-              >
-                <span className="text-2xl">
-                  <HiUserGroup />
-                </span>
-                Usuários
-              </Link>
+            <li>
+              <details>
+                <summary className="rounded-badge text-base font-bold">
+                  <span className="text-2xl">
+                    <MdTableRows />
+                  </span>
+                  Listas
+                </summary>
+                <ul onClick={handleItemClick}>
+                  <li>
+                    <Link
+                      to="/userslist"
+                      className="m-0 rounded-badge px-1 font-semibold text-base-content"
+                    >
+                      <span className="text-xl">
+                        <HiUserGroup />
+                      </span>
+                      Usuários
+                      <span className="m-0 p-0 text-xl">
+                        <MdNavigateNext />
+                      </span>
+                    </Link>
+                  </li>
+                  <li onClick={handleItemClick} className="m-0 p-0">
+                    <a className="m-0 rounded-badge px-1 font-semibold text-base-content">
+                      <span className="text-xl">
+                        <MdAddHomeWork />
+                      </span>
+                      Setores
+                      <span className="m-0 p-0 text-xl">
+                        <MdNavigateNext />
+                      </span>
+                    </a>
+                  </li>
+                  <li onClick={handleItemClick} className="m-0 p-0">
+                    <a className="m-0 rounded-badge px-1 font-semibold text-base-content">
+                      <span className="text-xl">
+                        <FaHammer />
+                      </span>
+                      Cargos
+                      <span className="m-0 p-0 text-xl">
+                        <MdNavigateNext />
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </details>
             </li>
             <li onClick={handleItemClick}>
               <Link to="/charts" className="rounded-badge text-base font-bold">
@@ -113,17 +191,7 @@ export default function LeftMenu() {
                 Histórico
               </Link>
             </li>
-            <li>
-              <Link
-                to="/corrections"
-                className="rounded-badge text-base font-bold"
-              >
-                <span className="text-2xl">
-                  <HiAdjustments />
-                </span>
-                Cadastros do Sistema
-              </Link>
-            </li>
+
           </ul>
         </div>
       </div>
