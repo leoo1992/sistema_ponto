@@ -1,5 +1,5 @@
-import LeftMenu from "./subComponents/LeftMenu";
-import UserMenu from "./subComponents/UserMenu";
+import LeftMenu from "./subComponents/LeftMenu/LeftMenu";
+import UserMenu from "./subComponents/UserMenu/UserMenu";
 
 export default function Navbar() {
   return (

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Waves from "../components/Waves";
+import Waves from "../../components/Waves";
 
 export default function RouteIncorrect() {
   const navigate = useNavigate();

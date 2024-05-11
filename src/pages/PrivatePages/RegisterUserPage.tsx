@@ -1,5 +1,5 @@
-import RegisterUser from "../components/RegisterUser";
-import Waves from "../components/Waves";
+import RegisterUser from "../../components/RegisterUser";
+import Waves from "../../components/Waves";
 
 export default function RegisterUserPage() {
   return (
