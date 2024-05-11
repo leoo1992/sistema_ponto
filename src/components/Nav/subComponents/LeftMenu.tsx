@@ -27,8 +27,10 @@ export default function LeftMenu() {
     const drawerCheckbox = document.getElementById(
       "my-drawer",
     ) as HTMLInputElement;
-    if (drawerCheckbox) {
+    if (drawerCheckbox.checked) {
       drawerCheckbox.checked = !drawerCheckbox.checked;
+    } else {
+      drawerCheckbox.checked = drawerCheckbox.checked;
     }
     toogleMenu();
   }
