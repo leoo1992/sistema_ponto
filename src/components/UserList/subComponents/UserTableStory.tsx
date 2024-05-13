@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { getUserDataTableColumns } from "../../../utils/UserList/getUserDataTableColumns.util";
 import { NoDataComponent } from "./TableComponent/NoDataComponent";
 import { ProgressComponent } from "./TableComponent/ProgressComponent";
-import { subHeaderComponent } from "./TableComponent/subHeaderComponent";
+import { SubHeaderComponent } from "./TableComponent/subHeaderComponent";
 import DataTable from "react-data-table-component";
 import UserListGET from "../../../services/UserList/UserListGET";
 import Pagination from "./TableComponent/Pagination";
@@ -248,7 +248,7 @@ export const UserTableStory = ({
         progressComponent={ProgressComponent}
         noHeader={noHeader}
         subHeader={subHeader}
-        subHeaderComponent={subHeaderComponent}
+        subHeaderComponent={SubHeaderComponent}
         subHeaderAlign={subHeaderAlign}
         subHeaderWrap={subHeaderWrap}
         noContextMenu={noContextMenu}
