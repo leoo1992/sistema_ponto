@@ -1,4 +1,4 @@
-import { UserTable } from "./subComponents/UserTable";
+import { UserTable } from "./SubComponents/UserTable";
 
 export default function UserList() {
   return (

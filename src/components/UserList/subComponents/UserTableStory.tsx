@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { getUserDataTableColumns } from "../../../utils/UserList/getUserDataTableColumns.util";
-import { NoDataComponent } from "./NoDataComponent";
-import { ProgressComponent } from "./ProgressComponent";
-import { subHeaderComponent } from "./subHeaderComponent";
+import { NoDataComponent } from "./TableComponent/NoDataComponent";
+import { ProgressComponent } from "./TableComponent/ProgressComponent";
+import { subHeaderComponent } from "./TableComponent/subHeaderComponent";
 import DataTable from "react-data-table-component";
 import UserListGET from "../../../services/UserList/UserListGET";
-import Pagination from "./Pagination";
+import Pagination from "./TableComponent/Pagination";
 import UserDelete from "../../../services/UserList/UserDelete";
 import UserDisable from "../../../services/UserList/UserDisable";
 import { useNavigate } from "react-router-dom";
@@ -43,14 +43,10 @@ export const UserTableStory = ({
   const [toggleCleared, setToggleCleared] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpen2, setModalOpen2] = useState(false);
-  const [confirm, setConfirm] = useState(false);
+  const [_confirm, setConfirm] = useState(false);
   const [selectedDeleteID, setSelectedDeleteID] = useState<null | any>();
   const [selectedDisableID, setSelectedDisableID] = useState<null | any>();
   const navigate = useNavigate();
-
-  console.log("MODAL:", modalOpen);
-  console.log("CONFIRM:", confirm);
-  console.log("Selected:", selectedDeleteID);
 
   const handleRowSelected = useCallback((state: any) => {
     setSelectedRows(state.selectedRows);
@@ -83,7 +79,6 @@ export const UserTableStory = ({
 
   const contextActions = useMemo(() => {
     const handleEditSelected = (data: any) => {
-      console.log(data);
       handleEdit(data);
     };
     const handleDisableSelected = (id: any) => {
@@ -107,7 +102,7 @@ export const UserTableStory = ({
           className="btn glass btn-primary btn-sm w-20 rounded-3xl bg-primary text-xs text-white"
           key="edit"
           onClick={() => {
-            handleEditSelected(selectedRows[0]?.id);
+            handleEditSelected(selectedRows[0]);
           }}
         >
           Editar
@@ -191,8 +186,6 @@ export const UserTableStory = ({
         telefone: telefone ? telefone : null,
         userRole: userRole ? userRole : 0,
       };
-
-      console.log("RESP", response);
 
       navigate("/update", { state: response });
     } catch (error) {
