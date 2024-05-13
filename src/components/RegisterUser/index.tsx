@@ -1,17 +1,19 @@
-import { HiKey } from "react-icons/hi";
-import { HiLockClosed } from "react-icons/hi";
+import { useEffect } from "react";
+import {
+  HiKey,
+  HiLockClosed,
+  HiOfficeBuilding,
+  HiIdentification,
+  HiPhone,
+  HiMail,
+  HiUser,
+} from "react-icons/hi";
 import { BsWrench } from "react-icons/bs";
-import { HiOfficeBuilding } from "react-icons/hi";
-import { HiIdentification } from "react-icons/hi";
-import { HiPhone } from "react-icons/hi";
-import { HiMail } from "react-icons/hi";
-import { HiUser } from "react-icons/hi";
 import useNewUser from "../../hooks/useNewUser";
 import { submitForm_CreateUser } from "../../utils/CreateUser/submitForm_CreateUser";
 import Form from "./subComponents/Form";
 import Input from "./subComponents/Input";
 import Select from "./subComponents/Select";
-import { useEffect } from "react";
 
 export default function index() {
   const {
@@ -48,7 +50,7 @@ export default function index() {
       EmailNewUserRef.current.value = userData.email;
       TelNewUserRef.current.value = userData.telefone;
       cpfNewUserRef.current.value = userData.cpf;
-      // PasswordNewUserRef.current.value = userData.password;
+        // PasswordNewUserRef.current.value = userData.password;
 
       const selectedIndexSectorData = sector.findIndex(
         (sector: any) => sector.name === userData.sector,
@@ -69,7 +71,7 @@ export default function index() {
       const selectedIndexUserRoleData = options.findIndex(
         (option: any) => option.name === userData.userRole,
       );
-      if (selectedIndexPositionData !== -1) {
+      if (selectedIndexUserRoleData !== -1) {
         typeNewUserRef.current.selectedIndex =
           options[selectedIndexUserRoleData]?.id_userRole;
       }
@@ -77,11 +79,7 @@ export default function index() {
   }, [userData, sector, position, options]);
 
   return (
-    <div
-      className="rounded-3xl flex w-11/12 flex-col content-center items-center justify-center
- self-center bg-gradient-to-b from-slate-100 via-white to-transparent align-middle shadow-sm shadow-primary 
- sm:w-11/12 md:w-11/12 lg:w-6/12 h-5/6 m-4 p-0"
-    >
+    <div className="m-4 flex h-5/6 w-11/12 flex-col content-center items-center justify-center self-center rounded-3xl bg-gradient-to-b from-slate-100 via-white to-transparent p-0 align-middle shadow-sm shadow-primary sm:w-11/12 md:w-11/12 lg:w-6/12">
       <Form
         onSubmit={(e: any) =>
           submitForm_CreateUser(
@@ -106,8 +104,8 @@ export default function index() {
         <div className="form-control flex w-full content-center justify-center self-center">
           <Input
             inputRef={NameNewUserRef}
-            nameID={"name"}
-            labelName={"Nome"}
+            nameID="name"
+            labelName="Nome"
             register={register}
             classNameInput="w-full flex justify-between items-center self-center align-middle"
             Icon={<HiUser size={20} />}
@@ -115,8 +113,8 @@ export default function index() {
           />
           <Input
             inputRef={EmailNewUserRef}
-            nameID={"email"}
-            labelName={"Email"}
+            nameID="email"
+            labelName="Email"
             typeInput="email"
             register={register}
             classNameInput="w-full flex justify-between items-center self-center align-middle"
@@ -126,8 +124,8 @@ export default function index() {
           <div className="sm:flex sm:gap-3">
             <Input
               inputRef={TelNewUserRef}
-              nameID={"telefone"}
-              labelName={"Telefone"}
+              nameID="telefone"
+              labelName="Telefone"
               register={register}
               classNameInput="w-full flex justify-between items-center self-center align-middle"
               Icon={<HiPhone size={20} />}
@@ -135,10 +133,10 @@ export default function index() {
             />
             <Input
               inputRef={cpfNewUserRef}
-              nameID={"cpf"}
-              labelName={"CPF"}
+              nameID="cpf"
+              labelName="CPF"
               register={register}
-              classNameInput={`w-full flex justify-between items-center self-center align-middle`}
+              classNameInput="w-full flex justify-between items-center self-center align-middle"
               Icon={<HiIdentification size={20} />}
               classIcon="flex"
             />
@@ -146,8 +144,8 @@ export default function index() {
           <div className="sm:flex sm:gap-3">
             <Select
               selectRef={sectorNewUserRef}
-              nameID={"id_sector"}
-              labelName={"Setor"}
+              nameID="id_sector"
+              labelName="Setor"
               options={sector}
               register={register}
               classNameSelect="w-full flex justify-between items-center self-center align-middle"
@@ -156,8 +154,8 @@ export default function index() {
             />
             <Select
               selectRef={PositionNewUserRef}
-              nameID={"id_position"}
-              labelName={"Cargo"}
+              nameID="id_position"
+              labelName="Cargo"
               options={position}
               register={register}
               classNameSelect="w-full flex justify-between items-center self-center align-middle"
@@ -168,9 +166,9 @@ export default function index() {
           <div className="sm:flex sm:gap-3">
             <Select
               selectRef={typeNewUserRef}
-              nameID={"id_userRole"}
+              nameID="id_userRole"
               options={options}
-              labelName={"Acesso"}
+              labelName="Acesso"
               register={register}
               classNameSelect="w-full flex justify-between items-center self-center align-middle"
               Icon={<HiKey size={20} />}
@@ -178,12 +176,11 @@ export default function index() {
             />
             <Input
               inputRef={PasswordNewUserRef}
-              nameID={"password"}
-              labelName={"Senha"}
+              nameID="password"
+              labelName="Senha"
               typeInput="password"
               register={register}
-              classNameInput={`w-full flex justify-between items-center 
-              ${userData ? "hidden" : ""} self-center align-middle`}
+              classNameInput={`w-full flex justify-between items-center ${userData ? "hidden" : ""} self-center align-middle`}
               classNameLabel={`${userData ? "hidden" : ""}`}
               Icon={<HiLockClosed size={20} />}
               classIcon={`flex ${userData ? "hidden" : ""}`}
@@ -193,13 +190,11 @@ export default function index() {
         </div>
         <button
           type="submit"
-          className={`text-md lg:2/12 btn glass btn-primary ${userData ? "mt-4" : " mt-8"}
-          flex w-6/12 justify-center self-center rounded-badge bg-primary align-middle
-          font-extrabold text-white  sm:w-4/12 md:w-3/12`}
+          className={`text-md lg:2/12 btn glass btn-primary ${userData ? "mt-4" : " mt-8"} flex w-6/12 justify-center self-center rounded-badge bg-primary align-middle font-extrabold text-white sm:w-4/12 md:w-3/12`}
         >
           {userData ? "Atualizar" : "Cadastrar"}
         </button>
       </Form>
     </div>
   );
-}
+};
