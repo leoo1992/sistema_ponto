@@ -89,12 +89,12 @@ export default function index() {
   }, [, state, setValue]);
 
   const onSubmit = async ({cpf, email, name, telefone, userRole, position, sector, password}: any) => {
- const test = {cpf, email, name, telefone, position, sector};
+ const test = {cpf, email, name, telefone, position, sector, userRole};
  const data = {cpf, email, name, telefone, userRole, position, sector, password};
  
 
     if (state) {
-      await UserEdit(data, navigate);
+      await UserEdit(test, navigate);
     } else {
       await newUserPOST(data, navigate);
     }
