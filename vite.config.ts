@@ -14,4 +14,9 @@ export default defineConfig({
     }),
     terser(),
   ],
+  build: {
+    rollupOptions: {
+      external: ["styled-components"],
+    },
+  },
 });
