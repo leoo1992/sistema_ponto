@@ -3,10 +3,10 @@ import { notifySuccess } from "../../components/Toasts/ToastSuccess";
 import { notifyError } from "../../components/Toasts/ToastError";
 
 export default async function UserEdit(
-  { email, password, telefone, cpf, name, position, userRole }: any,
+  { email, telefone, cpf, name, userRole }: any,
   navigate: any,
 ) {
-  const data = { email, password, telefone, cpf, name, position, userRole };
+  const data = { email, telefone, cpf, name, userRole };
   const EditUserURL = import.meta.env.VITE_REACT_APP_EDIT_USER_URL;
 
   try {

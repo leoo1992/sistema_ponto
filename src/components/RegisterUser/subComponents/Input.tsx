@@ -1,66 +1,34 @@
-import { useEffect, useState } from "react";
-import { MutableRefObject, RefObject } from "react";
+import { forwardRef } from 'react';
 
 type PropTypes = {
-  nameID: string;
   labelName: string;
   typeInput?: string;
   classNameInput?: string;
   classNameLabel?: string;
-  inputRef: MutableRefObject<string> | RefObject<HTMLInputElement>;
-  required?: boolean;
-  maxLength?: number;
-  max?: number;
-  step?: string;
-  register: any;
   classContainer?: string;
   Icon?: any;
   classIcon?: string;
-  disabled?: boolean;
   autoComplete?: string;
+  register: any;
 };
 
-export default function Input({
+export const Input = forwardRef<HTMLInputElement, PropTypes>(({
   labelName,
-  nameID,
   typeInput = "text",
   classNameInput = "",
   classNameLabel = "",
   classContainer = "",
-  inputRef,
-  required = true,
-  maxLength = typeInput === "password" ? 20 : 300,
-  max = typeInput === "number" ? 100000000 : undefined,
-  step = "",
-  register,
   Icon,
   classIcon,
-  disabled = false,
   autoComplete = "off",
-}: PropTypes) {
-  const [hasValue, setHasValue] = useState(false);
-
-  useEffect(() => {
-    const handleChange = () => {
-      setHasValue(Boolean((inputRef as RefObject<HTMLInputElement>).current?.value));
-    };
-
-    const inputElement = (inputRef as RefObject<HTMLInputElement>).current;
-    if (inputElement) {
-      inputElement.addEventListener("input", handleChange);
-    }
-
-    return () => {
-      if (inputElement) {
-        inputElement.removeEventListener("input", handleChange);
-      }
-    };
-  }, [inputRef]);
-
+  register,
+}, ref) => {
   return (
-    <div className={`w-full ${classContainer}`}>
-      <label htmlFor={`${nameID}-input`} className={`label pt-1 px-0 pb-0 ${classNameLabel}`}>
-        <span className="label-text pt-3 font-bold text-primary sm:ml-16">
+    <div className={`form-group w-full ${classContainer}`}>
+      <label
+        className={`label px-0 pb-0 pt-1 ${classNameLabel}`}
+      >
+        <span className="label-text pt-3 pb-1 font-bold text-primary sm:ml-16">
           {labelName}
         </span>
       </label>
@@ -73,23 +41,14 @@ export default function Input({
           </div>
         ) : null}
         <input
-          {...register(nameID, { required: true })}
-          id={`${nameID}-input`}
-          ref={inputRef}
+          ref={ref}
+          {...register}
           type={typeInput}
           placeholder={labelName}
-          maxLength={maxLength}
-          max={max}
-          step={step}
-          required={required}
-          className={`input input-md input-bordered ${
-            hasValue ? "bg-primary-content bg-opacity-50 border-4" : ""
-          } rounded-2xl text-primary shadow-sm shadow-primary ${classNameInput}`}
-          icon={Icon ? Icon : null}
-          disabled={disabled}
+          className={`input input-md input-bordered rounded-2xl text-primary shadow-sm shadow-primary ${classNameInput}`}
           autoComplete={autoComplete}
         />
       </div>
     </div>
   );
-}
+});

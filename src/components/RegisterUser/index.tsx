@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import {
   HiKey,
   HiLockClosed,
@@ -9,192 +9,253 @@ import {
   HiUser,
 } from "react-icons/hi";
 import { BsWrench } from "react-icons/bs";
-import useNewUser from "../../hooks/useNewUser";
-import { submitForm_CreateUser } from "../../utils/CreateUser/submitForm_CreateUser";
-import Form from "./subComponents/Form";
-import Input from "./subComponents/Input";
-import Select from "./subComponents/Select";
+import { Input } from "./subComponents/Input";
+import { Select } from "./subComponents/Select";
+import { useState, useEffect } from "react";
+// import getOptions from "../../services/RegisterUser/getOptions";
+import getPosition from "../../services/RegisterUser/getPosition";
+import getSector from "../../services/RegisterUser/getSector";
+import newUserPOST from "../../services/RegisterUser/newUserPOST";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import UserEdit from "../../services/UserList/UserEdit";
 
 export default function index() {
   const {
-    NameNewUserRef,
-    EmailNewUserRef,
-    PasswordNewUserRef,
-    TelNewUserRef,
-    typeNewUserRef,
-    options,
-    position,
-    sector,
     register,
-    userData,
-    navigate,
     handleSubmit,
-    cpfNewUserRef,
-    sectorNewUserRef,
-    PositionNewUserRef,
-  } = useNewUser();
+    setValue,
+    formState: { errors, isSubmitting },
+  } = useForm<any>();
+  const [options, setOptions] = useState<any[]>([]);
+  const [positions, setPositions] = useState<any[]>([]);
+  const [sectors, setSectors] = useState<any[]>([]);
+  const location = useLocation();
+  const { state } = location;
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (
-      userData &&
-      NameNewUserRef.current &&
-      EmailNewUserRef.current &&
-      TelNewUserRef.current &&
-      cpfNewUserRef.current &&
-      sectorNewUserRef.current &&
-      PositionNewUserRef.current &&
-      // PasswordNewUserRef.current &&
-      typeNewUserRef.current
-    ) {
-      NameNewUserRef.current.value = userData.name;
-      EmailNewUserRef.current.value = userData.email;
-      TelNewUserRef.current.value = userData.telefone;
-      cpfNewUserRef.current.value = userData.cpf;
-        // PasswordNewUserRef.current.value = userData.password;
+    async function fetchData() {
+      try {
+        const positionsData = await getPosition();
+        const sectorsData = await getSector();
+        // const optionsData = await getOptions();
 
-      const selectedIndexSectorData = sector.findIndex(
-        (sector: any) => sector.name === userData.sector,
-      );
-      if (selectedIndexSectorData !== -1) {
-        sectorNewUserRef.current.selectedIndex =
-          sector[selectedIndexSectorData]?.id_sector;
-      }
+        const mappedPositions = positionsData.map((position: any) => ({
+          id: position.id_position,
+          name: position.name,
+        }));
+        const mappedSectors = sectorsData.map((sector: any) => ({
+          id: sector.id_sector,
+          name: sector.name,
+        }));
 
-      const selectedIndexPositionData = position.findIndex(
-        (pos: any) => pos.name === userData.position,
-      );
-      if (selectedIndexPositionData !== -1) {
-        PositionNewUserRef.current.selectedIndex =
-          position[selectedIndexPositionData]?.id_position;
-      }
+        // const mappedOptions = optionsData.map((option: any) => ({
+        //   id: option.id_sector,
+        //   name: option.name,
+        // }));
 
-      const selectedIndexUserRoleData = options.findIndex(
-        (option: any) => option.name === userData.userRole,
-      );
-      if (selectedIndexUserRoleData !== -1) {
-        typeNewUserRef.current.selectedIndex =
-          options[selectedIndexUserRoleData]?.id_userRole;
+        setPositions(mappedPositions);
+        setSectors(mappedSectors);
+        // setOptions(mappedOptions);
+
+        setOptions([
+          { id: "ADMINISTRADOR", name: "Administrador" },
+          { id: "COLABORADOR", name: "Colaborador" },
+        ]);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
       }
     }
-  }, [userData, sector, position, options]);
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (state) {
+      const { name, email, cpf, position, sector, telefone, userRole }: any =
+        state;
+
+      console.log("ENTROU=", state.response);
+
+      setValue("name", name || "");
+      setValue("email", email || "");
+      setValue("cpf", cpf || "");
+      setValue("telefone", telefone || "");
+      setValue("id_sector", sector || "");
+      setValue("id_position", position || "");
+      setValue("id_userRole", userRole || "");
+    }
+  }, [, state, setValue]);
+
+  const onSubmit = async ({cpf, email, name, telefone, userRole, position, sector, password}: any) => {
+ const test = {cpf, email, name, telefone, position, sector};
+ const data = {cpf, email, name, telefone, userRole, position, sector, password};
+ 
+
+    if (state) {
+      await UserEdit(data, navigate);
+    } else {
+      await newUserPOST(data, navigate);
+    }
+  };
 
   return (
     <div className="m-4 flex h-5/6 w-11/12 flex-col content-center items-center justify-center self-center rounded-3xl bg-gradient-to-b from-slate-100 via-white to-transparent p-0 align-middle shadow-sm shadow-primary sm:w-11/12 md:w-11/12 lg:w-6/12">
-      <Form
-        onSubmit={(e: any) =>
-          submitForm_CreateUser(
-            e,
-            NameNewUserRef,
-            EmailNewUserRef,
-            PasswordNewUserRef,
-            TelNewUserRef,
-            typeNewUserRef,
-            cpfNewUserRef,
-            sectorNewUserRef,
-            PositionNewUserRef,
-            userData,
-            navigate,
-            handleSubmit,
-          )
-        }
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="m-0  flex w-full flex-col p-6"
       >
         <h1 className="text-center font-bold text-primary sm:text-lg">
-          {userData ? "Edição de usuário" : "Cadastro de usuários"}
+          {state ? "Edição de Usuário" : "Cadastro de usuários"}
         </h1>
-        <div className="form-control flex w-full content-center justify-center self-center">
+        <div
+          className={`flex w-full flex-col content-center justify-center self-center`}
+        >
           <Input
-            inputRef={NameNewUserRef}
-            nameID="name"
             labelName="Nome"
-            register={register}
-            classNameInput="w-full flex justify-between items-center self-center align-middle"
+            classNameInput={`w-full flex justify-between items-center
+             self-center align-middle ${errors?.name && "input-error shadow-error"}`}
             Icon={<HiUser size={20} />}
             classIcon="flex"
+            register={register("name", { required: true })}
+            aria-invalid={errors.name ? "true" : "false"}
           />
+          {errors?.name?.type === "required" && (
+            <p role="alert" className="ml-16 p-1 text-red-500">
+              * Campo requerido
+            </p>
+          )}
           <Input
-            inputRef={EmailNewUserRef}
-            nameID="email"
+            register={register("email", {
+              required: true,
+              pattern: /^\S+@\S+$/i,
+            })}
             labelName="Email"
             typeInput="email"
-            register={register}
-            classNameInput="w-full flex justify-between items-center self-center align-middle"
+            classNameInput={`w-full flex justify-between items-center
+             self-center align-middle ${errors?.email && "input-error shadow-error"}`}
             Icon={<HiMail size={20} />}
             classIcon="flex"
           />
+          {errors?.email?.type === "required" && (
+            <p role="alert" className="ml-16 p-1 text-red-500">
+              * Campo requerido
+            </p>
+          )}
           <div className="sm:flex sm:gap-3">
-            <Input
-              inputRef={TelNewUserRef}
-              nameID="telefone"
-              labelName="Telefone"
-              register={register}
-              classNameInput="w-full flex justify-between items-center self-center align-middle"
-              Icon={<HiPhone size={20} />}
-              classIcon="flex"
-            />
-            <Input
-              inputRef={cpfNewUserRef}
-              nameID="cpf"
-              labelName="CPF"
-              register={register}
-              classNameInput="w-full flex justify-between items-center self-center align-middle"
-              Icon={<HiIdentification size={20} />}
-              classIcon="flex"
-            />
+            <div className="w-full">
+              <Input
+                register={register("telefone", { required: true })}
+                labelName="Telefone"
+                classNameInput={`w-full flex justify-between items-center
+               self-center align-middle ${errors?.telefone && "input-error shadow-error"}`}
+                Icon={<HiPhone size={20} />}
+                classIcon="flex"
+              />
+              {errors?.telefone?.type === "required" && (
+                <p role="alert" className="ml-16 p-1 text-red-500">
+                  * Campo requerido
+                </p>
+              )}
+            </div>
+            <div className="w-full">
+              <Input
+                register={register("cpf", { required: true })}
+                labelName="CPF"
+                classNameInput={`w-full flex justify-between items-center
+               self-center align-middle ${errors?.cpf && "input-error shadow-error"}`}
+                Icon={<HiIdentification size={20} />}
+                classIcon="flex"
+              />
+              {errors?.cpf?.type === "required" && (
+                <p role="alert" className="ml-16 p-1 text-red-500">
+                  * Campo requerido
+                </p>
+              )}
+            </div>
           </div>
           <div className="sm:flex sm:gap-3">
-            <Select
-              selectRef={sectorNewUserRef}
-              nameID="id_sector"
-              labelName="Setor"
-              options={sector}
-              register={register}
-              classNameSelect="w-full flex justify-between items-center self-center align-middle"
-              Icon={<HiOfficeBuilding size={20} />}
-              classIcon="flex"
-            />
-            <Select
-              selectRef={PositionNewUserRef}
-              nameID="id_position"
-              labelName="Cargo"
-              options={position}
-              register={register}
-              classNameSelect="w-full flex justify-between items-center self-center align-middle"
-              Icon={<BsWrench size={20} />}
-              classIcon="flex"
-            />
+            <div className="w-full">
+              <Select
+                labelName="Setor"
+                options={sectors}
+                register={register("id_sector", { required: true })}
+                classNameSelect={`w-full flex justify-between items-center
+               self-center align-middle ${errors?.id_sector && "select-error shadow-error"}`}
+                Icon={<HiOfficeBuilding size={20} />}
+                classIcon="flex"
+              />
+              {errors?.id_sector?.type === "required" && (
+                <p role="alert" className="ml-16 p-1 text-red-500">
+                  * Campo requerido
+                </p>
+              )}
+            </div>
+            <div className="w-full">
+              <Select
+                labelName="Cargo"
+                options={positions}
+                register={register("id_position", { required: true })}
+                classNameSelect={`w-full flex justify-between items-center
+                self-center align-middle ${errors?.id_position && "select-error shadow-error"}`}
+                Icon={<BsWrench size={20} />}
+                classIcon="flex"
+              />
+              {errors?.id_position?.type === "required" && (
+                <p role="alert" className="ml-16 p-1 text-red-500">
+                  * Campo requerido
+                </p>
+              )}
+            </div>
           </div>
           <div className="sm:flex sm:gap-3">
-            <Select
-              selectRef={typeNewUserRef}
-              nameID="id_userRole"
-              options={options}
-              labelName="Acesso"
-              register={register}
-              classNameSelect="w-full flex justify-between items-center self-center align-middle"
-              Icon={<HiKey size={20} />}
-              classIcon="flex"
-            />
-            <Input
-              inputRef={PasswordNewUserRef}
-              nameID="password"
-              labelName="Senha"
-              typeInput="password"
-              register={register}
-              classNameInput={`w-full flex justify-between items-center ${userData ? "hidden" : ""} self-center align-middle`}
-              classNameLabel={`${userData ? "hidden" : ""}`}
-              Icon={<HiLockClosed size={20} />}
-              classIcon={`flex ${userData ? "hidden" : ""}`}
-              disabled={userData ? true : false}
-            />
+            <div className="w-full">
+              <Select
+                options={options}
+                labelName="Acesso"
+                register={register("id_userRole", { required: true })}
+                classNameSelect={`w-full flex justify-between items-center
+                self-center align-middle ${errors?.id_userRole && "select-error shadow-error"}`}
+                Icon={<HiKey size={20} />}
+                classIcon="flex"
+              />
+              {errors?.id_userRole?.type === "required" && (
+                <p role="alert" className="ml-16 p-1 text-red-500">
+                  * Campo requerido
+                </p>
+              )}
+            </div>
+            <div className="w-full">
+              <Input
+                register={register("password",  state ? {} : { required: true })}
+                labelName="Senha"
+                typeInput="password"
+                classNameInput={`${state ? "hidden" : ""} w-full flex justify-between items-center
+               self-center align-middle ${errors?.password && "input-error shadow-error"}`}
+                classNameLabel={`${state ? "hidden" : ""}`}
+                Icon={<HiLockClosed size={20} />}
+                classIcon={`flex ${state ? "hidden" : ""}`}
+              />
+              {errors?.password?.type === "required" && (
+                <p role="alert" className="ml-16 p-1 text-red-500">
+                  * Campo requerido
+                </p>
+              )}
+            </div>
           </div>
         </div>
-        <button
-          type="submit"
-          className={`text-md lg:2/12 btn glass btn-primary ${userData ? "mt-4" : " mt-8"} flex w-6/12 justify-center self-center rounded-badge bg-primary align-middle font-extrabold text-white sm:w-4/12 md:w-3/12`}
-        >
-          {userData ? "Atualizar" : "Cadastrar"}
-        </button>
-      </Form>
+        <div className="form-group flex w-full justify-center self-center align-middle">
+          <button
+            className={`text-md lg:2/12 btn glass btn-primary mt-8 w-6/12 
+          rounded-badge bg-primary  font-extrabold 
+          text-white sm:w-4/12 md:w-3/12`}
+            disabled={isSubmitting}
+          >
+            {state ? "Atualizar" : "Registrar"}
+          </button>
+        </div>
+      </form>
     </div>
   );
-};
+}

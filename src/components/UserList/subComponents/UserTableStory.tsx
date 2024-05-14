@@ -10,6 +10,7 @@ import UserDelete from "../../../services/UserList/UserDelete";
 import UserDisable from "../../../services/UserList/UserDisable";
 import { useNavigate } from "react-router-dom";
 import { ConfirmModal } from "../../Modal/Modal";
+
 //import { data } from "../../../utils/UserList/data.util";
 
 export const UserTableStory = ({
@@ -78,8 +79,9 @@ export const UserTableStory = ({
   };
 
   const contextActions = useMemo(() => {
-    const handleEditSelected = (data: any) => {
-      handleEdit(data);
+    const handleEditSelected = async(data: any) => {
+      console.log(data);
+      await handleEdit(data);
     };
     const handleDisableSelected = (id: any) => {
       setModalOpen2(true);
@@ -87,7 +89,7 @@ export const UserTableStory = ({
       setToggleCleared(!toggleCleared);
     };
 
-    const handleDeleteSelected = async (id: any) => {
+    const handleDeleteSelected = (id: any) => {
       setModalOpen(true);
       setSelectedDeleteID(id);
       setToggleCleared(!toggleCleared);
