@@ -4,11 +4,11 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    include: [],
+    include: ['styled-components', 'react-data-table-component'],
   },
   build: {
     rollupOptions: {
-      external: [],
+      external: ['styled-components', 'react-data-table-component'],
     },
   },
 });
