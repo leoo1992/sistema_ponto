@@ -82,7 +82,7 @@ export default function index() {
 
       setValue("name", name || "");
       setValue("email", email || "");
-      setValue("cpf", cpf || "");
+      setValue("cpf", MaskCPF(cpf) || "");
       setValue("telefone", telefone || "");
       setValue("id_sector", sector || "");
       setValue("id_position", position || "");
@@ -120,7 +120,7 @@ export default function index() {
   };
 
   const MaskCPF = (value: string) => {
-    const numericValue = value.replace(/\D/g, "");
+    const numericValue = value.replace(/\D/g, "").slice(0, 11);
     const formattedCPF = numericValue.replace(
       /(\d{3})(\d{3})(\d{3})(\d{2})/,
       "$1.$2.$3-$4",
