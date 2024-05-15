@@ -1,4 +1,6 @@
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   HiKey,
   HiLockClosed,
@@ -11,22 +13,24 @@ import {
 import { BsWrench } from "react-icons/bs";
 import { Input } from "./subComponents/Input";
 import { Select } from "./subComponents/Select";
-import { useState, useEffect } from "react";
+import { ErrorMessage } from "./subComponents/ErrorMsgs";
 // import getOptions from "../../services/RegisterUser/getOptions";
 import getPosition from "../../services/RegisterUser/getPosition";
 import getSector from "../../services/RegisterUser/getSector";
 import newUserPOST from "../../services/RegisterUser/newUserPOST";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import UserEdit from "../../services/UserList/UserEdit";
+import { validarCPF } from "../../utils/CreateUser/validarCPF";
 
 export default function index() {
+  console.log("RENDER");
+
   const {
     register,
     handleSubmit,
     setValue,
     formState: { errors, isSubmitting },
   } = useForm<any>();
+
   const [options, setOptions] = useState<any[]>([]);
   const [positions, setPositions] = useState<any[]>([]);
   const [sectors, setSectors] = useState<any[]>([]);
@@ -76,8 +80,6 @@ export default function index() {
       const { name, email, cpf, position, sector, telefone, userRole }: any =
         state;
 
-      console.log("ENTROU=", state.response);
-
       setValue("name", name || "");
       setValue("email", email || "");
       setValue("cpf", cpf || "");
@@ -88,16 +90,42 @@ export default function index() {
     }
   }, [, state, setValue]);
 
-  const onSubmit = async ({cpf, email, name, telefone, userRole, position, sector, password}: any) => {
- const test = {cpf, email, name, telefone, position, sector, userRole};
- const data = {cpf, email, name, telefone, userRole, position, sector, password};
- 
+  const onSubmit = async ({
+    cpf,
+    email,
+    name,
+    telefone,
+    userRole,
+    position,
+    sector,
+    password,
+  }: any) => {
+    const test = { cpf, email, name, telefone, position, sector, userRole };
+    const data = {
+      cpf,
+      email,
+      name,
+      telefone,
+      userRole,
+      position,
+      sector,
+      password,
+    };
 
     if (state) {
       await UserEdit(test, navigate);
     } else {
       await newUserPOST(data, navigate);
     }
+  };
+
+  const MaskCPF = (value: string) => {
+    const numericValue = value.replace(/\D/g, "");
+    const formattedCPF = numericValue.replace(
+      /(\d{3})(\d{3})(\d{3})(\d{2})/,
+      "$1.$2.$3-$4",
+    );
+    return formattedCPF;
   };
 
   return (
@@ -122,9 +150,7 @@ export default function index() {
             aria-invalid={errors.name ? "true" : "false"}
           />
           {errors?.name?.type === "required" && (
-            <p role="alert" className="ml-16 p-1 text-red-500">
-              * Campo requerido
-            </p>
+            <ErrorMessage>Campo requerido</ErrorMessage>
           )}
           <Input
             register={register("email", {
@@ -139,9 +165,10 @@ export default function index() {
             classIcon="flex"
           />
           {errors?.email?.type === "required" && (
-            <p role="alert" className="ml-16 p-1 text-red-500">
-              * Campo requerido
-            </p>
+            <ErrorMessage>Campo requerido</ErrorMessage>
+          )}
+          {errors?.email?.type === "pattern" && (
+            <ErrorMessage>Email Inválido</ErrorMessage>
           )}
           <div className="sm:flex sm:gap-3">
             <div className="w-full">
@@ -154,14 +181,22 @@ export default function index() {
                 classIcon="flex"
               />
               {errors?.telefone?.type === "required" && (
-                <p role="alert" className="ml-16 p-1 text-red-500">
-                  * Campo requerido
-                </p>
+                <ErrorMessage>Campo requerido</ErrorMessage>
               )}
             </div>
             <div className="w-full">
               <Input
-                register={register("cpf", { required: true })}
+                register={register("cpf", {
+                  required: true,
+                  validate: (value) => validarCPF(value),
+                  onChange: (e) => {
+                    setValue("cpf", MaskCPF(e.target.value));
+                  },
+                  maxLength: 14,
+                  minLength: 14,
+                })}
+                maxLength={14}
+                minLength={14}
                 labelName="CPF"
                 classNameInput={`w-full flex justify-between items-center
                self-center align-middle ${errors?.cpf && "input-error shadow-error"}`}
@@ -169,9 +204,10 @@ export default function index() {
                 classIcon="flex"
               />
               {errors?.cpf?.type === "required" && (
-                <p role="alert" className="ml-16 p-1 text-red-500">
-                  * Campo requerido
-                </p>
+                <ErrorMessage>Campo requerido</ErrorMessage>
+              )}
+              {errors?.cpf?.type === "validate" && (
+                <ErrorMessage>CPF Inválido</ErrorMessage>
               )}
             </div>
           </div>
@@ -187,9 +223,7 @@ export default function index() {
                 classIcon="flex"
               />
               {errors?.id_sector?.type === "required" && (
-                <p role="alert" className="ml-16 p-1 text-red-500">
-                  * Campo requerido
-                </p>
+                <ErrorMessage>Campo requerido</ErrorMessage>
               )}
             </div>
             <div className="w-full">
@@ -203,9 +237,7 @@ export default function index() {
                 classIcon="flex"
               />
               {errors?.id_position?.type === "required" && (
-                <p role="alert" className="ml-16 p-1 text-red-500">
-                  * Campo requerido
-                </p>
+                <ErrorMessage>Campo requerido</ErrorMessage>
               )}
             </div>
           </div>
@@ -221,26 +253,28 @@ export default function index() {
                 classIcon="flex"
               />
               {errors?.id_userRole?.type === "required" && (
-                <p role="alert" className="ml-16 p-1 text-red-500">
-                  * Campo requerido
-                </p>
+                <ErrorMessage>Campo requerido</ErrorMessage>
               )}
             </div>
             <div className="w-full">
-              <Input
-                register={register("password",  state ? {} : { required: true })}
-                labelName="Senha"
-                typeInput="password"
-                classNameInput={`${state ? "hidden" : ""} w-full flex justify-between items-center
+              {!state && (
+                <>
+                  <Input
+                    register={register(
+                      "password",
+                      state ? {} : { required: true },
+                    )}
+                    labelName="Senha"
+                    typeInput="password"
+                    classNameInput={` w-full flex justify-between items-center
                self-center align-middle ${errors?.password && "input-error shadow-error"}`}
-                classNameLabel={`${state ? "hidden" : ""}`}
-                Icon={<HiLockClosed size={20} />}
-                classIcon={`flex ${state ? "hidden" : ""}`}
-              />
-              {errors?.password?.type === "required" && (
-                <p role="alert" className="ml-16 p-1 text-red-500">
-                  * Campo requerido
-                </p>
+                    Icon={<HiLockClosed size={20} />}
+                    classIcon={`flex `}
+                  />
+                  {errors?.password?.type === "required" && (
+                    <ErrorMessage>Campo requerido</ErrorMessage>
+                  )}
+                </>
               )}
             </div>
           </div>
