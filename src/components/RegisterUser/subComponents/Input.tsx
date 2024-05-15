@@ -10,6 +10,10 @@ type PropTypes = {
   classIcon?: string;
   autoComplete?: string;
   register: any;
+  onBlur?: any;
+  onChange?: any;
+  maxLength?: number;
+  minLength?: number;
 };
 
 export const Input = forwardRef<HTMLInputElement, PropTypes>(({
@@ -22,6 +26,10 @@ export const Input = forwardRef<HTMLInputElement, PropTypes>(({
   classIcon,
   autoComplete = "off",
   register,
+  onBlur,
+  onChange,
+  maxLength,
+  minLength
 }, ref) => {
   return (
     <div className={`form-group w-full ${classContainer}`}>
@@ -41,7 +49,11 @@ export const Input = forwardRef<HTMLInputElement, PropTypes>(({
           </div>
         ) : null}
         <input
+          minLength={minLength}
           ref={ref}
+          onBlur={onBlur}
+          onChange={onChange}
+          maxLength={maxLength}
           {...register}
           type={typeInput}
           placeholder={labelName}
