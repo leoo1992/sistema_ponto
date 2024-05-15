@@ -1,4 +1,3 @@
-import { Alignment, Direction } from "react-data-table-component";
 import { UserTableStory } from "./UserTableStory";
 
 // @ts-ignore
@@ -29,9 +28,7 @@ UserTable.args = {
   progressPending: false,
   noTableHead: false,
   noContextMenu: false,
-  direction: Direction.AUTO,
   subHeader: false,
-  subHeaderAlign: Alignment.CENTER,
   subHeaderWrap: true,
   responsive: true,
   disabled: false,
@@ -97,11 +94,9 @@ export default {
       },
     },
     subHeaderAlign: {
-      options: [Alignment.RIGHT, Alignment.CENTER, Alignment.LEFT],
       control: { type: "select" },
     },
     direction: {
-      options: [Direction.AUTO, Direction.LTR, Direction.RTL],
       control: { type: "select" },
     },
     selectableRowsRadio: {

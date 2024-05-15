@@ -22,8 +22,6 @@ import UserEdit from "../../services/UserList/UserEdit";
 import { validarCPF } from "../../utils/CreateUser/validarCPF";
 
 export default function index() {
-  console.log("RENDER");
-
   const {
     register,
     handleSubmit,
