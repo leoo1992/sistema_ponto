@@ -9,6 +9,11 @@ export default defineConfig({
   build: {
     rollupOptions: {
       external: ['styled-components'],
+      output: {
+        globals: {
+          'styled-components': 'styled',
+        },
+      },
     },
   },
 });
