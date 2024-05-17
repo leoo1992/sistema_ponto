@@ -74,15 +74,17 @@ export default function index() {
       const { name, email, cpf, position, sector, telefone, userRole }: any =
         state;
 
+      const cpfAdjuted = MaskCPF(cpf);
+
       setValue("name", name || "");
       setValue("email", email || "");
-      setValue("cpf", MaskCPF(cpf) || "");
+      setValue("cpf", cpfAdjuted || "");
       setValue("telefone", telefone || "");
       setValue("id_sector", sector || "");
       setValue("id_position", position || "");
       setValue("id_userRole", userRole || "");
     }
-  }, [, state, setValue]);
+  }, [state, setValue]);
 
   const onSubmit = async ({
     cpf,

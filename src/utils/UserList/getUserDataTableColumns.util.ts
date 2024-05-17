@@ -2,7 +2,7 @@ export const getUserDataTableColumns = [
   {
     name: "Id",
     selector: (row: any) => {
-      if (row.id === null || row.id === undefined) return "Sem ID";
+      if (row.id === null || row.id === undefined) return "Não definido";
       return row.id;
     },
     sortable: true,
@@ -11,7 +11,7 @@ export const getUserDataTableColumns = [
   {
     name: "Nome",
     selector: (row: any) => {
-      if (!row.name) return "Sem Nome";
+      if (!row.name) return "Não definido";
       return row.name;
     },
     sortable: true,
@@ -20,7 +20,7 @@ export const getUserDataTableColumns = [
   {
     name: "Email",
     selector: (row: any) => {
-      if (!row.email) return "Sem Email";
+      if (!row.email) return "Não definido";
       return row.email;
     },
     sortable: true,
@@ -29,7 +29,7 @@ export const getUserDataTableColumns = [
   {
     name: "CPF",
     selector: (row: any) => {
-      if (!row.cpf) return "Sem cpf";
+      if (!row.cpf) return "Não definido";
       return row.cpf;
     },
     sortable: true,
@@ -38,8 +38,8 @@ export const getUserDataTableColumns = [
   {
     name: "Cargo",
     selector: (row: any) => {
-      if (!row.position) return "Sem Cargo";
-      return row.position;
+      if (!row.position) return "Não definido";
+      return row.position.name;
     },
     sortable: true,
     width: "140px",
@@ -47,8 +47,8 @@ export const getUserDataTableColumns = [
   {
     name: "Setor",
     selector: (row: any) => {
-      if (!row.sector) return "Sem Setor";
-      return row.sector;
+      if (!row.sector) return "Não definido";
+      return row.sector.name;
     },
     sortable: true,
     width: "140px",
@@ -56,23 +56,25 @@ export const getUserDataTableColumns = [
   {
     name: "Telefone",
     selector: (row: any) => {
-      if (!row.telefone) return "Sem Telefone";
+      if (!row.telefone) return "Não definido";
       return row.telefone;
     },
     sortable: true,
     width: "140px",
   },
   {
-    name: "Tipo",
+    name: "Permissão",
     selector: (row: any) => {
-      const userRole = row.userRole;
-      if (!userRole) return "Sem Tipo";
-      const lowercaseRole = userRole.toLowerCase();
-      return lowercaseRole.charAt(0).toUpperCase() + lowercaseRole.slice(1);
+      if (!row.permissions || row.permissions.length === 0) return "Não definido";
+      const campo =  row.permissions[0].name;
+      const lowercaseRole = campo.toLowerCase();
+      const convert = lowercaseRole.charAt(0).toUpperCase() + lowercaseRole.slice(1);
+      return convert;
     },
     sortable: true,
     width: "140px",
-  },
+  }
+  
   // {
   //   name: 'Status',
   //   selector: (row: any) => {
