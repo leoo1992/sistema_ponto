@@ -43,7 +43,10 @@ export default function CadsatrosContainer({ handleItemClick }: any) {
             </Link>
           </li>
           <li onClick={handleItemClick} className="m-0 p-0">
-            <a className="m-0 rounded-badge px-1 font-semibold text-base-content">
+          <Link
+              to="/register-update-position"
+              className="m-0 rounded-badge px-1 font-semibold text-base-content"
+            >
               <span className="text-xl">
                 <FaHammer />
               </span>
@@ -51,7 +54,7 @@ export default function CadsatrosContainer({ handleItemClick }: any) {
               <span className="m-0 p-0 text-xl">
                 <MdNavigateNext />
               </span>
-            </a>
+            </Link>
           </li>
         </ul>
       </details>

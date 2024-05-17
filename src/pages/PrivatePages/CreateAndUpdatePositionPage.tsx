@@ -1,10 +1,10 @@
-import CreateAndUpdateSector from "../../components/CreateAndUpdateSector";
+import CreateAndUpdatePosition from "../../components/CreateAndUpdatePosition";
 import Waves from "../../components/Waves";
 
-export default function CreateAndUpdateSectorPage() {
+export default function CreateAndUpdatePositionPage() {
   return (
     <div className="z-0 m-0 flex w-full flex-grow items-start justify-center pt-8">
-      <CreateAndUpdateSector />
+      <CreateAndUpdatePosition />
       <Waves />
     </div>
   );
