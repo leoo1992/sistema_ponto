@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const subHeaderComponent = (
   <div className="flex-col-2 flex w-full items-center justify-end gap-2 text-center text-xs">
     <Link
-      to="/register"
+      to="/register-update-user"
       className="text-md btn btn-circle glass btn-primary
          btn-sm mt-1 rounded-full bg-primary font-bold
         text-white shadow-md sm:w-28 sm:rounded-badge"

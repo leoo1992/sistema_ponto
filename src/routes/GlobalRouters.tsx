@@ -13,8 +13,9 @@ import {
   HistoryPage,
   ProfilePage,
   ConfigsPage,
+  CreateAndUpdateSectorPage,
 } from "../pages";
-import PrivateRoute from "./PrivateRoute";
+import PrivateRouteProvider from "./PrivateRouteProvider";
 
 const GlobalRouters = () => {
   return (
@@ -49,73 +50,73 @@ const GlobalRouters = () => {
         <Route
           path="/home"
           element={
-            <PrivateRoute>
+            <PrivateRouteProvider>
               <HomePage />
-            </PrivateRoute>
+            </PrivateRouteProvider>
           }
         />
         <Route
-          path="/register"
+          path={"/register-update-user"}
           element={
-            <PrivateRoute>
+            <PrivateRouteProvider>
               <RegisterUserPage />
-            </PrivateRoute>
+            </PrivateRouteProvider>
           }
         />
         <Route
-          path="/update"
+          path={"/register-update-sector"}
           element={
-            <PrivateRoute>
-              <RegisterUserPage />
-            </PrivateRoute>
+            <PrivateRouteProvider>
+              <CreateAndUpdateSectorPage />
+            </PrivateRouteProvider>
           }
         />
         <Route
           path="/userslist"
           element={
-            <PrivateRoute>
+            <PrivateRouteProvider>
               <UsersListPage />
-            </PrivateRoute>
+            </PrivateRouteProvider>
           }
         />
         <Route
           path="/charts"
           element={
-            <PrivateRoute>
+            <PrivateRouteProvider>
               <ChartsPage />
-            </PrivateRoute>
+            </PrivateRouteProvider>
           }
         />
         <Route
           path="/reports"
           element={
-            <PrivateRoute>
+            <PrivateRouteProvider>
               <ReportsPage />
-            </PrivateRoute>
+            </PrivateRouteProvider>
           }
         />
         <Route
           path="/history"
           element={
-            <PrivateRoute>
+            <PrivateRouteProvider>
               <HistoryPage />
-            </PrivateRoute>
+            </PrivateRouteProvider>
           }
         />
         <Route
           path="/profile"
           element={
-            <PrivateRoute>
+            <PrivateRouteProvider>
               <ProfilePage />
-            </PrivateRoute>
+            </PrivateRouteProvider>
           }
         />
         <Route
           path="/configs"
           element={
-            <PrivateRoute>
+            <PrivateRouteProvider>
               <ConfigsPage />
-            </PrivateRoute>
+            </PrivateRouteProvider>
           }
         />
       </Routes>

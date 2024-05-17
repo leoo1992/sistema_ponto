@@ -189,7 +189,7 @@ export const UserTableStory = ({
         userRole: userRole ? userRole : 0,
       };
 
-      navigate("/update", { state: response });
+      navigate("/register-update-user", { state: response });
     } catch (error) {
       console.error("Failed to edit user:", error);
     } finally {

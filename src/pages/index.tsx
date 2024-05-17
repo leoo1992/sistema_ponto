@@ -10,6 +10,7 @@ import ReportsPage from "./PrivatePages/ReportsPage";
 import HistoryPage from "./PrivatePages/HistoryPage";
 import ProfilePage from "./PrivatePages/ProfilePage";
 import ConfigsPage from "./PrivatePages/ConfigsPage";
+import CreateAndUpdateSectorPage from "./PrivatePages/CreateAndUpdateSectorPage";
 
 export {
   LoginPage,
@@ -24,4 +25,5 @@ export {
   HistoryPage,
   ProfilePage,
   ConfigsPage,
+  CreateAndUpdateSectorPage
 };
