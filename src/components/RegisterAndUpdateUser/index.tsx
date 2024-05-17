@@ -114,7 +114,7 @@ export default function index() {
         telefone,
         position: id_position,
         sector: id_sector,
-        permissions: id_role,
+        role: id_role,
       };
 
       await UserEdit(UpdateUser, navigate);

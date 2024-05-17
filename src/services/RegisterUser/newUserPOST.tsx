@@ -14,9 +14,9 @@ export default async function newUserPOST(
     telefone,
     cpf,
     name,
-    position,
-    sector,
-    role,
+    position: {id_position: position},
+    sector: {id_sector: sector},
+    role: [{id_role: role}],
   };
 
   try {
