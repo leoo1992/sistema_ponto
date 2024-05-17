@@ -8,7 +8,7 @@ interface PrivateRouteProps {
   children: ReactNode;
 }
 
-export default function PrivateRouteProvider({ children }: PrivateRouteProps) {
+export default function PrivateRoute({ children }: PrivateRouteProps) {
   //comente aqui para não validar rotaas
   const AuthToken = Cookies.get("AuthToken");
   if (!AuthToken) {

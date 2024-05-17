@@ -15,7 +15,7 @@ import {
   ConfigsPage,
   CreateAndUpdateSectorPage,
 } from "../pages";
-import PrivateRouteProvider from "./PrivateRouteProvider";
+import PrivateRoute from "./PrivateRoute";
 
 const GlobalRouters = () => {
   return (
@@ -50,73 +50,73 @@ const GlobalRouters = () => {
         <Route
           path="/home"
           element={
-            <PrivateRouteProvider>
+            <PrivateRoute>
               <HomePage />
-            </PrivateRouteProvider>
+            </PrivateRoute>
           }
         />
         <Route
           path={"/register-update-user"}
           element={
-            <PrivateRouteProvider>
+            <PrivateRoute>
               <RegisterUserPage />
-            </PrivateRouteProvider>
+            </PrivateRoute>
           }
         />
         <Route
           path={"/register-update-sector"}
           element={
-            <PrivateRouteProvider>
+            <PrivateRoute>
               <CreateAndUpdateSectorPage />
-            </PrivateRouteProvider>
+            </PrivateRoute>
           }
         />
         <Route
           path="/userslist"
           element={
-            <PrivateRouteProvider>
+            <PrivateRoute>
               <UsersListPage />
-            </PrivateRouteProvider>
+            </PrivateRoute>
           }
         />
         <Route
           path="/charts"
           element={
-            <PrivateRouteProvider>
+            <PrivateRoute>
               <ChartsPage />
-            </PrivateRouteProvider>
+            </PrivateRoute>
           }
         />
         <Route
           path="/reports"
           element={
-            <PrivateRouteProvider>
+            <PrivateRoute>
               <ReportsPage />
-            </PrivateRouteProvider>
+            </PrivateRoute>
           }
         />
         <Route
           path="/history"
           element={
-            <PrivateRouteProvider>
+            <PrivateRoute>
               <HistoryPage />
-            </PrivateRouteProvider>
+            </PrivateRoute>
           }
         />
         <Route
           path="/profile"
           element={
-            <PrivateRouteProvider>
+            <PrivateRoute>
               <ProfilePage />
-            </PrivateRouteProvider>
+            </PrivateRoute>
           }
         />
         <Route
           path="/configs"
           element={
-            <PrivateRouteProvider>
+            <PrivateRoute>
               <ConfigsPage />
-            </PrivateRouteProvider>
+            </PrivateRoute>
           }
         />
       </Routes>
