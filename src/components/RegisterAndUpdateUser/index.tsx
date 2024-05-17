@@ -20,8 +20,15 @@ import getSector from "../../services/RegisterUser/getSector";
 import newUserPOST from "../../services/RegisterUser/newUserPOST";
 import UserEdit from "../../services/UserList/UserEdit";
 import { validarCPF } from "../../utils/CreateUser/validarCPF";
+import { MaskCPF } from "../../utils/CreateUser/maskCPF";
 
 export default function index() {
+  const [role, setRole] = useState<any[]>([]);
+  const [positions, setPositions] = useState<any[]>([]);
+  const [sectors, setSectors] = useState<any[]>([]);
+  const location = useLocation();
+  const { state } = location;
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -29,38 +36,30 @@ export default function index() {
     formState: { errors, isSubmitting },
   } = useForm<any>();
 
-  const [options, setOptions] = useState<any[]>([]);
-  const [positions, setPositions] = useState<any[]>([]);
-  const [sectors, setSectors] = useState<any[]>([]);
-  const location = useLocation();
-  const { state } = location;
-  const navigate = useNavigate();
-
   useEffect(() => {
     async function fetchData() {
       try {
-        const optionsData = await getOptions();
-        const positionsData = await getPosition();
-        const sectorsData = await getSector();
+        const RoleData = await getOptions();
+        const PositionsData = await getPosition();
+        const SectorsData = await getSector();
 
-        const mappedPositions = positionsData.map((position: any) => ({
+        const mappedPositions = PositionsData.map((position: any) => ({
           id: position.id_position,
           name: position.name,
         }));
-        const mappedSectors = sectorsData.map((sector: any) => ({
+        const mappedSectors = SectorsData.map((sector: any) => ({
           id: sector.id_sector,
           name: sector.name,
         }));
 
-        const mappedOptions = optionsData.map((option: any) => ({
-          id: option.id_role,
-          name: option.name,
+        const mappedRole = RoleData.map((role: any) => ({
+          id: role.id_role,
+          name: role.name,
         }));
 
         setPositions(mappedPositions);
         setSectors(mappedSectors);
-        setOptions(mappedOptions);
-
+        setRole(mappedRole);
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
@@ -70,20 +69,31 @@ export default function index() {
   }, []);
 
   useEffect(() => {
-    if (state) {
-      const { name, email, cpf, position, sector, telefone, userRole }: any =
-        state;
+    async function setUpdateDefaultValues() {
+      if (state) {
+        const {
+          name,
+          email,
+          cpf,
+          id_position,
+          id_sector,
+          telefone,
+          id_role,
+        }: any = state;
 
-      const cpfAdjuted = MaskCPF(cpf);
+        const cpfAdjuted = MaskCPF(cpf);
 
-      setValue("name", name || "");
-      setValue("email", email || "");
-      setValue("cpf", cpfAdjuted || "");
-      setValue("telefone", telefone || "");
-      setValue("id_sector", sector || "");
-      setValue("id_position", position || "");
-      setValue("id_userRole", userRole || "");
+        setValue("name", name || "");
+        setValue("email", email || "");
+        setValue("cpf", cpfAdjuted || "");
+        setValue("telefone", telefone || "");
+        setValue("id_sector", id_sector || "");
+        setValue("id_position", id_position || "");
+        setValue("id_role", id_role || "");
+      }
     }
+
+    setUpdateDefaultValues();
   }, [state, setValue]);
 
   const onSubmit = async ({
@@ -91,37 +101,37 @@ export default function index() {
     email,
     name,
     telefone,
-    userRole,
-    position,
-    sector,
     password,
+    id_position,
+    id_sector,
+    id_role,
   }: any) => {
-    const test = { cpf, email, name, telefone, position, sector, userRole };
-    const data = {
-      cpf,
-      email,
-      name,
-      telefone,
-      userRole,
-      position,
-      sector,
-      password,
-    };
-
     if (state) {
-      await UserEdit(test, navigate);
-    } else {
-      await newUserPOST(data, navigate);
-    }
-  };
+      const UpdateUser = {
+        cpf: cpf.replace(/\D/g, ""),
+        email,
+        name,
+        telefone,
+        position: id_position,
+        sector: id_sector,
+        permissions: id_role,
+      };
 
-  const MaskCPF = (value: string) => {
-    const numericValue = value.replace(/\D/g, "").slice(0, 11);
-    const formattedCPF = numericValue.replace(
-      /(\d{3})(\d{3})(\d{3})(\d{2})/,
-      "$1.$2.$3-$4",
-    );
-    return formattedCPF;
+      await UserEdit(UpdateUser, navigate);
+    } else {
+      const NewUser = {
+        cpf: cpf.replace(/\D/g, ""),
+        email,
+        name,
+        telefone,
+        password,
+        position: id_position,
+        sector: id_sector,
+        role: id_role,
+      };
+      
+      await newUserPOST(NewUser, navigate);
+    }
   };
 
   return (
@@ -240,15 +250,15 @@ export default function index() {
           <div className="sm:flex sm:gap-3">
             <div className="w-full">
               <Select
-                options={options}
+                options={role}
                 labelName="Acesso"
-                register={register("id_userRole", { required: true })}
+                register={register("id_role", { required: true })}
                 classNameSelect={`w-full flex justify-between items-center
-                self-center align-middle ${errors?.id_userRole && "select-error shadow-error"}`}
+                self-center align-middle ${errors?.id_role && "select-error shadow-error"}`}
                 Icon={<HiKey size={20} />}
                 classIcon="flex"
               />
-              {errors?.id_userRole?.type === "required" && (
+              {errors?.id_role?.type === "required" && (
                 <ErrorMessage>Campo requerido</ErrorMessage>
               )}
             </div>

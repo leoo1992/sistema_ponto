@@ -3,9 +3,10 @@ import { notifySuccess } from "../../components/Toasts/ToastSuccess";
 import { notifyError } from "../../components/Toasts/ToastError";
 
 export default async function newUserPOST(
-  { email, password, telefone, cpf, name, id_userRole }: any,
+  { email, password, telefone, cpf, name, role, position, sector }: any,
   navigate: any,
 ) {
+
   const NewUserURL = import.meta.env.VITE_REACT_APP_NEW_USER_URL;
   const data = {
     email,
@@ -13,10 +14,10 @@ export default async function newUserPOST(
     telefone,
     cpf,
     name,
-    // position: id_position,
-    userRole: id_userRole,
+    position,
+    sector,
+    role,
   };
-  console.log(data);
 
   try {
     const response = await fetch(NewUserURL, {

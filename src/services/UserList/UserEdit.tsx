@@ -3,12 +3,21 @@ import { notifySuccess } from "../../components/Toasts/ToastSuccess";
 import { notifyError } from "../../components/Toasts/ToastError";
 
 export default async function UserEdit(
-  { email, telefone, cpf, name, userRole }: any,
+  { email, telefone, cpf, name, permissions, position, sector }: any,
   navigate: any,
 ) {
-  const data = { email, telefone, cpf, name, userRole };
+  
+  const data = {
+    email,
+    telefone,
+    cpf,
+    name,
+    position,
+    sector,
+    permissions,
+  };
   const EditUserURL = import.meta.env.VITE_REACT_APP_EDIT_USER_URL;
-
+  
   try {
     const response = await fetch(EditUserURL, {
       method: "PUT",
