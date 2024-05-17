@@ -14,7 +14,7 @@ import { BsWrench } from "react-icons/bs";
 import { Input } from "./subComponents/Input";
 import { Select } from "./subComponents/Select";
 import { ErrorMessage } from "./subComponents/ErrorMsgs";
-// import getOptions from "../../services/RegisterUser/getOptions";
+import getOptions from "../../services/RegisterUser/getOptions";
 import getPosition from "../../services/RegisterUser/getPosition";
 import getSector from "../../services/RegisterUser/getSector";
 import newUserPOST from "../../services/RegisterUser/newUserPOST";
@@ -39,9 +39,9 @@ export default function index() {
   useEffect(() => {
     async function fetchData() {
       try {
+        const optionsData = await getOptions();
         const positionsData = await getPosition();
         const sectorsData = await getSector();
-        // const optionsData = await getOptions();
 
         const mappedPositions = positionsData.map((position: any) => ({
           id: position.id_position,
@@ -52,19 +52,15 @@ export default function index() {
           name: sector.name,
         }));
 
-        // const mappedOptions = optionsData.map((option: any) => ({
-        //   id: option.id_sector,
-        //   name: option.name,
-        // }));
+        const mappedOptions = optionsData.map((option: any) => ({
+          id: option.id_role,
+          name: option.name,
+        }));
 
         setPositions(mappedPositions);
         setSectors(mappedSectors);
-        // setOptions(mappedOptions);
+        setOptions(mappedOptions);
 
-        setOptions([
-          { id: "ADMINISTRADOR", name: "Administrador" },
-          { id: "COLABORADOR", name: "Colaborador" },
-        ]);
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
