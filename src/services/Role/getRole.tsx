@@ -1,10 +1,10 @@
 import Cookies from "js-cookie";
 
-export default async function getOptions() {
-  const getOptionsURL = import.meta.env.VITE_REACT_APP_GET_OPITION_URL;
+export default async function getRole() {
+  const getRolesURL = import.meta.env.VITE_REACT_APP_GET_ROLE_URL;
 
   try {
-    const response = await fetch(getOptionsURL, {
+    const response = await fetch(getRolesURL, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

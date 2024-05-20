@@ -14,11 +14,11 @@ import { BsWrench } from "react-icons/bs";
 import { Input } from "./subComponents/Input";
 import { Select } from "./subComponents/Select";
 import { ErrorMessage } from "./subComponents/ErrorMsgs";
-import getOptions from "../../services/RegisterUser/getOptions";
-import getPosition from "../../services/RegisterUser/getPosition";
-import getSector from "../../services/RegisterUser/getSector";
-import newUserPOST from "../../services/RegisterUser/newUserPOST";
-import UserEdit from "../../services/UserList/UserEdit";
+import getRole from "../../services/Role/getRole";
+import getPosition from "../../services/Position/getPosition";
+import getSector from "../../services/Sector/getSector";
+import newUserPOST from "../../services/User/newUserPOST";
+import UserEdit from "../../services/User/UserEdit";
 import { validarCPF } from "../../utils/CreateUser/validarCPF";
 import { MaskCPF } from "../../utils/CreateUser/maskCPF";
 
@@ -39,7 +39,7 @@ export default function index() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const RoleData = await getOptions();
+        const RoleData = await getRole();
         const PositionsData = await getPosition();
         const SectorsData = await getSector();
 

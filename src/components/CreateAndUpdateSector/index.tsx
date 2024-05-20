@@ -4,6 +4,8 @@ import { Input } from "../RegisterAndUpdateUser/subComponents/Input";
 import { MdAddHomeWork } from "react-icons/md";
 import { useState } from "react";
 import {TableSector} from "./subComponents/TableSector";
+import CreateSector from "../../services/Sector/CreateSector";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateAndUpdateSector() {
   const {
@@ -14,15 +16,16 @@ export default function CreateAndUpdateSector() {
     reset,
   } = useForm<any>();
   const [sectorsList, setSectorsList] = useState<any[]>([]);
-
+  const navigate = useNavigate();
+  
   const onSubmit = async () => {
-    console.log(sectorsList);
+    CreateSector({name: sectorsList[0]}, navigate);
   };
 
   const handleAddSector = () => {
     const name = watch("name");
     if (name) {
-      setSectorsList([...sectorsList, name]);
+      setSectorsList([...sectorsList,{name: name}]);
       reset({ name: "" });
     }
   };

@@ -4,10 +4,10 @@ import { NoDataComponent } from "./TableComponent/NoDataComponent";
 import { ProgressComponent } from "./TableComponent/ProgressComponent";
 import { subHeaderComponent } from "./TableComponent/subHeaderComponent";
 import DataTable from "react-data-table-component";
-import UserListGET from "../../../services/UserList/UserListGET";
+import UserListGET from "../../../services/User/UserListGET";
 import Pagination from "./TableComponent/Pagination";
-import UserDelete from "../../../services/UserList/UserDelete";
-import UserDisable from "../../../services/UserList/UserDisable";
+import UserDelete from "../../../services/User/UserDelete";
+import UserDisable from "../../../services/User/UserDisable";
 import { useNavigate } from "react-router-dom";
 import { ConfirmModal } from "../../Modal/Modal";
 

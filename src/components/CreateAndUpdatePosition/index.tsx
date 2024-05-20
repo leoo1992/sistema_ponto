@@ -4,6 +4,8 @@ import { Input } from "../RegisterAndUpdateUser/subComponents/Input";
 import { FaHammer } from "react-icons/fa";
 import { useState } from "react";
 import { TablePosition } from "./subComponents/TablePosition";
+import { useNavigate } from "react-router-dom";
+import CreatePosition from "../../services/Position/CreatePosition";
 
 export default function CreateAndUpdatePosition() {
   const {
@@ -14,15 +16,16 @@ export default function CreateAndUpdatePosition() {
     reset,
   } = useForm<any>();
   const [positionsList, setPositionsList] = useState<any[]>([]);
+  const navigate = useNavigate();
 
   const onSubmit = async () => {
-    console.log(positionsList);
+    CreatePosition({ name: positionsList[0] }, navigate);
   };
 
   const handleAddPosition = () => {
     const name = watch("name");
     if (name) {
-      setPositionsList([...positionsList, name]);
+      setPositionsList([...positionsList, {name: name}]);
       reset({ name: "" });
     }
   };

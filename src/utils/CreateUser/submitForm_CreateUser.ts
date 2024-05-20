@@ -1,6 +1,6 @@
 import { MutableRefObject } from "react";
-import newUserPOST from "../../services/RegisterUser/newUserPOST";
-import UserEdit from "../../services/UserList/UserEdit";
+import newUserPOST from "../../services/User/newUserPOST";
+import UserEdit from "../../services/User/UserEdit";
 
 export const submitForm_CreateUser = (
   e: any,

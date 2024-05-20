@@ -2,15 +2,12 @@ import Cookies from "js-cookie";
 import { notifySuccess } from "../../components/Toasts/ToastSuccess";
 import { notifyError } from "../../components/Toasts/ToastError";
 
-export default async function postCreatePosition(data : any,
+export default async function CreatePosition(data : any,
   navigate: any,
 ) {
-
-  const NewSectorURL = import.meta.env.TEST;
-  //TODO AQUIIIIII
-  
+  const NewPositionURL = import.meta.env.VITE_REACT_APP_NEW_POSITIONS_URL;
   try {
-    const response = await fetch(NewSectorURL, {
+    const response = await fetch(NewPositionURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,12 +17,12 @@ export default async function postCreatePosition(data : any,
     });
 
     if (response.ok) {
-      notifySuccess({ text: "Setores criados" });
+      notifySuccess({ text: "Cargos criados" });
       navigate("/home");
     } else {
-      notifyError({ text: "Erro ao criar setores" });
+      notifyError({ text: "Erro ao criar cargos" });
     }
   } catch (error) {
-    notifyError({ text: "Erro ao criar setores" });
+    notifyError({ text: "Erro ao criar cargos" });
   }
 }

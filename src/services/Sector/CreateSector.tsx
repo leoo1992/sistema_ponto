@@ -2,13 +2,10 @@ import Cookies from "js-cookie";
 import { notifySuccess } from "../../components/Toasts/ToastSuccess";
 import { notifyError } from "../../components/Toasts/ToastError";
 
-export default async function postCreateSector(data : any,
+export default async function CreateSector(data : any,
   navigate: any,
 ) {
-
-  const NewSectorURL = import.meta.env.TEST;
-  //TODO AQUIIIIII
-
+  const NewSectorURL = import.meta.env.VITE_REACT_APP_NEW_SECTORS_URL;
   try {
     const response = await fetch(NewSectorURL, {
       method: "POST",
