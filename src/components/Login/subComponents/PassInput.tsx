@@ -18,6 +18,7 @@ export default function PassInput({ register }: Props) {
         className="input input-bordered text-primary shadow-sm shadow-primary"
         maxLength={11}
         required
+        data-testid='pass'
       />
     </div>
   );

@@ -24,6 +24,7 @@ export default function FormLogin() {
         >
           <button
             type="submit"
+            data-testid='login-btn'
             className="text-md btn glass btn-primary rounded-badge bg-primary font-extrabold text-white shadow-md shadow-gray-300"
           >
             Entrar

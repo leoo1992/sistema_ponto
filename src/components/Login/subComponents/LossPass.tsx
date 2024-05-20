@@ -5,6 +5,7 @@ export default function LossPass() {
     <label className="label flex justify-end text-end">
       <Link
         to="/losspass"
+        data-testid='loss-pass'
         className="link-hover link label-text-alt mb-2 text-end text-sm font-semibold"
       >
         Esqueceu sua senha ?
