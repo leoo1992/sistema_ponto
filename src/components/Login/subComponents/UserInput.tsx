@@ -18,6 +18,7 @@ export default function UserInput({ register }: Props) {
         className="input input-bordered font-medium text-primary shadow-sm shadow-primary"
         maxLength={300}
         required
+        data-testid='email'
       />
     </div>
   );
