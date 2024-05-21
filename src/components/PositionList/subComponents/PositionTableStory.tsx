@@ -1,19 +1,20 @@
+import DataTable from "react-data-table-component";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { getUserDataTableColumns } from "../../../utils/UserList/getUserDataTableColumns.util";
+import { getPositionDataTableColumns } from "../../../utils/Position/getPositionDataTableColumns.util";
+import { useNavigate } from "react-router-dom";
+
+import { ConfirmModal } from "../../Modal/Modal";
 import { NoDataComponent } from "../../TablesComponents/NoDataComponent";
 import { ProgressComponent } from "../../TablesComponents/ProgressComponent";
-import { subHeaderComponent } from "../../TablesComponents/subHeaderComponent";
-import DataTable from "react-data-table-component";
-import UserListGET from "../../../services/User/UserListGET";
 import Pagination from "../../TablesComponents/Pagination";
-import UserDelete from "../../../services/User/UserDelete";
-import UserDisable from "../../../services/User/UserDisable";
-import { useNavigate } from "react-router-dom";
-import { ConfirmModal } from "../../Modal/Modal";
+import { subHeaderComponent } from "../../TablesComponents/subHeaderComponent";
+// import PositionListGET from "../../../services/Position/PositionListGET";
+// import PositionDelete from "../../../services/Position/PositionDelete";
+// import PositionDisable from "../../../services/Position/PositionDisable";
 
-//import { data } from "../../../utils/UserList/data.util";
+import { data } from "../../../utils/Position/data.util";
 
-export const UserTableStory = ({
+export const PositionTableStory = ({
   pagination,
   highlightOnHover,
   striped,
@@ -36,7 +37,7 @@ export const UserTableStory = ({
   defaultComponentOptions,
 }: any) => {
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
+//   const [data, setData] = useState([]);
   const [totalElements, setTotalElements] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -63,13 +64,13 @@ export const UserTableStory = ({
   const handleDelete = async ( id : any) => {
     setLoading(true);
     try {
-      await UserDelete(id, navigate);
-      setData((prevData: any) =>
-       prevData.filter((item: any) => item.id !== id),
-       );
+    //   await PositionDelete(id, navigate);
+    //   setData((prevData: any) =>
+    //    prevData.filter((item: any) => item.id !== id),
+    //    );
       setTotalElements((prevTotalElements) => prevTotalElements - 1);
     } catch (error) {
-      console.error("Failed to delete user:", error);
+      console.error("Failed to delete position:", error);
     } finally {
       setLoading(false);
       setConfirm(false);
@@ -133,9 +134,9 @@ export const UserTableStory = ({
   const fetchData = async () => {
     setLoading(true);
     try {
-      const newData = await UserListGET(currentPage - 1, rowsPerPage);
-      setData(newData.content);
-      setTotalElements(newData.totalElements);
+    //   const newData = await PositionListGET(currentPage - 1, rowsPerPage);
+    //   setData(newData.content);
+    //   setTotalElements(newData.totalElements);
       setTimeout(() => {
         setLoading(false);
       }, 1000);
@@ -169,28 +170,16 @@ export const UserTableStory = ({
   const handleEdit = async ({
     id,
     name,
-    email,
-    cpf,
-    position,
-    sector,
-    telefone,
-    permissions,
   }: any) => {
     try {
       const response = {
         id: id ? id : null,
         name: name ? name : null,
-        email: email ? email : null,
-        cpf: cpf ? cpf : null,
-        position: position ? position : 0,
-        sector: sector ? sector : 0,
-        telefone: telefone ? telefone : null,
-        permissions: permissions ? permissions : 0,
       };
 
-      navigate("/register-update-user", { state: response });
+      navigate("/register-update-position", { state: response });
     } catch (error) {
-      console.error("Failed to edit user:", error);
+      console.error("Failed to edit position:", error);
     } finally {
       setLoading(false);
     }
@@ -199,13 +188,15 @@ export const UserTableStory = ({
   const handleDisable = async (id : any) => {
     setLoading(true);
     try {
-      await UserDisable(id, navigate);
-      setData((prevData: any) =>
-         prevData.filter((item: any) => item.id !== id),
-       );
+        console.log(id);
+        
+    //   await PositionDisable(id, navigate);
+    //   setData((prevData: any) =>
+    //      prevData.filter((item: any) => item.id !== id),
+    //    );
       setTotalElements((prevTotalElements) => prevTotalElements - 1);
     } catch (error) {
-      console.error("Failed to disable user:", error);
+      console.error("Failed to disable position:", error);
     } finally {
       setLoading(false);
     }
@@ -231,11 +222,11 @@ export const UserTableStory = ({
       <DataTable
         key={currentPage}
         title={
-          <span className=" m-0 h-full w-full p-0 font-semibold">Usuários</span>
+          <span className=" m-0 h-full w-full p-0 font-semibold">Cargos</span>
         }
-        columns={getUserDataTableColumns}
+        columns={getPositionDataTableColumns}
         data={data}
-        noDataComponent={NoDataComponent("Sem usuários cadastrados")}
+        noDataComponent={NoDataComponent("Sem setores cadastrados")}
         defaultSortFieldId={1}
         pagination={pagination}
         paginationServer={paginationServer}
@@ -249,7 +240,7 @@ export const UserTableStory = ({
         progressComponent={ProgressComponent}
         noHeader={noHeader}
         subHeader={subHeader}
-        subHeaderComponent={subHeaderComponent("/register-update-user")}
+        subHeaderComponent={subHeaderComponent('/register-update-position')}
         subHeaderAlign={subHeaderAlign}
         subHeaderWrap={subHeaderWrap}
         noContextMenu={noContextMenu}

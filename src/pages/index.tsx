@@ -12,6 +12,8 @@ import ProfilePage from "./PrivatePages/ProfilePage";
 import ConfigsPage from "./PrivatePages/ConfigsPage";
 import CreateAndUpdateSectorPage from "./PrivatePages/CreateAndUpdateSectorPage";
 import CreateAndUpdatePositionPage from "./PrivatePages/CreateAndUpdatePositionPage";
+import SectorListPage from "./PrivatePages/SectorListPage";
+import PositionListPage from "./PrivatePages/PositionListPage";
 
 export {
   LoginPage,
@@ -28,4 +30,6 @@ export {
   ConfigsPage,
   CreateAndUpdateSectorPage,
   CreateAndUpdatePositionPage,
+  SectorListPage,
+  PositionListPage,
 };

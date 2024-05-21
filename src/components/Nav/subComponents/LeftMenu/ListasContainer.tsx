@@ -14,7 +14,7 @@ export default function ListasContainer({ handleItemClick }: any) {
           Listas
         </summary>
         <ul onClick={handleItemClick}>
-          <li>
+          <li className="m-0 p-0">
             <Link
               to="/userslist"
               className="m-0 rounded-badge px-1 font-semibold text-base-content"
@@ -29,7 +29,10 @@ export default function ListasContainer({ handleItemClick }: any) {
             </Link>
           </li>
           <li onClick={handleItemClick} className="m-0 p-0">
-            <a className="m-0 rounded-badge px-1 font-semibold text-base-content">
+            <Link
+              to="/sectorslist"
+              className="m-0 rounded-badge px-1 font-semibold text-base-content"
+            >
               <span className="text-xl">
                 <MdAddHomeWork />
               </span>
@@ -37,10 +40,13 @@ export default function ListasContainer({ handleItemClick }: any) {
               <span className="m-0 p-0 text-xl">
                 <MdNavigateNext />
               </span>
-            </a>
+            </Link>
           </li>
           <li onClick={handleItemClick} className="m-0 p-0">
-            <a className="m-0 rounded-badge px-1 font-semibold text-base-content">
+            <Link
+              to="/positionslist"
+              className="m-0 rounded-badge px-1 font-semibold text-base-content"
+            >
               <span className="text-xl">
                 <FaHammer />
               </span>
@@ -48,7 +54,7 @@ export default function ListasContainer({ handleItemClick }: any) {
               <span className="m-0 p-0 text-xl">
                 <MdNavigateNext />
               </span>
-            </a>
+            </Link>
           </li>
         </ul>
       </details>

@@ -15,6 +15,8 @@ import {
   ConfigsPage,
   CreateAndUpdateSectorPage,
   CreateAndUpdatePositionPage,
+  SectorListPage,
+  PositionListPage,
 } from "../pages";
 import PrivateRoute from "./PrivateRoute";
 
@@ -85,6 +87,22 @@ const GlobalRouters = () => {
           element={
             <PrivateRoute>
               <UsersListPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/sectorslist"
+          element={
+            <PrivateRoute>
+              <SectorListPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/positionslist"
+          element={
+            <PrivateRoute>
+              <PositionListPage />
             </PrivateRoute>
           }
         />
