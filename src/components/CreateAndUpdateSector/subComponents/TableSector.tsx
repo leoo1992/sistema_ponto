@@ -1,5 +1,5 @@
 interface TableSectorProps {
-  sectorsList: string[];
+  sectorsList: { name: string }[];
 }
 
 export const TableSector: React.FC<TableSectorProps> = ({ sectorsList }) => {
@@ -12,7 +12,7 @@ export const TableSector: React.FC<TableSectorProps> = ({ sectorsList }) => {
               {sectorsList.map((sector: any, index: any) => (
                 <tr key={index} className="flex">
                   <td className="flex h-full flex-1 flex-col content-center justify-center self-center">
-                    <span className="">{sector}</span>
+                    <span className="">{sector.name}</span>
                   </td>
                   <td className="py-2 pl-0 text-end text-error">
                     <button className="btn glass btn-error btn-sm bg-error text-white">

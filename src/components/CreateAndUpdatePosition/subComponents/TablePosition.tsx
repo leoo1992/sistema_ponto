@@ -1,6 +1,7 @@
 interface TablePositionProps {
-  positionsList: string[];
+  positionsList: { name: string }[];
 }
+
 export const TablePosition: React.FC<TablePositionProps> = ({ positionsList }) => {
   return (
     <>
@@ -11,7 +12,7 @@ export const TablePosition: React.FC<TablePositionProps> = ({ positionsList }) =
               {positionsList.map((position: any, index: any) => (
                 <tr key={index} className="flex">
                   <td className="flex h-full flex-1 flex-col content-center justify-center self-center">
-                    <span className="">{position}</span>
+                    <span className="">{position.name}</span>
                   </td>
                   <td className="py-2 pl-0 text-end text-error">
                     <button className="btn glass btn-error btn-sm bg-error text-white">
