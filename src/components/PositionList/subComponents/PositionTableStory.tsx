@@ -62,6 +62,7 @@ export const PositionTableStory = ({
   };
 
   const handleDelete = async ( id : any) => {
+    console.log(id);
     setLoading(true);
     try {
     //   await PositionDelete(id, navigate);

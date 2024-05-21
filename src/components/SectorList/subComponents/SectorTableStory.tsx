@@ -61,6 +61,7 @@ export const SectorTableStory = ({
   };
 
   const handleDelete = async ( id : any) => {
+    console.log(id);
     setLoading(true);
     try {
     //   await SectorDelete(id, navigate);
