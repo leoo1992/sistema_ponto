@@ -175,7 +175,7 @@ export const UserTableStory = ({
     position,
     sector,
     telefone,
-    userRole,
+    permissions,
   }: any) => {
     try {
       const response = {
@@ -186,7 +186,7 @@ export const UserTableStory = ({
         position: position ? position : 0,
         sector: sector ? sector : 0,
         telefone: telefone ? telefone : null,
-        userRole: userRole ? userRole : 0,
+        permissions: permissions ? permissions : 0,
       };
 
       navigate("/register-update-user", { state: response });

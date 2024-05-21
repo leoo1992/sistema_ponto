@@ -33,6 +33,7 @@ export default function index() {
     register,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<any>();
 
@@ -62,39 +63,35 @@ export default function index() {
         setRole(mappedRole);
       } catch (error) {
         console.error("Failed to fetch data:", error);
+      } finally {
+        if (state) {
+          const {
+            name,
+            email,
+            cpf,
+            position,
+            sector,
+            telefone,
+            permissions,
+          }: any = state;
+
+          const cpfAdjuted = MaskCPF(cpf);
+
+          reset({
+            name,
+            email,
+            cpf: cpfAdjuted,
+            telefone,
+            id_sector: sector.id_sector,
+            id_position: position.id_position,
+            id_role: permissions[0].id_role,
+          });
+        }
       }
     }
 
     fetchData();
-  }, []);
-
-  useEffect(() => {
-    async function setUpdateDefaultValues() {
-      if (state) {
-        const {
-          name,
-          email,
-          cpf,
-          id_position,
-          id_sector,
-          telefone,
-          id_role,
-        }: any = state;
-
-        const cpfAdjuted = MaskCPF(cpf);
-
-        setValue("name", name || "");
-        setValue("email", email || "");
-        setValue("cpf", cpfAdjuted || "");
-        setValue("telefone", telefone || "");
-        setValue("id_sector", id_sector || "");
-        setValue("id_position", id_position || "");
-        setValue("id_role", id_role || "");
-      }
-    }
-
-    setUpdateDefaultValues();
-  }, [state, setValue]);
+  }, [state, reset]);
 
   const onSubmit = async ({
     cpf,
@@ -129,7 +126,7 @@ export default function index() {
         sector: id_sector,
         role: id_role,
       };
-      
+
       await newUserPOST(NewUser, navigate);
     }
   };
