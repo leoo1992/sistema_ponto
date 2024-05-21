@@ -73,15 +73,14 @@ export const getUserDataTableColumns = [
     },
     sortable: true,
     width: "140px",
-  }
-  
-  // {
-  //   name: 'Status',
-  //   selector: (row: any) => {
-  //     if (row.status === null || row.status === undefined) return 'Sem Status';
-  //     return row.status === true ? 'Ativo' : 'Inativo';
-  //   },
-  //   sortable: true,
-  //   width: '120px',
-  // },
+  },
+  {
+    name: 'Status',
+    selector: (row: any) => {
+      if (row.status === null || row.status === undefined) return 'Não definido';
+      return row.status === true ? 'Ativo' : 'Inativo';
+    },
+    sortable: true,
+    width: '120px',
+  },
 ];
