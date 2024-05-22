@@ -1,8 +1,9 @@
 interface TableSectorProps {
   sectorsList: { name: string }[];
+  onDeleteSector: (index: number) => void;
 }
 
-export const TableSector: React.FC<TableSectorProps> = ({ sectorsList }) => {
+export const TableSector: React.FC<TableSectorProps> = ({ sectorsList, onDeleteSector  }) => {
   return (
     <>
       {sectorsList.length > 0 && (
@@ -15,7 +16,11 @@ export const TableSector: React.FC<TableSectorProps> = ({ sectorsList }) => {
                     <span className="">{sector.name}</span>
                   </td>
                   <td className="py-2 pl-0 text-end text-error">
-                    <button className="btn glass btn-error btn-sm bg-error text-white">
+                    <button
+                    id={`btn-delete-${index}`}
+                    type="button" 
+                    onClick={() => onDeleteSector(index)}
+                    className="btn glass btn-error btn-sm bg-error text-white">
                       Excluir
                     </button>
                   </td>

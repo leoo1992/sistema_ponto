@@ -1,8 +1,12 @@
 interface TablePositionProps {
   positionsList: { name: string }[];
+  onDeletePosition: (index: number) => void;
 }
 
-export const TablePosition: React.FC<TablePositionProps> = ({ positionsList }) => {
+export const TablePosition: React.FC<TablePositionProps> = ({
+  positionsList,
+  onDeletePosition,
+}) => {
   return (
     <>
       {positionsList.length > 0 && (
@@ -15,7 +19,12 @@ export const TablePosition: React.FC<TablePositionProps> = ({ positionsList }) =
                     <span className="">{position.name}</span>
                   </td>
                   <td className="py-2 pl-0 text-end text-error">
-                    <button className="btn glass btn-error btn-sm bg-error text-white">
+                    <button
+                      id={`btn-delete-${index}`}
+                      type="button"
+                      onClick={() => onDeletePosition(index)}
+                      className="btn glass btn-error btn-sm bg-error text-white"
+                    >
                       Excluir
                     </button>
                   </td>
@@ -27,4 +36,4 @@ export const TablePosition: React.FC<TablePositionProps> = ({ positionsList }) =
       )}
     </>
   );
-}
+};
