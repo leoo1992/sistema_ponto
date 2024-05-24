@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import CreatePosition from "../../services/Position/CreatePosition";
 import { notifyError } from "../../components/Toasts/ToastError";
+import CreateSector from "../../services/Sector/CreateSector";
 
-export default function usePositionForm() {
+export default function useSectorForm() {
   const {
     register,
     handleSubmit,
@@ -12,31 +12,31 @@ export default function usePositionForm() {
     watch,
     reset,
   } = useForm<any>();
-  const [positionsList, setPositionsList] = useState<any[]>([]);
+  const [sectorsList, setSectorsList] = useState<any[]>([]);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isSaveButtonDisabled, setIsSaveButtonDisabled] = useState(true);
   const navigate = useNavigate();
 
   const onSubmit = async () => {
-    CreatePosition(positionsList, navigate);
-    setPositionsList([]);
+    CreateSector(sectorsList, navigate);
+    setSectorsList([]);
   };
 
-  const handleAddPosition = () => {
+  const handleAddSector = () => {
     const name = watch("name");
-    if (name && positionsList.length < 10) {
-      setPositionsList([...positionsList, { name: name }]);
+    if (name && sectorsList.length < 10) {
+      setSectorsList([...sectorsList, { name: name }]);
       reset({ name: "" });
       focusInputName();
     } else {
-      notifyError({ text: "Limite de adições excedido" });
+      notifyError({ text: "Limite de adições exedido" });
     }
   };
 
-  const handleDeletePosition = (index: any) => {
-    const newList = [...positionsList];
+  const handleDeleteSector = (index: any) => {
+    const newList = [...sectorsList];
     newList.splice(index, 1);
-    setPositionsList(newList);
+    setSectorsList(newList);
     focusInputName();
   };
 
@@ -45,7 +45,7 @@ export default function usePositionForm() {
       'input[name="name"]',
     ) as HTMLInputElement;
     if (inputName) {
-      inputName.focus();
+      inputName?.focus();
     }
   };
 
@@ -55,9 +55,9 @@ export default function usePositionForm() {
     handleSubmit,
     isSubmitting,
     isButtonDisabled,
-    handleAddPosition,
-    positionsList,
-    handleDeletePosition,
+    handleAddSector,
+    sectorsList,
+    handleDeleteSector,
     isSaveButtonDisabled,
     onSubmit,
     setIsButtonDisabled,

@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 
-export default function PositionFormEfect({
+export default function SectorFormEfect({
   watch,
   setIsButtonDisabled,
   setIsSaveButtonDisabled,
-  positionsList,
+  sectorsList,
 }: any) {
   useEffect(() => {
     const subscription = watch((value: any) => {
@@ -15,7 +15,8 @@ export default function PositionFormEfect({
   }, [watch]);
 
   useEffect(() => {
-    setIsSaveButtonDisabled(positionsList?.length === 0);
-  }, [positionsList]);
+    setIsSaveButtonDisabled(sectorsList?.length === 0);
+  }, [sectorsList]);
+  
   return null;
 }
