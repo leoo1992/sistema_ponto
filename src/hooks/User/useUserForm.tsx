@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useLocation } from "react-router-dom";
-import UserEdit from "../services/User/UserEdit";
-import newUserPOST from "../services/User/newUserPOST";
+import UserEdit from "../../services/User/UserEdit";
+import newUserPOST from "../../services/User/newUserPOST";
 
 export const useUserForm = () => {
   const [role, setRole] = useState<any[]>([]);

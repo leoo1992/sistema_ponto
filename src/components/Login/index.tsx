@@ -1,4 +1,4 @@
-import { useSubmitLogin } from "../../hooks/useSubmitLogin";
+import { useSubmitLogin } from "../../hooks/Login/useSubmitLogin";
 import LossPass from "./subComponents/LossPass";
 import PassInput from "./subComponents/PassInput";
 import UserInput from "./subComponents/UserInput";

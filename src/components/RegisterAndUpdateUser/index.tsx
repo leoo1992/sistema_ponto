@@ -16,8 +16,8 @@ import getPosition from "../../services/Position/getPosition";
 import getSector from "../../services/Sector/getSector";
 import { validarCPF } from "../../utils/CreateUser/validarCPF";
 import { MaskCPF } from "../../utils/CreateUser/maskCPF";
-import { useUserForm } from "../../hooks/useUserForm";
-import UseFormEffects from "../../hooks/Effects/UseFormEffects";
+import { useUserForm } from "../../hooks/User/useUserForm";
+import UserFormEffects from "../../hooks/Effects/User/UserFormEffects";
 
 export default function index() {
   const {
@@ -39,7 +39,7 @@ export default function index() {
 
   return (
     <>
-      <UseFormEffects
+      <UserFormEffects
         getRole={getRole}
         getPosition={getPosition}
         getSector={getSector}

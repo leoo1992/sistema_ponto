@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export default function UseFormEffects({
+export default function UserFormEffects({
   getRole,
   getPosition,
   getSector,

@@ -1,8 +1,8 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { FormLogin } from "../types";
+import { FormLogin } from "../../types";
 import Cookies from "js-cookie";
-import loginPOST from "../services/Login/loginPOST";
+import loginPOST from "../../services/Login/loginPOST";
 
 export function useSubmitLogin() {
   const navigate = useNavigate();
