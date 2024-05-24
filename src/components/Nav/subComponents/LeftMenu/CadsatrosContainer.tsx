@@ -16,6 +16,7 @@ export default function CadsatrosContainer({ handleItemClick }: any) {
         <ul>
           <li onClick={handleItemClick} className="m-0 p-0">
             <Link
+            data-testid="link-add-user"
               to="/register-update-user"
               className="m-0 rounded-badge px-1 font-semibold text-base-content"
             >

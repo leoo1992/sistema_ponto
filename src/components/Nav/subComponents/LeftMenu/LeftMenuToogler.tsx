@@ -4,6 +4,7 @@ export default function LeftMenuToogler({ toogleMenu, active }: any): any {
   return (
     <div className="drawer-content flex content-center items-center justify-center self-center">
       <button
+      data-testid="left-menu-btn"
         onClick={toogleMenu}
         className="flex content-center items-center
       justify-center self-center transition-all duration-1000 ease-in-out"
