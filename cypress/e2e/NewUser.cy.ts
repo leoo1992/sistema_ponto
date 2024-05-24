@@ -27,9 +27,11 @@ describe('Register new user', () => {
 
     //open menu
     cy.get('[data-testid="left-menu-btn"]').should("exist").click();
+    cy.get('[data-testid="left-menu-btn"]').click();
 
     //click link navigation
     cy.get('[data-testid="link-add-user"]').should("exist").click();
+    cy.get('[data-testid="link-add-user"]').click();
 
 
 
