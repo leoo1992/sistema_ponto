@@ -18,14 +18,14 @@ const usePositionForm = () => {
   const navigate = useNavigate();
 
   const onSubmit = async () => {
-    CreatePosition({ name: positionsList[0] }, navigate);
+    CreatePosition(positionsList, navigate);
     setPositionsList([]);
   };
 
   const handleAddPosition = () => {
     const name = watch("name");
     if (name && positionsList.length < 10) {
-      setPositionsList([...positionsList, { name }]);
+      setPositionsList([...positionsList, { name: name }]);
       reset({ name: "" });
       focusInputName();
     } else {

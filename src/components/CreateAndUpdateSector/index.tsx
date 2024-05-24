@@ -22,7 +22,7 @@ export default function CreateAndUpdateSector() {
   const navigate = useNavigate();
 
   const onSubmit = async () => {
-    CreateSector({ name: sectorsList[0] }, navigate);
+    CreateSector(sectorsList, navigate);
     setSectorsList([]);
   };
 
