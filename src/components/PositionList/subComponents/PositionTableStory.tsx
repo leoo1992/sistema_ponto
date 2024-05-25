@@ -140,12 +140,12 @@ export const PositionTableStory = ({
     //   setTotalElements(newData.totalElements);
       setTimeout(() => {
         setLoading(false);
-      }, 1000);
+      }, 500);
     } catch (error) {
       console.error("Failed to fetch data:", error);
       setTimeout(() => {
         setLoading(false);
-      }, 1000);
+      }, 500);
     }
   };
 
