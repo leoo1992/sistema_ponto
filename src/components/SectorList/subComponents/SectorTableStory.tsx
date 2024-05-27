@@ -98,7 +98,7 @@ export const SectorTableStory = ({
     return (
       <div
         className="m-0 flex w-full content-center items-center
-                    justify-end gap-1 self-center rounded-t-2xl p-2"
+                    justify-start gap-1 self-center rounded-t-2xl p-2"
       >
         <button
           className="btn glass btn-primary btn-sm w-20 rounded-3xl bg-primary text-xs text-white"
