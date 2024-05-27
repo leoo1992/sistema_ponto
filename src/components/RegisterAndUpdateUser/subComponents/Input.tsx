@@ -14,10 +14,12 @@ type PropTypes = {
   onChange?: any;
   maxLength?: number;
   minLength?: number;
+  palceholder?: string
 };
 
 export const Input = forwardRef<HTMLInputElement, PropTypes>(({
   labelName,
+  palceholder = labelName,
   typeInput = "text",
   classNameInput = "",
   classNameLabel = "",
@@ -56,7 +58,7 @@ export const Input = forwardRef<HTMLInputElement, PropTypes>(({
           maxLength={maxLength}
           {...register}
           type={typeInput}
-          placeholder={labelName}
+          placeholder={palceholder}
           className={`input input-md input-bordered rounded-2xl text-primary shadow-sm shadow-primary ${classNameInput}`}
           autoComplete={autoComplete}
         />

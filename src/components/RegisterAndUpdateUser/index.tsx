@@ -63,6 +63,7 @@ export default function index() {
           >
             <Input
               labelName="Nome"
+              palceholder="Nome *"
               classNameInput={`w-full flex justify-between items-center
              self-center align-middle ${errors?.name && "input-error shadow-error"}`}
               Icon={<HiUser size={20} />}
@@ -79,6 +80,7 @@ export default function index() {
                 pattern: /^\S+@\S+$/i,
               })}
               labelName="Email"
+              palceholder="Email *"
               typeInput="email"
               classNameInput={`w-full flex justify-between items-center
              self-center align-middle ${errors?.email && "input-error shadow-error"}`}
@@ -96,6 +98,7 @@ export default function index() {
                 <Input
                   register={register("telefone", { required: true })}
                   labelName="Telefone"
+                  palceholder="Telefone *"
                   classNameInput={`w-full flex justify-between items-center
                self-center align-middle ${errors?.telefone && "input-error shadow-error"}`}
                   Icon={<HiPhone size={20} />}
@@ -119,6 +122,7 @@ export default function index() {
                   maxLength={14}
                   minLength={14}
                   labelName="CPF"
+                  palceholder="CPF *"
                   classNameInput={`w-full flex justify-between items-center
                self-center align-middle ${errors?.cpf && "input-error shadow-error"}`}
                   Icon={<HiIdentification size={20} />}
@@ -186,6 +190,7 @@ export default function index() {
                         state ? {} : { required: true },
                       )}
                       labelName="Senha"
+                      palceholder="Senha *"
                       typeInput="password"
                       classNameInput={` w-full flex justify-between items-center
                self-center align-middle ${errors?.password && "input-error shadow-error"}`}
