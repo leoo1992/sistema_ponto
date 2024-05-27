@@ -36,7 +36,9 @@ export default function index() {
     reset,
     state,
   } = useUserForm();
-
+  
+  console.log('RENDER');
+  
   return (
     <>
       <UserFormEffects
@@ -49,6 +51,7 @@ export default function index() {
         state={state}
         MaskCPF={MaskCPF}
         reset={reset}
+        setValue={setValue}
       />
       <div className="m-4 flex h-5/6 w-11/12 flex-col content-center items-center justify-center self-center rounded-3xl bg-gradient-to-b from-slate-100 via-white to-transparent p-0 align-middle shadow-sm shadow-primary sm:w-11/12 md:w-11/12 lg:w-6/12">
         <form
@@ -140,8 +143,14 @@ export default function index() {
               <div className="w-full">
                 <Select
                   labelName="Setor"
+                  state={state}
                   options={sectors}
-                  register={register("id_sector", { required: true })}
+                  setValue={setValue}
+                  register={register("id_sector", { required: true,
+                    onChange: (e) => {
+                      setValue("id_sector", (e.target.value));
+                    },
+                   })}
                   classNameSelect={`w-full flex justify-between items-center
                self-center align-middle ${errors?.id_sector && "select-error shadow-error"}`}
                   Icon={<HiOfficeBuilding size={20} />}
@@ -154,8 +163,14 @@ export default function index() {
               <div className="w-full">
                 <Select
                   labelName="Cargo"
+                  state={state}
                   options={positions}
-                  register={register("id_position", { required: true })}
+                  setValue={setValue}
+                  register={register("id_position", { required: true,
+                    onChange: (e) => {
+                      setValue("id_position", (e.target.value));
+                    },
+                   })}
                   classNameSelect={`w-full flex justify-between items-center
                 self-center align-middle ${errors?.id_position && "select-error shadow-error"}`}
                   Icon={<BsWrench size={20} />}
@@ -170,8 +185,14 @@ export default function index() {
               <div className="w-full">
                 <Select
                   options={role}
+                  state={state}
+                  setValue={setValue}
                   labelName="Acesso"
-                  register={register("id_role", { required: true })}
+                  register={register("id_role", { required: true,
+                    onChange: (e) => {
+                      setValue("id_role", (e.target.value));
+                    },
+                   })}
                   classNameSelect={`w-full flex justify-between items-center
                 self-center align-middle ${errors?.id_role && "select-error shadow-error"}`}
                   Icon={<HiKey size={20} />}

@@ -10,6 +10,7 @@ export default function UserFormEffects({
   state,
   MaskCPF,
   reset,
+  setValue
 }: any) {
   useEffect(() => {
     async function fetchData() {
@@ -56,10 +57,20 @@ export default function UserFormEffects({
             email,
             cpf: cpfAdjuted,
             telefone,
-            id_sector: sector.id_sector,
-            id_position: position.id_position,
-            id_role: permissions[0].id_role,
+            id_sector: sector.name,
+            id_position: position.name,
+            id_role: permissions[0].name,
           });
+
+          setValue("name", name);
+          setValue("email", email );
+          setValue("cpf", cpfAdjuted);
+          setValue("telefone", telefone );
+          setValue("id_sector", sector.name);
+          setValue("id_position", position.name);
+          setValue("id_role", permissions[0].name);
+
+          
         }
       }
     }

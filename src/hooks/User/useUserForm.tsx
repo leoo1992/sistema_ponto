@@ -29,7 +29,7 @@ export const useUserForm = () => {
     id_sector,
     id_role,
   }: any) => {
-    if (state) {
+        if (state) {
       const UpdateUser = {
         cpf: cpf.replace(/\D/g, ""),
         email,
@@ -52,7 +52,6 @@ export const useUserForm = () => {
         sector: id_sector,
         role: id_role,
       };
-
       await newUserPOST(NewUser, navigate);
     }
   };

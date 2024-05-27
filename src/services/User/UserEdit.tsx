@@ -12,9 +12,9 @@ export default async function UserEdit(
     telefone,
     cpf,
     name,
-    position: {id_position: position},
-    sector: {id_sector: sector},
-    permissions: [{id_role: role}],
+    position: {name: position},
+    sector: {name: sector},
+    permissions: [{name: role}],
   };
 
   const EditUserURL = import.meta.env.VITE_REACT_APP_EDIT_USER_URL;

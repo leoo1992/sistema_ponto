@@ -2,7 +2,7 @@ import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import CircularProgress from "@mui/material/CircularProgress";
-import Paper from "@mui/material/Paper"; 
+import Paper from "@mui/material/Paper";
 
 type PropTypes = {
   options: { id: string; name: string }[];
@@ -16,6 +16,9 @@ type PropTypes = {
   classIcon?: string;
   autoComplete?: string;
   register: any;
+  onChange?: any;
+  setValue?: any;
+  state?: any;
 };
 
 export const Select = ({
@@ -28,6 +31,8 @@ export const Select = ({
   Icon,
   classIcon,
   register,
+  setValue,
+  state,
 }: PropTypes) => {
   const [open, setOpen] = useState(false);
   const loading = open && options.length === 0;
@@ -51,9 +56,16 @@ export const Select = ({
 
         <Autocomplete
           disablePortal
-          noOptionsText='Opção não encontrada'
-          loadingText='Carregando'
+          openText="Abrir"
+          noOptionsText="Opção não encontrada"
+          loadingText="Carregando"
+          onInputChange={(e: any) => setValue(e.target.value)}
+          autoSelect
           autoHighlight
+          clearOnBlur
+          clearOnEscape
+          clearText="Apagar"
+          closeText="Fechar"
           open={open}
           onOpen={() => {
             setOpen(true);
@@ -62,15 +74,14 @@ export const Select = ({
             setOpen(false);
           }}
           isOptionEqualToValue={(option: any, value: any) =>
-            option.name === value.name
+            option.id === value.id
           }
-          
           getOptionLabel={(option) => option.name}
           id="combo-box"
           loading={loading}
           options={options}
           className={`rounded-2xl border-0 border-none border-white text-primary shadow-sm shadow-primary ${classNameSelect}`}
-          PaperComponent={CustomPaper} 
+          PaperComponent={CustomPaper}
           renderInput={(params) => (
             <TextField
               {...params}
@@ -84,28 +95,46 @@ export const Select = ({
                 disableAnimation: true,
                 disabled: true,
                 sx: {
-                  color: params.inputProps.value
-                    ? "transparent !important"
-                    : null,
+                  color:
+                    params.inputProps.value || state
+                      ? "transparent !important"
+                      : null,
+                  "&.Mui-disabled": {
+                    color:
+                      params.inputProps.value || state
+                        ? "transparent !important"
+                        : null,
+                  },
                 },
               }}
               InputProps={{
                 ...params.InputProps,
                 className: `input-md rounded-2xl border-none border-0 border-white text-primary ${classNameSelect}`,
                 sx: {
-                  color: params.inputProps.value
-                    ? "blue"
-                    : null,
+                  color: "blue !important",
+                },
+                style: {
+                  color: "blue !important",
                 },
                 endAdornment: (
                   <>
                     {loading ? (
-                      <CircularProgress color="inherit" size={20} />
+                      <CircularProgress
+                        sx={{ color: "blue !important" }}
+                        color="inherit"
+                        size={20}
+                      />
                     ) : null}
-                    <span className="text-primary">{params.InputProps.endAdornment}</span>
+                    <span
+                      className="text-primary"
+                      style={{ color: "blue !important" }}
+                    >
+                      {params.InputProps.endAdornment}
+                    </span>
                   </>
                 ),
               }}
+              onChange={(e: any) => setValue(e.target.value)}
             />
           )}
         />
@@ -119,10 +148,10 @@ function CustomPaper(props: any) {
     <Paper
       {...props}
       sx={{
-        maxHeight: 200, 
-        overflowY: "auto", 
-        color: "blue", 
-        ...props.sx, 
+        maxHeight: "200 !important",
+        overflowY: "auto !important",
+        color: "blue !important",
+        ...props.sx,
       }}
     />
   );
