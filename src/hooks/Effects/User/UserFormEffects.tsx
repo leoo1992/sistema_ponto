@@ -12,6 +12,12 @@ export default function UserFormEffects({
   reset,
   setValue
 }: any) {
+
+  const capitalizeFirstLetter = (string: string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  };
+
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -37,7 +43,7 @@ export default function UserFormEffects({
 
         const mappedRole = await RoleData?.map((role: any) => ({
           id: role.id_role,
-          name: role.name,
+          name: capitalizeFirstLetter(role.name),
         }));
 
         setPositions(mappedPositions);
