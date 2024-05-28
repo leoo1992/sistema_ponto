@@ -29,6 +29,7 @@ export const useUserForm = () => {
     handleSubmit,
     setValue,
     reset,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<createUserFormData>({
     resolver: zodResolver(createUserFormSchema),
@@ -71,6 +72,19 @@ export const useUserForm = () => {
     }
   };
 
+  const name = watch("name");
+  const email = watch("email");
+  const telefone = watch("telefone");
+  const cpf = watch("cpf");
+  const id_sector = watch("id_sector");
+  const id_position = watch("id_position");
+  const id_role = watch("id_role");
+  const password = watch("password");
+
+  const isFormValid = state
+    ? name && email && telefone && cpf && id_sector && id_position && id_role
+    : name && email && telefone && cpf && id_sector && id_position && id_role && password;
+
   return {
     role,
     positions,
@@ -86,5 +100,6 @@ export const useUserForm = () => {
     setSectors,
     reset,
     state,
+    isFormValid,
   };
 };

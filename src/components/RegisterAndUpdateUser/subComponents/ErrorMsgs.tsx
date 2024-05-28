@@ -1,5 +1,5 @@
-export const ErrorMessage = ({ children }: any) => (
+export const ErrorMessage = ({ error }: { error: string}) => (
   <p role="alert" className="ml-16 p-1 text-red-500">
-    * {children}
+    * {error}
   </p>
 );
