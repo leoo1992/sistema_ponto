@@ -7,12 +7,11 @@ export default defineConfig({
     include: [],
   },
   build: {
+    chunkSizeWarningLimit: 2000,
     rollupOptions: {
       external: [],
       output: {
-        globals: {
-          
-        },
+        globals: {},
       },
     },
   },
