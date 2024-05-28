@@ -16,6 +16,7 @@ import getPosition from "../../services/Position/getPosition";
 import getSector from "../../services/Sector/getSector";
 import { validarCPF } from "../../utils/CreateUser/validarCPF";
 import { MaskCPF } from "../../utils/CreateUser/maskCPF";
+import { MaskPhone } from "../../utils/CreateUser/MaskPhone";
 import { useUserForm } from "../../hooks/User/useUserForm";
 import UserFormEffects from "../../hooks/Effects/User/UserFormEffects";
 
@@ -99,7 +100,14 @@ export default function index() {
             <div className="sm:flex sm:gap-3">
               <div className="w-full">
                 <Input
-                  register={register("telefone", { required: true })}
+                  register={register("telefone", { required: true,
+                    onChange: (e) => {
+                      setValue("telefone", MaskPhone(e.target.value));
+                    },
+                    maxLength: 14,
+                    minLength: 13,
+                    
+                   })}
                   labelName="Telefone"
                   palceholder="Telefone *"
                   classNameInput={`w-full flex justify-between items-center
