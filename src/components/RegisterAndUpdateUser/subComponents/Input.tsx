@@ -14,7 +14,7 @@ type PropTypes = {
   onChange?: any;
   maxLength?: number;
   minLength?: number;
-  palceholder?: string
+  palceholder?: string,
 };
 
 export const Input = forwardRef<HTMLInputElement, PropTypes>(({
@@ -31,7 +31,7 @@ export const Input = forwardRef<HTMLInputElement, PropTypes>(({
   onBlur,
   onChange,
   maxLength,
-  minLength
+  minLength,
 }, ref) => {
   return (
     <div className={`form-group w-full ${classContainer}`}>

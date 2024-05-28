@@ -90,7 +90,6 @@ export const Select = ({
               {...register}
               className={`input-md rounded-2xl border-0 border-none border-white text-primary shadow-sm shadow-primary ${classNameSelect}`}
               inputRef={register}
-              required
               label={nameDefault}
               margin={"none"}
               InputLabelProps={{
@@ -151,7 +150,6 @@ function CustomPaper(props: any) {
       {...props}
       sx={{
         maxHeight: "150px !important",
-        overflowY: "auto !important",
         color: "blue !important",
         ...props.sx,
       }}

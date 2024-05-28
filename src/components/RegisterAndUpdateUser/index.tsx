@@ -19,7 +19,6 @@ import { MaskCPF } from "../../utils/CreateUser/maskCPF";
 import { MaskPhone } from "../../utils/CreateUser/MaskPhone";
 import { useUserForm } from "../../hooks/User/useUserForm";
 import UserFormEffects from "../../hooks/Effects/User/UserFormEffects";
-
 export default function index() {
   const {
     role,
@@ -37,9 +36,7 @@ export default function index() {
     reset,
     state,
   } = useUserForm();
-  
-  console.log('RENDER');
-  
+
   return (
     <>
       <UserFormEffects
@@ -72,15 +69,12 @@ export default function index() {
              self-center align-middle ${errors?.name && "input-error shadow-error"}`}
               Icon={<HiUser size={20} />}
               classIcon="flex"
-              register={register("name", { required: true })}
+              register={register("name")}
               aria-invalid={errors.name ? "true" : "false"}
             />
-            {errors?.name?.type === "required" && (
-              <ErrorMessage>Campo requerido</ErrorMessage>
-            )}
+            {errors?.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
             <Input
               register={register("email", {
-                required: true,
                 pattern: /^\S+@\S+$/i,
               })}
               labelName="Email"
@@ -91,23 +85,17 @@ export default function index() {
               Icon={<HiMail size={20} />}
               classIcon="flex"
             />
-            {errors?.email?.type === "required" && (
-              <ErrorMessage>Campo requerido</ErrorMessage>
-            )}
-            {errors?.email?.type === "pattern" && (
-              <ErrorMessage>Email Inválido</ErrorMessage>
+            {errors?.email && (
+              <ErrorMessage>{errors.email.message}</ErrorMessage>
             )}
             <div className="sm:flex sm:gap-3">
               <div className="w-full">
                 <Input
-                  register={register("telefone", { required: true,
+                  register={register("telefone", {
                     onChange: (e) => {
                       setValue("telefone", MaskPhone(e.target.value));
                     },
-                    maxLength: 14,
-                    minLength: 13,
-                    
-                   })}
+                  })}
                   labelName="Telefone"
                   palceholder="Telefone *"
                   classNameInput={`w-full flex justify-between items-center
@@ -115,20 +103,17 @@ export default function index() {
                   Icon={<HiPhone size={20} />}
                   classIcon="flex"
                 />
-                {errors?.telefone?.type === "required" && (
-                  <ErrorMessage>Campo requerido</ErrorMessage>
+                {errors?.telefone && (
+                  <ErrorMessage>{errors.telefone.message}</ErrorMessage>
                 )}
               </div>
               <div className="w-full">
                 <Input
                   register={register("cpf", {
-                    required: true,
                     validate: (value) => validarCPF(value),
                     onChange: (e) => {
                       setValue("cpf", MaskCPF(e.target.value));
                     },
-                    maxLength: 14,
-                    minLength: 14,
                   })}
                   maxLength={14}
                   minLength={14}
@@ -139,11 +124,8 @@ export default function index() {
                   Icon={<HiIdentification size={20} />}
                   classIcon="flex"
                 />
-                {errors?.cpf?.type === "required" && (
-                  <ErrorMessage>Campo requerido</ErrorMessage>
-                )}
-                {errors?.cpf?.type === "validate" && (
-                  <ErrorMessage>CPF Inválido</ErrorMessage>
+                {errors?.cpf && (
+                  <ErrorMessage>{errors.cpf.message}</ErrorMessage>
                 )}
               </div>
             </div>
@@ -154,18 +136,18 @@ export default function index() {
                   state={state}
                   options={sectors}
                   setValue={setValue}
-                  register={register("id_sector", { required: true,
+                  register={register("id_sector", {
                     onChange: (e) => {
-                      setValue("id_sector", (e.target.value));
+                      setValue("id_sector", e.target.value);
                     },
-                   })}
+                  })}
                   classNameSelect={`w-full flex justify-between items-center
                self-center align-middle ${errors?.id_sector && "select-error shadow-error"}`}
                   Icon={<HiOfficeBuilding size={20} />}
                   classIcon="flex"
                 />
-                {errors?.id_sector?.type === "required" && (
-                  <ErrorMessage>Campo requerido</ErrorMessage>
+                {errors?.id_sector && (
+                  <ErrorMessage>{errors.id_sector.message}</ErrorMessage>
                 )}
               </div>
               <div className="w-full">
@@ -174,18 +156,18 @@ export default function index() {
                   state={state}
                   options={positions}
                   setValue={setValue}
-                  register={register("id_position", { required: true,
+                  register={register("id_position", {
                     onChange: (e) => {
-                      setValue("id_position", (e.target.value));
+                      setValue("id_position", e.target.value);
                     },
-                   })}
+                  })}
                   classNameSelect={`w-full flex justify-between items-center
                 self-center align-middle ${errors?.id_position && "select-error shadow-error"}`}
                   Icon={<BsWrench size={20} />}
                   classIcon="flex"
                 />
-                {errors?.id_position?.type === "required" && (
-                  <ErrorMessage>Campo requerido</ErrorMessage>
+                {errors?.id_position && (
+                  <ErrorMessage>{errors.id_position.message}</ErrorMessage>
                 )}
               </div>
             </div>
@@ -196,18 +178,18 @@ export default function index() {
                   state={state}
                   setValue={setValue}
                   labelName="Acesso"
-                  register={register("id_role", { required: true,
+                  register={register("id_role", {
                     onChange: (e) => {
-                      setValue("id_role", (e.target.value));
+                      setValue("id_role", e.target.value);
                     },
-                   })}
+                  })}
                   classNameSelect={`w-full flex justify-between items-center
                 self-center align-middle ${errors?.id_role && "select-error shadow-error"}`}
                   Icon={<HiKey size={20} />}
                   classIcon="flex"
                 />
-                {errors?.id_role?.type === "required" && (
-                  <ErrorMessage>Campo requerido</ErrorMessage>
+                {errors?.id_role && (
+                  <ErrorMessage>{errors.id_role.message}</ErrorMessage>
                 )}
               </div>
               <div className="w-full">
@@ -226,8 +208,8 @@ export default function index() {
                       Icon={<HiLockClosed size={20} />}
                       classIcon={`flex `}
                     />
-                    {errors?.password?.type === "required" && (
-                      <ErrorMessage>Campo requerido</ErrorMessage>
+                    {errors?.password && (
+                      <ErrorMessage>{errors.password.message}</ErrorMessage>
                     )}
                   </>
                 )}
@@ -241,7 +223,7 @@ export default function index() {
           text-white sm:w-4/12 md:w-3/12`}
               disabled={isSubmitting}
             >
-              {state ? "Atualizar" : "Registrar"}
+              {isSubmitting ? "Enviando..." : state ? "Editar" : "Cadastrar"}
             </button>
           </div>
         </form>

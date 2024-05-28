@@ -3,6 +3,12 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useLocation } from "react-router-dom";
 import UserEdit from "../../services/User/UserEdit";
 import newUserPOST from "../../services/User/newUserPOST";
+import {
+  createUserFormSchemaWithoutPassword,
+  createUserFormSchemaWithPassword,
+} from "./zodUserValidations";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export const useUserForm = () => {
   const [role, setRole] = useState<any[]>([]);
@@ -11,13 +17,22 @@ export const useUserForm = () => {
   const location = useLocation();
   const { state } = location;
   const navigate = useNavigate();
+
+  const createUserFormSchema = state
+  ? createUserFormSchemaWithoutPassword(role, positions, sectors)
+  : createUserFormSchemaWithPassword(role, positions, sectors);
+
+  type createUserFormData = z.infer<typeof createUserFormSchema>;
+
   const {
     register,
     handleSubmit,
     setValue,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<any>();
+  } = useForm<createUserFormData>({
+    resolver: zodResolver(createUserFormSchema),
+  });
 
   const onSubmit = async ({
     cpf,
@@ -29,7 +44,7 @@ export const useUserForm = () => {
     id_sector,
     id_role,
   }: any) => {
-        if (state) {
+    if (state) {
       const UpdateUser = {
         cpf: cpf.replace(/\D/g, ""),
         email,
