@@ -8,11 +8,11 @@ import { NoDataComponent } from "../../TablesComponents/NoDataComponent";
 import { ProgressComponent } from "../../TablesComponents/ProgressComponent";
 import Pagination from "../../TablesComponents/Pagination";
 import { subHeaderComponent } from "../../TablesComponents/subHeaderComponent";
-// import PositionListGET from "../../../services/Position/PositionListGET";
-// import PositionDelete from "../../../services/Position/PositionDelete";
-// import PositionDisable from "../../../services/Position/PositionDisable";
+import PositionListGET from "../../../services/Position/PositionListGET";
+// import PositionDelete from "../../../services/Position/PositionListGET";
+// import PositionDisable from "../../../services/Position/";
 
-import { data } from "../../../utils/Position/data.util";
+//import { data } from "../../../utils/Position/data.util";
 
 export const PositionTableStory = ({
   pagination,
@@ -37,7 +37,7 @@ export const PositionTableStory = ({
   defaultComponentOptions,
 }: any) => {
   const [loading, setLoading] = useState(false);
-//   const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
   const [totalElements, setTotalElements] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -65,11 +65,11 @@ export const PositionTableStory = ({
     console.log(id);
     setLoading(true);
     try {
-    //   await PositionDelete(id, navigate);
-    //   setData((prevData: any) =>
-    //    prevData.filter((item: any) => item.id !== id),
-    //    );
-      setTotalElements((prevTotalElements) => prevTotalElements - 1);
+      // await PositionDelete(id, navigate);
+      // setData((prevData: any) =>
+      //  prevData.filter((item: any) => item.id !== id),
+      //  );
+      // setTotalElements((prevTotalElements) => prevTotalElements - 1);
     } catch (error) {
       console.error("Failed to delete position:", error);
     } finally {
@@ -135,9 +135,9 @@ export const PositionTableStory = ({
   const fetchData = async () => {
     setLoading(true);
     try {
-    //   const newData = await PositionListGET(currentPage - 1, rowsPerPage);
-    //   setData(newData.content);
-    //   setTotalElements(newData.totalElements);
+      const newData = await PositionListGET(currentPage - 1, rowsPerPage);
+      setData(newData.content);
+      setTotalElements(newData.totalElements);
       setTimeout(() => {
         setLoading(false);
       }, 500);
@@ -191,11 +191,11 @@ export const PositionTableStory = ({
     try {
         console.log(id);
         
-    //   await PositionDisable(id, navigate);
-    //   setData((prevData: any) =>
-    //      prevData.filter((item: any) => item.id !== id),
-    //    );
-      setTotalElements((prevTotalElements) => prevTotalElements - 1);
+      // await PositionDisable(id, navigate);
+      // setData((prevData: any) =>
+      //    prevData.filter((item: any) => item.id !== id),
+      //  );
+      // setTotalElements((prevTotalElements) => prevTotalElements - 1);
     } catch (error) {
       console.error("Failed to disable position:", error);
     } finally {

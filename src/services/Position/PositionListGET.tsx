@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 
 export default async function PositionListGET(page = 0, size = 10) {
   const PositionListURL =
-    import.meta.env.VITEREACT_APP_GET_POSITION_URL + `?page=${page}&size=${size}`;
+    import.meta.env.VITE_REACT_APP_GET_POSITION_URL + `?page=${page}&size=${size}`;
 
   try {
     const response = await fetch(PositionListURL, {

@@ -2,8 +2,8 @@ export const getSectorDataTableColumns = [
     {
       name: "Id",
       selector: (row: any) => {
-        if (row.id === null || row.id === undefined) return "Não definido";
-        return row.id;
+        if (row.id_sector === null || row.id_sector === undefined) return "Não definido";
+        return row.id_sector;
       },
       sortable: true,
       width: "60px",

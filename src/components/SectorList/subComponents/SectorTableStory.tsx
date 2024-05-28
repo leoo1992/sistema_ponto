@@ -7,11 +7,11 @@ import { NoDataComponent } from "../../TablesComponents/NoDataComponent";
 import { ProgressComponent } from "../../TablesComponents/ProgressComponent";
 import Pagination from "../../TablesComponents/Pagination";
 import { subHeaderComponent } from "../../TablesComponents/subHeaderComponent";
-// import SectorListGET from "../../../services/Sector/SectorListGET";
+import SectorListGET from "../../../services/Sector/SectorListGET";
 // import SectorDelete from "../../../services/Sector/SectorDelete";
 // import SectorDisable from "../../../services/Sector/SectorDisable";
 
-import { data } from "../../../utils/Sector/data.util";
+// import { data } from "../../../utils/Sector/data.util";
 
 export const SectorTableStory = ({
   pagination,
@@ -36,7 +36,7 @@ export const SectorTableStory = ({
   defaultComponentOptions,
 }: any) => {
   const [loading, setLoading] = useState(false);
-//   const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
   const [totalElements, setTotalElements] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -134,9 +134,9 @@ export const SectorTableStory = ({
   const fetchData = async () => {
     setLoading(true);
     try {
-    //   const newData = await SectorListGET(currentPage - 1, rowsPerPage);
-    //   setData(newData.content);
-    //   setTotalElements(newData.totalElements);
+      const newData = await SectorListGET(currentPage - 1, rowsPerPage);
+      setData(newData.content);
+      setTotalElements(newData.totalElements);
       setTimeout(() => {
         setLoading(false);
       }, 500);

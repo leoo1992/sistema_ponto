@@ -2,8 +2,8 @@ export const getPositionDataTableColumns = [
     {
       name: "Id",
       selector: (row: any) => {
-        if (row.id === null || row.id === undefined) return "Não definido";
-        return row.id;
+        if (row.id_position === null || row.id_position === undefined) return "Não definido";
+        return row.id_position;
       },
       sortable: true,
       width: "60px",
