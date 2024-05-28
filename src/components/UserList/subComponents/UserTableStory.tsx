@@ -136,14 +136,10 @@ export const UserTableStory = ({
       const newData = await UserListGET(currentPage - 1, rowsPerPage);
       setData(newData.content);
       setTotalElements(newData.totalElements);
-      setTimeout(() => {
-        setLoading(false);
-      }, 500);
+      setLoading(false);
     } catch (error) {
       console.error("Failed to fetch data:", error);
-      setTimeout(() => {
-        setLoading(false);
-      }, 500);
+      setLoading(false);
     }
   };
 
