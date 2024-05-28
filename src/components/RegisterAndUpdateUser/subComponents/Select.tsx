@@ -37,6 +37,8 @@ export const Select = ({
   const [open, setOpen] = useState(false);
   const loading = open && options.length === 0;
 
+  const sortedOptions = [...options].sort((a, b) => a.name.localeCompare(b.name));
+
   return (
     <div className={`form-group w-full ${classContainer}`}>
       <label className={`label px-0 pb-0 pt-1 ${classNameLabel}`}>
@@ -79,7 +81,7 @@ export const Select = ({
           getOptionLabel={(option) => option.name}
           id="combo-box"
           loading={loading}
-          options={options}
+          options={sortedOptions}
           className={`rounded-2xl border-0 border-none border-white text-primary shadow-sm shadow-primary ${classNameSelect}`}
           PaperComponent={CustomPaper}
           renderInput={(params) => (
@@ -148,7 +150,7 @@ function CustomPaper(props: any) {
     <Paper
       {...props}
       sx={{
-        maxHeight: "200 !important",
+        maxHeight: "150px !important",
         overflowY: "auto !important",
         color: "blue !important",
         ...props.sx,
