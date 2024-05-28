@@ -39,9 +39,13 @@ export default function UserMenu() {
         <div className="drawer-content flex content-center items-center justify-center self-center">
           <button
             onClick={toogleMenu2}
+            id="toogle-btn"
+            data-testid="toogle-btn-test"
+            aria-label={active2 ? "Toogle Fechar menu" : "Toogle Abrir menu"}
             className="flex content-center items-center justify-center self-center"
           >
             <label
+            id="labeldiv2"
               htmlFor="my-drawer-4"
               className={`btn-xl btn btn-circle btn-ghost drawer-button 
               absolute right-0 z-50 m-1 flex content-center items-center justify-center 

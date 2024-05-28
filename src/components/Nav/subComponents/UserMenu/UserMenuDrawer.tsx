@@ -11,7 +11,7 @@ export default function UserMenuDrawer({
     <div className="drawer-side h-svh w-svw">
       <label
         htmlFor="my-drawer-4"
-        aria-label="close sidebar"
+        aria-label={active2 ? "Fechar menu" : "Abrir menu"}
         className="drawer-overlay flex h-svh w-svw content-center
                   items-center justify-between self-center align-middle
                   transition-all duration-1000 ease-in-out"
@@ -36,8 +36,10 @@ export default function UserMenuDrawer({
         </li>
         <li onClick={handleItemClick2}>
           <button
+            id="logout"
             className="rounded-badge text-base font-bold"
             onClick={handleLogout}
+            aria-label="logout"
           >
             <span className="text-2xl">
               <HiLogout />
