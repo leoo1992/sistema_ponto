@@ -1,3 +1,6 @@
+import { MaskPhone } from "../CreateUser/MaskPhone";
+import { MaskCPF } from "../CreateUser/maskCPF";
+
 export const getUserDataTableColumns = [
   {
     name: "Id",
@@ -30,7 +33,8 @@ export const getUserDataTableColumns = [
     name: "CPF",
     selector: (row: any) => {
       if (!row.cpf) return "Não definido";
-      return row.cpf;
+      const cpf = MaskCPF(row.cpf);
+      return cpf;
     },
     sortable: true,
     width: "140px",
@@ -57,7 +61,8 @@ export const getUserDataTableColumns = [
     name: "Telefone",
     selector: (row: any) => {
       if (!row.telefone) return "Não definido";
-      return row.telefone;
+      const telefone = MaskPhone(row.telefone);
+      return telefone;
     },
     sortable: true,
     width: "140px",
@@ -65,22 +70,25 @@ export const getUserDataTableColumns = [
   {
     name: "Permissão",
     selector: (row: any) => {
-      if (!row.permissions || row.permissions.length === 0) return "Não definido";
-      const campo =  row.permissions[0].name;
+      if (!row.permissions || row.permissions.length === 0)
+        return "Não definido";
+      const campo = row.permissions[0].name;
       const lowercaseRole = campo.toLowerCase();
-      const convert = lowercaseRole.charAt(0).toUpperCase() + lowercaseRole.slice(1);
+      const convert =
+        lowercaseRole.charAt(0).toUpperCase() + lowercaseRole.slice(1);
       return convert;
     },
     sortable: true,
     width: "140px",
   },
   {
-    name: 'Status',
+    name: "Status",
     selector: (row: any) => {
-      if (row.status === null || row.status === undefined) return 'Não definido';
-      return row.status === true ? 'Ativo' : 'Inativo';
+      if (row.status === null || row.status === undefined)
+        return "Não definido";
+      return row.status === true ? "Ativo" : "Inativo";
     },
     sortable: true,
-    width: '120px',
+    width: "120px",
   },
 ];
