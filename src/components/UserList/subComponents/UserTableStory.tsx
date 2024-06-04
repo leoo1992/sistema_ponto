@@ -54,19 +54,19 @@ export const UserTableStory = ({
   }, []);
 
   const handleDeleteConfirmed = async () => {
-      await handleDelete(selectedDeleteID);
+    await handleDelete(selectedDeleteID);
   };
   const handleDisableConfirmed = async () => {
-      await handleDisable(selectedDisableID);
+    await handleDisable(selectedDisableID);
   };
 
-  const handleDelete = async ( id : any) => {
+  const handleDelete = async (id: any) => {
     setLoading(true);
     try {
       await UserDelete(id, navigate);
       setData((prevData: any) =>
-       prevData.filter((item: any) => item.id !== id),
-       );
+        prevData.filter((item: any) => item.id !== id),
+      );
       setTotalElements((prevTotalElements) => prevTotalElements - 1);
     } catch (error) {
       console.error("Failed to delete user:", error);
@@ -79,9 +79,10 @@ export const UserTableStory = ({
   };
 
   const contextActions = useMemo(() => {
-    const handleEditSelected = async(data: any) => {
+    const handleEditSelected = async (data: any) => {
       await handleEdit(data);
     };
+
     const handleDisableSelected = (id: any) => {
       setModalOpen2(true);
       setSelectedDisableID(id);
@@ -192,13 +193,13 @@ export const UserTableStory = ({
     }
   };
 
-  const handleDisable = async (id : any) => {
+  const handleDisable = async (id: number) => {
     setLoading(true);
     try {
       await UserDisable(id, navigate);
       setData((prevData: any) =>
-         prevData.filter((item: any) => item.id !== id),
-       );
+        prevData.filter((item: any) => item.id !== id),
+      );
       setTotalElements((prevTotalElements) => prevTotalElements - 1);
     } catch (error) {
       console.error("Failed to disable user:", error);
