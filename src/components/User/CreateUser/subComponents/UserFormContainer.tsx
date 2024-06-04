@@ -27,7 +27,6 @@ export default function UserFormContainer({
   errors,
   isSubmitting,
   onSubmit,
-  state,
   isFormValid,
 }: any) {
   return (
@@ -40,7 +39,7 @@ export default function UserFormContainer({
         onSubmit={handleSubmit(onSubmit)}
         className="m-0 flex w-full flex-col p-6"
       >
-        <FormTittle state={state} />
+        <FormTittle />
         <div
           className={`flex w-full flex-col content-center justify-center self-center`}
         >
@@ -103,7 +102,6 @@ export default function UserFormContainer({
             <div className="w-full">
               <Select
                 labelName="Setor"
-                state={state}
                 options={sectors}
                 setValue={setValue}
                 register={register("id_sector", {
@@ -120,7 +118,6 @@ export default function UserFormContainer({
             <div className="w-full">
               <Select
                 labelName="Cargo"
-                state={state}
                 options={positions}
                 setValue={setValue}
                 register={register("id_position", {
@@ -139,7 +136,6 @@ export default function UserFormContainer({
             <div className="w-full">
               <Select
                 options={role}
-                state={state}
                 setValue={setValue}
                 labelName="Acesso"
                 register={register("id_role", {
@@ -154,12 +150,10 @@ export default function UserFormContainer({
               )}
             </div>
             <div className="w-full">
-              {!state && (
-                <>
                   <Input
                     register={register(
                       "password",
-                      state ? {} : { required: true },
+                      { required: true },
                     )}
                     labelName="Senha"
                     palceholder="Senha *"
@@ -171,15 +165,12 @@ export default function UserFormContainer({
                   {errors?.password && (
                     <ErrorMessage error={errors.password.message} />
                   )}
-                </>
-              )}
             </div>
           </div>
         </div>
         <SubmittBtn
           isSubmitting={isSubmitting}
           isFormValid={isFormValid}
-          state={state}
         />
       </form>
     </div>

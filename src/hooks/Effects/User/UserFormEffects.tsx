@@ -7,10 +7,6 @@ export default function UserFormEffects({
   setPositions,
   setSectors,
   setRole,
-  state,
-  MaskCPF,
-  reset,
-  setValue
 }: any) {
 
   const capitalizeFirstLetter = (string: string) => {
@@ -50,44 +46,10 @@ export default function UserFormEffects({
         setRole(mappedRole);
       } catch (error) {
         console.error("Failed to fetch data:", error);
-      } finally {
-        if (state) {
-          const {
-            name,
-            email,
-            cpf,
-            position,
-            sector,
-            telefone,
-            permissions,
-          }: any = state;
-
-          const cpfAdjuted = MaskCPF(cpf);
-
-          reset({
-            name,
-            email,
-            cpf: cpfAdjuted,
-            telefone,
-            id_sector: sector.name,
-            id_position: position.name,
-            id_role: permissions[0].name,
-          });
-
-          setValue("name", name);
-          setValue("email", email );
-          setValue("cpf", cpfAdjuted);
-          setValue("telefone", telefone );
-          setValue("id_sector", sector.name);
-          setValue("id_position", position.name);
-          setValue("id_role", permissions[0].name);
-
-          
-        }
       }
     }
 
     fetchData();
-  }, [state, reset]);
+  }, []);
   return null;
 }

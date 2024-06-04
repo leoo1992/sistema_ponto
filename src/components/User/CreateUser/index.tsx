@@ -2,7 +2,6 @@ import { useUserForm } from "../../../hooks/User/useUserForm";
 import getRole from "../../../services/Role/getRole";
 import getPosition from "../../../services/Position/getPosition";
 import getSector from "../../../services/Sector/getSector";
-import { MaskCPF } from "../../../utils/User/CreateUser/maskCPF";
 import UserFormEffects from "../../../hooks/Effects/User/UserFormEffects";
 import UserFormContainer from "./subComponents/UserFormContainer";
 
@@ -20,8 +19,6 @@ export default function CreateUser() {
     setRole,
     setPositions,
     setSectors,
-    reset,
-    state,
     isFormValid,
   } = useUserForm();
 
@@ -34,10 +31,6 @@ export default function CreateUser() {
         setPositions={setPositions}
         setSectors={setSectors}
         setRole={setRole}
-        state={state}
-        MaskCPF={MaskCPF}
-        reset={reset}
-        setValue={setValue}
       />
       <UserFormContainer
         role={role}
@@ -49,7 +42,6 @@ export default function CreateUser() {
         errors={errors}
         isSubmitting={isSubmitting}
         onSubmit={onSubmit}
-        state={state}
         isFormValid={isFormValid}
       />
     </>

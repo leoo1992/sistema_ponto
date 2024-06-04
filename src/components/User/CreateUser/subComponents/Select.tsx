@@ -18,7 +18,6 @@ type PropTypes = {
   register: any;
   onChange?: any;
   setValue?: any;
-  state?: any;
 };
 
 export const Select = ({
@@ -32,7 +31,6 @@ export const Select = ({
   classIcon,
   register,
   setValue,
-  state,
 }: PropTypes) => {
   const [open, setOpen] = useState(false);
   const loading = open && options.length === 0;
@@ -97,12 +95,12 @@ export const Select = ({
                 disabled: true,
                 sx: {
                   color:
-                    params.inputProps.value || state
+                    params.inputProps.value
                       ? "transparent !important"
                       : null,
                   "&.Mui-disabled": {
                     color:
-                      params.inputProps.value || state
+                      params.inputProps.value
                         ? "transparent !important"
                         : null,
                   },
