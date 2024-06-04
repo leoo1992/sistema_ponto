@@ -1,5 +1,5 @@
-import CreateUser from "../../components/User/CreateUser";
-import Waves from "../../components/UX/Waves";
+import CreateUser from "../../../components/User/CreateUser";
+import Waves from "../../../components/UX/Waves";
 
 export default function CreateUserPage() {
   return (

@@ -174,7 +174,7 @@ export const PositionTableStory = ({
         name: name ? name : null,
       };
 
-      navigate("/register-update-position", { state: response });
+      navigate("/register-position", { state: response });
     } catch (error) {
       console.error("Failed to edit position:", error);
     } finally {
@@ -237,7 +237,7 @@ export const PositionTableStory = ({
         progressComponent={ProgressComponent}
         noHeader={noHeader}
         subHeader={subHeader}
-        subHeaderComponent={subHeaderComponent('/register-update-position')}
+        subHeaderComponent={subHeaderComponent('/register-position')}
         subHeaderAlign={subHeaderAlign}
         subHeaderWrap={subHeaderWrap}
         noContextMenu={noContextMenu}

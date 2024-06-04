@@ -17,7 +17,7 @@ export default function CadsatrosContainer({ handleItemClick }: any) {
           <li onClick={handleItemClick} className="m-0 p-0">
             <Link
             data-testid="link-add-user"
-              to="/register-update-user"
+              to="/register-user"
               className="m-0 rounded-badge px-1 font-semibold text-base-content"
             >
               <span className="text-lg">
@@ -31,7 +31,7 @@ export default function CadsatrosContainer({ handleItemClick }: any) {
           </li>
           <li onClick={handleItemClick} className="m-0 p-0">
             <Link
-              to="/register-update-sector"
+              to="/register-sector"
               className="m-0 rounded-badge px-1 font-semibold text-base-content"
             >
               <span className="text-xl">
@@ -45,7 +45,7 @@ export default function CadsatrosContainer({ handleItemClick }: any) {
           </li>
           <li onClick={handleItemClick} className="m-0 p-0">
           <Link
-              to="/register-update-position"
+              to="/register-position"
               className="m-0 rounded-badge px-1 font-semibold text-base-content"
             >
               <span className="text-xl">

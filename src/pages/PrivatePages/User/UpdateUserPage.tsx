@@ -1,5 +1,5 @@
-import UpdateUser from "../../components/User/UpdateUser";
-import Waves from "../../components/UX/Waves";
+import UpdateUser from "../../../components/User/UpdateUser";
+import Waves from "../../../components/UX/Waves";
 
 export default function UpdateUserPage() {
   return (

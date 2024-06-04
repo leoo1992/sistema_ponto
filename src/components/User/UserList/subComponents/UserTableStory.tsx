@@ -164,28 +164,14 @@ export const UserTableStory = ({
   };
 
   const handleEdit = async ({
-    id,
-    name,
-    email,
-    cpf,
-    position,
-    sector,
-    telefone,
-    permissions,
+    id
   }: any) => {
     try {
       const response = {
         id: id ? id : null,
-        name: name ? name : null,
-        email: email ? email : null,
-        cpf: cpf ? cpf : null,
-        position: position ? position : 0,
-        sector: sector ? sector : 0,
-        telefone: telefone ? telefone : null,
-        permissions: permissions ? permissions : 0,
       };
 
-      navigate("/register-update-user", { state: response });
+      navigate(`/update-user/${response.id}`);
     } catch (error) {
       console.error("Failed to edit user:", error);
     } finally {
@@ -246,7 +232,7 @@ export const UserTableStory = ({
         progressComponent={ProgressComponent}
         noHeader={noHeader}
         subHeader={subHeader}
-        subHeaderComponent={subHeaderComponent("/register-update-user")}
+        subHeaderComponent={subHeaderComponent("/register-user")}
         subHeaderAlign={subHeaderAlign}
         subHeaderWrap={subHeaderWrap}
         noContextMenu={noContextMenu}

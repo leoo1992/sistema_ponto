@@ -1,5 +1,5 @@
-import CreateSector from "../../components/Sector/CreateSector";
-import Waves from "../../components/UX/Waves";
+import CreateSector from "../../../components/Sector/CreateSector";
+import Waves from "../../../components/UX/Waves";
 
 export default function CreateSectorPage() {
   return (

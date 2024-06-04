@@ -1,5 +1,5 @@
-import CreatePosition from "../../components/Position/CreatePosition";
-import Waves from "../../components/UX/Waves";
+import CreatePosition from "../../../components/Position/CreatePosition";
+import Waves from "../../../components/UX/Waves";
 
 export default function CreatePositionPage() {
   return (

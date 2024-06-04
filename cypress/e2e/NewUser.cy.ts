@@ -22,7 +22,7 @@ describe('Register new user', () => {
     cy.get('[data-testid="login-btn"]').contains("Entrar").click();
     cy.wait(3000);
     //open register page
-    cy.visit('/register-update-user');
+    cy.visit('/register-user');
 
     cy.get('.flex-col > :nth-child(1) > :nth-child(2) > .input').type('Leonardo');
 

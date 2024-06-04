@@ -173,7 +173,7 @@ export const SectorTableStory = ({
         name: name ? name : null,
       };
 
-      navigate("/register-update-sector", { state: response });
+      navigate("/register-sector", { state: response });
     } catch (error) {
       console.error("Failed to edit sector:", error);
     } finally {
@@ -236,7 +236,7 @@ export const SectorTableStory = ({
         progressComponent={ProgressComponent}
         noHeader={noHeader}
         subHeader={subHeader}
-        subHeaderComponent={subHeaderComponent('/register-update-sector')}
+        subHeaderComponent={subHeaderComponent('/register-sector')}
         subHeaderAlign={subHeaderAlign}
         subHeaderWrap={subHeaderWrap}
         noContextMenu={noContextMenu}
