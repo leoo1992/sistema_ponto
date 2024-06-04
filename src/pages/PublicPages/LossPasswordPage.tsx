@@ -1,6 +1,6 @@
 import TitleAndSubTitle from "../../components/Login/subComponents/TitleAndSubTitle";
-import FormLossPass from "../../components/LossPassword/FormLossPass";
-import Waves from "../../components/Waves";
+import FormLossPass from "../../components/Login/LossPassword/FormLossPass";
+import Waves from "../../components/UX/Waves";
 
 export default function LossPassword() {
   return (

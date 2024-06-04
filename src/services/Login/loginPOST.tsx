@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { notifySuccess } from "../../components/Toasts/ToastSuccess";
+import { notifySuccess } from "../../components/UX/Toasts/ToastSuccess";
 
 export default async function loginPOST({
   email,

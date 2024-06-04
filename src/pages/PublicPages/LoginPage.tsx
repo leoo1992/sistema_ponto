@@ -1,6 +1,6 @@
 import FormLogin from "../../components/Login";
 import TitleAndSubTitle from "../../components/Login/subComponents/TitleAndSubTitle";
-import Waves from "../../components/Waves";
+import Waves from "../../components/UX/Waves";
 
 export default function LoginPage() {
   return (

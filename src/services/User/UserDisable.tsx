@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
-import { notifySuccess } from "../../components/Toasts/ToastSuccess";
-import { notifyError } from "../../components/Toasts/ToastError";
+import { notifySuccess } from "../../components/UX/Toasts/ToastSuccess";
+import { notifyError } from "../../components/UX/Toasts/ToastError";
 
 export default async function UserDisable(id: any, navigate: any) {
   const idAsNumber = parseInt(id);

@@ -1,20 +1,19 @@
 import DataTable from "react-data-table-component";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { getPositionDataTableColumns } from "../../../utils/Position/getPositionDataTableColumns.util";
+import { getSectorDataTableColumns } from "../../../../utils/Sector/getSectorDataTableColumns.util";
 import { useNavigate } from "react-router-dom";
+import { ConfirmModal } from "../../../UX/Modal/ConfirmModal";
+import { NoDataComponent } from "../../../UX/TablesComponents/NoDataComponent";
+import { ProgressComponent } from "../../../UX/TablesComponents/ProgressComponent";
+import Pagination from "../../../UX/TablesComponents/Pagination";
+import { subHeaderComponent } from "../../../UX/TablesComponents/subHeaderComponent";
+import SectorListGET from "../../../../services/Sector/SectorListGET";
+// import SectorDelete from "../../../services/Sector/SectorDelete";
+// import SectorDisable from "../../../services/Sector/SectorDisable";
 
-import { ConfirmModal } from "../../Modal/Modal";
-import { NoDataComponent } from "../../TablesComponents/NoDataComponent";
-import { ProgressComponent } from "../../TablesComponents/ProgressComponent";
-import Pagination from "../../TablesComponents/Pagination";
-import { subHeaderComponent } from "../../TablesComponents/subHeaderComponent";
-import PositionListGET from "../../../services/Position/PositionListGET";
-// import PositionDelete from "../../../services/Position/PositionListGET";
-// import PositionDisable from "../../../services/Position/";
+// import { data } from "../../../utils/Sector/data.util";
 
-//import { data } from "../../../utils/Position/data.util";
-
-export const PositionTableStory = ({
+export const SectorTableStory = ({
   pagination,
   highlightOnHover,
   striped,
@@ -65,13 +64,13 @@ export const PositionTableStory = ({
     console.log(id);
     setLoading(true);
     try {
-      // await PositionDelete(id, navigate);
-      // setData((prevData: any) =>
-      //  prevData.filter((item: any) => item.id !== id),
-      //  );
-      // setTotalElements((prevTotalElements) => prevTotalElements - 1);
+    //   await SectorDelete(id, navigate);
+    //   setData((prevData: any) =>
+    //    prevData.filter((item: any) => item.id !== id),
+    //    );
+      setTotalElements((prevTotalElements) => prevTotalElements - 1);
     } catch (error) {
-      console.error("Failed to delete position:", error);
+      console.error("Failed to delete sector:", error);
     } finally {
       setLoading(false);
       setConfirm(false);
@@ -98,8 +97,8 @@ export const PositionTableStory = ({
 
     return (
       <div
-        className="flex w-full content-center items-center
-                    justify-start gap-1 self-center rounded-t-2xl"
+        className="m-0 flex w-full content-center items-center
+                    justify-start gap-1 self-center rounded-t-2xl p-2"
       >
         <button
           className="btn glass btn-primary btn-sm w-20 rounded-3xl bg-primary text-xs text-white"
@@ -135,7 +134,7 @@ export const PositionTableStory = ({
   const fetchData = async () => {
     setLoading(true);
     try {
-      const newData = await PositionListGET(currentPage - 1, rowsPerPage);
+      const newData = await SectorListGET(currentPage - 1, rowsPerPage);
       setData(newData.content);
       setTotalElements(newData.totalElements);
       setLoading(false);
@@ -174,9 +173,9 @@ export const PositionTableStory = ({
         name: name ? name : null,
       };
 
-      navigate("/register-update-position", { state: response });
+      navigate("/register-update-sector", { state: response });
     } catch (error) {
-      console.error("Failed to edit position:", error);
+      console.error("Failed to edit sector:", error);
     } finally {
       setLoading(false);
     }
@@ -187,13 +186,13 @@ export const PositionTableStory = ({
     try {
         console.log(id);
         
-      // await PositionDisable(id, navigate);
-      // setData((prevData: any) =>
-      //    prevData.filter((item: any) => item.id !== id),
-      //  );
-      // setTotalElements((prevTotalElements) => prevTotalElements - 1);
+    //   await SectorDisable(id, navigate);
+    //   setData((prevData: any) =>
+    //      prevData.filter((item: any) => item.id !== id),
+    //    );
+      setTotalElements((prevTotalElements) => prevTotalElements - 1);
     } catch (error) {
-      console.error("Failed to disable position:", error);
+      console.error("Failed to disable sector:", error);
     } finally {
       setLoading(false);
     }
@@ -219,9 +218,9 @@ export const PositionTableStory = ({
       <DataTable
         key={currentPage}
         title={
-          <span className=" m-0 h-full w-full p-0 font-semibold">Cargos</span>
+          <span className=" m-0 h-full w-full p-0 font-semibold">Setores</span>
         }
-        columns={getPositionDataTableColumns}
+        columns={getSectorDataTableColumns}
         data={data}
         noDataComponent={NoDataComponent("Sem setores cadastrados")}
         defaultSortFieldId={1}
@@ -237,7 +236,7 @@ export const PositionTableStory = ({
         progressComponent={ProgressComponent}
         noHeader={noHeader}
         subHeader={subHeader}
-        subHeaderComponent={subHeaderComponent('/register-update-position')}
+        subHeaderComponent={subHeaderComponent('/register-update-sector')}
         subHeaderAlign={subHeaderAlign}
         subHeaderWrap={subHeaderWrap}
         noContextMenu={noContextMenu}

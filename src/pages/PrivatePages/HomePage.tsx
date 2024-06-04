@@ -1,4 +1,4 @@
-import Waves from "../../components/Waves";
+import Waves from "../../components/UX/Waves";
 import { useState } from "react";
 
 export default function HomePage() {

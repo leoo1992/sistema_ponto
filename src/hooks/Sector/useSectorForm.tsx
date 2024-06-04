@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { notifyError } from "../../components/Toasts/ToastError";
+import { notifyError } from "../../components/UX/Toasts/ToastError";
 import CreateSector from "../../services/Sector/CreateSector";
 
 export default function useSectorForm() {

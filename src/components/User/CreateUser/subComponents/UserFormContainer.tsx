@@ -8,12 +8,12 @@ import {
   HiUser,
 } from "react-icons/hi";
 import { BsWrench } from "react-icons/bs";
-import { Input } from ".././subComponents/Input";
-import { Select } from ".././subComponents/Select";
-import { ErrorMessage } from ".././subComponents/ErrorMsgs";
-import { validarCPF } from "../../../utils/CreateUser/validarCPF";
-import { MaskCPF } from "../../../utils/CreateUser/maskCPF";
-import { MaskPhone } from "../../../utils/CreateUser/MaskPhone";
+import { Input } from "./Input";
+import { Select } from "./Select";
+import { ErrorMessage } from "./ErrorMsgs";
+import { validarCPF } from "../../../../utils/User/CreateUser/validarCPF";
+import { MaskCPF } from "../../../../utils/User/CreateUser/maskCPF";
+import { MaskPhone } from "../../../../utils/User/CreateUser/MaskPhone";
 import FormTittle from "./FormTittle";
 import SubmittBtn from "./SubmittBtn";
 

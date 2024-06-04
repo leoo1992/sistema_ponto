@@ -1,19 +1,19 @@
-import DataTable from "react-data-table-component";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { getSectorDataTableColumns } from "../../../utils/Sector/getSectorDataTableColumns.util";
+import { getUserDataTableColumns } from "../../../../utils/User/UserList/getUserDataTableColumns.util";
+import { NoDataComponent } from "../../../UX/TablesComponents/NoDataComponent";
+import { ProgressComponent } from "../../../UX/TablesComponents/ProgressComponent";
+import { subHeaderComponent } from "../../../UX/TablesComponents/subHeaderComponent";
+import DataTable from "react-data-table-component";
+import UserListGET from "../../../../services/User/UserListGET";
+import Pagination from "../../../UX/TablesComponents/Pagination";
+import UserDelete from "../../../../services/User/UserDelete";
+import UserDisable from "../../../../services/User/UserDisable";
 import { useNavigate } from "react-router-dom";
-import { ConfirmModal } from "../../Modal/Modal";
-import { NoDataComponent } from "../../TablesComponents/NoDataComponent";
-import { ProgressComponent } from "../../TablesComponents/ProgressComponent";
-import Pagination from "../../TablesComponents/Pagination";
-import { subHeaderComponent } from "../../TablesComponents/subHeaderComponent";
-import SectorListGET from "../../../services/Sector/SectorListGET";
-// import SectorDelete from "../../../services/Sector/SectorDelete";
-// import SectorDisable from "../../../services/Sector/SectorDisable";
+import { ConfirmModal } from "../../../UX/Modal/ConfirmModal";
 
-// import { data } from "../../../utils/Sector/data.util";
+//import { data } from "../../../utils/UserList/data.util";
 
-export const SectorTableStory = ({
+export const UserTableStory = ({
   pagination,
   highlightOnHover,
   striped,
@@ -54,23 +54,22 @@ export const SectorTableStory = ({
   }, []);
 
   const handleDeleteConfirmed = async () => {
-      await handleDelete(selectedDeleteID);
+    await handleDelete(selectedDeleteID);
   };
   const handleDisableConfirmed = async () => {
-      await handleDisable(selectedDisableID);
+    await handleDisable(selectedDisableID);
   };
 
-  const handleDelete = async ( id : any) => {
-    console.log(id);
+  const handleDelete = async (id: any) => {
     setLoading(true);
     try {
-    //   await SectorDelete(id, navigate);
-    //   setData((prevData: any) =>
-    //    prevData.filter((item: any) => item.id !== id),
-    //    );
+      await UserDelete(id, navigate);
+      setData((prevData: any) =>
+        prevData.filter((item: any) => item.id !== id),
+      );
       setTotalElements((prevTotalElements) => prevTotalElements - 1);
     } catch (error) {
-      console.error("Failed to delete sector:", error);
+      console.error("Failed to delete user:", error);
     } finally {
       setLoading(false);
       setConfirm(false);
@@ -80,9 +79,10 @@ export const SectorTableStory = ({
   };
 
   const contextActions = useMemo(() => {
-    const handleEditSelected = async(data: any) => {
+    const handleEditSelected = async (data: any) => {
       await handleEdit(data);
     };
+
     const handleDisableSelected = (id: any) => {
       setModalOpen2(true);
       setSelectedDisableID(id);
@@ -134,7 +134,7 @@ export const SectorTableStory = ({
   const fetchData = async () => {
     setLoading(true);
     try {
-      const newData = await SectorListGET(currentPage - 1, rowsPerPage);
+      const newData = await UserListGET(currentPage - 1, rowsPerPage);
       setData(newData.content);
       setTotalElements(newData.totalElements);
       setLoading(false);
@@ -166,33 +166,43 @@ export const SectorTableStory = ({
   const handleEdit = async ({
     id,
     name,
+    email,
+    cpf,
+    position,
+    sector,
+    telefone,
+    permissions,
   }: any) => {
     try {
       const response = {
         id: id ? id : null,
         name: name ? name : null,
+        email: email ? email : null,
+        cpf: cpf ? cpf : null,
+        position: position ? position : 0,
+        sector: sector ? sector : 0,
+        telefone: telefone ? telefone : null,
+        permissions: permissions ? permissions : 0,
       };
 
-      navigate("/register-update-sector", { state: response });
+      navigate("/register-update-user", { state: response });
     } catch (error) {
-      console.error("Failed to edit sector:", error);
+      console.error("Failed to edit user:", error);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleDisable = async (id : any) => {
+  const handleDisable = async (id: number) => {
     setLoading(true);
     try {
-        console.log(id);
-        
-    //   await SectorDisable(id, navigate);
-    //   setData((prevData: any) =>
-    //      prevData.filter((item: any) => item.id !== id),
-    //    );
+      await UserDisable(id, navigate);
+      setData((prevData: any) =>
+        prevData.filter((item: any) => item.id !== id),
+      );
       setTotalElements((prevTotalElements) => prevTotalElements - 1);
     } catch (error) {
-      console.error("Failed to disable sector:", error);
+      console.error("Failed to disable user:", error);
     } finally {
       setLoading(false);
     }
@@ -218,11 +228,11 @@ export const SectorTableStory = ({
       <DataTable
         key={currentPage}
         title={
-          <span className=" m-0 h-full w-full p-0 font-semibold">Setores</span>
+          <span className=" m-0 h-full w-full p-0 font-semibold">Usuários</span>
         }
-        columns={getSectorDataTableColumns}
+        columns={getUserDataTableColumns}
         data={data}
-        noDataComponent={NoDataComponent("Sem setores cadastrados")}
+        noDataComponent={NoDataComponent("Sem usuários cadastrados")}
         defaultSortFieldId={1}
         pagination={pagination}
         paginationServer={paginationServer}
@@ -236,7 +246,7 @@ export const SectorTableStory = ({
         progressComponent={ProgressComponent}
         noHeader={noHeader}
         subHeader={subHeader}
-        subHeaderComponent={subHeaderComponent('/register-update-sector')}
+        subHeaderComponent={subHeaderComponent("/register-update-user")}
         subHeaderAlign={subHeaderAlign}
         subHeaderWrap={subHeaderWrap}
         noContextMenu={noContextMenu}

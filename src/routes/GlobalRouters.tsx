@@ -6,15 +6,15 @@ import {
   LossPasswordPage,
   ErrorPage,
   RouteIncorrectPage,
-  RegisterUserPage,
+  CreateUserPage,
   UsersListPage,
   ChartsPage,
   ReportsPage,
   HistoryPage,
   ProfilePage,
   ConfigsPage,
-  CreateAndUpdateSectorPage,
-  CreateAndUpdatePositionPage,
+  CreateSectorPage,
+  CreatePositionPage,
   SectorListPage,
   PositionListPage,
 } from "../pages";
@@ -62,7 +62,7 @@ const GlobalRouters = () => {
           path={"/register-update-user"}
           element={
             <PrivateRoute>
-              <RegisterUserPage />
+              <CreateUserPage />
             </PrivateRoute>
           }
         />
@@ -70,7 +70,7 @@ const GlobalRouters = () => {
           path={"/register-update-sector"}
           element={
             <PrivateRoute>
-              <CreateAndUpdateSectorPage />
+              <CreateSectorPage />
             </PrivateRoute>
           }
         />
@@ -78,7 +78,7 @@ const GlobalRouters = () => {
           path={"/register-update-position"}
           element={
             <PrivateRoute>
-              <CreateAndUpdatePositionPage />
+              <CreatePositionPage />
             </PrivateRoute>
           }
         />

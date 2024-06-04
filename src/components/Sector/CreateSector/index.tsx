@@ -1,34 +1,33 @@
 import { HiPlusCircle } from "react-icons/hi";
-import { Input } from "../RegisterAndUpdateUser/subComponents/Input";
-import { FaHammer } from "react-icons/fa";
-import { TablePosition } from "./subComponents/TablePosition";
-import PositionFormEfect from "../../hooks/Effects/Position/PositionFormEfect";
-import usePositionForm from "../../hooks/Position/usePositionForm";
+import { Input } from "../../User/CreateUser/subComponents/Input";
+import { MdAddHomeWork } from "react-icons/md";
+import { TableSector } from "./subComponents/TableSector";
+import useSectorForm from "../../../hooks/Sector/useSectorForm";
+import SectorFormEfect from "../../../hooks/Effects/Sector/SectorFormEfect";
 
-export default function CreateAndUpdatePosition() {
+export default function CreateSector() {
   const {
     watch,
     register,
     handleSubmit,
     isSubmitting,
     isButtonDisabled,
-    handleAddPosition,
-    positionsList,
-    handleDeletePosition,
+    handleAddSector,
+    sectorsList,
+    handleDeleteSector,
     isSaveButtonDisabled,
     onSubmit,
     setIsButtonDisabled,
     setIsSaveButtonDisabled,
-  } = usePositionForm();
-
+  } = useSectorForm();
 
   return (
     <>
-      <PositionFormEfect
+    <SectorFormEfect
         watch={watch}
         setIsButtonDisabled={setIsButtonDisabled}
         setIsSaveButtonDisabled={setIsSaveButtonDisabled}
-        positionsList={positionsList}
+        sectorsList={sectorsList}
       />
       <div className="m-4 flex h-5/6 w-11/12 flex-col content-center items-center justify-center self-center rounded-3xl bg-gradient-to-b from-slate-100 via-white to-transparent p-0 align-middle shadow-sm shadow-primary sm:w-11/12 md:w-11/12 lg:w-6/12">
         <form
@@ -36,7 +35,7 @@ export default function CreateAndUpdatePosition() {
           onSubmit={handleSubmit(onSubmit)}
         >
           <h1 className="text-center font-bold text-primary sm:text-lg">
-            Cadastro de cargos
+            Cadastro de setores
           </h1>
           <div
             className={`flex w-full content-center justify-center self-center`}
@@ -44,14 +43,14 @@ export default function CreateAndUpdatePosition() {
             <Input
               labelName="Nome"
               classNameInput={`w-full flex justify-between items-center self-center align-middle`}
-              Icon={<FaHammer size={20} />}
+              Icon={<MdAddHomeWork size={20} />}
               classIcon="flex"
               register={register("name")}
             />
             <div className="m-0 ml-2 flex content-center items-end justify-center p-0">
               <button
                 type="button"
-                onClick={handleAddPosition}
+                onClick={handleAddSector}
                 disabled={isButtonDisabled}
                 className="btn btn-circle m-0 flex content-center items-end justify-center bg-white p-0 text-primary shadow-sm shadow-primary"
               >
@@ -59,12 +58,13 @@ export default function CreateAndUpdatePosition() {
               </button>
             </div>
           </div>
-          <TablePosition
-            positionsList={positionsList}
-            onDeletePosition={handleDeletePosition}
+          <TableSector
+            sectorsList={sectorsList}
+            onDeleteSector={handleDeleteSector}
           />
           <div className="form-group flex w-full justify-center self-center align-middle">
             <button
+              id="btn-submit"
               type="submit"
               className={`text-md lg:2/12 btn glass btn-primary mt-8 w-6/12 rounded-badge bg-primary font-extrabold text-white sm:w-4/12 md:w-3/12`}
               disabled={isSubmitting || isSaveButtonDisabled}

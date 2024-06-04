@@ -1,11 +1,12 @@
-import { useUserForm } from "../../hooks/User/useUserForm";
-import getRole from "../../services/Role/getRole";
-import getPosition from "../../services/Position/getPosition";
-import getSector from "../../services/Sector/getSector";
-import { MaskCPF } from "../../utils/CreateUser/maskCPF";
-import UserFormEffects from "../../hooks/Effects/User/UserFormEffects";
+import { useUserForm } from "../../../hooks/User/useUserForm";
+import getRole from "../../../services/Role/getRole";
+import getPosition from "../../../services/Position/getPosition";
+import getSector from "../../../services/Sector/getSector";
+import { MaskCPF } from "../../../utils/User/CreateUser/maskCPF";
+import UserFormEffects from "../../../hooks/Effects/User/UserFormEffects";
 import UserFormContainer from "./subComponents/UserFormContainer";
-export default function index() {
+
+export default function CreateUser() {
   const {
     role,
     positions,

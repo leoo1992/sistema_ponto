@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import CreatePosition from "../../services/Position/CreatePosition";
-import { notifyError } from "../../components/Toasts/ToastError";
+import { notifyError } from "../../components/UX/Toasts/ToastError";
 
 export default function usePositionForm() {
   const {

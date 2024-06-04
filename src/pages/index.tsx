@@ -3,15 +3,15 @@ import HomePage from "./PrivatePages/HomePage";
 import LossPasswordPage from "./PublicPages/LossPasswordPage";
 import ErrorPage from "./ConfigsPages/ErrorPage";
 import RouteIncorrectPage from "./ConfigsPages/RouteIncorrectPage";
-import RegisterUserPage from "./PrivatePages/RegisterUserPage";
+import CreateUserPage from "./PrivatePages/CreateUserPage";
 import UsersListPage from "./PrivatePages/UsersListPage";
-import ChartsPage from "./PrivatePages/ChartsPage";
-import ReportsPage from "./PrivatePages/ReportsPage";
-import HistoryPage from "./PrivatePages/HistoryPage";
-import ProfilePage from "./PrivatePages/ProfilePage";
-import ConfigsPage from "./PrivatePages/ConfigsPage";
-import CreateAndUpdateSectorPage from "./PrivatePages/CreateAndUpdateSectorPage";
-import CreateAndUpdatePositionPage from "./PrivatePages/CreateAndUpdatePositionPage";
+import ChartsPage from "./PrivatePages/TodoPages/ChartsPage";
+import ReportsPage from "./PrivatePages/TodoPages/ReportsPage";
+import HistoryPage from "./PrivatePages/TodoPages/HistoryPage";
+import ProfilePage from "./PrivatePages/TodoPages/ProfilePage";
+import ConfigsPage from "./PrivatePages/TodoPages/ConfigsPage";
+import CreateSectorPage from "./PrivatePages/CreateSectorPage";
+import CreatePositionPage from "./PrivatePages/CreatePositionPage";
 import SectorListPage from "./PrivatePages/SectorListPage";
 import PositionListPage from "./PrivatePages/PositionListPage";
 
@@ -21,15 +21,15 @@ export {
   LossPasswordPage,
   ErrorPage,
   RouteIncorrectPage,
-  RegisterUserPage,
+  CreateUserPage,
   UsersListPage,
   ChartsPage,
   ReportsPage,
   HistoryPage,
   ProfilePage,
   ConfigsPage,
-  CreateAndUpdateSectorPage,
-  CreateAndUpdatePositionPage,
+  CreateSectorPage,
+  CreatePositionPage,
   SectorListPage,
   PositionListPage,
 };
