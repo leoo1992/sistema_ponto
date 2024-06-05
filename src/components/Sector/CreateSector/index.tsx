@@ -1,5 +1,5 @@
 import { HiPlusCircle } from "react-icons/hi";
-import { Input } from "../../UX/Form/FormInput";
+import { FormInput } from "../../UX/Form/FormInput";
 import { MdAddHomeWork } from "react-icons/md";
 import { TableSector } from "./subComponents/TableSector";
 import useSectorForm from "../../../hooks/Sector/useSectorForm";
@@ -40,7 +40,7 @@ export default function CreateSector() {
           <div
             className={`flex w-full content-center justify-center self-center`}
           >
-            <Input
+            <FormInput
               labelName="Nome"
               classNameInput={`w-full flex justify-between items-center self-center align-middle`}
               Icon={<MdAddHomeWork size={20} />}

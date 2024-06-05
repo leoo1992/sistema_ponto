@@ -1,5 +1,5 @@
 import { HiPlusCircle } from "react-icons/hi";
-import { Input } from "../../UX/Form/FormInput";
+import { FormInput } from "../../UX/Form/FormInput";
 import { FaHammer } from "react-icons/fa";
 import { TablePosition } from "./subComponents/TablePosition";
 import PositionFormEfect from "../../../hooks/Effects/Position/PositionFormEfect";
@@ -41,7 +41,7 @@ export default function CreatePosition() {
           <div
             className={`flex w-full content-center justify-center self-center`}
           >
-            <Input
+            <FormInput
               labelName="Nome"
               classNameInput={`w-full flex justify-between items-center self-center align-middle`}
               Icon={<FaHammer size={20} />}
