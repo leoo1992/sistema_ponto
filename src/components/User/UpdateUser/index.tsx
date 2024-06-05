@@ -18,9 +18,9 @@ import UserEdit from "../../../services/User/UserEdit";
 
 export default function UpdateUser() {
   const { id } = useParams();
-  const [role, setRole] = useState<any[]>([]);
-  const [positions, setPositions] = useState<any[]>([]);
-  const [sectors, setSectors] = useState<any[]>([]);
+  const [role, _setRole] = useState<any[]>([]);
+  const [positions, _setPositions] = useState<any[]>([]);
+  const [sectors, _setSectors] = useState<any[]>([]);
   const navigate = useNavigate();
   const createUserFormSchema = createUserFormSchemaWithoutPassword(role, positions, sectors);
 
