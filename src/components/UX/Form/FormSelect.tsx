@@ -18,6 +18,7 @@ type FormSelectPropTypes = {
   register: any;
   onChange?: any;
   setValue?: any;
+  classNoLabel?: string;
 };
 
 export const FormSelect = ({
@@ -27,6 +28,7 @@ export const FormSelect = ({
   classNameLabel = "",
   classNameSelect = "",
   classContainer = "",
+  classNoLabel="",
   Icon,
   classIcon,
   register,
@@ -44,7 +46,7 @@ export const FormSelect = ({
           {labelName}
         </span>
       </label>
-      <div className={`${classIcon}`}>
+      <div className={`${classNoLabel} ${classIcon}`}>
         {classIcon ? (
           <div
             className={`glass mr-3 hidden items-center justify-center rounded-2xl bg-primary-content px-3 
