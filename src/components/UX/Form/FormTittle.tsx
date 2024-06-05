@@ -1,7 +1,8 @@
-export default function FormTittle() {
+export default function FormTittle({title}:{title:string})
+{
   return (
     <h1 className="text-center font-bold text-primary sm:text-lg">
-      Cadastro de usuários
+      {title}
     </h1>
   );
 }

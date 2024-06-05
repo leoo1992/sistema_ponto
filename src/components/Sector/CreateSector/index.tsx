@@ -1,5 +1,5 @@
 import { HiPlusCircle } from "react-icons/hi";
-import { Input } from "../../User/CreateUser/subComponents/Input";
+import { Input } from "../../UX/Form/FormInput";
 import { MdAddHomeWork } from "react-icons/md";
 import { TableSector } from "./subComponents/TableSector";
 import useSectorForm from "../../../hooks/Sector/useSectorForm";

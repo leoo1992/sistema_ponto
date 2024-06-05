@@ -8,14 +8,14 @@ import {
   HiUser,
 } from "react-icons/hi";
 import { BsWrench } from "react-icons/bs";
-import { Input } from "./Input";
-import { Select } from "./Select";
-import { ErrorMessage } from "./ErrorMsgs";
+import { FormInput } from "../../../UX/Form/FormInput";
+import { FormSelect } from "../../../UX/Form/FormSelect";
+import { ErrorFormMsgs } from "../../../UX/Form/ErrorFormMsgs";
 import { validarCPF } from "../../../../utils/User/CreateUser/validarCPF";
 import { MaskCPF } from "../../../../utils/User/CreateUser/maskCPF";
 import { MaskPhone } from "../../../../utils/User/CreateUser/MaskPhone";
-import FormTittle from "./FormTittle";
-import SubmittBtn from "./SubmittBtn";
+import FormTittle from "../../../UX/Form/FormTittle";
+import SubmittFormBtn from "../../../UX/Form/SubmittFormBtn";
 
 export default function UserFormContainer({
   role,
@@ -39,11 +39,11 @@ export default function UserFormContainer({
         onSubmit={handleSubmit(onSubmit)}
         className="m-0 flex w-full flex-col p-6"
       >
-        <FormTittle />
+        <FormTittle title='Cadastro de usuários' />
         <div
           className={`flex w-full flex-col content-center justify-center self-center`}
         >
-          <Input
+          <FormInput
             labelName="Nome"
             palceholder="Nome *"
             classNameInput={`w-full flex justify-between items-center self-center align-middle ${errors?.name && "input-error shadow-error"}`}
@@ -52,8 +52,8 @@ export default function UserFormContainer({
             register={register("name")}
             aria-invalid={errors.name ? "true" : "false"}
           />
-          {errors?.name && <ErrorMessage error={errors.name.message} />}
-          <Input
+          {errors?.name && <ErrorFormMsgs error={errors.name.message} />}
+          <FormInput
             register={register("email", { pattern: /^\S+@\S+$/i })}
             labelName="Email"
             palceholder="Email *"
@@ -62,10 +62,10 @@ export default function UserFormContainer({
             Icon={<HiMail size={20} />}
             classIcon="flex"
           />
-          {errors?.email && <ErrorMessage error={errors.email.message} />}
+          {errors?.email && <ErrorFormMsgs error={errors.email.message} />}
           <div className="sm:flex sm:gap-3">
             <div className="w-full">
-              <Input
+              <FormInput
                 register={register("telefone", {
                   onChange: (e: any) =>
                     setValue("telefone", MaskPhone(e.target.value)),
@@ -77,11 +77,11 @@ export default function UserFormContainer({
                 classIcon="flex"
               />
               {errors?.telefone && (
-                <ErrorMessage error={errors.telefone.message} />
+                <ErrorFormMsgs error={errors.telefone.message} />
               )}
             </div>
             <div className="w-full">
-              <Input
+              <FormInput
                 register={register("cpf", {
                   validate: (value: any) => validarCPF(value),
                   onChange: (e: any) =>
@@ -95,12 +95,12 @@ export default function UserFormContainer({
                 Icon={<HiIdentification size={20} />}
                 classIcon="flex"
               />
-              {errors?.cpf && <ErrorMessage error={errors.cpf.message} />}
+              {errors?.cpf && <ErrorFormMsgs error={errors.cpf.message} />}
             </div>
           </div>
           <div className="sm:flex sm:gap-3">
             <div className="w-full">
-              <Select
+              <FormSelect
                 labelName="Setor"
                 options={sectors}
                 setValue={setValue}
@@ -112,11 +112,11 @@ export default function UserFormContainer({
                 classIcon="flex"
               />
               {errors?.id_sector && (
-                <ErrorMessage error={errors.id_sector.message} />
+                <ErrorFormMsgs error={errors.id_sector.message} />
               )}
             </div>
             <div className="w-full">
-              <Select
+              <FormSelect
                 labelName="Cargo"
                 options={positions}
                 setValue={setValue}
@@ -128,13 +128,13 @@ export default function UserFormContainer({
                 classIcon="flex"
               />
               {errors?.id_position && (
-                <ErrorMessage error={errors.id_position.message} />
+                <ErrorFormMsgs error={errors.id_position.message} />
               )}
             </div>
           </div>
           <div className="sm:flex sm:gap-3">
             <div className="w-full">
-              <Select
+              <FormSelect
                 options={role}
                 setValue={setValue}
                 labelName="Acesso"
@@ -146,11 +146,11 @@ export default function UserFormContainer({
                 classIcon="flex"
               />
               {errors?.id_role && (
-                <ErrorMessage error={errors.id_role.message} />
+                <ErrorFormMsgs error={errors.id_role.message} />
               )}
             </div>
             <div className="w-full">
-                  <Input
+                  <FormInput
                     register={register(
                       "password",
                       { required: true },
@@ -163,14 +163,15 @@ export default function UserFormContainer({
                     classIcon={`flex `}
                   />
                   {errors?.password && (
-                    <ErrorMessage error={errors.password.message} />
+                    <ErrorFormMsgs error={errors.password.message} />
                   )}
             </div>
           </div>
         </div>
-        <SubmittBtn
+        <SubmittFormBtn
           isSubmitting={isSubmitting}
           isFormValid={isFormValid}
+          btnText='Cadastrar'
         />
       </form>
     </div>

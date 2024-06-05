@@ -4,7 +4,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import CircularProgress from "@mui/material/CircularProgress";
 import Paper from "@mui/material/Paper";
 
-type PropTypes = {
+type FormSelectPropTypes = {
   options: { id: string; name: string }[];
   labelName: string;
   nameDefault?: string;
@@ -20,7 +20,7 @@ type PropTypes = {
   setValue?: any;
 };
 
-export const Select = ({
+export const FormSelect = ({
   options,
   labelName,
   nameDefault = "Selecione",
@@ -31,7 +31,7 @@ export const Select = ({
   classIcon,
   register,
   setValue,
-}: PropTypes) => {
+}: FormSelectPropTypes) => {
   const [open, setOpen] = useState(false);
   const loading = open && options.length === 0;
 

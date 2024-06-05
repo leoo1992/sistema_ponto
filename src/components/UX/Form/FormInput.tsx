@@ -17,7 +17,7 @@ type PropTypes = {
   palceholder?: string,
 };
 
-export const Input = forwardRef<HTMLInputElement, PropTypes>(({
+export const FormInput = forwardRef<HTMLInputElement, PropTypes>(({
   labelName,
   palceholder = labelName,
   typeInput = "text",
