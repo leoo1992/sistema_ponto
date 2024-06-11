@@ -22,7 +22,7 @@ export default function UpdateUser() {
   const [positions, _setPositions] = useState<any[]>([]);
   const [sectors, _setSectors] = useState<any[]>([]);
   const navigate = useNavigate();
-  const createUserFormSchema = createUserFormSchemaWithoutPassword(role, positions, sectors);
+  const createUserFormSchema = createUserFormSchemaWithoutPassword();
 
   type createUserFormData = z.infer<typeof createUserFormSchema>;
 

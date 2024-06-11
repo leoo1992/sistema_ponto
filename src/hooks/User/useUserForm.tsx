@@ -11,7 +11,7 @@ export const useUserForm = () => {
   const [positions, setPositions] = useState<any[]>([]);
   const [sectors, setSectors] = useState<any[]>([]);
   const navigate = useNavigate();
-  const createUserFormSchema = createUserFormSchemaWithPassword(role, positions, sectors);
+  const createUserFormSchema = createUserFormSchemaWithPassword();
   type createUserFormData = z.infer<typeof createUserFormSchema>;
 
   const {
