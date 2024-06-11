@@ -175,9 +175,9 @@ const {
             </div>
           </div>
           <div className="sm:flex sm:gap-3">
-          <div className="w-6/12">
+          <div className="sm:w-6/12">
                 <FormSelect
-                classNoLabel="mr-2"
+                classNoLabel="sm:mr-2"
                 options={role}
                 setValue={setValue}
                 labelName="Acesso"
