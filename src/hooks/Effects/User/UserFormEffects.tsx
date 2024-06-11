@@ -1,9 +1,9 @@
 import { useEffect } from "react";
+import getRole from "../../../services/Role/getRole";
+import getPosition from "../../../services/Position/PositionListALLGET";
+import getSector from "../../../services/Sector/SectorListAllGET";
 
 export default function UserFormEffects({
-  getRole,
-  getPosition,
-  getSector,
   setPositions,
   setSectors,
   setRole,
@@ -20,23 +20,19 @@ export default function UserFormEffects({
         const PositionsData = await getPosition();
         const SectorsData = await getSector();
 
-        const mappedPositions = await PositionsData?.content?.map((position: any) => ({
+        console.log(PositionsData);
+        
+        const mappedPositions = PositionsData?.map((position: any) => ({
           id: position.id_position,
           name: position.name,
-        })) || await PositionsData?.map((position: any) => ({
-          id: position.id_position,
-          name: position.name,
-        }))
+        }));
 
-        const mappedSectors = await SectorsData?.content?.map((sector: any) => ({
+        const mappedSectors = SectorsData?.map((sector: any) => ({
           id: sector.id_sector,
           name: sector.name,
-        })) || await SectorsData?.content?.map((sector: any) => ({
-          id: sector.id_sector,
-          name: sector.name,
-        }))
+        }));
 
-        const mappedRole = await RoleData?.map((role: any) => ({
+        const mappedRole = RoleData?.map((role: any) => ({
           id: role.id_role,
           name: capitalizeFirstLetter(role.name),
         }));

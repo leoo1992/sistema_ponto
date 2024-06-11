@@ -1,7 +1,4 @@
 import { useUserForm } from "../../../hooks/User/useUserForm";
-import getRole from "../../../services/Role/getRole";
-import getPosition from "../../../services/Position/getPosition";
-import getSector from "../../../services/Sector/getSector";
 import UserFormEffects from "../../../hooks/Effects/User/UserFormEffects";
 import UserFormContainer from "./subComponents/UserFormContainer";
 
@@ -25,9 +22,6 @@ export default function CreateUser() {
   return (
     <>
       <UserFormEffects
-        getRole={getRole}
-        getPosition={getPosition}
-        getSector={getSector}
         setPositions={setPositions}
         setSectors={setSectors}
         setRole={setRole}

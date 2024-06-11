@@ -100,7 +100,7 @@ export const subHeaderComponent = (link: string) => {
       gap-1 rounded-badge p-4 shadow-sm shadow-primary-content sm:w-fit"
       >
         <HiSearch />
-        <input type="text" className="grow" placeholder="Pesquisar" />
+        <input type="text" className="grow" placeholder="Pesquisar por nome" />
       </label>
     </div>
   );

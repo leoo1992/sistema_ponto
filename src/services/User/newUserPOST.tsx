@@ -16,7 +16,7 @@ export default async function newUserPOST(
     name,
     position: {name: position},
     sector: {name: sector},
-    role: [{name: role}],
+    permissions: [{name: role}],
   };
 
   try {

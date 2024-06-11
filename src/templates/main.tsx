@@ -4,11 +4,11 @@ import GlobalRouters from "../routes/GlobalRouters";
 import 'styled-components';
 import "react-data-table-component";
 import { Analytics } from "@vercel/analytics/react"
-window.console.warn = () => {};
-window.console.info = () => {};
-window.console.error = () => {};
-window.console.log = () => {};
-window.console.clear();
+// window.console.warn = () => {};
+// window.console.info = () => {};
+// window.console.error = () => {};
+// window.console.log = () => {};
+// window.console.clear();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <div
