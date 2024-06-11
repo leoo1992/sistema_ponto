@@ -1,10 +1,6 @@
 import { z } from "zod";
 
-export const createUserFormSchemaWithoutPassword = (
-  role: any[],
-  positions: any[],
-  sectors: any[],
-) =>
+export const createUserFormSchemaWithoutPassword = () =>
   z.object({
     name: z
       .string()
@@ -18,11 +14,7 @@ export const createUserFormSchemaWithoutPassword = (
     password: z.string().optional(),
   });
 
-export const createUserFormSchemaWithPassword = (
-  role: any[],
-  positions: any[],
-  sectors: any[],
-) =>
+export const createUserFormSchemaWithPassword = () =>
   z
     .object({
       name: z
