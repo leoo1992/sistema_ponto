@@ -55,7 +55,7 @@
     "@vituum/vite-plugin-postcss": "^1.1.0",
     "autoprefixer": "^10.4.19",
     "cypress": "^13.9.0",
-    "daisyui": "^4.10.5",
+    "daisyui": "^4.12.2",
     "dotenv": "^16.4.5",
     "eslint-plugin-react-hooks": "^4.6.2",
     "postcss": "^8.4.38",

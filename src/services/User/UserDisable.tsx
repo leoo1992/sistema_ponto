@@ -9,7 +9,7 @@ export default async function UserDisable(id: any, navigate: any) {
 
   try {
     const resp = await fetch(DisebleUserURL, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${Cookies.get("AuthToken")}`,
