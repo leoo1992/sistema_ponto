@@ -6,17 +6,15 @@ export const createUserFormSchemaWithoutPassword = () =>
       .string()
       .min(3, { message: "O nome deve ter pelo menos 3 dígitos" }),
     email: z.string().email({ message: "Email Inválido" }).trim(),
-    telefone: z.string().min(15, { message: "Telefone Inválido" }),
+    telefone: z.string().min(14, { message: "Telefone Inválido" }),
     cpf: z.string().min(14, { message: "CPF Inválido" }),
-    id_sector:  z.string(),
+    id_sector: z.string(),
     id_position: z.string(),
     id_role: z.string(),
-    password: z.string().optional(),
   });
 
 export const createUserFormSchemaWithPassword = () =>
-  z
-    .object({
+  z.object({
       name: z
         .string()
         .min(3, { message: "O nome deve ter pelo menos 3 dígitos" }),
@@ -29,5 +27,4 @@ export const createUserFormSchemaWithPassword = () =>
       password: z
         .string()
         .min(7, { message: "A senha deve ter pelo menos 7 dígitos" }),
-    })
-    .required();
+  }).required();

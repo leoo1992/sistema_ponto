@@ -45,7 +45,6 @@ const {
     email,
     name,
     telefone,
-    password,
     id_position,
     id_sector,
     id_role,
@@ -55,7 +54,6 @@ const {
         email,
         name,
         telefone,
-        password,
         position: id_position,
         sector: id_sector,
         role: id_role,
@@ -67,12 +65,11 @@ const {
   const email = watch("email");
   const telefone = watch("telefone");
   const cpf = watch("cpf");
-  const id_sector = watch("id_sector");
-  const id_position = watch("id_position");
-  const id_role = watch("id_role");
-  const password = watch("password");
+  // const _id_sector = watch("id_sector");
+  // const _id_position = watch("id_position");
+  // const _id_role = watch("id_role");
 
-  const isFormValid = name && email && telefone && cpf && id_sector && id_position && id_role && password;
+  const isFormValid = name && email && telefone && cpf;
 
   const capitalizeFirstLetter = (string: string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
