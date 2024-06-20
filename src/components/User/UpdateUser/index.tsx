@@ -18,6 +18,7 @@ import UserEdit from "../../../services/User/UserEdit";
 import getRole from '../../../services/Role/getRole';
 import PositionListALLGET from '../../../services/Position/PositionListALLGET';
 import SectorListAllGET from '../../../services/Sector/SectorListAllGET';
+import GetUserById from '../../../services/User/GetUserById';
 
 export default function UpdateUser() {
   const { id } = useParams();
@@ -76,16 +77,20 @@ const {
   const capitalizeFirstLetter = (string: string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
   };
-  
+
   useEffect(() => {
-    async function fetchData() {
+    async function fetchData(id:string|undefined) {
       try {
         const RoleData = await getRole();
         const PositionsData = await PositionListALLGET();
         const SectorsData = await SectorListAllGET();
+        const UserData = await GetUserById(id);
 
-        console.log(PositionsData);
-        
+        setValue('name', UserData?.name);
+        setValue('cpf', UserData?.cpf);
+        setValue('email', UserData?.email);
+        setValue('telefone', UserData?.telefone);
+
         const mappedPositions = PositionsData?.map((position: any) => ({
           id: position.id_position,
           name: position.name,
@@ -104,12 +109,17 @@ const {
         setPositions(mappedPositions);
         setSectors(mappedSectors);
         setRole(mappedRole);
+
+        setValue('id_position', UserData?.position);
+        setValue('id_sector', UserData?.sector);
+        setValue('id_role', UserData?.role);
+        
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
     }
 
-    fetchData();
+    fetchData(id);
   }, []);
   
   return (

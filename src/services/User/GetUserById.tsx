@@ -1,8 +1,8 @@
 import Cookies from "js-cookie";
 
-export default async function GetUserById(id:number = 0) {
+export default async function GetUserById(id:number|string|undefined = 0) {
   const GetUserByIdURL =
-    import.meta.env.VITE_REACT_APP_GET_USER_URL + `?${id}`;
+    import.meta.env.VITE_REACT_APP_GET_USER_URL + `${id}`;
 
   try {
     const response = await fetch(GetUserByIdURL, {
@@ -15,10 +15,7 @@ export default async function GetUserById(id:number = 0) {
 
     const data = await response.json();
 
-    return {
-      content: data.content,
-      totalElements: data.totalElements,
-    };
+    return data;
   } catch (error) {
     throw error;
   }
