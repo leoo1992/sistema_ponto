@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BsWrench } from 'react-icons/bs';
 import { HiIdentification, HiKey, HiMail, HiOfficeBuilding, HiPhone, HiUser } from 'react-icons/hi';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -15,12 +15,15 @@ import { z } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import UserEdit from "../../../services/User/UserEdit";
+import getRole from '../../../services/Role/getRole';
+import PositionListALLGET from '../../../services/Position/PositionListALLGET';
+import SectorListAllGET from '../../../services/Sector/SectorListAllGET';
 
 export default function UpdateUser() {
   const { id } = useParams();
-  const [role, _setRole] = useState<any[]>([]);
-  const [positions, _setPositions] = useState<any[]>([]);
-  const [sectors, _setSectors] = useState<any[]>([]);
+  const [role, setRole] = useState<any[]>([]);
+  const [positions, setPositions] = useState<any[]>([]);
+  const [sectors, setSectors] = useState<any[]>([]);
   const navigate = useNavigate();
   const createUserFormSchema = createUserFormSchemaWithoutPassword();
 
@@ -70,6 +73,45 @@ const {
 
   const isFormValid = name && email && telefone && cpf && id_sector && id_position && id_role && password;
 
+  const capitalizeFirstLetter = (string: string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  };
+  
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const RoleData = await getRole();
+        const PositionsData = await PositionListALLGET();
+        const SectorsData = await SectorListAllGET();
+
+        console.log(PositionsData);
+        
+        const mappedPositions = PositionsData?.map((position: any) => ({
+          id: position.id_position,
+          name: position.name,
+        }));
+
+        const mappedSectors = SectorsData?.map((sector: any) => ({
+          id: sector.id_sector,
+          name: sector.name,
+        }));
+
+        const mappedRole = RoleData?.map((role: any) => ({
+          id: role.id_role,
+          name: capitalizeFirstLetter(role.name),
+        }));
+
+        setPositions(mappedPositions);
+        setSectors(mappedSectors);
+        setRole(mappedRole);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
+  
   return (
       <div
       className="user-form m-4 flex h-5/6 w-11/12 flex-col content-center items-center 
