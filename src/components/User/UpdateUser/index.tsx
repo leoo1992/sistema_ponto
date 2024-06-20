@@ -128,7 +128,6 @@ const {
       justify-center self-center rounded-3xl bg-gradient-to-b from-slate-100 via-white
       to-transparent p-0 align-middle shadow-sm shadow-primary sm:w-11/12 md:w-11/12 lg:w-6/12"
       >
-      User id: {id}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="m-0 flex w-full flex-col p-6"
