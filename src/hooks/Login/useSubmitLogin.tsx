@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FormLogin } from "../../types";
 import Cookies from "js-cookie";
 import loginPOST from "../../services/Login/loginPOST";
+import { notifyError } from "../../components/UX/Toasts/ToastError";
 
 export function useSubmitLogin() {
   const navigate = useNavigate();
@@ -19,7 +20,9 @@ export function useSubmitLogin() {
         navigate("/");
       }
     } catch (error) {
-      console.error(error);
+      if (error) {
+        return notifyError({ text: "Erro ao efetuar login" });
+      };
     }
   };
 

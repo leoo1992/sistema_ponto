@@ -4,10 +4,10 @@ import { notifySuccess } from "../../components/UX/Toasts/ToastSuccess";
 export default async function loginPOST({
   email,
   password,
-}: {
+}: Readonly<{
   email: string;
   password: string;
-}) {
+}>) {
   const LoginURL = import.meta.env.VITE_REACT_APP_LOGIN_URL;
 
   Cookies?.remove?.("AuthToken");
@@ -24,11 +24,14 @@ export default async function loginPOST({
     if (resp.ok) {
       const data = await resp.json();
       const token = await data.token;
+      const roles = await data.roles[0];
       Cookies.set("Bearer", token);
+      Cookies.set("role", roles);
+
       notifySuccess({ text: "Login efetuado com sucesso!" });
       return data;
     }
   } catch (error) {
-    throw error;
+    return error;
   }
 }

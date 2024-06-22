@@ -135,8 +135,8 @@ export const UserTableStory = ({
     setLoading(true);
     try {
       const newData = await UserListGET(currentPage - 1, rowsPerPage);
-      setData(newData.content);
-      setTotalElements(newData.totalElements);
+      setData(await newData?.content);
+      setTotalElements(await newData?.totalElements);
       setLoading(false);
     } catch (error) {
       console.error("Failed to fetch data:", error);
@@ -168,7 +168,7 @@ export const UserTableStory = ({
   }: any) => {
     try {
       const response = {
-        id: id ? id : null,
+        id: id || null,
       };
 
       navigate(`/update-user/${response.id}`);

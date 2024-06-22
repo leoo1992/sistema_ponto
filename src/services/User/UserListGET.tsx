@@ -16,10 +16,10 @@ export default async function UserListGET(page = 0, size = 10) {
     const data = await response.json();
 
     return {
-      content: data.content,
+      content: data,
       totalElements: data.totalElements,
     };
   } catch (error) {
-    throw error;
+    return error;
   }
 }

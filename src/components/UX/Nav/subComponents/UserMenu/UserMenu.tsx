@@ -6,13 +6,21 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import UserMenuDrawer from "./UserMenuDrawer";
+import { notifySuccess } from "../../../Toasts/ToastSuccess";
 
 export default function UserMenu() {
   const [active2, setActive2] = useState(true);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    Cookies.remove("AuthToken");
+    const allCookies = Cookies.get();
+
+    for (let cookie in allCookies) {
+      Cookies.remove(cookie);
+    }
+
+    notifySuccess({ text: "Logout efetuado com sucesso!" });
+    
     navigate("/");
   };
 
