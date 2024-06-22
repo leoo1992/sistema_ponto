@@ -19,7 +19,7 @@ export default async function UserListGET(page = 0, size = 10) {
       content: data,
       totalElements: data.totalElements,
     };
-  } catch (error) {
+  } catch (error: any) {
     return error;
   }
 }

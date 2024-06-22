@@ -36,8 +36,8 @@ export const UserTableStory = ({
   defaultComponentOptions,
 }: any) => {
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
-  const [totalElements, setTotalElements] = useState(0);
+  const [data, setData] = useState<any>();
+  const [totalElements, setTotalElements] = useState<any>(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selectedRows, setSelectedRows] = useState<any>([]);
@@ -67,7 +67,7 @@ export const UserTableStory = ({
       setData((prevData: any) =>
         prevData.filter((item: any) => item.id !== id),
       );
-      setTotalElements((prevTotalElements) => prevTotalElements - 1);
+      setTotalElements((prevTotalElements: any) => prevTotalElements - 1);
     } catch (error) {
       console.error("Failed to delete user:", error);
     } finally {
@@ -186,7 +186,7 @@ export const UserTableStory = ({
       setData((prevData: any) =>
         prevData.filter((item: any) => item.id !== id),
       );
-      setTotalElements((prevTotalElements) => prevTotalElements - 1);
+      setTotalElements((prevTotalElements: any) => prevTotalElements - 1);
     } catch (error) {
       console.error("Failed to disable user:", error);
     } finally {
