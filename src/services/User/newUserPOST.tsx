@@ -32,10 +32,13 @@ export default async function newUserPOST(
     if (response.ok) {
       notifySuccess({ text: "Usuário criado" });
       navigate("/home");
-    } else {
-      notifyError({ text: "Erro ao criar usuário" });
+    } else
+    {
+      const dataError = await response.json();
+      return notifyError({ text: dataError?.menssage });
     }
   } catch (error) {
+    
     notifyError({ text: "Erro ao criar usuário" });
   }
 }

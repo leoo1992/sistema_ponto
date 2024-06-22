@@ -12,24 +12,24 @@ export default async function loginPOST({
   Cookies?.remove?.("AuthToken");
 
   try {
-    const resp = await fetch(LoginURL, {
+    const response = await fetch(LoginURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email, password }),
     });
-    if (resp.ok) {
-      const data = await resp.json();
+    if (response.ok) {
+      const data = await response.json();
       const token = await data.token;
       const roles = await data.roles[0];
       Cookies.set("Bearer", token);
       Cookies.set("role", roles);
-      
+
       notifySuccess({ text: "Login efetuado com sucesso!" });
       return data;
     } else {
-      const dataError = await resp.json();
+      const dataError = await response.json();
       return dataError;
     }
   } catch (error) {
