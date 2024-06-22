@@ -6,19 +6,18 @@ export default async function UserEdit(
   { email, telefone, cpf, name, role, position, sector }: any,
   navigate: any,
 ) {
-  
   const data = {
     email,
     telefone,
     cpf,
     name,
-    position: {name: position},
-    sector: {name: sector},
-    permissions: [{name: role}],
+    position: { name: position },
+    sector: { name: sector },
+    permissions: [{ name: role }],
   };
 
   const EditUserURL = import.meta.env.VITE_REACT_APP_EDIT_USER_URL;
-  
+
   try {
     const response = await fetch(EditUserURL, {
       method: "PUT",
@@ -29,12 +28,13 @@ export default async function UserEdit(
       body: JSON.stringify(data),
     });
 
-    if (response.ok) {
-      notifySuccess({ text: "Usuário Atualizado" });
-      navigate("/userslist");
-    } else {
-      notifyError({ text: "Erro ao atualizar usuário" });
+    if (!response.ok) {
+      const dataError = await response?.json();
+      return notifyError({ text: dataError?.message });
     }
+
+    notifySuccess({ text: "Usuário Atualizado" });
+    navigate("/userslist");
   } catch (error) {
     throw error;
   }

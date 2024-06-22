@@ -6,7 +6,6 @@ export default async function newUserPOST(
   { email, password, telefone, cpf, name, role, position, sector }: any,
   navigate: any,
 ) {
-
   const NewUserURL = import.meta.env.VITE_REACT_APP_NEW_USER_URL;
   const data = {
     email,
@@ -14,9 +13,9 @@ export default async function newUserPOST(
     telefone,
     cpf,
     name,
-    position: {name: position},
-    sector: {name: sector},
-    permissions: [{name: role}],
+    position: { name: position },
+    sector: { name: sector },
+    permissions: [{ name: role }],
   };
 
   try {
@@ -29,16 +28,14 @@ export default async function newUserPOST(
       body: JSON.stringify(data),
     });
 
-    if (response.ok) {
-      notifySuccess({ text: "Usuário criado" });
-      navigate("/home");
-    } else
-    {
+    if (!response.ok) {
       const dataError = await response.json();
-      return notifyError({ text: dataError?.menssage });
+      return notifyError({ text: dataError?.message });
     }
+
+    notifySuccess({ text: "Usuário criado" });
+    navigate("/home");
   } catch (error) {
-    
     notifyError({ text: "Erro ao criar usuário" });
   }
 }

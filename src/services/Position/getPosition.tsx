@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import { notifyError } from "../../components/UX/Toasts/ToastError";
 
 export default async function getPosition() {
   const getPositionURL = import.meta.env.VITE_REACT_APP_GET_POSITION_URL;
@@ -13,7 +14,8 @@ export default async function getPosition() {
     });
 
     if (!response.ok) {
-      throw new Error("Failed to fetch data");
+      const dataError = await response?.json();
+      return notifyError({ text: dataError?.message });
     }
 
     const data = await response.json();

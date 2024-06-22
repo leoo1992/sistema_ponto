@@ -17,7 +17,7 @@ export default async function UserListGET(page = 0, size = 10) {
 
     return {
       content: data,
-      totalElements: data.totalElements,
+      totalElements: data[0].totalElements,
     };
   } catch (error: any) {
     return error;

@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 import { notifySuccess } from "../../components/UX/Toasts/ToastSuccess";
+import { notifyError } from "../../components/UX/Toasts/ToastError";
 
 export default async function loginPOST({
   email,
@@ -19,19 +20,20 @@ export default async function loginPOST({
       },
       body: JSON.stringify({ email, password }),
     });
-    if (response.ok) {
-      const data = await response.json();
-      const token = await data.token;
-      const roles = await data.roles[0];
-      Cookies.set("Bearer", token);
-      Cookies.set("role", roles);
 
-      notifySuccess({ text: "Login efetuado com sucesso!" });
-      return data;
-    } else {
-      const dataError = await response.json();
+    if (!response.ok) {
+      const dataError = await response?.json();
       return dataError;
     }
+
+    const data = await response.json();
+    const token = await data.token;
+    const roles = await data.roles[0];
+    Cookies.set("Bearer", token);
+    Cookies.set("role", roles);
+
+    notifySuccess({ text: "Login efetuado com sucesso!" });
+    return data;
   } catch (error) {
     return error;
   }

@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import { notifyError } from "../../components/UX/Toasts/ToastError";
 
 export default async function getSector() {
   const getSectorURL = import.meta.env.VITE_REACT_APP_GET_SECTOR_URL;
@@ -13,7 +14,8 @@ export default async function getSector() {
     });
 
     if (!response.ok) {
-      throw new Error("Failed to fetch data");
+      const dataError = await response?.json();
+      return notifyError({ text: dataError?.message });
     }
 
     const data = await response.json();

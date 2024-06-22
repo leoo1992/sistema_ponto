@@ -8,7 +8,7 @@ export default async function UserDisable(id: any, navigate: any) {
     import.meta.env.VITE_REACT_APP_DISABLE_USER_URL + `${idAsNumber}`;
 
   try {
-    const resp = await fetch(DisebleUserURL, {
+    const response = await fetch(DisebleUserURL, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -17,12 +17,13 @@ export default async function UserDisable(id: any, navigate: any) {
       body: JSON.stringify(idAsNumber),
     });
 
-    if (resp.ok) {
-      notifySuccess({ text: "Usuario desabilitado com sucesso!" });
-      navigate("/userslist");
-    } else {
-      notifyError({ text: "Erro ao desabilitar usuario!" });
+    if (!response.ok) {
+      const dataError = await response?.json();
+      return notifyError({ text: dataError?.message });
     }
+
+    notifySuccess({ text: "Usuario desabilitado com sucesso!" });
+    navigate("/userslist");
   } catch (error) {
     throw error;
   }

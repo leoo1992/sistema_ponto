@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import { notifyError } from "../../components/UX/Toasts/ToastError";
 
 export default async function PositionListALLGET() {
     const AllPositionListURL =
@@ -14,13 +15,15 @@ export default async function PositionListALLGET() {
     });
       
     if (!response.ok) {
-        throw new Error("Failed to fetch data");
+      const dataError = await response?.json();
+      return notifyError({ text: dataError?.message });
     }
   
     const data = await response.json();
 
     return data;
   } catch (error) {
+    console.error(error);
     throw error;
   }
 }

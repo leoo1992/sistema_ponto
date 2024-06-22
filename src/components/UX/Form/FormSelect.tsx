@@ -149,8 +149,7 @@ function CustomPaper(props: any) {
     <Paper
       {...props}
       sx={{
-        maxHeight: "150px !important",
-        color: "blue !important",
+        color: "indigo !important",
         ...props.sx,
       }}
     />
