@@ -9,7 +9,6 @@ export default async function loginPOST({
   password: string;
 }>) {
   const LoginURL = import.meta.env.VITE_REACT_APP_LOGIN_URL;
-
   Cookies?.remove?.("AuthToken");
 
   try {
@@ -20,16 +19,18 @@ export default async function loginPOST({
       },
       body: JSON.stringify({ email, password }),
     });
-
     if (resp.ok) {
       const data = await resp.json();
       const token = await data.token;
       const roles = await data.roles[0];
       Cookies.set("Bearer", token);
       Cookies.set("role", roles);
-
+      
       notifySuccess({ text: "Login efetuado com sucesso!" });
       return data;
+    } else {
+      const dataError = await resp.json();
+      return dataError;
     }
   } catch (error) {
     return error;

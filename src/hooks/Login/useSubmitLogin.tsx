@@ -12,17 +12,19 @@ export function useSubmitLogin() {
   const onSubmit: SubmitHandler<FormLogin> = async ({ email, password }) => {
     try {
       const data = await loginPOST({ email, password });
-      Cookies.set("AuthToken", data.token, { expires: 1, path: "/" });
-      const AuthTokenVerification = Cookies?.get?.("AuthToken");
-      if (AuthTokenVerification) {
-        navigate("/home");
-      } else {
-        navigate("/");
+
+      if (data.token) {
+        Cookies.set("AuthToken", data.token, { expires: 1, path: "/" });
+        return navigate("/home");
+      }
+
+      if (data.error) {
+        return notifyError({ text: data.message });
       }
     } catch (error) {
       if (error) {
         return notifyError({ text: "Erro ao efetuar login" });
-      };
+      }
     }
   };
 
