@@ -2,7 +2,6 @@ import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import CircularProgress from "@mui/material/CircularProgress";
-import Paper from "@mui/material/Paper";
 
 type FormSelectPropTypes = {
   options: { id: string; name: string }[];
@@ -10,13 +9,10 @@ type FormSelectPropTypes = {
   nameDefault?: string;
   classNameLabel?: string;
   classNameSelect?: string;
-  classNameOption?: string;
   classContainer?: string;
   Icon?: any;
   classIcon?: string;
-  autoComplete?: string;
   register: any;
-  onChange?: any;
   setValue?: any;
   classNoLabel?: string;
 };
@@ -35,9 +31,9 @@ export const FormSelect = ({
   setValue,
 }: FormSelectPropTypes) => {
   const [open, setOpen] = useState(false);
-  const loading = open && options.length === 0;
+  const loading = open && options?.length === 0;
 
-  const sortedOptions = [...options].sort((a, b) => a.name.localeCompare(b.name));
+  const sortedOptions = [...options].sort((a, b) => a?.name?.localeCompare(b?.name));
 
   return (
     <div className={`form-group w-full ${classContainer}`}>
@@ -61,7 +57,9 @@ export const FormSelect = ({
           openText="Abrir"
           noOptionsText="Opção não encontrada"
           loadingText="Carregando"
-          onInputChange={(e: any) => setValue(e.target.value)}
+          onInputChange={(event, newInputValue) => {
+            setValue(newInputValue);
+          }}
           autoSelect
           autoHighlight
           clearOnBlur
@@ -75,15 +73,13 @@ export const FormSelect = ({
           onClose={() => {
             setOpen(false);
           }}
-          isOptionEqualToValue={(option: any, value: any) =>
-            option.id === value.id
+          isOptionEqualToValue={(option, value) =>
+            option?.name === value?.name && option?.id === value?.id
           }
-          getOptionLabel={(option) => option.name}
-          id="combo-box"
+          getOptionLabel={(option) => option?.name || option?.id || ""}
           loading={loading}
           options={sortedOptions}
           className={`rounded-2xl border-0 border-none border-white text-primary shadow-sm shadow-primary ${classNameSelect}`}
-          PaperComponent={CustomPaper}
           renderInput={(params) => (
             <TextField
               {...params}
@@ -97,19 +93,19 @@ export const FormSelect = ({
                 disabled: true,
                 sx: {
                   color:
-                    params.inputProps.value
+                    params?.inputProps?.value
                       ? "transparent !important"
                       : null,
                   "&.Mui-disabled": {
                     color:
-                      params.inputProps.value
+                      params?.inputProps?.value
                         ? "transparent !important"
                         : null,
                   },
                 },
               }}
               InputProps={{
-                ...params.InputProps,
+                ...params?.InputProps,
                 className: `input-md rounded-2xl border-none border-0 border-white text-primary ${classNameSelect}`,
                 sx: {
                   color: "blue !important",
@@ -130,12 +126,12 @@ export const FormSelect = ({
                       className="text-primary"
                       style={{ color: "blue !important" }}
                     >
-                      {params.InputProps.endAdornment}
+                      {params?.InputProps?.endAdornment}
                     </span>
                   </>
                 ),
               }}
-              onChange={(e: any) => setValue(e.target.value)}
+              onChange={(e) => setValue(e.target.value)}
             />
           )}
         />
@@ -143,15 +139,3 @@ export const FormSelect = ({
     </div>
   );
 };
-
-function CustomPaper(props: any) {
-  return (
-    <Paper
-      {...props}
-      sx={{
-        color: "indigo !important",
-        ...props.sx,
-      }}
-    />
-  );
-}
