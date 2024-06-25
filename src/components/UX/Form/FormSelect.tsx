@@ -57,7 +57,7 @@ export const FormSelect = ({
           openText="Abrir"
           noOptionsText="Opção não encontrada"
           loadingText="Carregando"
-          onInputChange={(event, newInputValue) => {
+          onInputChange={(_event, newInputValue) => {
             setValue(newInputValue);
           }}
           autoSelect
