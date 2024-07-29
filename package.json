@@ -14,7 +14,7 @@
     "@emotion/styled": "^11.11.5",
     "@heroicons/react": "^2.1.4",
     "@hookform/resolvers": "^3.9.0",
-    "@mui/icons-material": "^5.15.21",
+    "@mui/icons-material": "^5.16.0",
     "@mui/material": "^5.16.0",
     "@rollup/plugin-terser": "^0.4.4",
     "@types/tailwindcss": "^3.1.0",
