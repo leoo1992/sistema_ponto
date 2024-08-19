@@ -39,7 +39,7 @@ export default function UserFormContainer({
         onSubmit={handleSubmit(onSubmit)}
         className="m-0 flex w-full flex-col p-6"
       >
-        <FormTittle title='Cadastro de usuários' />
+        <FormTittle title="Cadastro de usuários" />
         <div
           className={`flex w-full flex-col content-center justify-center self-center`}
         >
@@ -103,10 +103,8 @@ export default function UserFormContainer({
               <FormSelect
                 labelName="Setor"
                 options={sectors}
-                setValue={setValue}
-                register={register("id_sector", {
-                  onChange: (e: any) => setValue("id_sector", e.target.value),
-                })}
+                setValue={(newValue: any) => setValue("id_sector", newValue)}
+                register={register("id_sector")}
                 classNameSelect={`w-full flex justify-between items-center self-center align-middle ${errors?.id_sector && "select-error shadow-error"}`}
                 Icon={<HiOfficeBuilding size={20} />}
                 classIcon="flex"
@@ -119,10 +117,8 @@ export default function UserFormContainer({
               <FormSelect
                 labelName="Cargo"
                 options={positions}
-                setValue={setValue}
-                register={register("id_position", {
-                  onChange: (e: any) => setValue("id_position", e.target.value),
-                })}
+                setValue={(newValue: any) => setValue("id_position", newValue)}
+                register={register("id_position")}
                 classNameSelect={`w-full flex justify-between items-center self-center align-middle ${errors?.id_position && "select-error shadow-error"}`}
                 Icon={<BsWrench size={20} />}
                 classIcon="flex"
@@ -136,11 +132,11 @@ export default function UserFormContainer({
             <div className="w-full">
               <FormSelect
                 options={role}
-                setValue={setValue}
+                setValue={(newValue: any) => {
+                  setValue("id_role", newValue);
+                }}
                 labelName="Acesso"
-                register={register("id_role", {
-                  onChange: (e: any) => setValue("id_role", e.target.value),
-                })}
+                register={register("id_role")}
                 classNameSelect={`w-full flex justify-between items-center self-center align-middle ${errors?.id_role && "select-error shadow-error"}`}
                 Icon={<HiKey size={20} />}
                 classIcon="flex"
@@ -150,28 +146,25 @@ export default function UserFormContainer({
               )}
             </div>
             <div className="w-full">
-                  <FormInput
-                    register={register(
-                      "password",
-                      { required: true },
-                    )}
-                    labelName="Senha"
-                    palceholder="Senha *"
-                    typeInput="password"
-                    classNameInput={` w-full flex justify-between items-center self-center align-middle ${errors?.password && "input-error shadow-error"}`}
-                    Icon={<HiLockClosed size={20} />}
-                    classIcon={`flex `}
-                  />
-                  {errors?.password && (
-                    <ErrorFormMsgs error={errors.password.message} />
-                  )}
+              <FormInput
+                register={register("password", { required: true })}
+                labelName="Senha"
+                palceholder="Senha *"
+                typeInput="password"
+                classNameInput={` w-full flex justify-between items-center self-center align-middle ${errors?.password && "input-error shadow-error"}`}
+                Icon={<HiLockClosed size={20} />}
+                classIcon={`flex `}
+              />
+              {errors?.password && (
+                <ErrorFormMsgs error={errors.password.message} />
+              )}
             </div>
           </div>
         </div>
         <SubmittFormBtn
           isSubmitting={isSubmitting}
           isFormValid={isFormValid}
-          btnText='Cadastrar'
+          btnText="Cadastrar"
         />
       </form>
     </div>

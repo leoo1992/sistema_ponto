@@ -7,17 +7,19 @@ export default async function newUserPOST(
   navigate: any,
 ) {
   const NewUserURL = import.meta.env.VITE_REACT_APP_NEW_USER_URL;
+
   const data = {
     email,
     password,
     telefone,
     cpf,
     name,
-    position: { name: position },
-    sector: { name: sector },
-    permissions: [{ name: role }],
+    position: { id_position: position },
+    sector: { id_sector: sector },
+    permissions: [{ id_role: role }],
   };
 
+  debugger;
   try {
     const response = await fetch(NewUserURL, {
       method: "POST",

@@ -134,6 +134,9 @@ export const FormSelect = ({
               onChange={(e) => setValue(e.target.value)}
             />
           )}
+          onChange={(_event, newValue) => {
+            setValue(newValue);
+          }}
         />
       </div>
     </div>

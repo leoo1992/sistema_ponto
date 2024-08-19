@@ -24,6 +24,8 @@ export const useUserForm = () => {
     resolver: zodResolver(createUserFormSchema),
   });
 
+  
+
   const onSubmit = async ({
     cpf,
     email,
@@ -33,17 +35,24 @@ export const useUserForm = () => {
     id_position,
     id_sector,
     id_role,
-  }: any) => {
+  }: any) =>
+  {
+    const positionId = positions.find(position => position.name === id_position)?.id || null;
+    const sectorId = sectors.find(sector => sector.name === id_sector)?.id || null;
+    const roleId = role.find(itemRole => itemRole.name === id_role)?.id || null;
+
       const NewUser = {
         cpf: cpf.replace(/\D/g, ""),
         email,
         name,
         telefone,
         password,
-        position: id_position,
-        sector: id_sector,
-        role: id_role,
-      };
+        position: await positionId,
+        sector: await sectorId,
+        role: await roleId,
+    };
+    
+    debugger;
       await newUserPOST(NewUser, navigate);
   };
 
