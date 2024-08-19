@@ -9,8 +9,8 @@ import { ProgressComponent } from "../../../UX/TablesComponents/ProgressComponen
 import Pagination from "../../../UX/TablesComponents/Pagination";
 import { subHeaderComponent } from "../../../UX/TablesComponents/subHeaderComponent";
 import PositionListGET from "../../../../services/Position/PositionListGET";
-// import PositionDelete from "../../../services/Position/PositionListGET";
-// import PositionDisable from "../../../services/Position/";
+import DeletePosition from "../../../../services/Position/DeletePosition";
+import DisablePosition from "../../../../services/Position/DisablePosition";
 
 //import { data } from "../../../utils/Position/data.util";
 
@@ -61,15 +61,14 @@ export const PositionTableStory = ({
       await handleDisable(selectedDisableID);
   };
 
-  const handleDelete = async ( id : any) => {
-    console.log(id);
+  const handleDelete = async ( selectedDisableID : any) => {
     setLoading(true);
     try {
-      // await PositionDelete(id, navigate);
-      // setData((prevData: any) =>
-      //  prevData.filter((item: any) => item.id !== id),
-      //  );
-      // setTotalElements((prevTotalElements) => prevTotalElements - 1);
+      await DeletePosition(selectedDisableID);
+      setData((prevData: any) =>
+       prevData.filter((item: any) => item.id !== selectedDisableID),
+       );
+      setTotalElements((prevTotalElements) => prevTotalElements - 1);
     } catch (error) {
       console.error("Failed to delete position:", error);
     } finally {
@@ -84,15 +83,15 @@ export const PositionTableStory = ({
     const handleEditSelected = async(data: any) => {
       await handleEdit(data);
     };
-    const handleDisableSelected = (id: any) => {
+    const handleDisableSelected = ({id_position}: any) => {
       setModalOpen2(true);
-      setSelectedDisableID(id);
+      setSelectedDisableID(id_position);
       setToggleCleared(!toggleCleared);
     };
 
-    const handleDeleteSelected = (id: any) => {
+    const handleDeleteSelected = ({id_position}: any) => {
       setModalOpen(true);
-      setSelectedDeleteID(id);
+      setSelectedDeleteID(id_position);
       setToggleCleared(!toggleCleared);
     };
 
@@ -114,7 +113,7 @@ export const PositionTableStory = ({
           className="btn glass btn-warning btn-sm rounded-3xl bg-warning text-xs"
           key="disable"
           onClick={() => {
-            handleDisableSelected(selectedRows[0]?.id);
+            handleDisableSelected(selectedRows[0]);
           }}
         >
           Desabilitar
@@ -123,7 +122,7 @@ export const PositionTableStory = ({
           className="btn glass btn-error btn-sm w-20 rounded-3xl bg-red-400 text-xs"
           key="delete"
           onClick={() => {
-            handleDeleteSelected(selectedRows[0]?.id);
+            handleDeleteSelected(selectedRows[0]);
           }}
         >
           Deletar
@@ -184,14 +183,12 @@ export const PositionTableStory = ({
 
   const handleDisable = async (id : any) => {
     setLoading(true);
-    try {
-        console.log(id);
-        
-      // await PositionDisable(id, navigate);
-      // setData((prevData: any) =>
-      //    prevData.filter((item: any) => item.id !== id),
-      //  );
-      // setTotalElements((prevTotalElements) => prevTotalElements - 1);
+    try {       
+      await DisablePosition(id);
+      setData((prevData: any) =>
+         prevData.filter((item: any) => item.id !== id),
+       );
+      setTotalElements((prevTotalElements) => prevTotalElements - 1);
     } catch (error) {
       console.error("Failed to disable position:", error);
     } finally {
