@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 import { notifySuccess } from "../../components/UX/Toasts/ToastSuccess";
 import { notifyError } from "../../components/UX/Toasts/ToastError";
 
-export default async function DeleteSector(id: any, navigate: any) {
+export default async function DeleteSector(id: any) {
   const idAsNumber = parseInt(id);
   const DeleteSectorURL =
     import.meta.env.VITE_REACT_APP_DELETE_SECTOR_URL + `${idAsNumber}`;

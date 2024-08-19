@@ -63,7 +63,7 @@ export const SectorTableStory = ({
   const handleDelete = async (selectedDeleteID: any) => {
     setLoading(true);
     try {
-      await DeleteSector(selectedDeleteID, navigate);
+      await DeleteSector(selectedDeleteID);
       setData((data: any) =>
         data.filter((item: any) => item.id !== selectedDeleteID),
       );
