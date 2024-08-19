@@ -9,7 +9,7 @@ import Pagination from "../../../UX/TablesComponents/Pagination";
 import { subHeaderComponent } from "../../../UX/TablesComponents/subHeaderComponent";
 import SectorListGET from "../../../../services/Sector/SectorListGET";
 import DeleteSector from "../../../../services/Sector/DeleteSector";
-// import SectorDisable from "../../../../services/Sector/SectorDisable";
+import DisableSector from "../../../../services/Sector/DisableSector";
 
 // import { data } from "../../../utils/Sector/data.util";
 
@@ -82,9 +82,9 @@ export const SectorTableStory = ({
     const handleEditSelected = async (data: any) => {
       await handleEdit(data);
     };
-    const handleDisableSelected = (id: any) => {
+    const handleDisableSelected = ({ id_sector }: any) => {
       setModalOpen2(true);
-      setSelectedDisableID(id);
+      setSelectedDisableID(id_sector);
       setToggleCleared(!toggleCleared);
     };
 
@@ -180,13 +180,8 @@ export const SectorTableStory = ({
   const handleDisable = async (id: any) => {
     setLoading(true);
     try {
-      console.log(id);
-
-      //   await SectorDisable(id, navigate);
-      //   setData((prevData: any) =>
-      //      prevData.filter((item: any) => item.id !== id),
-      //    );
-      setTotalElements((prevTotalElements) => prevTotalElements - 1);
+      await DisableSector(id);
+      window.location.reload();
     } catch (error) {
       console.error("Failed to disable sector:", error);
     } finally {
