@@ -23,7 +23,6 @@ export default async function DeleteSector(id: any, navigate: any) {
     }
 
     notifySuccess({ text: "Setor deletado com sucesso!" });
-    navigate("/sectorslist");
 
   } catch (error) {
     throw error;

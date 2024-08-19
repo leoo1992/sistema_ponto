@@ -60,14 +60,12 @@ export const SectorTableStory = ({
     await handleDisable(selectedDisableID);
   };
 
-  const handleDelete = async (id: any) => {
-    console.log("ID", id);
-    //TODO enviar ID .. MAPEAR PQ TA VINDO UNDF
+  const handleDelete = async (selectedDeleteID: any) => {
     setLoading(true);
     try {
-      await DeleteSector(id, navigate);
-      setData((prevData: any) =>
-        prevData.filter((item: any) => item.id !== id),
+      await DeleteSector(selectedDeleteID, navigate);
+      setData((data: any) =>
+        data.filter((item: any) => item.id !== selectedDeleteID),
       );
       setTotalElements((prevTotalElements) => prevTotalElements - 1);
     } catch (error) {
@@ -90,9 +88,9 @@ export const SectorTableStory = ({
       setToggleCleared(!toggleCleared);
     };
 
-    const handleDeleteSelected = (id: any) => {
+    const handleDeleteSelected = ({ id_sector }: any) => {
       setModalOpen(true);
-      setSelectedDeleteID(id);
+      setSelectedDeleteID(id_sector);
       setToggleCleared(!toggleCleared);
     };
 
@@ -114,7 +112,7 @@ export const SectorTableStory = ({
           className="btn glass btn-warning btn-sm rounded-3xl bg-warning text-xs"
           key="disable"
           onClick={() => {
-            handleDisableSelected(selectedRows[0]?.id);
+            handleDisableSelected(selectedRows[0]);
           }}
         >
           Desabilitar
@@ -123,7 +121,7 @@ export const SectorTableStory = ({
           className="btn glass btn-error btn-sm w-20 rounded-3xl bg-red-400 text-xs"
           key="delete"
           onClick={() => {
-            handleDeleteSelected(selectedRows[0]?.id);
+            handleDeleteSelected(selectedRows[0]);
           }}
         >
           Deletar
