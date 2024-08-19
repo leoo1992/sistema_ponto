@@ -20,12 +20,11 @@
       "dist": true,
       "prettier.config.cjs": true,
       ".todo": true,
-      ".env": true,
+      // ".env": true,
       "cypress-env.d.ts": true,
       "src/cypress-env.d.ts": true,
       "cypress.config.ts": true,
       "index.html": true,
       "postcss.config.cjs": true,
-
     }
 }

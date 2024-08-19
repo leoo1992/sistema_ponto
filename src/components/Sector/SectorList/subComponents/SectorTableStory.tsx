@@ -8,8 +8,8 @@ import { ProgressComponent } from "../../../UX/TablesComponents/ProgressComponen
 import Pagination from "../../../UX/TablesComponents/Pagination";
 import { subHeaderComponent } from "../../../UX/TablesComponents/subHeaderComponent";
 import SectorListGET from "../../../../services/Sector/SectorListGET";
-// import SectorDelete from "../../../services/Sector/SectorDelete";
-// import SectorDisable from "../../../services/Sector/SectorDisable";
+import DeleteSector from "../../../../services/Sector/DeleteSector";
+// import SectorDisable from "../../../../services/Sector/SectorDisable";
 
 // import { data } from "../../../utils/Sector/data.util";
 
@@ -54,20 +54,21 @@ export const SectorTableStory = ({
   }, []);
 
   const handleDeleteConfirmed = async () => {
-      await handleDelete(selectedDeleteID);
+    await handleDelete(selectedDeleteID);
   };
   const handleDisableConfirmed = async () => {
-      await handleDisable(selectedDisableID);
+    await handleDisable(selectedDisableID);
   };
 
-  const handleDelete = async ( id : any) => {
-    console.log(id);
+  const handleDelete = async (id: any) => {
+    console.log("ID", id);
+    //TODO enviar ID .. MAPEAR PQ TA VINDO UNDF
     setLoading(true);
     try {
-    //   await SectorDelete(id, navigate);
-    //   setData((prevData: any) =>
-    //    prevData.filter((item: any) => item.id !== id),
-    //    );
+      await DeleteSector(id, navigate);
+      setData((prevData: any) =>
+        prevData.filter((item: any) => item.id !== id),
+      );
       setTotalElements((prevTotalElements) => prevTotalElements - 1);
     } catch (error) {
       console.error("Failed to delete sector:", error);
@@ -80,7 +81,7 @@ export const SectorTableStory = ({
   };
 
   const contextActions = useMemo(() => {
-    const handleEditSelected = async(data: any) => {
+    const handleEditSelected = async (data: any) => {
       await handleEdit(data);
     };
     const handleDisableSelected = (id: any) => {
@@ -163,10 +164,7 @@ export const SectorTableStory = ({
     setCurrentPage(1);
   };
 
-  const handleEdit = async ({
-    id,
-    name,
-  }: any) => {
+  const handleEdit = async ({ id, name }: any) => {
     try {
       const response = {
         id: id ? id : null,
@@ -181,15 +179,15 @@ export const SectorTableStory = ({
     }
   };
 
-  const handleDisable = async (id : any) => {
+  const handleDisable = async (id: any) => {
     setLoading(true);
     try {
-        console.log(id);
-        
-    //   await SectorDisable(id, navigate);
-    //   setData((prevData: any) =>
-    //      prevData.filter((item: any) => item.id !== id),
-    //    );
+      console.log(id);
+
+      //   await SectorDisable(id, navigate);
+      //   setData((prevData: any) =>
+      //      prevData.filter((item: any) => item.id !== id),
+      //    );
       setTotalElements((prevTotalElements) => prevTotalElements - 1);
     } catch (error) {
       console.error("Failed to disable sector:", error);
@@ -236,7 +234,7 @@ export const SectorTableStory = ({
         progressComponent={ProgressComponent}
         noHeader={noHeader}
         subHeader={subHeader}
-        subHeaderComponent={subHeaderComponent('/register-sector')}
+        subHeaderComponent={subHeaderComponent("/register-sector")}
         subHeaderAlign={subHeaderAlign}
         subHeaderWrap={subHeaderWrap}
         noContextMenu={noContextMenu}

@@ -19,8 +19,6 @@ export default function UserFormEffects({
         const RoleData = await getRole();
         const PositionsData = await getPosition();
         const SectorsData = await getSector();
-
-        console.log(PositionsData);
         
         const mappedPositions = PositionsData?.map((position: any) => ({
           id: position.id_position,
