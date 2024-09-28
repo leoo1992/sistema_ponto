@@ -20,7 +20,7 @@
     "@types/tailwindcss": "^3.1.0",
     "@vercel/analytics": "^1.2.2",
     "core-js": "^3.38.1",
-    "eslint": "^9.9.0",
+    "eslint": "^9.10.0",
     "js-cookie": "^3.0.5",
     "querystring": "^0.2.1",
     "react": "^18.3.1",
