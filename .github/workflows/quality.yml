@@ -15,5 +15,6 @@ jobs:
           node-version: 22
       - run: npm install --legacy-peer-deps --no-audit --no-fund
       - run: node --test tests/quality.test.mjs
-      - run: npx --yes eslint@8 . --ext ts,tsx --report-unused-disable-directives
+      - name: Lint
+        run: npm run lint
       - run: npm run build
