@@ -50,8 +50,8 @@
     "@types/styled-components": "^5.1.34",
     "@typescript-eslint/eslint-plugin": "^7.8.0",
     "@typescript-eslint/parser": "^7.8.0",
-    "@vitejs/plugin-react": "^4.2.1",
-    "@vitejs/plugin-react-swc": "^3.5.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "@vitejs/plugin-react-swc": "^3.11.0",
     "@vituum/vite-plugin-postcss": "^1.1.0",
     "autoprefixer": "^10.4.19",
     "cypress": "^13.9.0",
@@ -65,7 +65,7 @@
     "prettier-plugin-tailwindcss": "^0.5.14",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5",
-    "vite": "^5.4.6",
+    "vite": "^8.3.5",
     "eslint-plugin-react-refresh": "^0.4.6"
   },
   "engines": {
