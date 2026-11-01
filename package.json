@@ -38,7 +38,7 @@
     "typescript-plugin-styled-components": "^3.0.0",
     "vike": "^0.4.197",
     "vite-plugin-ssr": "^0.4.142",
-    "zod": "^3.24.0-canary.20240523T174819"
+    "zod": "^4.6.6"
   },
   "devDependencies": {
     "@rollup/plugin-replace": "^5.0.5",
