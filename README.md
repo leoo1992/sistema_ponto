@@ -1,20 +1,33 @@
-# Sistem de Gerenciamento de Ponto 
+# Sistema de Gerenciamento de Ponto
 
-- React
-- tailwindCSS
-- TypeScript
+[English version](README.en.md)
+
+Frontend para um sistema de gerenciamento de ponto, construído com React, TypeScript e Vite.
+
+## Tecnologias
+
+- React e TypeScript
 - Vite
-- Prettier
-- Eslint
-- DaisyUI
-- MaterialUI
-- React Data Table Component
-- React Hot Toast
-- React Spinners
+- Tailwind CSS e DaisyUI
+- Material UI
 - React Router DOM
-- JS Cookie
 - React Hook Form
-- React Icons
-- REST API Integration (Java-Spring)
+- Axios / integração com API REST Java Spring
+- React Hot Toast, React Spinners e React Icons
+- ESLint e Prettier
 
+## Desenvolvimento
 
+```bash
+npm install
+npm run dev
+```
+
+## Build e qualidade
+
+```bash
+npm run build
+npm run lint
+```
+
+O frontend consome uma API REST Java/Spring. Configure a URL da API conforme o ambiente de execução.
