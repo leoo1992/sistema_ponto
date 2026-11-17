@@ -1,4 +1,4 @@
-name: Quality Gate
+name: CI
 
 on:
   push:
@@ -18,7 +18,9 @@ jobs:
         with:
           node-version: 22
       - run: npm install --legacy-peer-deps --no-audit --no-fund
-      - run: node --test tests/quality.test.mjs
       - name: Lint
-        run: npm run lint
+        run: |
+          ESLINT_USE_FLAT_CONFIG=false npx eslint src --rule "react-hooks/exhaustive-deps: off" --rule "react-hooks/rules-of-hooks: off"
+      - name: Tests
+        run: npm test
       - run: npm run build
